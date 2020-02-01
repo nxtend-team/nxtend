@@ -1,4 +1,4 @@
-export const nxVersion = '*';
+export const nxVersion = '8.12.0';
 
 export const reactVersion = '16.12.0';
 export const reactDomVersion = '16.12.0';
