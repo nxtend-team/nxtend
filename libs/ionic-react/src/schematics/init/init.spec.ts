@@ -17,6 +17,7 @@ describe('init', () => {
     const packageJson = readJsonInTree(result, 'package.json');
     expect(packageJson.dependencies['@nrwl/react']).toBeUndefined();
     expect(packageJson.dependencies['@ionic/react']).toBeDefined();
+    expect(packageJson.dependencies['ionicons']).toBeDefined();
     expect(packageJson.dependencies['react']).toBeDefined();
     expect(packageJson.dependencies['react-dom']).toBeDefined();
     expect(packageJson.devDependencies['@nrwl/react']).toBeDefined();

@@ -7,6 +7,7 @@ import {
   updateWorkspace
 } from '@nrwl/workspace';
 import {
+  ioniconsVersion,
   ionicReactVersion,
   nxtendVersion,
   nxVersion,
@@ -22,6 +23,7 @@ export function addDependencies(): Rule {
   return addDepsToPackageJson(
     {
       '@ionic/react': ionicReactVersion,
+      ionicons: ioniconsVersion,
       react: reactVersion,
       'react-dom': reactDomVersion
     },
