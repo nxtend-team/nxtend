@@ -7,6 +7,14 @@
       "factory": "./src/schematics/ionic-react/schematic",
       "schema": "./src/schematics/ionic-react/schema.json",
       "description": "ionic-react schematic"
+    },
+
+    "init": {
+      "factory": "./src/schematics/init/init",
+      "schema": "./src/schematics/init/schema.json",
+      "description": "Initialize the @nrwl/react plugin",
+      "aliases": ["ng-add"],
+      "hidden": true
     }
   }
 }
