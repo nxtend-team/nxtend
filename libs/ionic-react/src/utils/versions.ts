@@ -27,4 +27,5 @@ export const eslintPluginJsxA11yVersion = '6.2.3';
 export const eslintPluginReactVersion = '7.17.0';
 export const eslintPluginReactHooksVersion = '2.3.0';
 
+export const nxtendVersion = '0.0.1';
 export const ionicReactVersion = '4.11.10';

@@ -8,6 +8,7 @@ import {
 } from '@nrwl/workspace';
 import {
   ionicReactVersion,
+  nxtendVersion,
   nxVersion,
   reactDomVersion,
   reactVersion,
@@ -26,6 +27,7 @@ export function addDependencies(): Rule {
     },
     {
       '@nrwl/react': nxVersion,
+      '@nxtend/ionic-react': nxtendVersion,
       '@types/react': typesReactVersion,
       '@types/react-dom': typesReactDomVersion,
       '@testing-library/react': testingLibraryReactVersion
