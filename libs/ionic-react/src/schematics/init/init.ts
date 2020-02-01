@@ -1,24 +1,26 @@
+import { JsonObject } from '@angular-devkit/core';
 import { chain, Rule } from '@angular-devkit/schematics';
 import {
   addDepsToPackageJson,
-  updateJsonInTree,
   addPackageWithInit,
+  updateJsonInTree,
   updateWorkspace
 } from '@nrwl/workspace';
-import { Schema } from './schema';
 import {
-  reactVersion,
-  typesReactVersion,
-  typesReactDomVersion,
-  testingLibraryReactVersion,
+  ionicReactVersion,
   nxVersion,
-  reactDomVersion
+  reactDomVersion,
+  reactVersion,
+  testingLibraryReactVersion,
+  typesReactDomVersion,
+  typesReactVersion
 } from '../../utils/versions';
-import { JsonObject } from '@angular-devkit/core';
+import { Schema } from './schema';
 
 export function addDependencies(): Rule {
   return addDepsToPackageJson(
     {
+      '@ionic/react': ionicReactVersion,
       react: reactVersion,
       'react-dom': reactDomVersion
     },
