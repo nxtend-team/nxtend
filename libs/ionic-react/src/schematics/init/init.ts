@@ -15,6 +15,7 @@ import {
   reactVersion,
   testingLibraryJestDomVersion,
   testingLibraryReactVersion,
+  testingLibraryUserEventVersion,
   typesReactDomVersion,
   typesReactVersion
 } from '../../utils/versions';
@@ -33,6 +34,7 @@ export function addDependencies(): Rule {
       '@nxtend/ionic-react': nxtendVersion,
       '@types/react': typesReactVersion,
       '@types/react-dom': typesReactDomVersion,
+      '@testing-library/user-event': testingLibraryUserEventVersion,
       '@testing-library/jest-dom': testingLibraryJestDomVersion,
       '@testing-library/react': testingLibraryReactVersion
     }
