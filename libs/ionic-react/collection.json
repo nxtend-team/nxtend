@@ -12,7 +12,7 @@
     "init": {
       "factory": "./src/schematics/init/init",
       "schema": "./src/schematics/init/schema.json",
-      "description": "Initialize the @nrwl/react plugin",
+      "description": "Initialize the @nxtend/ionic-react plugin",
       "aliases": ["ng-add"],
       "hidden": true
     }
