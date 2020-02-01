@@ -24,6 +24,7 @@ describe('init', () => {
     expect(packageJson.devDependencies['@nxtend/ionic-react']).toBeDefined();
     expect(packageJson.devDependencies['@types/react']).toBeDefined();
     expect(packageJson.devDependencies['@types/react-dom']).toBeDefined();
+    expect(packageJson.devDependencies['@testing-library/jest-dom']).toBeDefined();
     expect(packageJson.devDependencies['@testing-library/react']).toBeDefined();
   });
 

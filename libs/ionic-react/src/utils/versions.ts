@@ -28,5 +28,8 @@ export const eslintPluginReactVersion = '7.17.0';
 export const eslintPluginReactHooksVersion = '2.3.0';
 
 export const nxtendVersion = '0.0.1';
+
 export const ionicReactVersion = '4.11.10';
 export const ioniconsVersion = '4.6.3';
+
+export const testingLibraryJestDomVersion = '5.1.0';
