@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { JsonObject } from '@angular-devkit/core';
 import { chain, Rule } from '@angular-devkit/schematics';
 import {

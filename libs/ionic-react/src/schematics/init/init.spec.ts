@@ -40,6 +40,7 @@ describe('init', () => {
     });
 
     it('should be set if @nrwl/workspace was set before', async () => {
+      // eslint-disable-next-line require-atomic-updates
       tree = await callRule(
         updateJsonInTree('workspace.json', json => {
           json.cli = {
@@ -59,6 +60,7 @@ describe('init', () => {
     });
 
     it('should not be set if something else was set before', async () => {
+      // eslint-disable-next-line require-atomic-updates
       tree = await callRule(
         updateJsonInTree('workspace.json', json => {
           json.cli = {
