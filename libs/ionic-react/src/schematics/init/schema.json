@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/schema",
-  "id": "NxReactNgInit",
-  "title": "Add Nx React Schematics",
+  "id": "NxtendIonicReactNgInit",
+  "title": "Add Ionic React Schematics",
   "type": "object",
   "properties": {
     "skipFormat": {
