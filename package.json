@@ -29,6 +29,8 @@
   "dependencies": {},
   "devDependencies": {
     "@nrwl/nx-plugin": "8.12.0",
+    "@nrwl/react": "8.12.0",
+    "@nrwl/web": "8.12.0",
     "@nrwl/workspace": "8.12.0",
     "@types/node": "~8.9.4",
     "dotenv": "6.2.0",

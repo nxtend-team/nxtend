@@ -3,6 +3,14 @@
   "name": "ionic-react",
   "version": "0.0.1",
   "schematics": {
+    "init": {
+      "factory": "./src/schematics/init/init",
+      "schema": "./src/schematics/init/schema.json",
+      "description": "Initialize the @nxtend/ionic-react plugin",
+      "aliases": ["ng-add"],
+      "hidden": true
+    },
+
     "ionicReact": {
       "factory": "./src/schematics/ionic-react/schematic",
       "schema": "./src/schematics/ionic-react/schema.json",
