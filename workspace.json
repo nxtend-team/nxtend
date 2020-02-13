@@ -16,7 +16,10 @@
               "libs/ionic-react/tsconfig.lib.json",
               "libs/ionic-react/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/ionic-react/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/ionic-react/**"
+            ]
           }
         },
         "test": {
