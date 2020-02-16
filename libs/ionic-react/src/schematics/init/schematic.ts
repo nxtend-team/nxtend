@@ -1,5 +1,4 @@
-import { chain, Rule } from '@angular-devkit/schematics';
-import init from '@nrwl/react/src/schematics/init/init';
+import { chain, externalSchematic, Rule } from '@angular-devkit/schematics';
 import { addDepsToPackageJson } from '@nrwl/workspace';
 import {
   ioniconsVersion,
@@ -10,7 +9,7 @@ import {
 } from '../../utils/versions';
 import { InitSchematicSchema } from './schema';
 
-export function addDependencies(): Rule {
+function addDependencies(): Rule {
   return addDepsToPackageJson(
     {
       '@ionic/react': ionicReactVersion,
@@ -24,6 +23,10 @@ export function addDependencies(): Rule {
   );
 }
 
+function initNrwlReact(options) {
+  return externalSchematic('@nrwl/react', 'init', options);
+}
+
 export default function(options: InitSchematicSchema): Rule {
-  return chain([init(options), addDependencies()]);
+  return chain([initNrwlReact(options), addDependencies()]);
 }
