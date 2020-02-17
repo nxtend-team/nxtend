@@ -4,6 +4,7 @@ import {
   ioniconsVersion,
   ionicReactVersion,
   nxtendVersion,
+  nxVersion,
   testingLibraryJestDomVersion,
   testingLibraryUserEventVersion
 } from '../../utils/versions';
@@ -16,6 +17,7 @@ function addDependencies(): Rule {
       ionicons: ioniconsVersion
     },
     {
+      '@nrwl/react': nxVersion,
       '@nxtend/ionic-react': nxtendVersion,
       '@testing-library/user-event': testingLibraryUserEventVersion,
       '@testing-library/jest-dom': testingLibraryJestDomVersion

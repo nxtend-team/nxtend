@@ -3,5 +3,8 @@
   "version": "0.1.0-beta",
   "main": "src/index.js",
   "schematics": "./collection.json",
-  "builders": "./builders.json"
+  "builders": "./builders.json",
+  "ng-update": {
+    "migrations": "./migrations.json"
+  }
 }

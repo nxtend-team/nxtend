@@ -1,0 +1,9 @@
+{
+  "schematics": {
+    "update-0.1.1": {
+      "version": "0.1.1-beta.1",
+      "description": "Add Nrwl React library",
+      "factory": "./src/migrations/update-0-1-1/update-0-1-1"
+    }
+  }
+}
