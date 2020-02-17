@@ -1,4 +1,4 @@
-export const nxtendVersion = '0.1.0-beta';
+export const nxtendVersion = '*';
 
 export const ionicReactVersion = '^5.0.0';
 export const ionicReactRouterVersion = '^5.0.0';
