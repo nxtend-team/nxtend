@@ -122,7 +122,7 @@ function updateWorkspace(options: NormalizedSchema): Rule {
 export default function(options: ApplicationSchematicSchema): Rule {
   const normalizedOptions = normalizeOptions(options);
   return chain([
-    init({ skipFormat: true }),
+    init(),
     addDependencies(),
     generateNrwlReactApplication(options),
     addFiles(normalizedOptions),

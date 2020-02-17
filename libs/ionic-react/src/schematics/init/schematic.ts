@@ -1,14 +1,12 @@
-import { chain, externalSchematic, Rule } from '@angular-devkit/schematics';
-import { addDepsToPackageJson } from '@nrwl/workspace';
+import { chain, Rule } from '@angular-devkit/schematics';
+import { addDepsToPackageJson, addPackageWithInit } from '@nrwl/workspace';
 import {
   ioniconsVersion,
   ionicReactVersion,
   nxtendVersion,
-  nxVersion,
   testingLibraryJestDomVersion,
   testingLibraryUserEventVersion
 } from '../../utils/versions';
-import { InitSchematicSchema } from './schema';
 
 function addDependencies(): Rule {
   return addDepsToPackageJson(
@@ -17,7 +15,6 @@ function addDependencies(): Rule {
       ionicons: ioniconsVersion
     },
     {
-      '@nrwl/react': nxVersion,
       '@nxtend/ionic-react': nxtendVersion,
       '@testing-library/user-event': testingLibraryUserEventVersion,
       '@testing-library/jest-dom': testingLibraryJestDomVersion
@@ -25,10 +22,6 @@ function addDependencies(): Rule {
   );
 }
 
-function initNrwlReact(options) {
-  return externalSchematic('@nrwl/react', 'init', options);
-}
-
-export default function(options: InitSchematicSchema): Rule {
-  return chain([initNrwlReact(options), addDependencies()]);
+export default function(): Rule {
+  return chain([addPackageWithInit('@nrwl/react'), addDependencies()]);
 }

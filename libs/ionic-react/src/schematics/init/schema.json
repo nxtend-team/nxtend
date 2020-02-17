@@ -3,12 +3,6 @@
   "id": "NxtendIonicReactNgInit",
   "title": "Add Nxtend Ionic React Schematics",
   "type": "object",
-  "properties": {
-    "skipFormat": {
-      "description": "Skip formatting files",
-      "type": "boolean",
-      "default": false
-    }
-  },
+  "properties": {},
   "required": []
 }
