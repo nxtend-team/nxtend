@@ -23,7 +23,8 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/ionic-react/jest.config.js",
-            "tsConfig": "libs/ionic-react/tsconfig.spec.json"
+            "tsConfig": "libs/ionic-react/tsconfig.spec.json",
+            "passWithNoTests": true
           }
         },
         "build": {
