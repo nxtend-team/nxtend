@@ -11,7 +11,6 @@ export interface ApplicationSchematicSchema {
   linter: Linter;
   pascalCaseFiles?: boolean;
   classComponent?: boolean;
-  routing?: boolean;
   skipWorkspaceJson?: boolean;
   js?: boolean;
 }

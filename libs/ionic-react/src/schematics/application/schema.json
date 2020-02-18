@@ -71,12 +71,6 @@
       "enum": ["eslint", "tslint"],
       "default": "tslint"
     },
-    "routing": {
-      "type": "boolean",
-      "description": "Generate application with routes",
-      "x-prompt": "Would you like to add React Router to this application?",
-      "default": true
-    },
     "skipFormat": {
       "description": "Skip formatting files",
       "type": "boolean",

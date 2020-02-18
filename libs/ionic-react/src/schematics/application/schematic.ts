@@ -73,7 +73,10 @@ function addDependencies(): Rule {
 }
 
 function generateNrwlReactApplication(options: ApplicationSchematicSchema) {
-  return externalSchematic('@nrwl/react', 'application', options);
+  return externalSchematic('@nrwl/react', 'application', {
+    ...options,
+    routing: true
+  });
 }
 
 function addFiles(options: NormalizedSchema): Rule {
