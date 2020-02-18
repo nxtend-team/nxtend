@@ -81,7 +81,7 @@ function generateNrwlReactApplication(options: ApplicationSchematicSchema) {
 
 function addFiles(options: NormalizedSchema): Rule {
   return mergeWith(
-    apply(url(`./files`), [
+    apply(url(`./files/blank`), [
       applyTemplates({
         ...options,
         ...names(options.name),
