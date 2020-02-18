@@ -110,13 +110,17 @@ function deleteUnusedFiles(options: NormalizedSchema): Rule {
 
 function updateWorkspace(options: NormalizedSchema): Rule {
   return updateWorkspaceInTree(json => {
-    const assets = json.projects[
-      options.projectName
-    ].architect.build.options.assets.filter(
+    const architect = json.projects[options.projectName].architect;
+
+    const assets = architect.build.options.assets.filter(
       (asset: string) => asset != options.projectRoot + '/src/favicon.ico'
     );
+    architect.build.options.assets = assets;
 
-    json.projects[options.projectName].architect.build.options.assets = assets;
+    architect.build.options.webpackConfig =
+      '@nxtend/ionic-react/plugins/webpack';
+
+    json.projects[options.projectName].architect = architect;
 
     return json;
   });
