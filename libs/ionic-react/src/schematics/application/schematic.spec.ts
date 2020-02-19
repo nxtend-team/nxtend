@@ -24,33 +24,23 @@ describe('application', () => {
     appTree = createEmptyWorkspace(Tree.empty());
   });
 
-  function testGeneratedApp(tree: Tree, style: string) {
-    if (!style) {
-      style = 'css';
-    }
+  function testGeneratedFiles(tree: Tree) {
+    expect(
+      tree.exists(`apps/${options.name}/src/app/theme/variables.css`)
+    ).toBeTruthy();
 
-    // Added styles
-    if (style !== 'styled-components') {
-      expect(
-        tree.exists(`apps/${options.name}/src/app/theme/variables.` + style)
-      ).toBeTruthy();
-    } else {
-      expect(
-        tree.exists(`apps/${options.name}/src/app/theme/variables.` + style)
-      ).toBeFalsy();
-    }
-
-    // Added files
     expect(
       tree.exists(`apps/${options.name}/src/app/app.spec.tsx`)
     ).toBeTruthy();
     expect(tree.exists(`apps/${options.name}/src/app/app.tsx`)).toBeTruthy();
+
     expect(
       tree.exists(`apps/${options.name}/src/assets/icon/favicon.png`)
     ).toBeTruthy();
     expect(
       tree.exists(`apps/${options.name}/src/assets/icon/icon.png`)
     ).toBeTruthy();
+
     expect(tree.exists(`apps/${options.name}/src/index.html`)).toBeTruthy();
     expect(tree.exists(`apps/${options.name}/src/manifest.json`)).toBeTruthy();
 
@@ -60,20 +50,6 @@ describe('application', () => {
     expect(
       tree.exists(`apps/${options.name}/src/app/${options.name}.tsx`)
     ).toBeFalsy();
-
-    // Deleted files
-    expect(
-      tree.exists(`apps/${options.name}/src/app/app.` + style)
-    ).toBeFalsy();
-    expect(tree.exists(`apps/${options.name}/src/favicon.ico`)).toBeFalsy();
-
-    // Template files
-    expect(
-      tree.exists(`apps/${options.name}/src/index.html.template`)
-    ).toBeFalsy();
-    expect(
-      tree.exists(`apps/${options.name}/src/manifest.json.template`)
-    ).toBeFalsy();
   }
 
   it('should generate application', async () => {
@@ -81,7 +57,7 @@ describe('application', () => {
       .runSchematicAsync('application', options, appTree)
       .toPromise();
 
-    testGeneratedApp(tree, null);
+    testGeneratedFiles(tree);
   });
 
   it('should generate application with app alias', async () => {
@@ -89,7 +65,29 @@ describe('application', () => {
       .runSchematicAsync('app', options, appTree)
       .toPromise();
 
-    testGeneratedApp(tree, null);
+    testGeneratedFiles(tree);
+  });
+
+  it('should apply template files', async () => {
+    const tree = await testRunner
+      .runSchematicAsync('application', options, appTree)
+      .toPromise();
+
+    expect(
+      tree.exists(`apps/${options.name}/src/index.html.template`)
+    ).toBeFalsy();
+    expect(
+      tree.exists(`apps/${options.name}/src/manifest.json.template`)
+    ).toBeFalsy();
+  });
+
+  it('should delete unused @nrwl/react files', async () => {
+    const tree = await testRunner
+      .runSchematicAsync('application', options, appTree)
+      .toPromise();
+
+    expect(tree.exists(`apps/${options.name}/src/app/app.css`)).toBeFalsy();
+    expect(tree.exists(`apps/${options.name}/src/favicon.ico`)).toBeFalsy();
   });
 
   describe('--style', () => {
@@ -99,7 +97,9 @@ describe('application', () => {
         .runSchematicAsync('application', { ...options, style }, appTree)
         .toPromise();
 
-      testGeneratedApp(tree, style);
+      expect(
+        tree.exists(`apps/${options.name}/src/app/theme/variables.scss`)
+      ).toBeTruthy();
     });
 
     it('should generate application with styled-components style', async () => {
@@ -108,7 +108,11 @@ describe('application', () => {
         .runSchematicAsync('application', { ...options, style }, appTree)
         .toPromise();
 
-      testGeneratedApp(tree, style);
+      expect(
+        tree.exists(
+          `apps/${options.name}/src/app/theme/variables.styled-components`
+        )
+      ).toBeFalsy();
     });
   });
 });
