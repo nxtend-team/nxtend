@@ -99,6 +99,20 @@ describe('application', () => {
     expect(tree.exists(`apps/${options.name}/src/favicon.ico`)).toBeFalsy();
   });
 
+  it('should update workspace.json', async () => {
+    const tree = await testRunner
+      .runSchematicAsync('application', options, appTree)
+      .toPromise();
+    const workspaceJson = readJsonInTree(tree, '/workspace.json');
+
+    expect(
+      workspaceJson.projects[options.name].architect.build.options.assets
+    ).not.toContain('/src/favicon.ico');
+    expect(
+      workspaceJson.projects[options.name].architect.build.options.webpackConfig
+    ).toEqual('@nxtend/ionic-react/plugins/webpack');
+  });
+
   describe('--style', () => {
     it('should generate application with scss style', async () => {
       const style = 'scss';
