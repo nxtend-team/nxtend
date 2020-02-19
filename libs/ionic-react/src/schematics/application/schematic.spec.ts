@@ -138,4 +138,36 @@ describe('application', () => {
       ).toBeFalsy();
     });
   });
+
+  describe('--unitTestRunner', () => {
+    it('should generate Jest mocks', async () => {
+      const tree = await testRunner
+        .runSchematicAsync('application', options, appTree)
+        .toPromise();
+
+      expect(
+        tree.exists(`apps/${options.name}/src/app/__mocks__/fileMock.js`)
+      ).toBeTruthy();
+      expect(
+        tree.exists(`apps/${options.name}/jest.config.js.template`)
+      ).toBeFalsy();
+    });
+
+    it('should not generate Jest mocks', async () => {
+      const tree = await testRunner
+        .runSchematicAsync(
+          'application',
+          { ...options, unitTestRunner: 'none' },
+          appTree
+        )
+        .toPromise();
+
+      expect(
+        tree.exists(`apps/${options.name}/src/app/__mocks__/fileMock.js`)
+      ).toBeFalsy();
+      expect(
+        tree.exists(`apps/${options.name}/jest.config.js.template`)
+      ).toBeFalsy();
+    });
+  });
 });

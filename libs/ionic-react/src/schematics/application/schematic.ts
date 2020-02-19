@@ -96,6 +96,24 @@ function addFiles(options: NormalizedSchema): Rule {
   );
 }
 
+function addJestMocks(options: NormalizedSchema): Rule {
+  if (options.unitTestRunner === 'jest') {
+    return mergeWith(
+      apply(url(`./files/jest`), [
+        applyTemplates({
+          ...options,
+          ...names(options.name),
+          offsetFromRoot: offsetFromRoot(options.projectRoot)
+        }),
+        move(options.projectRoot)
+      ]),
+      MergeStrategy.Overwrite
+    );
+  } else {
+    return noop();
+  }
+}
+
 function deleteUnusedFiles(options: NormalizedSchema): Rule {
   return (tree: Tree) => {
     tree.delete(options.projectRoot + '/src/favicon.ico');
@@ -133,6 +151,7 @@ export default function(options: ApplicationSchematicSchema): Rule {
     addDependencies(),
     generateNrwlReactApplication(options),
     addFiles(normalizedOptions),
+    addJestMocks(normalizedOptions),
     deleteUnusedFiles(normalizedOptions),
     updateWorkspace(normalizedOptions)
   ]);

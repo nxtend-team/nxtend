@@ -108,5 +108,37 @@ describe('ionic-react e2e', () => {
         done();
       }, 120000);
     });
+
+    describe('--unitTestRunner', () => {
+      it('should generate Jest mocks', async () => {
+        const plugin = uniq('ionic-react');
+        ensureNxProject('@nxtend/ionic-react', 'dist/libs/ionic-react');
+        await runNxCommandAsync(
+          `generate @nxtend/ionic-react:app ${plugin} --unitTestRunner jest`
+        );
+
+        expect(() =>
+          checkFilesExist(`apps/${plugin}/src/app/__mocks__/fileMock.js`)
+        ).not.toThrow();
+        expect(() =>
+          checkFilesExist(`apps/${plugin}/jest.config.js.template`)
+        ).toThrow();
+      }, 120000);
+
+      it('should not generate Jest mocks', async () => {
+        const plugin = uniq('ionic-react');
+        ensureNxProject('@nxtend/ionic-react', 'dist/libs/ionic-react');
+        await runNxCommandAsync(
+          `generate @nxtend/ionic-react:app ${plugin} --unitTestRunner none`
+        );
+
+        expect(() =>
+          checkFilesExist(`apps/${plugin}/src/app/__mocks__/fileMock.js`)
+        ).toThrow();
+        expect(() =>
+          checkFilesExist(`apps/${plugin}/jest.config.js.template`)
+        ).toThrow();
+      }, 120000);
+    });
   });
 });
