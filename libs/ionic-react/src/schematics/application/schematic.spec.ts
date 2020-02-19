@@ -69,10 +69,10 @@ describe('application', () => {
 
     // Template files
     expect(
-      tree.exists(`apps/${options.name}/src/index.html__tmpl__`)
+      tree.exists(`apps/${options.name}/src/index.html.template`)
     ).toBeFalsy();
     expect(
-      tree.exists(`apps/${options.name}/src/manifest.json__tmpl__`)
+      tree.exists(`apps/${options.name}/src/manifest.json.template`)
     ).toBeFalsy();
   }
 
