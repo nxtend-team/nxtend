@@ -1,6 +1,6 @@
 import { Tree } from '@angular-devkit/schematics';
 import { SchematicTestRunner } from '@angular-devkit/schematics/testing';
-import { Linter } from '@nrwl/workspace';
+import { Linter, readJsonInTree } from '@nrwl/workspace';
 import { createEmptyWorkspace } from '@nrwl/workspace/testing';
 import { join } from 'path';
 import { ApplicationSchematicSchema } from './schema';
@@ -22,6 +22,15 @@ describe('application', () => {
 
   beforeEach(() => {
     appTree = createEmptyWorkspace(Tree.empty());
+  });
+
+  it('should add dependencies to package.json', async () => {
+    const tree = await testRunner
+      .runSchematicAsync('application', options, appTree)
+      .toPromise();
+
+    const packageJSON = readJsonInTree(tree, 'package.json');
+    expect(packageJSON.dependencies['@ionic/react-router']).toBeDefined();
   });
 
   function testGeneratedFiles(tree: Tree) {
