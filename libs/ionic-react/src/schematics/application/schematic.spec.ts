@@ -107,7 +107,10 @@ describe('application', () => {
 
     expect(
       workspaceJson.projects[options.name].architect.build.options.assets
-    ).not.toContain('/src/favicon.ico');
+    ).not.toContain(`apps/${options.name}/src/favicon.ico`);
+    expect(
+      workspaceJson.projects[options.name].architect.build.options.assets
+    ).toContain(`apps/${options.name}/src/manifest.json`);
     expect(
       workspaceJson.projects[options.name].architect.build.options.webpackConfig
     ).toEqual('@nxtend/ionic-react/plugins/webpack');

@@ -130,9 +130,10 @@ function updateWorkspace(options: NormalizedSchema): Rule {
   return updateWorkspaceInTree(json => {
     const architect = json.projects[options.projectName].architect;
 
-    const assets = architect.build.options.assets.filter(
+    const assets: string[] = architect.build.options.assets.filter(
       (asset: string) => asset != options.projectRoot + '/src/favicon.ico'
     );
+    assets.push(options.projectRoot + '/src/manifest.json');
     architect.build.options.assets = assets;
 
     architect.build.options.webpackConfig =
