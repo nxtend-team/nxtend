@@ -7,6 +7,7 @@ import { ApplicationSchematicSchema } from './schema';
 
 describe('application', () => {
   let appTree: Tree;
+
   const options: ApplicationSchematicSchema = {
     name: 'test',
     skipFormat: false,
@@ -14,6 +15,8 @@ describe('application', () => {
     e2eTestRunner: 'cypress',
     linter: Linter.TsLint
   };
+
+  const projectRoot = `apps/${options.name}`;
 
   const testRunner = new SchematicTestRunner(
     '@nxtend/ionic-react',
@@ -35,29 +38,35 @@ describe('application', () => {
 
   function testGeneratedFiles(tree: Tree) {
     expect(
-      tree.exists(`apps/${options.name}/src/app/theme/variables.css`)
-    ).toBeTruthy();
-
-    expect(
-      tree.exists(`apps/${options.name}/src/app/app.spec.tsx`)
-    ).toBeTruthy();
-    expect(tree.exists(`apps/${options.name}/src/app/app.tsx`)).toBeTruthy();
-
-    expect(
-      tree.exists(`apps/${options.name}/src/assets/icon/favicon.png`)
+      tree.exists(`${projectRoot}/src/app/components/explore-container.tsx`)
     ).toBeTruthy();
     expect(
-      tree.exists(`apps/${options.name}/src/assets/icon/icon.png`)
+      tree.exists(`${projectRoot}/src/app/components/explore-container.css`)
     ).toBeTruthy();
 
-    expect(tree.exists(`apps/${options.name}/src/index.html`)).toBeTruthy();
-    expect(tree.exists(`apps/${options.name}/src/manifest.json`)).toBeTruthy();
+    expect(tree.exists(`${projectRoot}/src/app/pages/home.tsx`)).toBeTruthy();
+    expect(tree.exists(`${projectRoot}/src/app/pages/home.css`)).toBeTruthy();
 
     expect(
-      tree.exists(`apps/${options.name}/src/app/${options.name}.spec.tsx`)
+      tree.exists(`${projectRoot}/src/app/theme/variables.css`)
+    ).toBeTruthy();
+
+    expect(tree.exists(`${projectRoot}/src/app/app.spec.tsx`)).toBeTruthy();
+    expect(tree.exists(`${projectRoot}/src/app/app.tsx`)).toBeTruthy();
+
+    expect(
+      tree.exists(`${projectRoot}/src/assets/icon/favicon.png`)
+    ).toBeTruthy();
+    expect(tree.exists(`${projectRoot}/src/assets/icon/icon.png`)).toBeTruthy();
+
+    expect(tree.exists(`${projectRoot}/src/index.html`)).toBeTruthy();
+    expect(tree.exists(`${projectRoot}/src/manifest.json`)).toBeTruthy();
+
+    expect(
+      tree.exists(`${projectRoot}/src/app/${options.name}.spec.tsx`)
     ).toBeFalsy();
     expect(
-      tree.exists(`apps/${options.name}/src/app/${options.name}.tsx`)
+      tree.exists(`${projectRoot}/src/app/${options.name}.tsx`)
     ).toBeFalsy();
   }
 
@@ -83,10 +92,29 @@ describe('application', () => {
       .toPromise();
 
     expect(
-      tree.exists(`apps/${options.name}/src/index.html.template`)
+      tree.exists(
+        `${projectRoot}/src/app/components/explore-container.__style__.template`
+      )
     ).toBeFalsy();
     expect(
-      tree.exists(`apps/${options.name}/src/manifest.json.template`)
+      tree.exists(
+        `${projectRoot}/src/app/components/explore-container.tsx.template`
+      )
+    ).toBeFalsy();
+
+    expect(
+      tree.exists(`${projectRoot}/src/app/home.__style__.template`)
+    ).toBeFalsy();
+    expect(tree.exists(`${projectRoot}/src/app/home.tsx.template`)).toBeFalsy();
+
+    expect(
+      tree.exists(`${projectRoot}/src/app/app.spec.tsx.template`)
+    ).toBeFalsy();
+    expect(tree.exists(`${projectRoot}/src/app/app.tsx.template`)).toBeFalsy();
+
+    expect(tree.exists(`${projectRoot}/src/index.html.template`)).toBeFalsy();
+    expect(
+      tree.exists(`${projectRoot}/src/manifest.json.template`)
     ).toBeFalsy();
   });
 
@@ -95,8 +123,8 @@ describe('application', () => {
       .runSchematicAsync('application', options, appTree)
       .toPromise();
 
-    expect(tree.exists(`apps/${options.name}/src/app/app.css`)).toBeFalsy();
-    expect(tree.exists(`apps/${options.name}/src/favicon.ico`)).toBeFalsy();
+    expect(tree.exists(`${projectRoot}/src/app/app.css`)).toBeFalsy();
+    expect(tree.exists(`${projectRoot}/src/favicon.ico`)).toBeFalsy();
   });
 
   it('should update workspace.json', async () => {
@@ -107,10 +135,10 @@ describe('application', () => {
 
     expect(
       workspaceJson.projects[options.name].architect.build.options.assets
-    ).not.toContain(`apps/${options.name}/src/favicon.ico`);
+    ).not.toContain(`${projectRoot}/src/favicon.ico`);
     expect(
       workspaceJson.projects[options.name].architect.build.options.assets
-    ).toContain(`apps/${options.name}/src/manifest.json`);
+    ).toContain(`${projectRoot}/src/manifest.json`);
     expect(
       workspaceJson.projects[options.name].architect.build.options.webpackConfig
     ).toEqual('@nxtend/ionic-react/plugins/webpack');
@@ -124,7 +152,7 @@ describe('application', () => {
         .toPromise();
 
       expect(
-        tree.exists(`apps/${options.name}/src/app/theme/variables.scss`)
+        tree.exists(`${projectRoot}/src/app/theme/variables.scss`)
       ).toBeTruthy();
     });
 
@@ -135,9 +163,7 @@ describe('application', () => {
         .toPromise();
 
       expect(
-        tree.exists(
-          `apps/${options.name}/src/app/theme/variables.styled-components`
-        )
+        tree.exists(`${projectRoot}/src/app/theme/variables.styled-components`)
       ).toBeFalsy();
     });
   });
@@ -149,11 +175,9 @@ describe('application', () => {
         .toPromise();
 
       expect(
-        tree.exists(`apps/${options.name}/src/app/__mocks__/fileMock.js`)
+        tree.exists(`${projectRoot}/src/app/__mocks__/fileMock.js`)
       ).toBeTruthy();
-      expect(
-        tree.exists(`apps/${options.name}/jest.config.js.template`)
-      ).toBeFalsy();
+      expect(tree.exists(`${projectRoot}/jest.config.js.template`)).toBeFalsy();
     });
 
     it('should not generate Jest mocks', async () => {
@@ -166,11 +190,9 @@ describe('application', () => {
         .toPromise();
 
       expect(
-        tree.exists(`apps/${options.name}/src/app/__mocks__/fileMock.js`)
+        tree.exists(`${projectRoot}/src/app/__mocks__/fileMock.js`)
       ).toBeFalsy();
-      expect(
-        tree.exists(`apps/${options.name}/jest.config.js.template`)
-      ).toBeFalsy();
+      expect(tree.exists(`${projectRoot}/jest.config.js.template`)).toBeFalsy();
     });
   });
 });

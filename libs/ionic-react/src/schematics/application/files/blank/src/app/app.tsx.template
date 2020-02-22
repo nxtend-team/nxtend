@@ -4,6 +4,7 @@ import { IonReactRouter } from '@ionic/react-router';
 <% } else { %>import React from 'react';<% } %>
 <% if (styledModule) { %>import styled from '<%= styledModule %>';
 <% } %>import { Redirect, Route } from 'react-router-dom';
+import Home from './pages/home';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -262,7 +263,7 @@ import './theme/variables.<%= style %>';<% } %>
         <IonApp>
           <IonReactRouter>
             <IonRouterOutlet>
-              <Route path="/home" component={() => <span>Hello World</span>} exact={true} />
+              <Route path="/home" component={Home} exact={true} />
               <Route exact path="/" render={() => <Redirect to="/home" />} />
             </IonRouterOutlet>
           </IonReactRouter>
@@ -273,7 +274,7 @@ import './theme/variables.<%= style %>';<% } %>
       <IonApp>
         <IonReactRouter>
           <IonRouterOutlet>
-            <Route path="/home" component={() => <span>Hello World</span>} exact={true} />
+            <Route path="/home" component={Home} exact={true} />
             <Route exact path="/" render={() => <Redirect to="/home" />} />
           </IonRouterOutlet>
         </IonReactRouter>

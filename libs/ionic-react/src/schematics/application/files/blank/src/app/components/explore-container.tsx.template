@@ -1,0 +1,97 @@
+<% if (classComponent) { 
+  %>import React, { Component } from 'react';<%
+  } else { %>import React from 'react';<% } %>
+<% if (styledModule) {
+  if (classComponent) {
+    var innerJsx = `
+      <StyledHome>
+        <div className="container">
+          <strong>Ready to create an app?</strong>
+          <p>
+            Start with Ionic{' '}
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://ionicframework.com/docs/components"
+            >
+              UI Components
+            </a>
+          </p>
+        </div>
+      </StyledHome>
+  `;
+  } else {
+    var innerJsx = `
+    <StyledHome>
+      <div className="container">
+        <strong>Ready to create an app?</strong>
+        <p>
+          Start with Ionic{' '}
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://ionicframework.com/docs/components"
+          >
+            UI Components
+          </a>
+        </p>
+      </div>
+    </StyledHome>
+  `;
+  }
+  %>import styled from '<%= styledModule %>';
+
+const StyledHome = styled.div`
+  ion-content ion-toolbar {
+    --background: translucent;
+  }
+`;<% } else {
+  if (classComponent) {
+    var innerJsx = `
+      <div className="container">
+        <strong>Ready to create an app?</strong>
+        <p>
+          Start with Ionic{' '}
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://ionicframework.com/docs/components"
+          >
+            UI Components
+          </a>
+        </p>
+      </div>
+  `;
+  } else {
+    var innerJsx = `
+    <div className="container">
+      <strong>Ready to create an app?</strong>
+      <p>
+        Start with Ionic{' '}
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://ionicframework.com/docs/components"
+        >
+          UI Components
+        </a>
+      </p>
+    </div>
+  `;
+  }
+  %>import './explore-container.<%= style %>';<% } %>
+
+/* eslint-disable-next-line */
+export interface ExploreContainerProps {}
+
+<% if (classComponent) {
+  %>export class ExploreContainer extends Component<ExploreContainerProps> {
+  render() {
+    return (<%= innerJsx %>  );
+  }
+}<% } else { 
+  %>const ExploreContainer = (props: ExploreContainerProps) => {
+  return (<%= innerJsx %>);
+};<% } %>
+
+export default ExploreContainer;

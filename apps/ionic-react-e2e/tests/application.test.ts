@@ -15,15 +15,36 @@ describe('application e2e', () => {
     // Added styles
     if (style !== 'styled-components') {
       expect(() => {
+        checkFilesExist(
+          `apps/${plugin}/src/app/components/explore-container.${style}`
+        );
+      }).not.toThrow();
+      expect(() => {
+        checkFilesExist(`apps/${plugin}/src/app/pages/home.${style}`);
+      }).not.toThrow();
+      expect(() => {
         checkFilesExist(`apps/${plugin}/src/app/theme/variables.${style}`);
       }).not.toThrow();
     } else {
+      expect(() => {
+        checkFilesExist(
+          `apps/${plugin}/src/app/components/explore-container.${style}`
+        );
+      }).toThrow();
+      expect(() => {
+        checkFilesExist(`apps/${plugin}/src/app/pages/home.${style}`);
+      }).toThrow();
       expect(() => {
         checkFilesExist(`apps/${plugin}/src/app/theme/variables.${style}`);
       }).toThrow();
     }
 
     expect(() => {
+      checkFilesExist(
+        `apps/${plugin}/src/app/components/explore-container.tsx`
+      );
+      checkFilesExist(`apps/${plugin}/src/app/pages/home.tsx`);
+      checkFilesExist(`apps/${plugin}/src/app/app.tsx`);
       checkFilesExist(`apps/${plugin}/src/assets/icon/favicon.png`);
       checkFilesExist(`apps/${plugin}/src/assets/icon/icon.png`);
       checkFilesExist(`apps/${plugin}/src/index.html`);
