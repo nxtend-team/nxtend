@@ -66,6 +66,29 @@ describe('application e2e', () => {
     done();
   }, 120000);
 
+  it('should generate JavaScript files', async done => {
+    const plugin = uniq('ionic-react');
+    ensureNxProject('@nxtend/ionic-react', 'dist/libs/ionic-react');
+    await runNxCommandAsync(
+      `generate @nxtend/ionic-react:application ${plugin} --js`
+    );
+
+    const result = await runNxCommandAsync(`build ${plugin}`);
+    expect(result.stdout).toContain('Built at');
+
+    expect(() => {
+      checkFilesExist(`apps/${plugin}/src/app/app.js`);
+      checkFilesExist(`apps/${plugin}/src/main.js`);
+    }).not.toThrow();
+
+    expect(() => {
+      checkFilesExist(`apps/${plugin}/src/app/app.tsx`);
+      checkFilesExist(`apps/${plugin}/src/main.tsx`);
+    }).toThrow();
+
+    done();
+  }, 120000);
+
   describe('--style', () => {
     it('should generate application with scss style', async done => {
       const plugin = uniq('ionic-react');

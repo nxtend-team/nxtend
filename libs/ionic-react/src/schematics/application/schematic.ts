@@ -21,6 +21,7 @@ import {
   toFileName,
   updateWorkspaceInTree
 } from '@nrwl/workspace';
+import { toJS } from '@nrwl/workspace/src/utils/rules/to-js';
 import { ionicReactRouterVersion } from '../../utils/versions';
 import init from '../init/schematic';
 import { ApplicationSchematicSchema } from './schema';
@@ -90,7 +91,8 @@ function addFiles(options: NormalizedSchema): Rule {
       options.styledModule
         ? filter(file => !file.endsWith(`.${options.style}`))
         : noop(),
-      move(options.projectRoot)
+      move(options.projectRoot),
+      options.js ? toJS() : noop()
     ]),
     MergeStrategy.Overwrite
   );

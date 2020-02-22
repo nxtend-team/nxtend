@@ -144,6 +144,19 @@ describe('application', () => {
     ).toEqual('@nxtend/ionic-react/plugins/webpack');
   });
 
+  it('should generate JavaScript files', async () => {
+    const tree = await testRunner
+      .runSchematicAsync('application', { ...options, js: true }, appTree)
+      .toPromise();
+    const workspaceJson = readJsonInTree(tree, '/workspace.json');
+
+    expect(tree.exists(`${projectRoot}/src/app/app.js`)).toBeTruthy();
+    expect(tree.exists(`${projectRoot}/src/main.js`)).toBeTruthy();
+
+    expect(tree.exists(`${projectRoot}/src/app/app.tsx`)).toBeFalsy();
+    expect(tree.exists(`${projectRoot}/src/main.tsx`)).toBeFalsy();
+  });
+
   describe('--style', () => {
     it('should generate application with scss style', async () => {
       const style = 'scss';
