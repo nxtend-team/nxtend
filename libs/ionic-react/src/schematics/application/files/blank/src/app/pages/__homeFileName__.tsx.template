@@ -7,7 +7,7 @@ import {
 } from '@ionic/react';
 <% if (classComponent) { %>import React, { Component } from 'react';
 <% } else { %>import React from 'react';<% } %>
-import ExploreContainer from '../components/explore-container';
+import ExploreContainer from '../components/<%= exploreContainerFileName %>';
 <% if (styledModule) {
   if (classComponent) {
     var innerJsx = `

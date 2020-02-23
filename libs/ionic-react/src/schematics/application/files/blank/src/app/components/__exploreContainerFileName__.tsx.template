@@ -79,7 +79,7 @@ const StyledHome = styled.div`
     </div>
   `;
   }
-  %>import './explore-container.<%= style %>';<% } %>
+  %>import './<%= exploreContainerFileName %>.<%= style %>';<% } %>
 
 /* eslint-disable-next-line */
 export interface ExploreContainerProps {}

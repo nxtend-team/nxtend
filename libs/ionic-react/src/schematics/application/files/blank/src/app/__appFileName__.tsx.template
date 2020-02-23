@@ -4,7 +4,7 @@ import { IonReactRouter } from '@ionic/react-router';
 <% } else { %>import React from 'react';<% } %>
 <% if (styledModule) { %>import styled from '<%= styledModule %>';
 <% } %>import { Redirect, Route } from 'react-router-dom';
-import Home from './pages/home';
+import Home from './pages/<%= homeFileName %>';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';

@@ -89,6 +89,30 @@ describe('application e2e', () => {
     done();
   }, 120000);
 
+  it('should generate pascal case file names', async done => {
+    const plugin = uniq('ionic-react');
+    ensureNxProject('@nxtend/ionic-react', 'dist/libs/ionic-react');
+    await runNxCommandAsync(
+      `generate @nxtend/ionic-react:application ${plugin} --pascalCaseFiles`
+    );
+
+    const result = await runNxCommandAsync(`build ${plugin}`);
+    expect(result.stdout).toContain('Built at');
+
+    expect(() => {
+      checkFilesExist(`apps/${plugin}/src/app/components/ExploreContainer.tsx`);
+      checkFilesExist(`apps/${plugin}/src/app/components/ExploreContainer.css`);
+
+      checkFilesExist(`apps/${plugin}/src/app/pages/Home.tsx`);
+      checkFilesExist(`apps/${plugin}/src/app/pages/Home.css`);
+
+      checkFilesExist(`apps/${plugin}/src/app/App.tsx`);
+      checkFilesExist(`apps/${plugin}/src/app/App.spec.tsx`);
+    }).not.toThrow();
+
+    done();
+  }, 120000);
+
   describe('--style', () => {
     it('should generate application with scss style', async done => {
       const plugin = uniq('ionic-react');

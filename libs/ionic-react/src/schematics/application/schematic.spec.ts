@@ -148,13 +148,35 @@ describe('application', () => {
     const tree = await testRunner
       .runSchematicAsync('application', { ...options, js: true }, appTree)
       .toPromise();
-    const workspaceJson = readJsonInTree(tree, '/workspace.json');
 
     expect(tree.exists(`${projectRoot}/src/app/app.js`)).toBeTruthy();
     expect(tree.exists(`${projectRoot}/src/main.js`)).toBeTruthy();
 
     expect(tree.exists(`${projectRoot}/src/app/app.tsx`)).toBeFalsy();
     expect(tree.exists(`${projectRoot}/src/main.tsx`)).toBeFalsy();
+  });
+
+  it('should generate pascal case file names', async () => {
+    const tree = await testRunner
+      .runSchematicAsync(
+        'application',
+        { ...options, pascalCaseFiles: true },
+        appTree
+      )
+      .toPromise();
+
+    expect(
+      tree.exists(`${projectRoot}/src/app/components/ExploreContainer.tsx`)
+    ).toBeTruthy();
+    expect(
+      tree.exists(`${projectRoot}/src/app/components/ExploreContainer.css`)
+    ).toBeTruthy();
+
+    expect(tree.exists(`${projectRoot}/src/app/pages/Home.tsx`)).toBeTruthy();
+    expect(tree.exists(`${projectRoot}/src/app/pages/Home.css`)).toBeTruthy();
+
+    expect(tree.exists(`${projectRoot}/src/app/App.spec.tsx`)).toBeTruthy();
+    expect(tree.exists(`${projectRoot}/src/app/App.tsx`)).toBeTruthy();
   });
 
   describe('--style', () => {

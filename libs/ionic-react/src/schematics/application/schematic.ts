@@ -33,6 +33,9 @@ interface NormalizedSchema extends ApplicationSchematicSchema {
   projectRoot: string;
   projectDirectory: string;
   parsedTags: string[];
+  appFileName: string;
+  homeFileName: string;
+  exploreContainerFileName: string;
   styledModule: null | string;
 }
 
@@ -49,6 +52,12 @@ function normalizeOptions(
     ? options.tags.split(',').map(s => s.trim())
     : [];
 
+  const appFileName = options.pascalCaseFiles ? 'App' : 'app';
+  const homeFileName = options.pascalCaseFiles ? 'Home' : 'home';
+  const exploreContainerFileName = options.pascalCaseFiles
+    ? 'ExploreContainer'
+    : 'explore-container';
+
   const styledModule = /^(css|scss|less|styl)$/.test(options.style)
     ? null
     : options.style;
@@ -60,6 +69,9 @@ function normalizeOptions(
     projectRoot,
     projectDirectory,
     parsedTags,
+    appFileName,
+    homeFileName,
+    exploreContainerFileName,
     styledModule
   };
 }
@@ -121,7 +133,9 @@ function deleteUnusedFiles(options: NormalizedSchema): Rule {
     tree.delete(options.projectRoot + '/src/favicon.ico');
 
     if (!options.styledModule) {
-      tree.delete(options.projectRoot + '/src/app/app.' + options.style);
+      tree.delete(
+        options.projectRoot + `/src/app/${options.appFileName}.` + options.style
+      );
     }
 
     return tree;
