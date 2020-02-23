@@ -2,12 +2,12 @@
 
 # PR Checklist
 
-- [ ] `yarn build affected` does not throw any warnings or errors
-- [ ] `yarn lint affected` does not throw any warnings or errors
+- [ ] `yarn affected:build` does not throw any warnings or errors
+- [ ] `yarn affected:lint` does not throw any warnings or errors
 - [ ] Unit tests have been added or updated
-- [ ] `yarn test affected` does not throw any warnings or errors
+- [ ] `yarn affected:test` does not throw any warnings or errors
 - [ ] e2e tests have been added or updated
-- [ ] `yarn e2e affected` does not throw any warnings or errors
+- [ ] `yarn affected:e2e` does not throw any warnings or errors
 
 # Issue
 
