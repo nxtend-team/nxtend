@@ -9,8 +9,8 @@ describe('App', () => {
     expect(baseElement).toBeTruthy();
   });
 
-  it('should have a greeting as the title', () => {
+  it('should have "Start with Ionic" in the content', () => {
     const { getByText } = render(<App />);
-    expect(getByText('Welcome to <%= projectName %>!')).toBeTruthy();
+    expect(getByText('Start with Ionic')).toBeTruthy();
   });
 });
