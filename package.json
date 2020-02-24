@@ -1,6 +1,16 @@
 {
   "name": "nxtend",
   "version": "0.0.0",
+  "description": "A collection of third-party Nx plugins",
+  "author": {
+    "name": "Devin Shoemaker",
+    "email": "devinshoe@gmail.com"
+  },
+  "homepage": "https://github.com/devinshoemaker/nxtend",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devinshoemaker/nxtend.git"
+  },
   "license": "MIT",
   "scripts": {
     "nx": "nx",
