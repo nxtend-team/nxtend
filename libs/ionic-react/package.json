@@ -1,6 +1,17 @@
 {
   "name": "@nxtend/ionic-react",
   "version": "0.2.0-beta.1",
+  "description": "An Nx plugin for developing Ionic React applications and libraries",
+  "author": {
+    "name": "Devin Shoemaker",
+    "email": "devinshoe@gmail.com"
+  },
+  "homepage": "https://github.com/devinshoemaker/nxtend/tree/master/libs/ionic-react",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devinshoemaker/nxtend.git"
+  },
+  "license": "MIT",
   "main": "src/index.js",
   "schematics": "./collection.json",
   "builders": "./builders.json",
