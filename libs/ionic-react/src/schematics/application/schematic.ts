@@ -19,10 +19,14 @@ import {
   projectRootDir,
   ProjectType,
   toFileName,
+  updateJsonInTree,
   updateWorkspaceInTree
 } from '@nrwl/workspace';
 import { toJS } from '@nrwl/workspace/src/utils/rules/to-js';
-import { ionicReactRouterVersion } from '../../utils/versions';
+import {
+  ionicReactRouterVersion,
+  testingLibraryCypressVersion
+} from '../../utils/versions';
 import init from '../init/schematic';
 import { ApplicationSchematicSchema } from './schema';
 
@@ -30,8 +34,9 @@ const projectType = ProjectType.Application;
 
 interface NormalizedSchema extends ApplicationSchematicSchema {
   projectName: string;
-  projectRoot: string;
   projectDirectory: string;
+  projectRoot: string;
+  e2eRoot: string;
   parsedTags: string[];
   appFileName: string;
   homeFileName: string;
@@ -48,6 +53,9 @@ function normalizeOptions(
     : name;
   const projectName = projectDirectory.replace(new RegExp('/', 'g'), '-');
   const projectRoot = `${projectRootDir(projectType)}/${projectDirectory}`;
+
+  const e2eRoot = `${projectRootDir(projectType)}/${projectDirectory}-e2e`;
+
   const parsedTags = options.tags
     ? options.tags.split(',').map(s => s.trim())
     : [];
@@ -66,8 +74,9 @@ function normalizeOptions(
     ...options,
     name: name,
     projectName,
-    projectRoot,
     projectDirectory,
+    projectRoot,
+    e2eRoot,
     parsedTags,
     appFileName,
     homeFileName,
@@ -128,6 +137,56 @@ function addJestMocks(options: NormalizedSchema): Rule {
   }
 }
 
+function addCypressDependencies(): Rule {
+  return addDepsToPackageJson(
+    {},
+    {
+      '@testing-library/cypress': testingLibraryCypressVersion
+    }
+  );
+}
+
+function addCypressTestingLibraryTsconfigType(options: NormalizedSchema) {
+  return updateJsonInTree(options.e2eRoot + '/tsconfig.json', json => {
+    json.compilerOptions.types.push('@types/testing-library__cypress');
+    return json;
+  });
+}
+
+function importCypressTestingLibraryCommands(options: NormalizedSchema) {
+  return (tree: Tree) => {
+    const fileName = `${options.e2eRoot}/src/support/index.${
+      options.js ? 'js' : 'ts'
+    }`;
+
+    const content = tree.read(fileName);
+    let strContent = '';
+    if (content) strContent = content.toString();
+
+    const appendIndex = strContent.indexOf("import './commands';");
+    const contentToAppend = "import '@testing-library/cypress/add-commands';\n";
+    const updatedContent =
+      strContent.slice(0, appendIndex) +
+      contentToAppend +
+      strContent.slice(appendIndex);
+
+    tree.overwrite(fileName, updatedContent);
+    return tree;
+  };
+}
+
+function configureCypressForIonic(options: NormalizedSchema): Rule {
+  if (options.e2eTestRunner === 'cypress') {
+    return chain([
+      addCypressDependencies(),
+      addCypressTestingLibraryTsconfigType(options),
+      importCypressTestingLibraryCommands(options)
+    ]);
+  } else {
+    return noop();
+  }
+}
+
 function deleteUnusedFiles(options: NormalizedSchema): Rule {
   return (tree: Tree) => {
     tree.delete(options.projectRoot + '/src/favicon.ico');
@@ -169,6 +228,7 @@ export default function(options: ApplicationSchematicSchema): Rule {
     generateNrwlReactApplication(options),
     addFiles(normalizedOptions),
     addJestMocks(normalizedOptions),
+    configureCypressForIonic(normalizedOptions),
     deleteUnusedFiles(normalizedOptions),
     updateWorkspace(normalizedOptions)
   ]);
