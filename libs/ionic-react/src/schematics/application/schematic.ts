@@ -161,7 +161,9 @@ function importCypressTestingLibraryCommands(options: NormalizedSchema) {
 
     const content = tree.read(fileName);
     let strContent = '';
-    if (content) strContent = content.toString();
+    if (content) {
+      strContent = content.toString();
+    }
 
     const appendIndex = strContent.indexOf("import './commands';");
     const contentToAppend = "import '@testing-library/cypress/add-commands';\n";
@@ -175,12 +177,56 @@ function importCypressTestingLibraryCommands(options: NormalizedSchema) {
   };
 }
 
+function configureAppPageObjectForIonic(options: NormalizedSchema) {
+  return (tree: Tree) => {
+    const fileName = `${options.e2eRoot}/src/support/app.po.${
+      options.js ? 'js' : 'ts'
+    }`;
+
+    const content = tree.read(fileName);
+    let strContent = '';
+    if (content) {
+      strContent = content.toString();
+    }
+    const updatedContent = strContent.replace(
+      "cy.get('h1')",
+      "cy.get('.container')"
+    );
+
+    tree.overwrite(fileName, updatedContent);
+    return tree;
+  };
+}
+
+function configureAppTestForIonic(options: NormalizedSchema) {
+  return (tree: Tree) => {
+    const fileName = `${options.e2eRoot}/src/integration/app.spec.${
+      options.js ? 'js' : 'ts'
+    }`;
+
+    const content = tree.read(fileName);
+    let strContent = '';
+    if (content) {
+      strContent = content.toString();
+    }
+    const updatedContent = strContent.replace(
+      `Welcome to ${options.projectName}!`,
+      'Start with Ionic'
+    );
+
+    tree.overwrite(fileName, updatedContent);
+    return tree;
+  };
+}
+
 function configureCypressForIonic(options: NormalizedSchema): Rule {
   if (options.e2eTestRunner === 'cypress') {
     return chain([
       addCypressDependencies(),
       addCypressTestingLibraryTsconfigType(options),
-      importCypressTestingLibraryCommands(options)
+      importCypressTestingLibraryCommands(options),
+      configureAppPageObjectForIonic(options),
+      configureAppTestForIonic(options)
     ]);
   } else {
     return noop();
