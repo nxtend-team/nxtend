@@ -1,6 +1,7 @@
 import {
   checkFilesExist,
   ensureNxProject,
+  readFile,
   readJson,
   runNxCommandAsync,
   uniq
@@ -50,6 +51,9 @@ describe('application e2e', () => {
       checkFilesExist(`apps/${plugin}/src/index.html`);
       checkFilesExist(`apps/${plugin}/src/manifest.json`);
     }).not.toThrow();
+
+    const jestConfig = readFile(`apps/${plugin}/jest.config.js`);
+    expect(jestConfig).toContain('setup-tests.ts');
   }
 
   it('should generate application', async done => {
@@ -100,15 +104,20 @@ describe('application e2e', () => {
     expect(result.stdout).toContain('Built at');
 
     expect(() => {
+      checkFilesExist(`apps/${plugin}/setupTests.ts`);
+
+      checkFilesExist(`apps/${plugin}/src/app/App.tsx`);
+      checkFilesExist(`apps/${plugin}/src/app/App.spec.tsx`);
+
       checkFilesExist(`apps/${plugin}/src/app/components/ExploreContainer.tsx`);
       checkFilesExist(`apps/${plugin}/src/app/components/ExploreContainer.css`);
 
       checkFilesExist(`apps/${plugin}/src/app/pages/Home.tsx`);
       checkFilesExist(`apps/${plugin}/src/app/pages/Home.css`);
-
-      checkFilesExist(`apps/${plugin}/src/app/App.tsx`);
-      checkFilesExist(`apps/${plugin}/src/app/App.spec.tsx`);
     }).not.toThrow();
+
+    const jestConfig = readFile(`apps/${plugin}/jest.config.js`);
+    expect(jestConfig).toContain('setupTests.ts');
 
     done();
   }, 120000);

@@ -41,6 +41,7 @@ interface NormalizedSchema extends ApplicationSchematicSchema {
   appFileName: string;
   homeFileName: string;
   exploreContainerFileName: string;
+  setupTestsFileName: string;
   styledModule: null | string;
 }
 
@@ -65,6 +66,9 @@ function normalizeOptions(
   const exploreContainerFileName = options.pascalCaseFiles
     ? 'ExploreContainer'
     : 'explore-container';
+  const setupTestsFileName = options.pascalCaseFiles
+    ? 'setupTests'
+    : 'setup-tests';
 
   const styledModule = /^(css|scss|less|styl)$/.test(options.style)
     ? null
@@ -81,6 +85,7 @@ function normalizeOptions(
     appFileName,
     homeFileName,
     exploreContainerFileName,
+    setupTestsFileName,
     styledModule
   };
 }
@@ -128,7 +133,8 @@ function addJestMocks(options: NormalizedSchema): Rule {
           ...names(options.name),
           offsetFromRoot: offsetFromRoot(options.projectRoot)
         }),
-        move(options.projectRoot)
+        move(options.projectRoot),
+        options.js ? toJS() : noop()
       ]),
       MergeStrategy.Overwrite
     );

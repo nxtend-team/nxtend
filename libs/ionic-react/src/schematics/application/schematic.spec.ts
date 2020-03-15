@@ -62,6 +62,8 @@ describe('application', () => {
     expect(tree.exists(`${projectRoot}/src/index.html`)).toBeTruthy();
     expect(tree.exists(`${projectRoot}/src/manifest.json`)).toBeTruthy();
 
+    expect(tree.exists(`${projectRoot}/setup-tests.ts`)).toBeTruthy();
+
     expect(
       tree.exists(`${projectRoot}/src/app/${options.name}.spec.tsx`)
     ).toBeFalsy();
@@ -76,6 +78,9 @@ describe('application', () => {
       .toPromise();
 
     testGeneratedFiles(tree);
+    expect(tree.readContent(`${projectRoot}/jest.config.js`)).toContain(
+      'setup-tests.ts'
+    );
   });
 
   it('should generate application with app alias', async () => {
@@ -154,6 +159,8 @@ describe('application', () => {
 
     expect(tree.exists(`${projectRoot}/src/app/app.tsx`)).toBeFalsy();
     expect(tree.exists(`${projectRoot}/src/main.tsx`)).toBeFalsy();
+
+    expect(tree.exists(`${projectRoot}/setup-tests.js`)).toBeTruthy();
   });
 
   it('should generate pascal case file names', async () => {
@@ -165,6 +172,14 @@ describe('application', () => {
       )
       .toPromise();
 
+    expect(tree.exists(`${projectRoot}/setupTests.ts`)).toBeTruthy();
+    expect(tree.readContent(`${projectRoot}/jest.config.js`)).toContain(
+      'setupTests.ts'
+    );
+
+    expect(tree.exists(`${projectRoot}/src/app/App.tsx`)).toBeTruthy();
+    expect(tree.exists(`${projectRoot}/src/app/App.spec.tsx`)).toBeTruthy();
+
     expect(
       tree.exists(`${projectRoot}/src/app/components/ExploreContainer.tsx`)
     ).toBeTruthy();
@@ -174,9 +189,6 @@ describe('application', () => {
 
     expect(tree.exists(`${projectRoot}/src/app/pages/Home.tsx`)).toBeTruthy();
     expect(tree.exists(`${projectRoot}/src/app/pages/Home.css`)).toBeTruthy();
-
-    expect(tree.exists(`${projectRoot}/src/app/App.spec.tsx`)).toBeTruthy();
-    expect(tree.exists(`${projectRoot}/src/app/App.tsx`)).toBeTruthy();
   });
 
   describe('--style', () => {
