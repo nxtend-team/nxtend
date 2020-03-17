@@ -4,6 +4,26 @@
       "version": "0.1.1-beta.1",
       "description": "Add Nrwl React library",
       "factory": "./src/migrations/update-0-1-1/update-0-1-1"
+    },
+    "update-1.0.1": {
+      "version": "1.0.1-beta.1",
+      "description": "Upgrade Ionic to 5.0.5",
+      "factory": "./src/migrations/update-1-0-1/update-1-0-1"
+    }
+  },
+  "packageJsonUpdates": {
+    "1.0.1": {
+      "version": "1.0.1-beta.1",
+      "packages": {
+        "@ionic/react": {
+          "version": "5.0.5",
+          "alwaysAddToPackageJson": false
+        },
+        "@ionic/react-router": {
+          "version": "5.0.5",
+          "alwaysAddToPackageJson": false
+        }
+      }
     }
   }
 }
