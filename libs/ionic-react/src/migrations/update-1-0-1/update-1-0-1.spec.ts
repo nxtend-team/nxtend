@@ -19,9 +19,10 @@ describe('Update 1.0.1', () => {
     initialTree.overwrite(
       'package.json',
       serializeJson({
-        devDependencies: {
+        dependencies: {
           '@ionic/react': '5.0.4',
-          '@ionic/react-router': '5.0.4'
+          '@ionic/react-router': '5.0.4',
+          ionicons: '5.0.0'
         }
       })
     );
@@ -33,8 +34,9 @@ describe('Update 1.0.1', () => {
       .runSchematicAsync('update-1.0.1', {}, initialTree)
       .toPromise();
 
-    const { devDependencies } = readJsonInTree(result, '/package.json');
-    expect(devDependencies['@ionic/react']).toEqual('5.0.5');
-    expect(devDependencies['@ionic/react-router']).toEqual('5.0.5');
+    const { dependencies } = readJsonInTree(result, '/package.json');
+    expect(dependencies['@ionic/react']).toEqual('5.0.5');
+    expect(dependencies['@ionic/react-router']).toEqual('5.0.5');
+    expect(dependencies['ionicons']).toEqual('5.0.1');
   });
 });

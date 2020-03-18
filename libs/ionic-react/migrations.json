@@ -7,7 +7,7 @@
     },
     "update-1.0.1": {
       "version": "1.0.1-beta.1",
-      "description": "Upgrade Ionic to 5.0.5",
+      "description": "Upgrade Ionic to 5.0.5 and ionicons to 5.0.1",
       "factory": "./src/migrations/update-1-0-1/update-1-0-1"
     }
   },
@@ -21,6 +21,10 @@
         },
         "@ionic/react-router": {
           "version": "5.0.5",
+          "alwaysAddToPackageJson": false
+        },
+        "ionicons": {
+          "version": "5.0.1",
           "alwaysAddToPackageJson": false
         }
       }
