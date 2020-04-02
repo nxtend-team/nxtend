@@ -1,7 +1,7 @@
 export const nxtendVersion = '*';
 
-export const ionicReactVersion = '5.0.5';
-export const ionicReactRouterVersion = '5.0.5';
+export const ionicReactVersion = '5.0.7';
+export const ionicReactRouterVersion = '5.0.7';
 export const ioniconsVersion = '5.0.1';
 
 export const testingLibraryJestDomVersion = '4.2.4';
