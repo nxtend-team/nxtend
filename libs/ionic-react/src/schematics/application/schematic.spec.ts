@@ -215,6 +215,19 @@ describe('application', () => {
       expect(tree.exists(`${projectRoot}/jest.config.js.template`)).toBeFalsy();
     });
 
+    it('should update Jest config', async () => {
+      const tree = await testRunner
+        .runSchematicAsync('application', options, appTree)
+        .toPromise();
+      const workspaceJson = readJsonInTree(tree, '/workspace.json');
+      const jestConfigPath =
+        workspaceJson.projects['test'].architect.test.options.jestConfig;
+      const jestConfig = tree.readContent(jestConfigPath);
+
+      expect(jestConfig).toContain('moduleNameMapper');
+      expect(jestConfig).toContain('modulePathIgnorePatterns:');
+    });
+
     it('should not generate Jest mocks', async () => {
       const tree = await testRunner
         .runSchematicAsync(
