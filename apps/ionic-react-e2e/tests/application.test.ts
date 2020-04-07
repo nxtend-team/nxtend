@@ -59,7 +59,7 @@ describe('application e2e', () => {
       `generate @nxtend/ionic-react:application ${plugin}`
     );
 
-    const result = await runNxCommandAsync(`build ${plugin}`);
+    const result = await runNxCommandAsync(`build ${plugin} --maxWorkers=2`);
     expect(result.stdout).toContain('Built at');
     testGeneratedApp(plugin, null);
 
@@ -73,7 +73,7 @@ describe('application e2e', () => {
       `generate @nxtend/ionic-react:application ${plugin} --js`
     );
 
-    const result = await runNxCommandAsync(`build ${plugin}`);
+    const result = await runNxCommandAsync(`build ${plugin} --maxWorkers=2`);
     expect(result.stdout).toContain('Built at');
 
     expect(() => {
@@ -96,7 +96,7 @@ describe('application e2e', () => {
       `generate @nxtend/ionic-react:application ${plugin} --pascalCaseFiles`
     );
 
-    const result = await runNxCommandAsync(`build ${plugin}`);
+    const result = await runNxCommandAsync(`build ${plugin} --maxWorkers=2`);
     expect(result.stdout).toContain('Built at');
 
     expect(() => {
@@ -122,7 +122,7 @@ describe('application e2e', () => {
         `generate @nxtend/ionic-react:app ${plugin} --style ${style}`
       );
 
-      const result = await runNxCommandAsync(`build ${plugin}`);
+      const result = await runNxCommandAsync(`build ${plugin} --maxWorkers=2`);
       expect(result.stdout).toContain('Built at');
       testGeneratedApp(plugin, style);
 
@@ -137,7 +137,7 @@ describe('application e2e', () => {
         `generate @nxtend/ionic-react:app ${plugin} --style ${style}`
       );
 
-      const result = await runNxCommandAsync(`build ${plugin}`);
+      const result = await runNxCommandAsync(`build ${plugin} --maxWorkers=2`);
       expect(result.stdout).toContain('Built at');
       testGeneratedApp(plugin, style);
 
