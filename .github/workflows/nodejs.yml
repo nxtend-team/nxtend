@@ -29,9 +29,9 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - run: git fetch --no-tags --prune --depth=5 origin master
     - run: yarn install --frozen-lockfile
-    - run: yarn affected:build --base=origin/master
-    - run: yarn affected:lint --base=origin/master
-    - run: yarn affected:test --base=origin/master
+    # - run: yarn affected:build --base=origin/master
+    # - run: yarn affected:lint --base=origin/master
+    # - run: yarn affected:test --base=origin/master
     - run: yarn affected:e2e --base=origin/master
       env:
         CI: true
