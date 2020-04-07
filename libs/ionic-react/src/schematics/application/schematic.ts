@@ -271,11 +271,11 @@ export default function(options: ApplicationSchematicSchema): Rule {
   return chain([
     init(),
     addDependencies(),
-    generateNrwlReactApplication(options),
-    addFiles(normalizedOptions),
-    addJestMocks(normalizedOptions),
-    configureCypressForIonic(normalizedOptions),
-    deleteUnusedFiles(normalizedOptions),
-    updateWorkspace(normalizedOptions)
+    generateNrwlReactApplication(options)
+    // addFiles(normalizedOptions),
+    // addJestMocks(normalizedOptions),
+    // configureCypressForIonic(normalizedOptions),
+    // deleteUnusedFiles(normalizedOptions),
+    // updateWorkspace(normalizedOptions)
   ]);
 }
