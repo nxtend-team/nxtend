@@ -94,7 +94,7 @@ const StyledHome = styled.div`
     </IonPage>
   `;
   }
-  %>import './home.<%= style %>';<% } %>
+  %>import './<%= homeFileName %>.<%= style %>';<% } %>
 
 <% if (classComponent) {
   %>export class Home extends Component {
