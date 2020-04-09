@@ -18,11 +18,7 @@ describe('application e2e', () => {
         checkFilesExist(
           `apps/${plugin}/src/app/components/explore-container.${style}`
         );
-      }).not.toThrow();
-      expect(() => {
         checkFilesExist(`apps/${plugin}/src/app/pages/home.${style}`);
-      }).not.toThrow();
-      expect(() => {
         checkFilesExist(`apps/${plugin}/src/app/theme/variables.${style}`);
       }).not.toThrow();
     } else {
@@ -30,11 +26,7 @@ describe('application e2e', () => {
         checkFilesExist(
           `apps/${plugin}/src/app/components/explore-container.${style}`
         );
-      }).toThrow();
-      expect(() => {
         checkFilesExist(`apps/${plugin}/src/app/pages/home.${style}`);
-      }).toThrow();
-      expect(() => {
         checkFilesExist(`apps/${plugin}/src/app/theme/variables.${style}`);
       }).toThrow();
     }
