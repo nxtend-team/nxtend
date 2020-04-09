@@ -50,6 +50,14 @@ describe('application e2e', () => {
       checkFilesExist(`apps/${plugin}/src/index.html`);
       checkFilesExist(`apps/${plugin}/src/manifest.json`);
     }).not.toThrow();
+
+    // Jest
+    expect(() =>
+      checkFilesExist(`apps/${plugin}/src/app/__mocks__/fileMock.js`)
+    ).not.toThrow();
+    expect(() =>
+      checkFilesExist(`apps/${plugin}/jest.config.js.template`)
+    ).toThrow();
   }
 
   it('should generate application', async done => {
@@ -177,21 +185,6 @@ describe('application e2e', () => {
   });
 
   describe('--unitTestRunner', () => {
-    it('should generate Jest mocks', async () => {
-      const plugin = uniq('ionic-react');
-      ensureNxProject('@nxtend/ionic-react', 'dist/libs/ionic-react');
-      await runNxCommandAsync(
-        `generate @nxtend/ionic-react:app ${plugin} --unitTestRunner jest`
-      );
-
-      expect(() =>
-        checkFilesExist(`apps/${plugin}/src/app/__mocks__/fileMock.js`)
-      ).not.toThrow();
-      expect(() =>
-        checkFilesExist(`apps/${plugin}/jest.config.js.template`)
-      ).toThrow();
-    }, 120000);
-
     it('should not generate Jest mocks', async () => {
       const plugin = uniq('ionic-react');
       ensureNxProject('@nxtend/ionic-react', 'dist/libs/ionic-react');
