@@ -4,7 +4,7 @@ orbs:
 set_env: &set_env
   name: Setup Environment Variables
   command: |
-    if [[ $CIRCLE_PULL_REQUEST ]]
+    if [[ $CI ]]
     then
       echo 'Fetching Base Commit from GitHub'
       echo 'export CIRCLE_PR_NUMBER="${CIRCLE_PR_NUMBER:-${CIRCLE_PULL_REQUEST##*/}}"' >> $BASH_ENV
