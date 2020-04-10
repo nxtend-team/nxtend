@@ -56,6 +56,10 @@ Options:
   --help                  Show available options for project target.
 ```
 
+### @nrwl/react
+
+This extends the official `@nrwl/react` plugin, so all of those [schematics](https://nx.dev/react/plugins_react/overview#schematics) are available as a fallback.
+
 ## Maintainers
 
 [@devinshoemaker](https://github.com/devinshoemaker)

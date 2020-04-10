@@ -2,6 +2,7 @@
   "$schema": "../../node_modules/@angular-devkit/schematics/collection-schema.json",
   "name": "ionic-react",
   "version": "0.0.1",
+  "extends": ["@nrwl/react"],
   "schematics": {
     "init": {
       "factory": "./src/schematics/init/schematic",

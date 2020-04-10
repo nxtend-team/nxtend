@@ -1,5 +1,11 @@
 # Changelog
 
+# 1.1.0
+
+## Features
+
+- extend `@nrwl/react` schematics
+
 # 1.0.2
 
 ## Bug Fixes
