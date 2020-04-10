@@ -134,7 +134,7 @@ function executeJestProjectSchematic(options: NormalizedSchema): Rule {
     project: options.projectName,
     supportTsx: true,
     skipSerializers: true,
-    setupFile: 'none'
+    setupFile: 'web-components'
   });
 }
 

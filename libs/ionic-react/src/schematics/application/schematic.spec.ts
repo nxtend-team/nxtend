@@ -215,19 +215,6 @@ describe('application', () => {
       expect(tree.exists(`${projectRoot}/jest.config.js.template`)).toBeFalsy();
     });
 
-    it('should update Jest config', async () => {
-      const tree = await testRunner
-        .runSchematicAsync('application', options, appTree)
-        .toPromise();
-      const workspaceJson = readJsonInTree(tree, '/workspace.json');
-      const jestConfigPath =
-        workspaceJson.projects['test'].architect.test.options.jestConfig;
-      const jestConfig = tree.readContent(jestConfigPath);
-
-      expect(jestConfig).toContain('moduleNameMapper');
-      expect(jestConfig).toContain('modulePathIgnorePatterns:');
-    });
-
     it('should not generate Jest mocks', async () => {
       const tree = await testRunner
         .runSchematicAsync(
@@ -241,6 +228,35 @@ describe('application', () => {
         tree.exists(`${projectRoot}/src/app/__mocks__/fileMock.js`)
       ).toBeFalsy();
       expect(tree.exists(`${projectRoot}/jest.config.js.template`)).toBeFalsy();
+    });
+
+    it('should update Jest config', async () => {
+      const tree = await testRunner
+        .runSchematicAsync('application', options, appTree)
+        .toPromise();
+      const workspaceJson = readJsonInTree(tree, '/workspace.json');
+      const jestConfigPath =
+        workspaceJson.projects['test'].architect.test.options.jestConfig;
+      const jestConfig = tree.readContent(jestConfigPath);
+
+      expect(jestConfig).toContain('moduleNameMapper');
+      expect(jestConfig).toContain('modulePathIgnorePatterns:');
+    });
+
+    it('should generate Jest test setup', async () => {
+      const tree = await testRunner
+        .runSchematicAsync('application', options, appTree)
+        .toPromise();
+      const workspaceJson = readJsonInTree(tree, '/workspace.json');
+
+      expect(
+        workspaceJson.projects[options.name].architect.build.options.assets
+      ).toContain(`${projectRoot}/src/manifest.json`);
+
+      expect(tree.exists(`${projectRoot}/src/test-setup.ts`)).toBeTruthy();
+      expect(
+        tree.exists(`${projectRoot}/src/test-setup.ts.template`)
+      ).toBeFalsy();
     });
   });
 
