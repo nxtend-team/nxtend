@@ -5,6 +5,7 @@
 ## Features
 
 - extend `@nrwl/react` schematics
+- import `@testing-library/jest-dom` commands for unit tests
 
 # 1.0.2
 
