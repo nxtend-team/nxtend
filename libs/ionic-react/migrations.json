@@ -14,6 +14,11 @@
       "version": "1.0.2",
       "description": "Upgrade Ionic to 5.0.7",
       "factory": "./src/migrations/update-1-0-2/update-1-0-2"
+    },
+    "update-1.1.0": {
+      "version": "1.1.0",
+      "description": "Import @testing-library/jest-dom commands for unit tests",
+      "factory": "./src/migrations/update-1-1-0/update-1-1-0"
     }
   },
   "packageJsonUpdates": {
