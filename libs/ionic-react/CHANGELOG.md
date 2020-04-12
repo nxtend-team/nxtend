@@ -6,6 +6,7 @@
 
 - extend `@nrwl/react` schematics
 - import `@testing-library/jest-dom` commands for unit tests
+- upgrade `@testing-library/jest-dom` to 5.5.0
 
 # 1.0.2
 
