@@ -258,6 +258,18 @@ describe('application', () => {
         tree.exists(`${projectRoot}/src/test-setup.ts.template`)
       ).toBeFalsy();
     });
+
+    it('should not generate test files', async () => {
+      const tree = await testRunner
+        .runSchematicAsync(
+          'application',
+          { ...options, unitTestRunner: 'none' },
+          appTree
+        )
+        .toPromise();
+
+      expect(tree.exists(`${projectRoot}/src/app/app.spec.tsx`)).toBeFalsy();
+    });
   });
 
   describe('--e2eTestRunner', () => {

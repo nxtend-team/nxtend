@@ -25,6 +25,9 @@ export function addIonicFiles(options: NormalizedSchema): Rule {
       options.styledModule
         ? filter(file => !file.endsWith(`.${options.style}`))
         : noop(),
+      options.unitTestRunner === 'none'
+        ? filter(file => !file.endsWith('.spec.tsx'))
+        : noop(),
       move(options.projectRoot),
       options.js ? toJS() : noop()
     ]),
