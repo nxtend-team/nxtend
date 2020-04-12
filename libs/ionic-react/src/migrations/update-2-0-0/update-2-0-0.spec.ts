@@ -21,7 +21,8 @@ describe('Update 2.0.0', () => {
       serializeJson({
         devDependencies: {
           '@testing-library/cypress': '5.3.0',
-          '@testing-library/jest-dom': '4.2.4'
+          '@testing-library/jest-dom': '4.2.4',
+          '@testing-library/user-event': '8.1.3'
         }
       })
     );
@@ -45,5 +46,16 @@ describe('Update 2.0.0', () => {
 
     const { devDependencies } = readJsonInTree(result, '/package.json');
     expect(devDependencies['@testing-library/jest-dom']).toEqual('5.5.0');
+    expect(devDependencies['@testing-library/user-event']).toEqual('10.0.1');
+  });
+
+  it(`should update @testing-library/user-event to 10.0.1`, async () => {
+    // eslint-disable-next-line require-atomic-updates
+    const result = await schematicRunner
+      .runSchematicAsync('update-2.0.0', {}, initialTree)
+      .toPromise();
+
+    const { devDependencies } = readJsonInTree(result, '/package.json');
+    expect(devDependencies['@testing-library/user-event']).toEqual('10.0.1');
   });
 });

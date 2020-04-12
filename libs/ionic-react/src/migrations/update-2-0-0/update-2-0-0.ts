@@ -15,6 +15,11 @@ function displayInformation(host: Tree, context: SchematicContext) {
     @testing-library/cypress is being updated to 6.0.0 and includes breaking changes.
     
     https://github.com/testing-library/cypress-testing-library/releases/tag/v6.0.0
+
+    @testing-library/user-event is being updated to 10.0.1 and includes breaking changes.
+
+    https://github.com/testing-library/user-event/releases/tag/v9.0.0
+    https://github.com/testing-library/user-event/releases/tag/v10.0.0
   `);
   }
 }
