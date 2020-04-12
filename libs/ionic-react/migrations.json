@@ -15,10 +15,10 @@
       "description": "Upgrade Ionic to 5.0.7",
       "factory": "./src/migrations/update-1-0-2/update-1-0-2"
     },
-    "update-1.1.0": {
-      "version": "1.1.0",
-      "description": "Upgrade @testing-library/jest-dom to 5.5.0",
-      "factory": "./src/migrations/update-1-1-0/update-1-1-0"
+    "update-2.0.0": {
+      "version": "2.0.0",
+      "description": "Upgrade @testing-library/cypress to 6.0.0 and @testing-library/jest-dom to 5.5.0",
+      "factory": "./src/migrations/update-2-0-0/update-2-0-0"
     }
   },
   "packageJsonUpdates": {
@@ -52,9 +52,13 @@
         }
       }
     },
-    "1.1.0": {
-      "version": "1.1.0",
+    "2.0.0": {
+      "version": "2.0.0",
       "packages": {
+        "@testing-library/cypress": {
+          "version": "6.0.0",
+          "alwaysAddToPackageJson": false
+        },
         "@testing-library/jest-dom": {
           "version": "5.5.0",
           "alwaysAddToPackageJson": false

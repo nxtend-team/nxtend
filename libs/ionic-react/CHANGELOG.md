@@ -1,12 +1,13 @@
 # Changelog
 
-# 1.1.0
+# 2.0.0
 
 ## Features
 
 - extend `@nrwl/react` schematics
 - import `@testing-library/jest-dom` commands for unit tests
 - upgrade `@testing-library/jest-dom` to 5.5.0
+- upgrade `@testing-library/cypress` to 6.0.0
 
 # 1.0.2
 
