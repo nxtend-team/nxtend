@@ -24,6 +24,11 @@
       "version": "2.0.0",
       "description": "Set default collection to @nxtend/ionic-react if one does not exist",
       "factory": "./src/migrations/update-2-0-0/default-collection-2-0-0"
+    },
+    "updated-templates-2.0.0": {
+      "version": "2.0.0",
+      "description": "Display information about updated Ionic templates",
+      "factory": "./src/migrations/update-2-0-0/updated-templates-2-0-0"
     }
   },
   "packageJsonUpdates": {

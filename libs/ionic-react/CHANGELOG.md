@@ -12,6 +12,10 @@
 - honor `unitTestRunner` flag
 - set `@nxtend/ionic-react` as the default collection if one is not set when generating an application
 - honor `skipFormat` flag
+- update Ionic starter template
+  - [#1201](https://github.com/ionic-team/starters/pull/1201)
+  - [#1202](https://github.com/ionic-team/starters/pull/1202)
+  - [#1237](https://github.com/ionic-team/starters/pull/1237)
 
 # 1.0.2
 
