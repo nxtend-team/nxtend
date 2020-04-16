@@ -142,6 +142,22 @@ describe('application', () => {
     expect(
       workspaceJson.projects[options.name].architect.build.options.webpackConfig
     ).toEqual('@nxtend/ionic-react/plugins/webpack');
+
+    expect(
+      workspaceJson.schematics['@nxtend/ionic-react'].application.style
+    ).toEqual('css');
+    expect(
+      workspaceJson.schematics['@nxtend/ionic-react'].application.linter
+    ).toEqual('tslint');
+    expect(
+      workspaceJson.schematics['@nxtend/ionic-react'].component.style
+    ).toEqual('css');
+    expect(
+      workspaceJson.schematics['@nxtend/ionic-react'].library.style
+    ).toEqual('css');
+    expect(
+      workspaceJson.schematics['@nxtend/ionic-react'].library.linter
+    ).toEqual('tslint');
   });
 
   it('should generate JavaScript files', async () => {

@@ -1,5 +1,6 @@
 import { chain, Rule } from '@angular-devkit/schematics';
 import { addDepsToPackageJson, addPackageWithInit } from '@nrwl/workspace';
+import { setDefaultCollection } from '@nrwl/workspace/src/utils/rules/workspace';
 import {
   ioniconsVersion,
   ionicReactVersion,
@@ -23,5 +24,9 @@ function addDependencies(): Rule {
 }
 
 export default function(): Rule {
-  return chain([addPackageWithInit('@nrwl/react'), addDependencies()]);
+  return chain([
+    setDefaultCollection('@nxtend/ionic-react'),
+    addPackageWithInit('@nrwl/react'),
+    addDependencies()
+  ]);
 }

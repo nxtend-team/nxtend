@@ -11,7 +11,7 @@ import init from '../init/schematic';
 import { configureCypressForIonic } from './lib/cypress';
 import { addIonicFiles, deleteUnusedFiles } from './lib/files';
 import { configureJestForIonic } from './lib/jest';
-import { updateWorkspaceForIonic } from './lib/update-workspace';
+import { updateWorkspaceForIonic, setDefaults } from './lib/update-workspace';
 import { ApplicationSchematicSchema } from './schema';
 
 const projectType = ProjectType.Application;
@@ -82,7 +82,8 @@ function generateNrwlReactApplication(options: ApplicationSchematicSchema) {
   return externalSchematic('@nrwl/react', 'application', {
     ...options,
     routing: true,
-    unitTestRunner: 'none'
+    unitTestRunner: 'none',
+    skipWorkspaceJson: true
   });
 }
 
@@ -97,6 +98,7 @@ export default function(options: ApplicationSchematicSchema): Rule {
     configureCypressForIonic(normalizedOptions),
     deleteUnusedFiles(normalizedOptions),
     updateWorkspaceForIonic(normalizedOptions),
+    setDefaults(normalizedOptions),
     formatFiles()
   ]);
 }

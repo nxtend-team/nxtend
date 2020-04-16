@@ -1,4 +1,4 @@
-import { chain, Rule } from '@angular-devkit/schematics';
+import { chain, noop, Rule } from '@angular-devkit/schematics';
 import { updateWorkspaceInTree } from '@nrwl/workspace';
 import { NormalizedSchema } from '../schematic';
 
@@ -33,4 +33,38 @@ export function updateWebpackConfig(options: NormalizedSchema): Rule {
 
 export function updateWorkspaceForIonic(options: NormalizedSchema): Rule {
   return chain([updateWorkspaceAssets(options), updateWebpackConfig(options)]);
+}
+
+export function setDefaults(options: NormalizedSchema): Rule {
+  return options.skipWorkspaceJson
+    ? noop()
+    : updateWorkspaceInTree(json => {
+        json.schematics = json.schematics || {};
+        json.schematics['@nxtend/ionic-react'] =
+          json.schematics['@nxtend/ionic-react'] || {};
+        const prev = json.schematics['@nxtend/ionic-react'];
+
+        json.schematics = {
+          ...json.schematics,
+          '@nxtend/ionic-react': {
+            ...prev,
+            application: {
+              style: options.style,
+              linter: options.linter,
+              ...prev.application
+            },
+            component: {
+              style: options.style,
+              ...prev.component
+            },
+            library: {
+              style: options.style,
+              linter: options.linter,
+              ...prev.library
+            }
+          }
+        };
+
+        return json;
+      });
 }

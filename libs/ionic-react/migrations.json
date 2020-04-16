@@ -19,6 +19,11 @@
       "version": "2.0.0",
       "description": "Upgrade @testing-library/cypress to 6.0.0, @testing-library/jest-dom to 5.5.0, and @testing-library/user-event to 10.0.1",
       "factory": "./src/migrations/update-2-0-0/update-2-0-0"
+    },
+    "default-collection-2.0.0": {
+      "version": "2.0.0",
+      "description": "Set default collection to @nxtend/ionic-react if one does not exist",
+      "factory": "./src/migrations/update-2-0-0/default-collection-2-0-0"
     }
   },
   "packageJsonUpdates": {

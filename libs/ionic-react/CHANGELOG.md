@@ -10,6 +10,7 @@
 - upgrade `@testing-library/cypress` to 6.0.0
 - upgrade `@testing-library/user-event` to 10.0.1
 - honor `unitTestRunner` flag
+- set `@nxtend/ionic-react` as the default collection if one is not set when generating an application
 
 # 1.0.2
 

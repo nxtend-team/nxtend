@@ -34,4 +34,13 @@ describe('init', () => {
       packageJson.devDependencies['@testing-library/jest-dom']
     ).toBeDefined();
   });
+
+  it('should set default collection', async () => {
+    const result = await testRunner
+      .runSchematicAsync('init', {}, appTree)
+      .toPromise();
+    const workspaceJson = readJsonInTree(result, 'workspace.json');
+
+    expect(workspaceJson.cli.defaultCollection).toEqual('@nxtend/ionic-react');
+  });
 });
