@@ -21,6 +21,7 @@ jobs:
   affected-build:
     executor:
       name: node/default
+      tag: '12'
     steps:
       - checkout
       - node/with-cache:
@@ -32,6 +33,7 @@ jobs:
   affected-lint:
     executor:
       name: node/default
+      tag: '12'
     steps:
       - checkout
       - node/with-cache:
@@ -43,6 +45,7 @@ jobs:
   affected-test:
     executor:
       name: node/default
+      tag: '12'
     steps:
       - checkout
       - node/with-cache:
@@ -54,6 +57,7 @@ jobs:
   affected-e2e:
     executor:
       name: node/default
+      tag: '12'
     steps:
       - checkout
       - node/with-cache:
