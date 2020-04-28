@@ -1,6 +1,6 @@
 {
   "name": "@nxtend/ionic-react",
-  "version": "1.0.2",
+  "version": "2.0.0",
   "description": "An Nx plugin for developing Ionic React applications and libraries",
   "author": {
     "name": "Devin Shoemaker",
