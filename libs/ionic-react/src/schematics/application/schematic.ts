@@ -99,6 +99,6 @@ export default function(options: ApplicationSchematicSchema): Rule {
     deleteUnusedFiles(normalizedOptions),
     updateWorkspaceForIonic(normalizedOptions),
     setDefaults(normalizedOptions),
-    formatFiles()
+    formatFiles(options)
   ]);
 }
