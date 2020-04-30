@@ -105,3 +105,5 @@ ion-content ion-toolbar {
   --background: transparent;
 }
 ```
+
+https://github.com/ionic-team/starters/blob/fb440a44b234989eaf6d11ed4091590308e8bb72/react/official/blank/src/pages/Home.css
