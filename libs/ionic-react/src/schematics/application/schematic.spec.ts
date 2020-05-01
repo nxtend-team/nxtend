@@ -13,7 +13,7 @@ describe('application', () => {
     skipFormat: false,
     unitTestRunner: 'jest',
     e2eTestRunner: 'cypress',
-    linter: Linter.TsLint
+    linter: Linter.EsLint
   };
 
   const projectRoot = `apps/${options.name}`;
@@ -37,6 +37,8 @@ describe('application', () => {
   });
 
   function testGeneratedFiles(tree: Tree) {
+    expect(tree.exists(`${projectRoot}/.eslintrc`)).toBeTruthy();
+
     expect(
       tree.exists(`${projectRoot}/src/app/components/explore-container.tsx`)
     ).toBeTruthy();
@@ -148,7 +150,7 @@ describe('application', () => {
     ).toEqual('css');
     expect(
       workspaceJson.schematics['@nxtend/ionic-react'].application.linter
-    ).toEqual('tslint');
+    ).toEqual('eslint');
     expect(
       workspaceJson.schematics['@nxtend/ionic-react'].component.style
     ).toEqual('css');
@@ -157,7 +159,7 @@ describe('application', () => {
     ).toEqual('css');
     expect(
       workspaceJson.schematics['@nxtend/ionic-react'].library.linter
-    ).toEqual('tslint');
+    ).toEqual('eslint');
   });
 
   it('should generate JavaScript files', async () => {
