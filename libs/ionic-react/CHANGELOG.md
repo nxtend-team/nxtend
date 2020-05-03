@@ -2,6 +2,10 @@
 
 # 2.1.0
 
+## Bug Fixes
+
+- update styled-component styles to match Ionic updates
+
 ## Features
 
 - generate applications with ESLint instead of TSLint by default
