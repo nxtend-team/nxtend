@@ -2,6 +2,10 @@
 
 # 2.1.0
 
+## Bug Fixes
+
+- fix styled-components styles
+
 ## Features
 
 - generate applications with ESLint instead of TSLint by default

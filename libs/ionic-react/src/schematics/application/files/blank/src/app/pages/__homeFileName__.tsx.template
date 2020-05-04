@@ -52,11 +52,7 @@ import ExploreContainer from '../components/<%= exploreContainerFileName %>';
   }
   %>import styled from '<%= styledModule %>';
 
-const StyledHome = styled.div`
-  ion-content ion-toolbar {
-    --background: translucent;
-  }
-`;<% } else {
+const StyledHome = styled.div``;<% } else {
   if (classComponent) {
     var innerJsx = `
       <IonPage>
