@@ -29,6 +29,11 @@
       "version": "2.0.0",
       "description": "Display information about updated Ionic templates",
       "factory": "./src/migrations/update-2-0-0/updated-templates-2-0-0"
+    },
+    "upgrade-ionic-2.2.0": {
+      "version": "2.2.0",
+      "description": "Upgrade Ionic to 5.1.0",
+      "factory": "./src/migrations/upgrade-ionic-2-2-0/upgrade-ionic-2-2-0"
     }
   },
   "packageJsonUpdates": {
@@ -75,6 +80,19 @@
         },
         "@testing-library/user-event": {
           "version": "10.0.1",
+          "alwaysAddToPackageJson": false
+        }
+      }
+    },
+    "2.2.0": {
+      "version": "2.2.0",
+      "packages": {
+        "@ionic/react": {
+          "version": "5.1.0",
+          "alwaysAddToPackageJson": false
+        },
+        "@ionic/react-router": {
+          "version": "5.1.0",
           "alwaysAddToPackageJson": false
         }
       }
