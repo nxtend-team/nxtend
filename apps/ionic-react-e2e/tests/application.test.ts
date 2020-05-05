@@ -3,7 +3,7 @@ import {
   ensureNxProject,
   readJson,
   runNxCommandAsync,
-  uniq
+  uniq,
 } from '@nrwl/nx-plugin/testing';
 
 describe('application e2e', () => {
@@ -52,7 +52,7 @@ describe('application e2e', () => {
     ).toThrow();
   }
 
-  it('should generate application', async done => {
+  it('should generate application', async (done) => {
     const plugin = uniq('ionic-react');
     ensureNxProject('@nxtend/ionic-react', 'dist/libs/ionic-react');
     await runNxCommandAsync(
@@ -66,7 +66,7 @@ describe('application e2e', () => {
     done();
   }, 120000);
 
-  it('should generate JavaScript files', async done => {
+  it('should generate JavaScript files', async (done) => {
     const plugin = uniq('ionic-react');
     ensureNxProject('@nxtend/ionic-react', 'dist/libs/ionic-react');
     await runNxCommandAsync(
@@ -89,7 +89,7 @@ describe('application e2e', () => {
     done();
   }, 120000);
 
-  it('should generate pascal case file names', async done => {
+  it('should generate pascal case file names', async (done) => {
     const plugin = uniq('ionic-react');
     ensureNxProject('@nxtend/ionic-react', 'dist/libs/ionic-react');
     await runNxCommandAsync(
@@ -114,7 +114,7 @@ describe('application e2e', () => {
   }, 120000);
 
   describe('--style', () => {
-    it('should generate application with scss style', async done => {
+    it('should generate application with scss style', async (done) => {
       const plugin = uniq('ionic-react');
       const style = 'scss';
       ensureNxProject('@nxtend/ionic-react', 'dist/libs/ionic-react');
@@ -129,7 +129,7 @@ describe('application e2e', () => {
       done();
     }, 120000);
 
-    it('should generate application with styled-components style', async done => {
+    it('should generate application with styled-components style', async (done) => {
       const plugin = uniq('ionic-react');
       const style = 'styled-components';
       ensureNxProject('@nxtend/ionic-react', 'dist/libs/ionic-react');
@@ -146,7 +146,7 @@ describe('application e2e', () => {
   });
 
   describe('--directory', () => {
-    it('should create src in the specified directory', async done => {
+    it('should create src in the specified directory', async (done) => {
       const plugin = uniq('ionic-react');
       ensureNxProject('@nxtend/ionic-react', 'dist/libs/ionic-react');
       await runNxCommandAsync(
@@ -162,7 +162,7 @@ describe('application e2e', () => {
   });
 
   describe('--tags', () => {
-    it('should add tags to nx.json', async done => {
+    it('should add tags to nx.json', async (done) => {
       const plugin = uniq('ionic-react');
       ensureNxProject('@nxtend/ionic-react', 'dist/libs/ionic-react');
       await runNxCommandAsync(
@@ -191,5 +191,22 @@ describe('application e2e', () => {
         checkFilesExist(`apps/${plugin}/jest.config.js.template`)
       ).toThrow();
     }, 120000);
+  });
+
+  describe('--disableSanitizer', () => {
+    describe('true', () => {
+      it('should add disable the Ionic sanitizer', async () => {
+        const plugin = uniq('ionic-react');
+        ensureNxProject('@nxtend/ionic-react', 'dist/libs/ionic-react');
+        await runNxCommandAsync(
+          `generate @nxtend/ionic-react:app ${plugin} --disableSanitizer`
+        );
+
+        const result = await runNxCommandAsync(
+          `build ${plugin} --maxWorkers=2`
+        );
+        expect(result.stdout).toContain('Built at');
+      }, 120000);
+    });
   });
 });

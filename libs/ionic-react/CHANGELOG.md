@@ -5,6 +5,7 @@
 ## Features
 
 - upgrade Ionic to 5.1.0
+- add `--disableSanitizer` flag to application schematic to disable the [Ionic sanitizer](https://ionicframework.com/docs/techniques/security#sanitizing-user-input)
 
 # 2.1.0
 

@@ -1,4 +1,4 @@
-import { IonApp, IonRouterOutlet } from '@ionic/react';
+import { IonApp, IonRouterOutlet<% if (disableSanitizer) { %>, setupConfig<% } %> } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';<% 
 if (styledModule) { %>
 import { createGlobalStyle } from '<%= styledModule %>';<% } %>
@@ -253,8 +253,12 @@ import '@ionic/react/css/display.css';
     }
   }
 `;<% } else { %>/* Theme variables */
-import './theme/variables.<%= style %>';<% } %>
-<% if (classComponent) {
+import './theme/variables.<%= style %>';<% } %><%
+if (disableSanitizer) { %>
+
+setupConfig({
+  sanitizerEnabled: false
+});<% } %><% if (classComponent) {
   var innerJsx = `
         <IonApp>${styledModule ? `
           <StyledApp />` : ''}

@@ -13,7 +13,8 @@ describe('application', () => {
     skipFormat: false,
     unitTestRunner: 'jest',
     e2eTestRunner: 'cypress',
-    linter: Linter.EsLint
+    linter: Linter.EsLint,
+    disableSanitizer: false,
   };
 
   const projectRoot = `apps/${options.name}`;
@@ -343,6 +344,26 @@ describe('application', () => {
         .toPromise();
 
       expect(tree.exists(`${projectRoot}-e2e/tsconfig.json`)).toBeFalsy();
+    });
+  });
+
+  describe('--disableSanitizer', () => {
+    describe('true', () => {
+      it('should add disable the Ionic sanitizer', async () => {
+        const tree = await testRunner
+          .runSchematicAsync(
+            'application',
+            { ...options, disableSanitizer: true },
+            appTree
+          )
+          .toPromise();
+        const appTsx = tree.readContent(`${projectRoot}/src/app/app.tsx`);
+
+        expect(appTsx).toContain(
+          `import { IonApp, IonRouterOutlet, setupConfig } from '@ionic/react';`
+        );
+        expect(appTsx).toContain(`sanitizerEnabled: false`);
+      });
     });
   });
 });

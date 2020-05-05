@@ -114,6 +114,11 @@
       "type": "boolean",
       "description": "Generate JavaScript files rather than TypeScript files",
       "default": false
+    },
+    "disableSanitizer": {
+      "type": "boolean",
+      "description": "Disable Ionic sanitizer",
+      "default": false
     }
   },
   "required": []
