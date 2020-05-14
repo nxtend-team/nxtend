@@ -7,7 +7,7 @@ import {
 } from '@nrwl/nx-plugin/testing';
 
 describe('application e2e', () => {
-  function testGeneratedApp(plugin: string, style: string) {
+  function testGeneratedFiles(plugin: string, style: string) {
     if (!style) {
       style = 'css';
     }
@@ -16,40 +16,54 @@ describe('application e2e', () => {
     if (style !== 'styled-components') {
       expect(() => {
         checkFilesExist(
-          `apps/${plugin}/src/app/components/explore-container.${style}`
+          `apps/${plugin}/src/app/components/explore-container.${style}`,
+          `apps/${plugin}/src/app/pages/home.${style}`,
+          `apps/${plugin}/src/app/theme/variables.${style}`
         );
-        checkFilesExist(`apps/${plugin}/src/app/pages/home.${style}`);
-        checkFilesExist(`apps/${plugin}/src/app/theme/variables.${style}`);
       }).not.toThrow();
     } else {
       expect(() => {
         checkFilesExist(
-          `apps/${plugin}/src/app/components/explore-container.${style}`
+          `apps/${plugin}/src/app/components/explore-container.${style}`,
+          `apps/${plugin}/src/app/pages/home.${style}`,
+          `apps/${plugin}/src/app/theme/variables.${style}`
         );
-        checkFilesExist(`apps/${plugin}/src/app/pages/home.${style}`);
-        checkFilesExist(`apps/${plugin}/src/app/theme/variables.${style}`);
       }).toThrow();
     }
 
     expect(() => {
       checkFilesExist(
-        `apps/${plugin}/src/app/components/explore-container.tsx`
+        `apps/${plugin}/src/index.html`,
+        `apps/${plugin}/src/manifest.json`,
+        `apps/${plugin}/src/app/app.tsx`,
+        `apps/${plugin}/src/app/components/explore-container.tsx`,
+        `apps/${plugin}/src/app/pages/home.tsx`,
+        `apps/${plugin}/src/assets/icon/favicon.png`,
+        `apps/${plugin}/src/assets/icon/icon.png`
       );
-      checkFilesExist(`apps/${plugin}/src/app/pages/home.tsx`);
-      checkFilesExist(`apps/${plugin}/src/app/app.tsx`);
-      checkFilesExist(`apps/${plugin}/src/assets/icon/favicon.png`);
-      checkFilesExist(`apps/${plugin}/src/assets/icon/icon.png`);
-      checkFilesExist(`apps/${plugin}/src/index.html`);
-      checkFilesExist(`apps/${plugin}/src/manifest.json`);
     }).not.toThrow();
 
     // Jest
     expect(() =>
       checkFilesExist(`apps/${plugin}/src/app/__mocks__/fileMock.js`)
     ).not.toThrow();
+
     expect(() =>
       checkFilesExist(`apps/${plugin}/jest.config.js.template`)
     ).toThrow();
+  }
+
+  async function buildAndTestApp(plugin: string) {
+    const buildResults = await runNxCommandAsync(
+      `build ${plugin} --maxWorkers=2`
+    );
+    expect(buildResults.stdout).toContain('Built at');
+
+    const lintResults = await runNxCommandAsync(`lint ${plugin}`);
+    expect(lintResults.stdout).toContain('All files pass linting');
+
+    const testResults = await runNxCommandAsync(`test ${plugin}`);
+    expect(testResults.stderr).toContain('Test Suites: 1 passed, 1 total');
   }
 
   it('should generate application', async (done) => {
@@ -59,10 +73,8 @@ describe('application e2e', () => {
       `generate @nxtend/ionic-react:application ${plugin}`
     );
 
-    const result = await runNxCommandAsync(`build ${plugin} --maxWorkers=2`);
-    expect(result.stdout).toContain('Built at');
-    testGeneratedApp(plugin, null);
-
+    testGeneratedFiles(plugin, null);
+    await buildAndTestApp(plugin);
     done();
   }, 120000);
 
@@ -86,6 +98,7 @@ describe('application e2e', () => {
       checkFilesExist(`apps/${plugin}/src/main.tsx`);
     }).toThrow();
 
+    await buildAndTestApp(plugin);
     done();
   }, 120000);
 
@@ -110,6 +123,7 @@ describe('application e2e', () => {
       checkFilesExist(`apps/${plugin}/src/app/App.spec.tsx`);
     }).not.toThrow();
 
+    await buildAndTestApp(plugin);
     done();
   }, 120000);
 
@@ -122,10 +136,8 @@ describe('application e2e', () => {
         `generate @nxtend/ionic-react:app ${plugin} --style ${style}`
       );
 
-      const result = await runNxCommandAsync(`build ${plugin} --maxWorkers=2`);
-      expect(result.stdout).toContain('Built at');
-      testGeneratedApp(plugin, style);
-
+      testGeneratedFiles(plugin, style);
+      await buildAndTestApp(plugin);
       done();
     }, 120000);
 
@@ -137,10 +149,9 @@ describe('application e2e', () => {
         `generate @nxtend/ionic-react:app ${plugin} --style ${style}`
       );
 
+      testGeneratedFiles(plugin, style);
       const result = await runNxCommandAsync(`build ${plugin} --maxWorkers=2`);
       expect(result.stdout).toContain('Built at');
-      testGeneratedApp(plugin, style);
-
       done();
     }, 120000);
   });
@@ -157,6 +168,16 @@ describe('application e2e', () => {
         checkFilesExist(`apps/subdir/${plugin}/src/main.tsx`)
       ).not.toThrow();
 
+      const buildResults = await runNxCommandAsync(
+        `build subdir-${plugin} --maxWorkers=2`
+      );
+      expect(buildResults.stdout).toContain('Built at');
+
+      const lintResults = await runNxCommandAsync(`lint subdir-${plugin}`);
+      expect(lintResults.stdout).toContain('All files pass linting');
+
+      const testResults = await runNxCommandAsync(`test subdir-${plugin}`);
+      expect(testResults.stderr).toContain('Test Suites: 1 passed, 1 total');
       done();
     }, 120000);
   });
@@ -172,12 +193,13 @@ describe('application e2e', () => {
       const nxJson = readJson('nx.json');
       expect(nxJson.projects[plugin].tags).toEqual(['e2etag', 'e2ePackage']);
 
+      await buildAndTestApp(plugin);
       done();
     }, 120000);
   });
 
   describe('--unitTestRunner', () => {
-    it('should not generate Jest mocks', async () => {
+    it('should not generate Jest mocks', async (done) => {
       const plugin = uniq('ionic-react');
       ensureNxProject('@nxtend/ionic-react', 'dist/libs/ionic-react');
       await runNxCommandAsync(
@@ -190,22 +212,30 @@ describe('application e2e', () => {
       expect(() =>
         checkFilesExist(`apps/${plugin}/jest.config.js.template`)
       ).toThrow();
+
+      const buildResults = await runNxCommandAsync(
+        `build ${plugin} --maxWorkers=2`
+      );
+      expect(buildResults.stdout).toContain('Built at');
+
+      const lintResults = await runNxCommandAsync(`lint ${plugin}`);
+      expect(lintResults.stdout).toContain('All files pass linting');
+
+      done();
     }, 120000);
   });
 
   describe('--disableSanitizer', () => {
     describe('true', () => {
-      it('should add disable the Ionic sanitizer', async () => {
+      it('should add disable the Ionic sanitizer', async (done) => {
         const plugin = uniq('ionic-react');
         ensureNxProject('@nxtend/ionic-react', 'dist/libs/ionic-react');
         await runNxCommandAsync(
           `generate @nxtend/ionic-react:app ${plugin} --disableSanitizer`
         );
 
-        const result = await runNxCommandAsync(
-          `build ${plugin} --maxWorkers=2`
-        );
-        expect(result.stdout).toContain('Built at');
+        await buildAndTestApp(plugin);
+        done();
       }, 120000);
     });
   });
