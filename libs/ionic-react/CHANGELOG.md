@@ -1,5 +1,11 @@
 # Changelog
 
+# 2.2.1
+
+## Bug Fixes
+
+- fix pascal case generate App unit test
+
 # 2.2.0
 
 ## Features
