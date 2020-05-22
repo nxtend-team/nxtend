@@ -260,18 +260,6 @@ setupConfig({
   sanitizerEnabled: false
 });<% } %><% if (classComponent) {
   var innerJsx = `
-        <IonApp>${styledModule ? `
-          <StyledApp />` : ''}
-          <IonReactRouter>
-            <IonRouterOutlet>
-              <Route path="/home" component={Home} exact={true} />
-              <Route exact path="/" render={() => <Redirect to="/home" />} />
-            </IonRouterOutlet>
-          </IonReactRouter>
-        </IonApp>
-  `;
-} else { 
-  var innerJsx = `
       <IonApp>${styledModule ? `
         <StyledApp />` : ''}
         <IonReactRouter>
@@ -282,19 +270,28 @@ setupConfig({
         </IonReactRouter>
       </IonApp>
   `;
-}%><% if (classComponent) { %>
+} else { 
+  var innerJsx = `
+    <IonApp>${styledModule ? `
+      <StyledApp />` : ''}
+      <IonReactRouter>
+        <IonRouterOutlet>
+          <Route path="/home" component={Home} exact={true} />
+          <Route exact path="/" render={() => <Redirect to="/home" />} />
+        </IonRouterOutlet>
+      </IonReactRouter>
+    </IonApp>
+  `;
+}%>
+<% if (classComponent) { %>
 export class App extends Component {
   render() {
-    return (
-      <%= innerJsx %>
-    );
+    return (<%= innerJsx %>  );
   }
 }
 <% } else { %>
 export const App = () => {
-  return (
-    <%= innerJsx %>
-  );
+  return (<%= innerJsx %>);
 };<% } %>
 
 export default App;

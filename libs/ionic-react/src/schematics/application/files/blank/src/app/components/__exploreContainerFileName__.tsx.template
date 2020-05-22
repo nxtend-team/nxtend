@@ -102,16 +102,13 @@ const StyledExploreContainer = styled.div`
   }
   %>import './<%= exploreContainerFileName %>.<%= style %>';<% } %>
 
-/* eslint-disable-next-line */
-export interface ExploreContainerProps {}
-
 <% if (classComponent) {
-  %>export class ExploreContainer extends Component<ExploreContainerProps> {
+  %>export class ExploreContainer extends Component {
   render() {
     return (<%= innerJsx %>  );
   }
 }<% } else { 
-  %>const ExploreContainer = (props: ExploreContainerProps) => {
+  %>const ExploreContainer = () => {
   return (<%= innerJsx %>);
 };<% } %>
 
