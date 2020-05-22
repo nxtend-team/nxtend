@@ -1,17 +1,12 @@
 # Changelog
 
-# 2.2.1
-
-## Bug Fixes
-
-- fix pascal case generate App unit test
-
 # 2.2.0
 
 ## Features
 
 - upgrade Ionic to 5.1.0
 - add `--disableSanitizer` flag to application schematic to disable the [Ionic sanitizer](https://ionicframework.com/docs/techniques/security#sanitizing-user-input)
+- fix pascal case generate App unit test
 
 # 2.1.0
 
