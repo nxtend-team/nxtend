@@ -54,9 +54,7 @@ describe('application e2e', () => {
   }
 
   async function buildAndTestApp(plugin: string) {
-    const buildResults = await runNxCommandAsync(
-      `build ${plugin} --maxWorkers=2`
-    );
+    const buildResults = await runNxCommandAsync(`build ${plugin}`);
     expect(buildResults.stdout).toContain('Built at');
 
     const lintResults = await runNxCommandAsync(`lint ${plugin}`);
@@ -150,7 +148,7 @@ describe('application e2e', () => {
       );
 
       testGeneratedFiles(plugin, style);
-      const result = await runNxCommandAsync(`build ${plugin} --maxWorkers=2`);
+      const result = await runNxCommandAsync(`build ${plugin}`);
       expect(result.stdout).toContain('Built at');
       done();
     }, 120000);
@@ -168,9 +166,7 @@ describe('application e2e', () => {
         checkFilesExist(`apps/subdir/${plugin}/src/main.tsx`)
       ).not.toThrow();
 
-      const buildResults = await runNxCommandAsync(
-        `build subdir-${plugin} --maxWorkers=2`
-      );
+      const buildResults = await runNxCommandAsync(`build subdir-${plugin}`);
       expect(buildResults.stdout).toContain('Built at');
 
       const lintResults = await runNxCommandAsync(`lint subdir-${plugin}`);
@@ -213,9 +209,7 @@ describe('application e2e', () => {
         checkFilesExist(`apps/${plugin}/jest.config.js.template`)
       ).toThrow();
 
-      const buildResults = await runNxCommandAsync(
-        `build ${plugin} --maxWorkers=2`
-      );
+      const buildResults = await runNxCommandAsync(`build ${plugin}`);
       expect(buildResults.stdout).toContain('Built at');
 
       const lintResults = await runNxCommandAsync(`lint ${plugin}`);
