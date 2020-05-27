@@ -62,6 +62,9 @@ describe('application e2e', () => {
 
     const testResults = await runNxCommandAsync(`test ${plugin}`);
     expect(testResults.stderr).toContain('Test Suites: 1 passed, 1 total');
+
+    const e2eResults = await runNxCommandAsync(`e2e ${plugin}-e2e --headless`);
+    expect(e2eResults.stdout).toContain('All specs passed!');
   }
 
   it('should generate application', async (done) => {
@@ -73,6 +76,7 @@ describe('application e2e', () => {
 
     testGeneratedFiles(plugin, null);
     await buildAndTestApp(plugin);
+
     done();
   }, 120000);
 
@@ -82,9 +86,6 @@ describe('application e2e', () => {
     await runNxCommandAsync(
       `generate @nxtend/ionic-react:application ${plugin} --js`
     );
-
-    const result = await runNxCommandAsync(`build ${plugin} --maxWorkers=2`);
-    expect(result.stdout).toContain('Built at');
 
     expect(() => {
       checkFilesExist(`apps/${plugin}/src/app/app.js`);
@@ -97,6 +98,7 @@ describe('application e2e', () => {
     }).toThrow();
 
     await buildAndTestApp(plugin);
+
     done();
   }, 120000);
 
@@ -106,9 +108,6 @@ describe('application e2e', () => {
     await runNxCommandAsync(
       `generate @nxtend/ionic-react:application ${plugin} --pascalCaseFiles`
     );
-
-    const result = await runNxCommandAsync(`build ${plugin} --maxWorkers=2`);
-    expect(result.stdout).toContain('Built at');
 
     expect(() => {
       checkFilesExist(`apps/${plugin}/src/app/components/ExploreContainer.tsx`);
@@ -122,36 +121,41 @@ describe('application e2e', () => {
     }).not.toThrow();
 
     await buildAndTestApp(plugin);
+
     done();
   }, 120000);
 
   describe('--style', () => {
-    it('should generate application with scss style', async (done) => {
-      const plugin = uniq('ionic-react');
-      const style = 'scss';
-      ensureNxProject('@nxtend/ionic-react', 'dist/libs/ionic-react');
-      await runNxCommandAsync(
-        `generate @nxtend/ionic-react:app ${plugin} --style ${style}`
-      );
+    describe('scss', () => {
+      it('should generate application with scss style', async (done) => {
+        const plugin = uniq('ionic-react');
+        const style = 'scss';
+        ensureNxProject('@nxtend/ionic-react', 'dist/libs/ionic-react');
+        await runNxCommandAsync(
+          `generate @nxtend/ionic-react:app ${plugin} --style ${style}`
+        );
 
-      testGeneratedFiles(plugin, style);
-      await buildAndTestApp(plugin);
-      done();
-    }, 120000);
+        testGeneratedFiles(plugin, style);
+        await buildAndTestApp(plugin);
+        done();
+      }, 120000);
+    });
 
-    it('should generate application with styled-components style', async (done) => {
-      const plugin = uniq('ionic-react');
-      const style = 'styled-components';
-      ensureNxProject('@nxtend/ionic-react', 'dist/libs/ionic-react');
-      await runNxCommandAsync(
-        `generate @nxtend/ionic-react:app ${plugin} --style ${style}`
-      );
+    describe('styled-components', () => {
+      it('should generate application with styled-components style', async (done) => {
+        const plugin = uniq('ionic-react');
+        const style = 'styled-components';
+        ensureNxProject('@nxtend/ionic-react', 'dist/libs/ionic-react');
+        await runNxCommandAsync(
+          `generate @nxtend/ionic-react:app ${plugin} --style ${style}`
+        );
 
-      testGeneratedFiles(plugin, style);
-      const result = await runNxCommandAsync(`build ${plugin}`);
-      expect(result.stdout).toContain('Built at');
-      done();
-    }, 120000);
+        testGeneratedFiles(plugin, style);
+        await buildAndTestApp(plugin);
+
+        done();
+      }, 120000);
+    });
   });
 
   describe('--directory', () => {
@@ -174,6 +178,12 @@ describe('application e2e', () => {
 
       const testResults = await runNxCommandAsync(`test subdir-${plugin}`);
       expect(testResults.stderr).toContain('Test Suites: 1 passed, 1 total');
+
+      const e2eResults = await runNxCommandAsync(
+        `e2e subdir-${plugin}-e2e --headless`
+      );
+      expect(e2eResults.stdout).toContain('All specs passed!');
+
       done();
     }, 120000);
   });
@@ -190,33 +200,41 @@ describe('application e2e', () => {
       expect(nxJson.projects[plugin].tags).toEqual(['e2etag', 'e2ePackage']);
 
       await buildAndTestApp(plugin);
+
       done();
     }, 120000);
   });
 
   describe('--unitTestRunner', () => {
-    it('should not generate Jest mocks', async (done) => {
-      const plugin = uniq('ionic-react');
-      ensureNxProject('@nxtend/ionic-react', 'dist/libs/ionic-react');
-      await runNxCommandAsync(
-        `generate @nxtend/ionic-react:app ${plugin} --unitTestRunner none`
-      );
+    describe('none', () => {
+      it('should not generate Jest mocks', async (done) => {
+        const plugin = uniq('ionic-react');
+        ensureNxProject('@nxtend/ionic-react', 'dist/libs/ionic-react');
+        await runNxCommandAsync(
+          `generate @nxtend/ionic-react:app ${plugin} --unitTestRunner none`
+        );
 
-      expect(() =>
-        checkFilesExist(`apps/${plugin}/src/app/__mocks__/fileMock.js`)
-      ).toThrow();
-      expect(() =>
-        checkFilesExist(`apps/${plugin}/jest.config.js.template`)
-      ).toThrow();
+        expect(() =>
+          checkFilesExist(`apps/${plugin}/src/app/__mocks__/fileMock.js`)
+        ).toThrow();
+        expect(() =>
+          checkFilesExist(`apps/${plugin}/jest.config.js.template`)
+        ).toThrow();
 
-      const buildResults = await runNxCommandAsync(`build ${plugin}`);
-      expect(buildResults.stdout).toContain('Built at');
+        const buildResults = await runNxCommandAsync(`build ${plugin}`);
+        expect(buildResults.stdout).toContain('Built at');
 
-      const lintResults = await runNxCommandAsync(`lint ${plugin}`);
-      expect(lintResults.stdout).toContain('All files pass linting');
+        const lintResults = await runNxCommandAsync(`lint ${plugin}`);
+        expect(lintResults.stdout).toContain('All files pass linting');
 
-      done();
-    }, 120000);
+        const e2eResults = await runNxCommandAsync(
+          `e2e ${plugin}-e2e --headless`
+        );
+        expect(e2eResults.stdout).toContain('All specs passed!');
+
+        done();
+      }, 120000);
+    });
   });
 
   describe('--disableSanitizer', () => {
@@ -229,6 +247,7 @@ describe('application e2e', () => {
         );
 
         await buildAndTestApp(plugin);
+
         done();
       }, 120000);
     });
