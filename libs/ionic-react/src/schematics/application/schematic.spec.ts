@@ -11,11 +11,12 @@ describe('application', () => {
 
   const options: ApplicationSchematicSchema = {
     name: 'test',
+    style: 'css',
     skipFormat: false,
     unitTestRunner: 'jest',
     e2eTestRunner: 'cypress',
     linter: Linter.EsLint,
-    disableSanitizer: false,
+    disableSanitizer: false
   };
 
   const projectRoot = `apps/${options.name}`;
@@ -24,6 +25,69 @@ describe('application', () => {
     '@nxtend/ionic-react',
     join(__dirname, '../../../collection.json')
   );
+
+  function testGeneratedFiles(tree: Tree, options: ApplicationSchematicSchema) {
+    const componentExtension = options.js ? 'js' : 'tsx';
+    const appFileName = options.pascalCaseFiles ? 'App' : 'app';
+    const homeFileName = options.pascalCaseFiles ? 'Home' : 'home';
+    const exploreContainerFileName = options.pascalCaseFiles
+      ? 'ExploreContainer'
+      : 'explore-container';
+
+    expect(tree.exists(`${projectRoot}/.eslintrc`)).toBeTruthy();
+    expect(tree.exists(`${projectRoot}/src/index.html`)).toBeTruthy();
+    expect(tree.exists(`${projectRoot}/src/manifest.json`)).toBeTruthy();
+
+    expect(
+      tree.exists(
+        `${projectRoot}/src/app/components/${exploreContainerFileName}.${componentExtension}`
+      )
+    ).toBeTruthy();
+
+    expect(
+      tree.exists(
+        `${projectRoot}/src/app/pages/${homeFileName}.${componentExtension}`
+      )
+    ).toBeTruthy();
+
+    expect(
+      tree.exists(`${projectRoot}/src/app/${appFileName}.${componentExtension}`)
+    ).toBeTruthy();
+
+    expect(
+      tree.exists(`${projectRoot}/src/assets/icon/favicon.png`)
+    ).toBeTruthy();
+    expect(tree.exists(`${projectRoot}/src/assets/icon/icon.png`)).toBeTruthy();
+
+    if (options.style !== 'styled-components' && options.style !== 'emotion') {
+      expect(
+        tree.exists(
+          `${projectRoot}/src/app/components/${exploreContainerFileName}.${options.style}`
+        )
+      ).toBeTruthy();
+
+      expect(
+        tree.exists(
+          `${projectRoot}/src/app/pages/${homeFileName}.${options.style}`
+        )
+      ).toBeTruthy();
+
+      expect(
+        tree.exists(`${projectRoot}/src/app/theme/variables.${options.style}`)
+      ).toBeTruthy();
+    }
+
+    if (options.unitTestRunner === 'jest') {
+      expect(
+        tree.exists(`${projectRoot}/src/app/__mocks__/fileMock.js`)
+      ).toBeTruthy();
+      expect(
+        tree.exists(
+          `${projectRoot}/src/app/${appFileName}.spec.${componentExtension}`
+        )
+      ).toBeTruthy();
+    }
+  }
 
   beforeEach(() => {
     appTree = createEmptyWorkspace(Tree.empty());
@@ -38,56 +102,12 @@ describe('application', () => {
     expect(packageJSON.dependencies['@ionic/react-router']).toBeDefined();
   });
 
-  function testGeneratedFiles(tree: Tree) {
-    expect(tree.exists(`${projectRoot}/.eslintrc`)).toBeTruthy();
-
-    expect(
-      tree.exists(`${projectRoot}/src/app/components/explore-container.tsx`)
-    ).toBeTruthy();
-    expect(
-      tree.exists(`${projectRoot}/src/app/components/explore-container.css`)
-    ).toBeTruthy();
-
-    expect(tree.exists(`${projectRoot}/src/app/pages/home.tsx`)).toBeTruthy();
-    expect(tree.exists(`${projectRoot}/src/app/pages/home.css`)).toBeTruthy();
-
-    expect(
-      tree.exists(`${projectRoot}/src/app/theme/variables.css`)
-    ).toBeTruthy();
-
-    expect(tree.exists(`${projectRoot}/src/app/app.spec.tsx`)).toBeTruthy();
-    expect(tree.exists(`${projectRoot}/src/app/app.tsx`)).toBeTruthy();
-
-    expect(
-      tree.exists(`${projectRoot}/src/assets/icon/favicon.png`)
-    ).toBeTruthy();
-    expect(tree.exists(`${projectRoot}/src/assets/icon/icon.png`)).toBeTruthy();
-
-    expect(tree.exists(`${projectRoot}/src/index.html`)).toBeTruthy();
-    expect(tree.exists(`${projectRoot}/src/manifest.json`)).toBeTruthy();
-
-    expect(
-      tree.exists(`${projectRoot}/src/app/${options.name}.spec.tsx`)
-    ).toBeFalsy();
-    expect(
-      tree.exists(`${projectRoot}/src/app/${options.name}.tsx`)
-    ).toBeFalsy();
-  }
-
   it('should generate application', async () => {
     const tree = await testRunner
       .runSchematicAsync('application', options, appTree)
       .toPromise();
 
-    testGeneratedFiles(tree);
-  });
-
-  it('should generate application with app alias', async () => {
-    const tree = await testRunner
-      .runSchematicAsync('app', options, appTree)
-      .toPromise();
-
-    testGeneratedFiles(tree);
+    testGeneratedFiles(tree, options);
   });
 
   it('should apply template files', async () => {
@@ -180,7 +200,7 @@ describe('application', () => {
         expect.objectContaining({
           routing: true,
           unitTestRunner: 'none',
-          skipWorkspaceJson: true,
+          skipWorkspaceJson: true
         })
       );
     });
@@ -200,193 +220,187 @@ describe('application', () => {
         expect.objectContaining({
           supportTsx: true,
           skipSerializers: true,
-          setupFile: 'web-components',
+          setupFile: 'web-components'
         })
       );
     });
   });
 
-  it('should generate JavaScript files', async () => {
-    const tree = await testRunner
-      .runSchematicAsync('application', { ...options, js: true }, appTree)
-      .toPromise();
+  describe('--js', () => {
+    describe('true', () => {
+      it('should generate JavaScript files', async () => {
+        const tree = await testRunner
+          .runSchematicAsync('application', { ...options, js: true }, appTree)
+          .toPromise();
 
-    expect(tree.exists(`${projectRoot}/src/app/app.js`)).toBeTruthy();
-    expect(tree.exists(`${projectRoot}/src/main.js`)).toBeTruthy();
+        expect(tree.exists(`${projectRoot}/src/app/app.js`)).toBeTruthy();
+        expect(tree.exists(`${projectRoot}/src/main.js`)).toBeTruthy();
 
-    expect(tree.exists(`${projectRoot}/src/app/app.tsx`)).toBeFalsy();
-    expect(tree.exists(`${projectRoot}/src/main.tsx`)).toBeFalsy();
+        expect(tree.exists(`${projectRoot}/src/app/app.tsx`)).toBeFalsy();
+        expect(tree.exists(`${projectRoot}/src/main.tsx`)).toBeFalsy();
+
+        testGeneratedFiles(tree, { ...options, js: true });
+      });
+    });
   });
 
-  it('should generate pascal case file names', async () => {
-    const tree = await testRunner
-      .runSchematicAsync(
-        'application',
-        { ...options, pascalCaseFiles: true },
-        appTree
-      )
-      .toPromise();
+  describe('--pascalCaseFiles', () => {
+    describe('true', () => {
+      it('should generate pascal case file names', async () => {
+        const tree = await testRunner
+          .runSchematicAsync(
+            'application',
+            { ...options, pascalCaseFiles: true },
+            appTree
+          )
+          .toPromise();
 
-    expect(
-      tree.exists(`${projectRoot}/src/app/components/ExploreContainer.tsx`)
-    ).toBeTruthy();
-    expect(
-      tree.exists(`${projectRoot}/src/app/components/ExploreContainer.css`)
-    ).toBeTruthy();
-
-    expect(tree.exists(`${projectRoot}/src/app/pages/Home.tsx`)).toBeTruthy();
-    expect(tree.exists(`${projectRoot}/src/app/pages/Home.css`)).toBeTruthy();
-
-    expect(tree.exists(`${projectRoot}/src/app/App.spec.tsx`)).toBeTruthy();
-    expect(tree.exists(`${projectRoot}/src/app/App.tsx`)).toBeTruthy();
+        testGeneratedFiles(tree, { ...options, pascalCaseFiles: true });
+      });
+    });
   });
 
   describe('--style', () => {
-    it('should generate application with scss style', async () => {
-      const style = 'scss';
-      const tree = await testRunner
-        .runSchematicAsync('application', { ...options, style }, appTree)
-        .toPromise();
+    describe('scss', () => {
+      it('should generate application with scss style', async () => {
+        const style = 'scss';
+        const tree = await testRunner
+          .runSchematicAsync('application', { ...options, style }, appTree)
+          .toPromise();
 
-      expect(
-        tree.exists(`${projectRoot}/src/app/theme/variables.scss`)
-      ).toBeTruthy();
+        testGeneratedFiles(tree, { ...options, style });
+      });
     });
 
-    it('should generate application with styled-components style', async () => {
-      const style = 'styled-components';
-      const tree = await testRunner
-        .runSchematicAsync('application', { ...options, style }, appTree)
-        .toPromise();
+    describe('styled-components', () => {
+      it('should generate application with styled-components style', async () => {
+        const style = 'styled-components';
+        const tree = await testRunner
+          .runSchematicAsync('application', { ...options, style }, appTree)
+          .toPromise();
 
-      expect(
-        tree.exists(`${projectRoot}/src/app/theme/variables.styled-components`)
-      ).toBeFalsy();
+        testGeneratedFiles(tree, { ...options, style });
+      });
     });
   });
 
   describe('--unitTestRunner', () => {
-    it('should generate Jest mocks', async () => {
-      const tree = await testRunner
-        .runSchematicAsync('application', options, appTree)
-        .toPromise();
+    describe('jest', () => {
+      it('should update Jest config', async () => {
+        const tree = await testRunner
+          .runSchematicAsync('application', options, appTree)
+          .toPromise();
+        const workspaceJson = readJsonInTree(tree, '/workspace.json');
+        const jestConfigPath =
+          workspaceJson.projects['test'].architect.test.options.jestConfig;
+        const jestConfig = tree.readContent(jestConfigPath);
 
-      expect(
-        tree.exists(`${projectRoot}/src/app/__mocks__/fileMock.js`)
-      ).toBeTruthy();
-      expect(tree.exists(`${projectRoot}/jest.config.js.template`)).toBeFalsy();
+        expect(jestConfig).toContain('moduleNameMapper');
+        expect(jestConfig).toContain('modulePathIgnorePatterns:');
+      });
+
+      it('should generate Jest test setup', async () => {
+        const tree = await testRunner
+          .runSchematicAsync('application', options, appTree)
+          .toPromise();
+        const workspaceJson = readJsonInTree(tree, '/workspace.json');
+
+        expect(
+          workspaceJson.projects[options.name].architect.build.options.assets
+        ).toContain(`${projectRoot}/src/manifest.json`);
+
+        expect(tree.exists(`${projectRoot}/src/test-setup.ts`)).toBeTruthy();
+        expect(
+          tree.exists(`${projectRoot}/src/test-setup.ts.template`)
+        ).toBeFalsy();
+      });
     });
 
-    it('should not generate Jest mocks', async () => {
-      const tree = await testRunner
-        .runSchematicAsync(
-          'application',
-          { ...options, unitTestRunner: 'none' },
-          appTree
-        )
-        .toPromise();
+    describe('none', () => {
+      it('should not generate Jest mocks', async () => {
+        const tree = await testRunner
+          .runSchematicAsync(
+            'application',
+            { ...options, unitTestRunner: 'none' },
+            appTree
+          )
+          .toPromise();
 
-      expect(
-        tree.exists(`${projectRoot}/src/app/__mocks__/fileMock.js`)
-      ).toBeFalsy();
-      expect(tree.exists(`${projectRoot}/jest.config.js.template`)).toBeFalsy();
-    });
+        testGeneratedFiles(tree, { ...options, unitTestRunner: 'none' });
+      });
 
-    it('should update Jest config', async () => {
-      const tree = await testRunner
-        .runSchematicAsync('application', options, appTree)
-        .toPromise();
-      const workspaceJson = readJsonInTree(tree, '/workspace.json');
-      const jestConfigPath =
-        workspaceJson.projects['test'].architect.test.options.jestConfig;
-      const jestConfig = tree.readContent(jestConfigPath);
+      it('should not generate test files', async () => {
+        const tree = await testRunner
+          .runSchematicAsync(
+            'application',
+            { ...options, unitTestRunner: 'none' },
+            appTree
+          )
+          .toPromise();
 
-      expect(jestConfig).toContain('moduleNameMapper');
-      expect(jestConfig).toContain('modulePathIgnorePatterns:');
-    });
-
-    it('should generate Jest test setup', async () => {
-      const tree = await testRunner
-        .runSchematicAsync('application', options, appTree)
-        .toPromise();
-      const workspaceJson = readJsonInTree(tree, '/workspace.json');
-
-      expect(
-        workspaceJson.projects[options.name].architect.build.options.assets
-      ).toContain(`${projectRoot}/src/manifest.json`);
-
-      expect(tree.exists(`${projectRoot}/src/test-setup.ts`)).toBeTruthy();
-      expect(
-        tree.exists(`${projectRoot}/src/test-setup.ts.template`)
-      ).toBeFalsy();
-    });
-
-    it('should not generate test files', async () => {
-      const tree = await testRunner
-        .runSchematicAsync(
-          'application',
-          { ...options, unitTestRunner: 'none' },
-          appTree
-        )
-        .toPromise();
-
-      expect(tree.exists(`${projectRoot}/src/app/app.spec.tsx`)).toBeFalsy();
+        expect(tree.exists(`${projectRoot}/src/app/app.spec.tsx`)).toBeFalsy();
+        testGeneratedFiles(tree, { ...options, unitTestRunner: 'none' });
+      });
     });
   });
 
   describe('--e2eTestRunner', () => {
-    it('should add Cypress Testing Library dependency', async () => {
-      const tree = await testRunner
-        .runSchematicAsync('application', options, appTree)
-        .toPromise();
+    describe('cypress', () => {
+      it('should add Cypress Testing Library dependency', async () => {
+        const tree = await testRunner
+          .runSchematicAsync('application', options, appTree)
+          .toPromise();
 
-      const packageJson = readJsonInTree(tree, 'package.json');
-      expect(
-        packageJson.devDependencies['@testing-library/cypress']
-      ).toBeDefined();
+        const packageJson = readJsonInTree(tree, 'package.json');
+        expect(
+          packageJson.devDependencies['@testing-library/cypress']
+        ).toBeDefined();
+      });
+
+      it('should add Cypress Testing Library type to tsconfig.json', async () => {
+        const tree = await testRunner
+          .runSchematicAsync('application', options, appTree)
+          .toPromise();
+
+        const tsconfigJson = readJsonInTree(
+          tree,
+          `${projectRoot}-e2e/tsconfig.json`
+        );
+        expect(
+          tsconfigJson.compilerOptions.types.includes(
+            '@types/testing-library__cypress'
+          )
+        ).toBeTruthy();
+      });
     });
 
-    it('should not add Cypress Testing Library dependency', async () => {
-      const tree = await testRunner
-        .runSchematicAsync(
-          'application',
-          { ...options, e2eTestRunner: 'none' },
-          appTree
-        )
-        .toPromise();
+    describe('none', () => {
+      it('should not add Cypress Testing Library dependency', async () => {
+        const tree = await testRunner
+          .runSchematicAsync(
+            'application',
+            { ...options, e2eTestRunner: 'none' },
+            appTree
+          )
+          .toPromise();
 
-      const packageJson = readJsonInTree(tree, 'package.json');
-      expect(
-        packageJson.devDependencies['@testing-library/cypress']
-      ).toBeFalsy();
-    });
+        const packageJson = readJsonInTree(tree, 'package.json');
+        expect(
+          packageJson.devDependencies['@testing-library/cypress']
+        ).toBeFalsy();
+      });
 
-    it('should add Cypress Testing Library type to tsconfig.json', async () => {
-      const tree = await testRunner
-        .runSchematicAsync('application', options, appTree)
-        .toPromise();
+      it('should not add Cypress Testing Library type to tsconfig.json', async () => {
+        const tree = await testRunner
+          .runSchematicAsync(
+            'application',
+            { ...options, e2eTestRunner: 'none' },
+            appTree
+          )
+          .toPromise();
 
-      const tsconfigJson = readJsonInTree(
-        tree,
-        `${projectRoot}-e2e/tsconfig.json`
-      );
-      expect(
-        tsconfigJson.compilerOptions.types.includes(
-          '@types/testing-library__cypress'
-        )
-      ).toBeTruthy();
-    });
-
-    it('should not add Cypress Testing Library type to tsconfig.json', async () => {
-      const tree = await testRunner
-        .runSchematicAsync(
-          'application',
-          { ...options, e2eTestRunner: 'none' },
-          appTree
-        )
-        .toPromise();
-
-      expect(tree.exists(`${projectRoot}-e2e/tsconfig.json`)).toBeFalsy();
+        expect(tree.exists(`${projectRoot}-e2e/tsconfig.json`)).toBeFalsy();
+      });
     });
   });
 
