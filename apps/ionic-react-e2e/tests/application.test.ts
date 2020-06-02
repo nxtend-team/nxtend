@@ -13,7 +13,7 @@ describe('application e2e', () => {
     }
 
     // Added styles
-    if (style !== 'styled-components') {
+    if (style !== 'styled-components' && style !== '@emotion/styled') {
       expect(() => {
         checkFilesExist(
           `apps/${plugin}/src/app/components/explore-container.${style}`,
@@ -145,6 +145,22 @@ describe('application e2e', () => {
       it('should generate application with styled-components style', async (done) => {
         const plugin = uniq('ionic-react');
         const style = 'styled-components';
+        ensureNxProject('@nxtend/ionic-react', 'dist/libs/ionic-react');
+        await runNxCommandAsync(
+          `generate @nxtend/ionic-react:app ${plugin} --style ${style}`
+        );
+
+        testGeneratedFiles(plugin, style);
+        await buildAndTestApp(plugin);
+
+        done();
+      }, 120000);
+    });
+
+    describe('@emotion/styled', () => {
+      it('should generate application with Emotion style', async (done) => {
+        const plugin = uniq('ionic-react');
+        const style = '@emotion/styled';
         ensureNxProject('@nxtend/ionic-react', 'dist/libs/ionic-react');
         await runNxCommandAsync(
           `generate @nxtend/ionic-react:app ${plugin} --style ${style}`

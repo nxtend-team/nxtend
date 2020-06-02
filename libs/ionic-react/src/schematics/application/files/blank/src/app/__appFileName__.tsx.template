@@ -1,7 +1,8 @@
 import { IonApp, IonRouterOutlet<% if (disableSanitizer) { %>, setupConfig<% } %> } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';<% 
-if (styledModule) { %>
-import { createGlobalStyle } from '<%= styledModule %>';<% } %>
+if (style === 'styled-components') { %>
+import { createGlobalStyle } from '<%= styledModule %>';
+<% } else if (style === '@emotion/styled') { %>import { Global, css } from '@emotion/core';<%} %>
 <% if (classComponent) { %>import React, { Component } from 'react';<% 
 } else { %>import React from 'react';<% } %>
 import { Redirect, Route } from 'react-router-dom';
@@ -23,7 +24,7 @@ import '@ionic/react/css/text-transformation.css';
 import '@ionic/react/css/flex-utils.css';
 import '@ionic/react/css/display.css';
 
-<% if (styledModule) { %>const StyledApp = createGlobalStyle`
+<% if (styledModule) { %>const StyledApp = <% if (style === 'styled-components') { %>createGlobalStyle<% } else { %>css<% } %>`
   /* Ionic Variables and Theming. For more info, please see:
   http://ionicframework.com/docs/theming/ */
 
@@ -259,9 +260,9 @@ if (disableSanitizer) { %>
 setupConfig({
   sanitizerEnabled: false
 });<% } %><% if (classComponent) {
+  var globalStyle = style === 'styled-components' ? `<StyledApp />` : style === '@emotion/styled' ? `<Global styles={StyledApp} />` : '';
   var innerJsx = `
-      <IonApp>${styledModule ? `
-        <StyledApp />` : ''}
+      <IonApp>${globalStyle}
         <IonReactRouter>
           <IonRouterOutlet>
             <Route path="/home" component={Home} exact={true} />
@@ -270,10 +271,10 @@ setupConfig({
         </IonReactRouter>
       </IonApp>
   `;
-} else { 
+} else {
+  var globalStyle = style === 'styled-components' ? `<StyledApp />` : style === '@emotion/styled' ? `<Global styles={StyledApp} />` : '';
   var innerJsx = `
-    <IonApp>${styledModule ? `
-      <StyledApp />` : ''}
+    <IonApp>${globalStyle}
       <IonReactRouter>
         <IonRouterOutlet>
           <Route path="/home" component={Home} exact={true} />
