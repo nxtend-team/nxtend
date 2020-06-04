@@ -1,5 +1,11 @@
 # Changelog
 
+# 2.3.0
+
+## Features
+
+- support official Ionic list starter template
+
 # 2.2.0
 
 ## Bug Fixes

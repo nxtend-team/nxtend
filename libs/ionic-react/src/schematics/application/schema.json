@@ -115,11 +115,30 @@
       "description": "Generate JavaScript files rather than TypeScript files",
       "default": false
     },
+    "template": {
+      "type": "string",
+      "enum": ["blank", "list"],
+      "default": "blank",
+      "x-prompt": {
+        "message": "What Ionic starter template would you like to use for the application?",
+        "type": "list",
+        "items": [
+          {
+            "value": "blank",
+            "label": "blank        | A blank starter project"
+          },
+          {
+            "value": "list",
+            "label": "list         | A starting project with a list"
+          }
+        ]
+      }
+    },
     "disableSanitizer": {
       "type": "boolean",
       "description": "Disable Ionic sanitizer",
       "default": false
     }
   },
-  "required": []
+  "required": ["name"]
 }

@@ -5,55 +5,147 @@ import {
   runNxCommandAsync,
   uniq,
 } from '@nrwl/nx-plugin/testing';
+import { Linter } from '@nrwl/workspace';
+import { ApplicationSchematicSchema } from '@nxtend/ionic-react';
 
 describe('application e2e', () => {
-  function testGeneratedFiles(plugin: string, style: string) {
-    if (!style) {
-      style = 'css';
-    }
+  const defaultOptions: ApplicationSchematicSchema = {
+    name: 'test',
+    style: 'css',
+    skipFormat: false,
+    unitTestRunner: 'jest',
+    e2eTestRunner: 'cypress',
+    linter: Linter.EsLint,
+    js: false,
+    template: 'blank',
+    disableSanitizer: false,
+  };
 
-    // Added styles
-    if (style !== 'styled-components' && style !== '@emotion/styled') {
-      expect(() => {
-        checkFilesExist(
-          `apps/${plugin}/src/app/components/explore-container.${style}`,
-          `apps/${plugin}/src/app/pages/home.${style}`,
-          `apps/${plugin}/src/app/theme/variables.${style}`
-        );
-      }).not.toThrow();
-    } else {
-      expect(() => {
-        checkFilesExist(
-          `apps/${plugin}/src/app/components/explore-container.${style}`,
-          `apps/${plugin}/src/app/pages/home.${style}`,
-          `apps/${plugin}/src/app/theme/variables.${style}`
-        );
-      }).toThrow();
-    }
+  async function generateApp(options: ApplicationSchematicSchema) {
+    ensureNxProject('@nxtend/ionic-react', 'dist/libs/ionic-react');
+    await runNxCommandAsync(
+      `generate @nxtend/ionic-react:app ${options.name} \
+       --style ${options.style} \
+       --skipFormat ${options.skipFormat} \
+       --unitTestRunner ${options.unitTestRunner} \
+       --e2eTestRunner ${options.e2eTestRunner} \
+       --linter ${options.linter} \
+       --pascalCaseFiles ${options.pascalCaseFiles} \
+       --classComponent ${options.classComponent} \
+       --js ${options.js} \
+       --template ${options.template} \
+       --disableSanitizer ${options.disableSanitizer}`
+    );
+  }
 
+  function testGeneratedFiles(options: ApplicationSchematicSchema) {
+    const projectRoot = options.directory
+      ? `apps/${options.directory}/${options.name}`
+      : `apps/${options.name}`;
+    const componentExtension = options.js ? 'js' : 'tsx';
+    const appFileName = options.pascalCaseFiles ? 'App' : 'app';
+    const homeFileName = options.pascalCaseFiles ? 'Home' : 'home';
+    const exploreContainerFileName = options.pascalCaseFiles
+      ? 'ExploreContainer'
+      : 'explore-container';
+    const viewMessageFileName = options.pascalCaseFiles
+      ? 'ViewMessage'
+      : 'view-message';
+    const messageListItemFileName = options.pascalCaseFiles
+      ? 'MessageListItem'
+      : 'message-list-item';
+
+    // Common files
     expect(() => {
       checkFilesExist(
-        `apps/${plugin}/src/index.html`,
-        `apps/${plugin}/src/manifest.json`,
-        `apps/${plugin}/src/app/app.tsx`,
-        `apps/${plugin}/src/app/components/explore-container.tsx`,
-        `apps/${plugin}/src/app/pages/home.tsx`,
-        `apps/${plugin}/src/assets/icon/favicon.png`,
-        `apps/${plugin}/src/assets/icon/icon.png`
+        `${projectRoot}/.eslintrc`,
+        `${projectRoot}/src/index.html`,
+        `${projectRoot}/src/manifest.json`,
+        `${projectRoot}/src/assets/icon/favicon.png`,
+        `${projectRoot}/src/assets/icon/icon.png`
       );
     }).not.toThrow();
 
     // Jest
-    expect(() =>
-      checkFilesExist(`apps/${plugin}/src/app/__mocks__/fileMock.js`)
-    ).not.toThrow();
+    if (options.unitTestRunner === 'jest') {
+      expect(() =>
+        checkFilesExist(
+          `${projectRoot}/jest.config.js`,
+          `${projectRoot}/src/app/__mocks__/fileMock.js`
+        )
+      ).not.toThrow();
+    } else if (options.unitTestRunner === 'none') {
+      expect(() =>
+        checkFilesExist(`${projectRoot}/src/app/__mocks__/fileMock.js`)
+      ).toThrow();
+    }
 
-    expect(() =>
-      checkFilesExist(`apps/${plugin}/jest.config.js.template`)
-    ).toThrow();
+    // Starter templates
+    if (options.template === 'blank') {
+      expect(() => {
+        checkFilesExist(
+          `${projectRoot}/src/app/${appFileName}.${componentExtension}`,
+          `${projectRoot}/src/app/pages/${homeFileName}.${componentExtension}`,
+          `${projectRoot}/src/app/components/${exploreContainerFileName}.${componentExtension}`
+        );
+      }).not.toThrow();
+
+      if (
+        options.style !== 'styled-components' &&
+        options.style !== '@emotion/styled'
+      ) {
+        expect(() => {
+          checkFilesExist(
+            `${projectRoot}/src/app/components/${exploreContainerFileName}.${options.style}`,
+            `${projectRoot}/src/app/pages/${homeFileName}.${options.style}`,
+            `${projectRoot}/src/app/theme/variables.${options.style}`
+          );
+        }).not.toThrow();
+      } else {
+        expect(() => {
+          checkFilesExist(
+            `${projectRoot}/src/app/components/${exploreContainerFileName}.${options.style}`,
+            `${projectRoot}/src/app/pages/${homeFileName}.${options.style}`,
+            `${projectRoot}/src/app/theme/variables.${options.style}`
+          );
+        }).toThrow();
+      }
+    } else if (options.template === 'list') {
+      expect(() => {
+        checkFilesExist(
+          `${projectRoot}/src/app/${appFileName}.${componentExtension}`,
+          `${projectRoot}/src/app/components/${messageListItemFileName}.${componentExtension}`,
+          `${projectRoot}/src/app/pages/${homeFileName}.${componentExtension}`,
+          `${projectRoot}/src/app/pages/${viewMessageFileName}.${componentExtension}`
+        );
+      }).not.toThrow();
+
+      if (
+        options.style !== 'styled-components' &&
+        options.style !== '@emotion/styled'
+      ) {
+        expect(() => {
+          checkFilesExist(
+            `${projectRoot}/src/app/components/${messageListItemFileName}.${options.style}`,
+            `${projectRoot}/src/app/pages/${homeFileName}.${options.style}`,
+            `${projectRoot}/src/app/pages/${viewMessageFileName}.${options.style}`,
+            `${projectRoot}/src/app/theme/variables.${options.style}`
+          );
+        }).not.toThrow();
+      } else {
+        expect(() => {
+          checkFilesExist(
+            `${projectRoot}/src/app/components/${messageListItemFileName}.${options.style}`,
+            `${projectRoot}/src/app/components/${exploreContainerFileName}.${options.style}`,
+            `${projectRoot}/src/app/pages/${homeFileName}.${options.style}`,
+            `${projectRoot}/src/app/theme/variables.${options.style}`
+          );
+        }).toThrow();
+      }
+    }
   }
 
-  async function buildAndTestApp(plugin: string) {
+  async function buildAndTestGeneratedApp(plugin: string) {
     const buildResults = await runNxCommandAsync(`build ${plugin}`);
     expect(buildResults.stdout).toContain('Built at');
 
@@ -67,138 +159,42 @@ describe('application e2e', () => {
     expect(e2eResults.stdout).toContain('All specs passed!');
   }
 
-  it('should generate application', async (done) => {
-    const plugin = uniq('ionic-react');
-    ensureNxProject('@nxtend/ionic-react', 'dist/libs/ionic-react');
-    await runNxCommandAsync(
-      `generate @nxtend/ionic-react:application ${plugin}`
-    );
-
-    testGeneratedFiles(plugin, null);
-    await buildAndTestApp(plugin);
-
-    done();
-  }, 120000);
-
   it('should generate JavaScript files', async (done) => {
-    const plugin = uniq('ionic-react');
-    ensureNxProject('@nxtend/ionic-react', 'dist/libs/ionic-react');
-    await runNxCommandAsync(
-      `generate @nxtend/ionic-react:application ${plugin} --js`
-    );
+    const options: ApplicationSchematicSchema = {
+      ...defaultOptions,
+      name: uniq('ionic-react'),
+      js: true,
+    };
 
-    expect(() => {
-      checkFilesExist(`apps/${plugin}/src/app/app.js`);
-      checkFilesExist(`apps/${plugin}/src/main.js`);
-    }).not.toThrow();
+    await generateApp(options);
+    testGeneratedFiles(options);
 
-    expect(() => {
-      checkFilesExist(`apps/${plugin}/src/app/app.tsx`);
-      checkFilesExist(`apps/${plugin}/src/main.tsx`);
-    }).toThrow();
+    const buildResults = await runNxCommandAsync(`build ${options.name}`);
+    expect(buildResults.stdout).toContain('Built at');
 
-    await buildAndTestApp(plugin);
+    const lintResults = await runNxCommandAsync(`lint ${options.name}`);
+    expect(lintResults.stdout).toContain('All files pass linting');
 
-    done();
-  }, 120000);
-
-  it('should generate pascal case file names', async (done) => {
-    const plugin = uniq('ionic-react');
-    ensureNxProject('@nxtend/ionic-react', 'dist/libs/ionic-react');
-    await runNxCommandAsync(
-      `generate @nxtend/ionic-react:application ${plugin} --pascalCaseFiles`
-    );
-
-    expect(() => {
-      checkFilesExist(`apps/${plugin}/src/app/components/ExploreContainer.tsx`);
-      checkFilesExist(`apps/${plugin}/src/app/components/ExploreContainer.css`);
-
-      checkFilesExist(`apps/${plugin}/src/app/pages/Home.tsx`);
-      checkFilesExist(`apps/${plugin}/src/app/pages/Home.css`);
-
-      checkFilesExist(`apps/${plugin}/src/app/App.tsx`);
-      checkFilesExist(`apps/${plugin}/src/app/App.spec.tsx`);
-    }).not.toThrow();
-
-    await buildAndTestApp(plugin);
+    const testResults = await runNxCommandAsync(`test ${options.name}`);
+    expect(testResults.stderr).toContain('Test Suites: 1 passed, 1 total');
 
     done();
   }, 120000);
-
-  describe('--style', () => {
-    describe('scss', () => {
-      it('should generate application with scss style', async (done) => {
-        const plugin = uniq('ionic-react');
-        const style = 'scss';
-        ensureNxProject('@nxtend/ionic-react', 'dist/libs/ionic-react');
-        await runNxCommandAsync(
-          `generate @nxtend/ionic-react:app ${plugin} --style ${style}`
-        );
-
-        testGeneratedFiles(plugin, style);
-        await buildAndTestApp(plugin);
-        done();
-      }, 120000);
-    });
-
-    describe('styled-components', () => {
-      it('should generate application with styled-components style', async (done) => {
-        const plugin = uniq('ionic-react');
-        const style = 'styled-components';
-        ensureNxProject('@nxtend/ionic-react', 'dist/libs/ionic-react');
-        await runNxCommandAsync(
-          `generate @nxtend/ionic-react:app ${plugin} --style ${style}`
-        );
-
-        testGeneratedFiles(plugin, style);
-        await buildAndTestApp(plugin);
-
-        done();
-      }, 120000);
-    });
-
-    describe('@emotion/styled', () => {
-      it('should generate application with Emotion style', async (done) => {
-        const plugin = uniq('ionic-react');
-        const style = '@emotion/styled';
-        ensureNxProject('@nxtend/ionic-react', 'dist/libs/ionic-react');
-        await runNxCommandAsync(
-          `generate @nxtend/ionic-react:app ${plugin} --style ${style}`
-        );
-
-        testGeneratedFiles(plugin, style);
-        await buildAndTestApp(plugin);
-
-        done();
-      }, 120000);
-    });
-  });
 
   describe('--directory', () => {
     it('should create src in the specified directory', async (done) => {
-      const plugin = uniq('ionic-react');
+      const options: ApplicationSchematicSchema = {
+        ...defaultOptions,
+        name: uniq('ionic-react'),
+        directory: 'subdir',
+      };
+
       ensureNxProject('@nxtend/ionic-react', 'dist/libs/ionic-react');
       await runNxCommandAsync(
-        `generate @nxtend/ionic-react:app ${plugin} --directory subdir`
+        `generate @nxtend/ionic-react:app ${options.name} --directory ${options.directory}`
       );
-
-      expect(() =>
-        checkFilesExist(`apps/subdir/${plugin}/src/main.tsx`)
-      ).not.toThrow();
-
-      const buildResults = await runNxCommandAsync(`build subdir-${plugin}`);
-      expect(buildResults.stdout).toContain('Built at');
-
-      const lintResults = await runNxCommandAsync(`lint subdir-${plugin}`);
-      expect(lintResults.stdout).toContain('All files pass linting');
-
-      const testResults = await runNxCommandAsync(`test subdir-${plugin}`);
-      expect(testResults.stderr).toContain('Test Suites: 1 passed, 1 total');
-
-      const e2eResults = await runNxCommandAsync(
-        `e2e subdir-${plugin}-e2e --headless`
-      );
-      expect(e2eResults.stdout).toContain('All specs passed!');
+      testGeneratedFiles(options);
+      await buildAndTestGeneratedApp(`${options.directory}-${options.name}`);
 
       done();
     }, 120000);
@@ -206,16 +202,24 @@ describe('application e2e', () => {
 
   describe('--tags', () => {
     it('should add tags to nx.json', async (done) => {
-      const plugin = uniq('ionic-react');
+      const options: ApplicationSchematicSchema = {
+        ...defaultOptions,
+        name: uniq('ionic-react'),
+        tags: 'e2etag,e2ePackage',
+      };
+
       ensureNxProject('@nxtend/ionic-react', 'dist/libs/ionic-react');
       await runNxCommandAsync(
-        `generate @nxtend/ionic-react:app ${plugin} --tags e2etag,e2ePackage`
+        `generate @nxtend/ionic-react:app ${options.name} --tags ${options.tags}`
       );
 
       const nxJson = readJson('nx.json');
-      expect(nxJson.projects[plugin].tags).toEqual(['e2etag', 'e2ePackage']);
+      expect(nxJson.projects[options.name].tags).toEqual([
+        'e2etag',
+        'e2ePackage',
+      ]);
 
-      await buildAndTestApp(plugin);
+      await buildAndTestGeneratedApp(options.name);
 
       done();
     }, 120000);
@@ -224,27 +228,23 @@ describe('application e2e', () => {
   describe('--unitTestRunner', () => {
     describe('none', () => {
       it('should not generate Jest mocks', async (done) => {
-        const plugin = uniq('ionic-react');
-        ensureNxProject('@nxtend/ionic-react', 'dist/libs/ionic-react');
-        await runNxCommandAsync(
-          `generate @nxtend/ionic-react:app ${plugin} --unitTestRunner none`
-        );
+        const options: ApplicationSchematicSchema = {
+          ...defaultOptions,
+          name: uniq('ionic-react'),
+          unitTestRunner: 'none',
+        };
 
-        expect(() =>
-          checkFilesExist(`apps/${plugin}/src/app/__mocks__/fileMock.js`)
-        ).toThrow();
-        expect(() =>
-          checkFilesExist(`apps/${plugin}/jest.config.js.template`)
-        ).toThrow();
+        await generateApp(options);
+        testGeneratedFiles(options);
 
-        const buildResults = await runNxCommandAsync(`build ${plugin}`);
+        const buildResults = await runNxCommandAsync(`build ${options.name}`);
         expect(buildResults.stdout).toContain('Built at');
 
-        const lintResults = await runNxCommandAsync(`lint ${plugin}`);
+        const lintResults = await runNxCommandAsync(`lint ${options.name}`);
         expect(lintResults.stdout).toContain('All files pass linting');
 
         const e2eResults = await runNxCommandAsync(
-          `e2e ${plugin}-e2e --headless`
+          `e2e ${options.name}-e2e --headless`
         );
         expect(e2eResults.stdout).toContain('All specs passed!');
 
@@ -253,16 +253,306 @@ describe('application e2e', () => {
     });
   });
 
+  describe('--template', () => {
+    describe('blank', () => {
+      const template = 'blank';
+
+      it('should generate application with blank starter template', async (done) => {
+        const options: ApplicationSchematicSchema = {
+          ...defaultOptions,
+          name: uniq('ionic-react'),
+          template,
+        };
+
+        await generateApp(options);
+        testGeneratedFiles(options);
+        await buildAndTestGeneratedApp(options.name);
+
+        done();
+      }, 120000);
+
+      describe('--style', () => {
+        describe('scss', () => {
+          it('should generate application with Sass styles', async (done) => {
+            const options: ApplicationSchematicSchema = {
+              ...defaultOptions,
+              name: uniq('ionic-react'),
+              template,
+              style: 'scss',
+            };
+
+            await generateApp(options);
+            testGeneratedFiles(options);
+            await buildAndTestGeneratedApp(options.name);
+
+            done();
+          }, 120000);
+        });
+
+        describe('less', () => {
+          it('should generate application with Less styles', async (done) => {
+            const options: ApplicationSchematicSchema = {
+              ...defaultOptions,
+              name: uniq('ionic-react'),
+              template,
+              style: 'less',
+            };
+
+            await generateApp(options);
+            testGeneratedFiles(options);
+            await buildAndTestGeneratedApp(options.name);
+
+            done();
+          }, 120000);
+        });
+
+        describe('stylus', () => {
+          it('should generate application with Stylus styles', async (done) => {
+            const options: ApplicationSchematicSchema = {
+              ...defaultOptions,
+              name: uniq('ionic-react'),
+              template,
+              style: 'styl',
+            };
+
+            await generateApp(options);
+            testGeneratedFiles(options);
+            await buildAndTestGeneratedApp(options.name);
+
+            done();
+          }, 120000);
+        });
+
+        describe('styled-components', () => {
+          it('should generate application with styled-components styles', async (done) => {
+            const options: ApplicationSchematicSchema = {
+              ...defaultOptions,
+              name: uniq('ionic-react'),
+              template,
+              style: 'styled-components',
+            };
+
+            await generateApp(options);
+            testGeneratedFiles(options);
+            await buildAndTestGeneratedApp(options.name);
+
+            done();
+          }, 120000);
+        });
+
+        describe('@emotion/styled', () => {
+          it('should generate application with Emotion styles', async (done) => {
+            const options: ApplicationSchematicSchema = {
+              ...defaultOptions,
+              name: uniq('ionic-react'),
+              template,
+              style: '@emotion/styled',
+            };
+
+            await generateApp(options);
+            testGeneratedFiles(options);
+            await buildAndTestGeneratedApp(options.name);
+
+            done();
+          }, 120000);
+        });
+      });
+
+      describe('--pascalCaseFiles', () => {
+        describe('true', () => {
+          it('should generate with pascal case files', async (done) => {
+            const options: ApplicationSchematicSchema = {
+              ...defaultOptions,
+              name: uniq('ionic-react'),
+              template,
+              pascalCaseFiles: true,
+            };
+
+            await generateApp(options);
+            testGeneratedFiles(options);
+            await buildAndTestGeneratedApp(options.name);
+
+            done();
+          }, 120000);
+        });
+      });
+
+      describe('--classComponent', () => {
+        describe('true', () => {
+          it('should generate with class components', async (done) => {
+            const options: ApplicationSchematicSchema = {
+              ...defaultOptions,
+              name: uniq('ionic-react'),
+              template,
+              classComponent: true,
+            };
+
+            await generateApp(options);
+            testGeneratedFiles(options);
+            await buildAndTestGeneratedApp(options.name);
+
+            done();
+          }, 120000);
+        });
+      });
+    });
+
+    describe('list', () => {
+      const template = 'list';
+
+      it('should generate application with list starter template', async (done) => {
+        const options: ApplicationSchematicSchema = {
+          ...defaultOptions,
+          name: uniq('ionic-react'),
+          template,
+        };
+
+        await generateApp(options);
+        testGeneratedFiles(options);
+        await buildAndTestGeneratedApp(options.name);
+
+        done();
+      }, 120000);
+
+      describe('--style', () => {
+        describe('scss', () => {
+          it('should generate application with Sass styles', async (done) => {
+            const options: ApplicationSchematicSchema = {
+              ...defaultOptions,
+              name: uniq('ionic-react'),
+              template,
+              style: 'scss',
+            };
+
+            await generateApp(options);
+            testGeneratedFiles(options);
+            await buildAndTestGeneratedApp(options.name);
+
+            done();
+          }, 120000);
+        });
+
+        describe('less', () => {
+          it('should generate application with Less styles', async (done) => {
+            const options: ApplicationSchematicSchema = {
+              ...defaultOptions,
+              name: uniq('ionic-react'),
+              template,
+              style: 'less',
+            };
+
+            await generateApp(options);
+            testGeneratedFiles(options);
+            await buildAndTestGeneratedApp(options.name);
+
+            done();
+          }, 120000);
+        });
+
+        describe('stylus', () => {
+          it('should generate application with Stylus styles', async (done) => {
+            const options: ApplicationSchematicSchema = {
+              ...defaultOptions,
+              name: uniq('ionic-react'),
+              template,
+              style: 'styl',
+            };
+
+            await generateApp(options);
+            testGeneratedFiles(options);
+            await buildAndTestGeneratedApp(options.name);
+
+            done();
+          }, 120000);
+        });
+
+        describe('styled-components', () => {
+          it('should generate application with styled-components styles', async (done) => {
+            const options: ApplicationSchematicSchema = {
+              ...defaultOptions,
+              name: uniq('ionic-react'),
+              template,
+              style: 'styled-components',
+            };
+
+            await generateApp(options);
+            testGeneratedFiles(options);
+            await buildAndTestGeneratedApp(options.name);
+
+            done();
+          }, 120000);
+        });
+
+        describe('@emotion/styled', () => {
+          it('should generate application with Emotion styles', async (done) => {
+            const options: ApplicationSchematicSchema = {
+              ...defaultOptions,
+              name: uniq('ionic-react'),
+              template,
+              style: '@emotion/styled',
+            };
+
+            await generateApp(options);
+            testGeneratedFiles(options);
+            await buildAndTestGeneratedApp(options.name);
+
+            done();
+          }, 120000);
+        });
+      });
+
+      describe('--pascalCaseFiles', () => {
+        describe('true', () => {
+          it('should generate with pascal case files', async (done) => {
+            const options: ApplicationSchematicSchema = {
+              ...defaultOptions,
+              name: uniq('ionic-react'),
+              template: 'list',
+              pascalCaseFiles: true,
+            };
+
+            await generateApp(options);
+            testGeneratedFiles(options);
+            await buildAndTestGeneratedApp(options.name);
+
+            done();
+          }, 120000);
+        });
+      });
+
+      describe('--classComponent', () => {
+        describe('true', () => {
+          it('should generate with class components', async (done) => {
+            const options: ApplicationSchematicSchema = {
+              ...defaultOptions,
+              name: uniq('ionic-react'),
+              template: 'list',
+              classComponent: true,
+            };
+
+            await generateApp(options);
+            testGeneratedFiles(options);
+            await buildAndTestGeneratedApp(options.name);
+
+            done();
+          }, 120000);
+        });
+      });
+    });
+  });
+
   describe('--disableSanitizer', () => {
     describe('true', () => {
       it('should add disable the Ionic sanitizer', async (done) => {
-        const plugin = uniq('ionic-react');
-        ensureNxProject('@nxtend/ionic-react', 'dist/libs/ionic-react');
-        await runNxCommandAsync(
-          `generate @nxtend/ionic-react:app ${plugin} --disableSanitizer`
-        );
+        const options: ApplicationSchematicSchema = {
+          ...defaultOptions,
+          name: uniq('ionic-react'),
+          disableSanitizer: true,
+        };
 
-        await buildAndTestApp(plugin);
+        await generateApp(options);
+        testGeneratedFiles(options);
+        await buildAndTestGeneratedApp(options.name);
 
         done();
       }, 120000);

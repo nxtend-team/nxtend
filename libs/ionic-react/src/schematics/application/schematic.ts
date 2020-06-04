@@ -4,7 +4,7 @@ import {
   formatFiles,
   projectRootDir,
   ProjectType,
-  toFileName
+  toFileName,
 } from '@nrwl/workspace';
 import { ionicReactRouterVersion } from '../../utils/versions';
 import init from '../init/schematic';
@@ -25,6 +25,8 @@ export interface NormalizedSchema extends ApplicationSchematicSchema {
   appFileName: string;
   homeFileName: string;
   exploreContainerFileName: string;
+  viewMessageFileName: string;
+  messageListItemFileName: string;
   styledModule: null | string;
 }
 
@@ -41,7 +43,7 @@ function normalizeOptions(
   const e2eRoot = `${projectRootDir(projectType)}/${projectDirectory}-e2e`;
 
   const parsedTags = options.tags
-    ? options.tags.split(',').map(s => s.trim())
+    ? options.tags.split(',').map((s) => s.trim())
     : [];
 
   const appFileName = options.pascalCaseFiles ? 'App' : 'app';
@@ -49,6 +51,12 @@ function normalizeOptions(
   const exploreContainerFileName = options.pascalCaseFiles
     ? 'ExploreContainer'
     : 'explore-container';
+  const viewMessageFileName = options.pascalCaseFiles
+    ? 'ViewMessage'
+    : 'view-message';
+  const messageListItemFileName = options.pascalCaseFiles
+    ? 'MessageListItem'
+    : 'message-list-item';
 
   const styledModule = /^(css|scss|less|styl)$/.test(options.style)
     ? null
@@ -65,14 +73,16 @@ function normalizeOptions(
     appFileName,
     homeFileName,
     exploreContainerFileName,
-    styledModule
+    viewMessageFileName,
+    messageListItemFileName,
+    styledModule,
   };
 }
 
 function addDependencies(): Rule {
   return addDepsToPackageJson(
     {
-      '@ionic/react-router': ionicReactRouterVersion
+      '@ionic/react-router': ionicReactRouterVersion,
     },
     {}
   );
@@ -83,11 +93,11 @@ function generateNrwlReactApplication(options: ApplicationSchematicSchema) {
     ...options,
     routing: true,
     unitTestRunner: 'none',
-    skipWorkspaceJson: true
+    skipWorkspaceJson: true,
   });
 }
 
-export default function(options: ApplicationSchematicSchema): Rule {
+export default function (options: ApplicationSchematicSchema): Rule {
   const normalizedOptions = normalizeOptions(options);
   return chain([
     init(),
@@ -99,6 +109,6 @@ export default function(options: ApplicationSchematicSchema): Rule {
     deleteUnusedFiles(normalizedOptions),
     updateWorkspaceForIonic(normalizedOptions),
     setDefaults(normalizedOptions),
-    formatFiles(options)
+    formatFiles(options),
   ]);
 }

@@ -1,0 +1,119 @@
+import {
+  IonContent,
+  IonHeader,
+  IonList,
+  IonPage,
+  IonRefresher,
+  IonRefresherContent,
+  IonTitle,
+  IonToolbar,
+  <% if (classComponent) { %>
+  withIonLifeCycle,
+  <% } else { %>
+  useIonViewWillEnter,
+  <% } %>
+} from '@ionic/react';
+
+<% if (classComponent) { %>
+import React, { Component } from 'react';
+<% } else { %>
+import React, { useState } from 'react';
+<% } %>
+
+<% if (styledModule) { %>
+import styled from '<%= styledModule %>';
+<% } %>
+
+import MessageListItem from '../components/<%= messageListItemFileName %>';
+import { getMessages, Message } from '../data/messages';
+
+<% if (styledModule) { %>
+const StyledHome = styled.div``;
+<% } else { %>
+import './<%= homeFileName %>.<%= style %>';
+<% } %>
+
+<%
+var messages = classComponent ? 'this.state.messages' : 'messages';
+var refresh = classComponent ? 'this.refresh' : 'refresh';
+var innerJsx = `
+  <IonPage id="home-page">
+    <IonHeader>
+      <IonToolbar>
+        <IonTitle>Inbox</IonTitle>
+      </IonToolbar>
+    </IonHeader>
+    <IonContent fullscreen>
+      <IonRefresher slot="fixed" onIonRefresh={${refresh}}>
+        <IonRefresherContent></IonRefresherContent>
+      </IonRefresher>
+
+      <IonHeader collapse="condense">
+        <IonToolbar>
+          <IonTitle size="large">Inbox</IonTitle>
+        </IonToolbar>
+      </IonHeader>
+
+      <IonList>
+        {${messages}.map((m) => (
+          <MessageListItem key={m.id} message={m} />
+        ))}
+      </IonList>
+    </IonContent>
+  </IonPage>
+`;
+%>
+
+<% if (classComponent) { %>
+interface HomeState {
+  messages: Message[];
+}
+
+export class Home extends Component<{}, HomeState> {
+  state = { messages: [] };
+
+  ionViewWillEnter() {
+    const msgs = getMessages();
+    this.setState({ messages: msgs });
+  }
+
+  const refresh = (e: CustomEvent) => {
+    setTimeout(() => {
+      e.detail.complete();
+    }, 3000);
+  };
+
+  render() {
+    return (
+      <% if (styledModule) { %><StyledHome><% } %>
+        <%= innerJsx %>
+      <% if (styledModule) { %></StyledHome><% } %>
+    );
+  }
+}
+
+export default withIonLifeCycle(Home);
+<%} else { %>
+const Home: React.FC = () => {
+  const [messages, setMessages] = useState<Message[]>([]);
+
+  useIonViewWillEnter(() => {
+    const msgs = getMessages();
+    setMessages(msgs);
+  });
+
+  const refresh = (e: CustomEvent) => {
+    setTimeout(() => {
+      e.detail.complete();
+    }, 3000);
+  };
+
+  return (
+    <% if (styledModule) { %><StyledHome><% } %>
+      <%= innerJsx %>
+    <% if (styledModule) { %></StyledHome><% } %>
+  );
+};
+
+export default Home;
+<% } %>

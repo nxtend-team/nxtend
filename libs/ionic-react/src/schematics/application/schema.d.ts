@@ -13,5 +13,6 @@ export interface ApplicationSchematicSchema {
   classComponent?: boolean;
   skipWorkspaceJson?: boolean;
   js?: boolean;
+  template: 'blank' | 'list';
   disableSanitizer: boolean;
 }

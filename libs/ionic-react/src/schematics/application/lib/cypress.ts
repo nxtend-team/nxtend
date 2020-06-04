@@ -1,5 +1,18 @@
-import { chain, noop, Rule, Tree } from '@angular-devkit/schematics';
-import { addDepsToPackageJson, updateJsonInTree } from '@nrwl/workspace';
+import { join, normalize } from '@angular-devkit/core';
+import {
+  apply,
+  applyTemplates,
+  chain,
+  MergeStrategy,
+  mergeWith,
+  move,
+  noop,
+  Rule,
+  Tree,
+  url
+} from '@angular-devkit/schematics';
+import { addDepsToPackageJson, names, updateJsonInTree } from '@nrwl/workspace';
+import { toJS } from '@nrwl/workspace/src/utils/rules/to-js';
 import { testingLibraryCypressVersion } from '../../../utils/versions';
 import { NormalizedSchema } from '../schematic';
 
@@ -43,46 +56,43 @@ export function importTestingLibraryCommands(options: NormalizedSchema) {
   };
 }
 
-export function configureAppPageObjectForIonic(options: NormalizedSchema) {
-  return (tree: Tree) => {
-    const fileName = `${options.e2eRoot}/src/support/app.po.${
-      options.js ? 'js' : 'ts'
-    }`;
-
-    const content = tree.read(fileName);
-    let strContent = '';
-    if (content) {
-      strContent = content.toString();
-    }
-    const updatedContent = strContent.replace(
-      "cy.get('h1')",
-      "cy.get('.container')"
-    );
-
-    tree.overwrite(fileName, updatedContent);
-    return tree;
-  };
+export function addBlankTemplateTestFiles(options: NormalizedSchema): Rule {
+  return mergeWith(
+    apply(url(`./files/cypress/blank`), [
+      applyTemplates({
+        ...options,
+        ...names(options.name)
+      }),
+      move(join(normalize(options.e2eRoot), '/src')),
+      options.js ? toJS() : noop()
+    ]),
+    MergeStrategy.Overwrite
+  );
 }
 
-export function configureAppTestForIonic(options: NormalizedSchema) {
-  return (tree: Tree) => {
-    const fileName = `${options.e2eRoot}/src/integration/app.spec.${
-      options.js ? 'js' : 'ts'
-    }`;
+export function addListTemplateTestFiles(options: NormalizedSchema): Rule {
+  return mergeWith(
+    apply(url(`./files/cypress/list`), [
+      applyTemplates({
+        ...options,
+        ...names(options.name)
+      }),
+      move(join(normalize(options.e2eRoot), '/src')),
+      options.js ? toJS() : noop()
+    ]),
+    MergeStrategy.Overwrite
+  );
+}
 
-    const content = tree.read(fileName);
-    let strContent = '';
-    if (content) {
-      strContent = content.toString();
-    }
-    const updatedContent = strContent.replace(
-      `Welcome to ${options.projectName}!`,
-      'Start with Ionic'
-    );
-
-    tree.overwrite(fileName, updatedContent);
-    return tree;
-  };
+export function updateFiles(options: NormalizedSchema): Rule {
+  switch (options.template) {
+    case 'blank':
+      return addBlankTemplateTestFiles(options);
+    case 'list':
+      return addListTemplateTestFiles(options);
+    default:
+      return noop();
+  }
 }
 
 export function configureCypressForIonic(options: NormalizedSchema): Rule {
@@ -91,8 +101,7 @@ export function configureCypressForIonic(options: NormalizedSchema): Rule {
       addDependencies(),
       configureTestingLibraryTypes(options),
       importTestingLibraryCommands(options),
-      configureAppPageObjectForIonic(options),
-      configureAppTestForIonic(options)
+      updateFiles(options)
     ]);
   } else {
     return noop();
