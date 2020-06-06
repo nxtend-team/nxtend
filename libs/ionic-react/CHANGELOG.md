@@ -1,11 +1,5 @@
 # Changelog
 
-# 2.3.0
-
-## Features
-
-- support official Ionic list starter template
-
 # 2.2.0
 
 ## Bug Fixes
@@ -17,6 +11,7 @@
 
 - upgrade Ionic to 5.1.0
 - add `--disableSanitizer` flag to application schematic to disable the [Ionic sanitizer](https://ionicframework.com/docs/techniques/security#sanitizing-user-input)
+- support official Ionic list starter template
 
 # 2.1.0
 
