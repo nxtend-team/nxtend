@@ -467,9 +467,9 @@ describe('application', () => {
           });
         });
 
-        describe('less', () => {
-          it('should generate application with Less styles', async () => {
-            const style = 'less';
+        describe('styl', () => {
+          it('should generate application with Stylus styles', async () => {
+            const style = 'styl';
             const tree = await testRunner
               .runSchematicAsync(
                 'application',
@@ -482,9 +482,9 @@ describe('application', () => {
           });
         });
 
-        describe('styl', () => {
-          it('should generate application with Stylus styles', async () => {
-            const style = 'styl';
+        describe('less', () => {
+          it('should generate application with Less styles', async () => {
+            const style = 'less';
             const tree = await testRunner
               .runSchematicAsync(
                 'application',
@@ -576,9 +576,9 @@ describe('application', () => {
           });
         });
 
-        describe('less', () => {
-          it('should generate application with Less styles', async () => {
-            const style = 'less';
+        describe('styl', () => {
+          it('should generate application with Stylus styles', async () => {
+            const style = 'styl';
             const tree = await testRunner
               .runSchematicAsync(
                 'application',
@@ -591,9 +591,9 @@ describe('application', () => {
           });
         });
 
-        describe('styl', () => {
-          it('should generate application with Stylus styles', async () => {
-            const style = 'styl';
+        describe('less', () => {
+          it('should generate application with Less styles', async () => {
+            const style = 'less';
             const tree = await testRunner
               .runSchematicAsync(
                 'application',

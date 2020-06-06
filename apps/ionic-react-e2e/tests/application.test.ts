@@ -289,13 +289,13 @@ describe('application e2e', () => {
           }, 120000);
         });
 
-        describe('less', () => {
-          it('should generate application with Less styles', async (done) => {
+        describe('stylus', () => {
+          it('should generate application with Stylus styles', async (done) => {
             const options: ApplicationSchematicSchema = {
               ...defaultOptions,
               name: uniq('ionic-react'),
               template,
-              style: 'less',
+              style: 'styl',
             };
 
             await generateApp(options);
@@ -306,13 +306,13 @@ describe('application e2e', () => {
           }, 120000);
         });
 
-        describe('stylus', () => {
-          it('should generate application with Stylus styles', async (done) => {
+        describe('less', () => {
+          it('should generate application with Less styles', async (done) => {
             const options: ApplicationSchematicSchema = {
               ...defaultOptions,
               name: uniq('ionic-react'),
               template,
-              style: 'styl',
+              style: 'less',
             };
 
             await generateApp(options);
@@ -432,13 +432,13 @@ describe('application e2e', () => {
           }, 120000);
         });
 
-        describe('less', () => {
-          it('should generate application with Less styles', async (done) => {
+        describe('stylus', () => {
+          it('should generate application with Stylus styles', async (done) => {
             const options: ApplicationSchematicSchema = {
               ...defaultOptions,
               name: uniq('ionic-react'),
               template,
-              style: 'less',
+              style: 'styl',
             };
 
             await generateApp(options);
@@ -449,13 +449,13 @@ describe('application e2e', () => {
           }, 120000);
         });
 
-        describe('stylus', () => {
-          it('should generate application with Stylus styles', async (done) => {
+        describe('less', () => {
+          it('should generate application with Less styles', async (done) => {
             const options: ApplicationSchematicSchema = {
               ...defaultOptions,
               name: uniq('ionic-react'),
               template,
-              style: 'styl',
+              style: 'less',
             };
 
             await generateApp(options);
