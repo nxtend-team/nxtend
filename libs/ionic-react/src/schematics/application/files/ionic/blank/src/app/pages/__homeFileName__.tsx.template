@@ -1,0 +1,65 @@
+import {
+  IonContent,
+  IonHeader,
+  IonPage,
+  IonTitle,
+  IonToolbar
+} from '@ionic/react';
+
+<% if (classComponent) { %>
+import React, { Component } from 'react';
+<% } else { %>
+import React from 'react';
+<% } %>
+
+import ExploreContainer from '../components/<%= exploreContainerFileName %>';
+
+<% if (styledModule) { %>
+import styled from '<%= styledModule %>';
+
+const StyledHome = styled.div``;
+<% } else { %>
+import './<%= homeFileName %>.<%= style %>';
+<% } %>
+
+<% 
+var innerJsx = `
+  <IonPage>
+    <IonHeader>
+      <IonToolbar>
+        <IonTitle>Blank</IonTitle>
+      </IonToolbar>
+    </IonHeader>
+    <IonContent>
+      <IonHeader collapse="condense">
+        <IonToolbar>
+          <IonTitle size="large">Blank</IonTitle>
+        </IonToolbar>
+      </IonHeader>
+      <ExploreContainer />
+    </IonContent>
+  </IonPage>
+`;
+%>
+
+<% if (classComponent) { %>
+export class Home extends Component {
+  render() {
+    return (
+      <% if (styledModule) { %><StyledHome><% } %>
+        <%= innerJsx %>
+      <% if (styledModule) { %></StyledHome><% } %>
+    );
+  }
+}
+<% } else { %>
+export const Home = () => {
+  return (
+    <% if (styledModule) { %><StyledHome><% } %>
+      <%= innerJsx %>
+    <% if (styledModule) { %></StyledHome><% } %>
+  );
+};
+<% } %>
+
+export default Home;

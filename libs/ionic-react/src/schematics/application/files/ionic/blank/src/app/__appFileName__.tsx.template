@@ -1,10 +1,18 @@
 import { IonApp, IonRouterOutlet<% if (disableSanitizer) { %>, setupConfig<% } %> } from '@ionic/react';
-import { IonReactRouter } from '@ionic/react-router';<% 
-if (style === 'styled-components') { %>
+import { IonReactRouter } from '@ionic/react-router';
+
+<% if (style === 'styled-components') { %>
 import { createGlobalStyle } from '<%= styledModule %>';
-<% } else if (style === '@emotion/styled') { %>import { Global, css } from '@emotion/core';<%} %>
-<% if (classComponent) { %>import React, { Component } from 'react';<% 
-} else { %>import React from 'react';<% } %>
+<% } else if (style === '@emotion/styled') { %>
+import { Global, css } from '@emotion/core';
+<% } %>
+
+<% if (classComponent) { %>
+import React, { Component } from 'react';
+<% } else { %>
+import React from 'react';
+<% } %>
+
 import { Redirect, Route } from 'react-router-dom';
 import Home from './pages/<%= homeFileName %>';
 
@@ -253,46 +261,47 @@ import '@ionic/react/css/display.css';
       --ion-tab-bar-background: #1f1f1f;
     }
   }
-`;<% } else { %>/* Theme variables */
-import './theme/variables.<%= style %>';<% } %><%
-if (disableSanitizer) { %>
+`;
+<% } else { %>
+/* Theme variables */
+import './theme/variables.<%= style %>';
+<% } %>
 
+<% if (disableSanitizer) { %>
 setupConfig({
   sanitizerEnabled: false
-});<% } %><% if (classComponent) {
-  var globalStyle = style === 'styled-components' ? `<StyledApp />` : style === '@emotion/styled' ? `<Global styles={StyledApp} />` : '';
-  var innerJsx = `
-      <IonApp>${globalStyle}
-        <IonReactRouter>
-          <IonRouterOutlet>
-            <Route path="/home" component={Home} exact={true} />
-            <Route exact path="/" render={() => <Redirect to="/home" />} />
-          </IonRouterOutlet>
-        </IonReactRouter>
-      </IonApp>
-  `;
-} else {
-  var globalStyle = style === 'styled-components' ? `<StyledApp />` : style === '@emotion/styled' ? `<Global styles={StyledApp} />` : '';
-  var innerJsx = `
-    <IonApp>${globalStyle}
-      <IonReactRouter>
-        <IonRouterOutlet>
-          <Route path="/home" component={Home} exact={true} />
-          <Route exact path="/" render={() => <Redirect to="/home" />} />
-        </IonRouterOutlet>
-      </IonReactRouter>
-    </IonApp>
-  `;
-}%>
+});
+<% } %>
+
+<%
+var globalStyle = style === 'styled-components' ? `<StyledApp />` : style === '@emotion/styled' ? `<Global styles={StyledApp} />` : '';
+var innerJsx = `
+  <IonApp>
+    ${globalStyle}
+    <IonReactRouter>
+      <IonRouterOutlet>
+        <Route path="/home" component={Home} exact={true} />
+        <Route exact path="/" render={() => <Redirect to="/home" />} />
+      </IonRouterOutlet>
+    </IonReactRouter>
+  </IonApp>
+`;
+%>
+
 <% if (classComponent) { %>
 export class App extends Component {
   render() {
-    return (<%= innerJsx %>  );
+    return (
+      <%= innerJsx %>
+    );
   }
 }
 <% } else { %>
 export const App = () => {
-  return (<%= innerJsx %>);
-};<% } %>
+  return (
+    <%= innerJsx %>
+  )
+};
+<% } %>
 
 export default App;
