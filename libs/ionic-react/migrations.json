@@ -34,6 +34,11 @@
       "version": "2.2.0",
       "description": "Upgrade Ionic to 5.1.0",
       "factory": "./src/migrations/update-2-2-0/upgrade-ionic-2-2-0"
+    },
+    "upgrade-testing-library-3.0.0": {
+      "version": "3.0.0",
+      "description": "Upgrade testing libraries",
+      "factory": "./src/migrations/update-3-0-0/upgrade-testing-library-3-0-0"
     }
   },
   "packageJsonUpdates": {
@@ -93,6 +98,19 @@
         },
         "@ionic/react-router": {
           "version": "^5.2.2",
+          "alwaysAddToPackageJson": false
+        }
+      }
+    },
+    "3.0.0": {
+      "version": "3.0.0",
+      "packages": {
+        "@testing-library/jest-dom": {
+          "version": "5.11.0",
+          "alwaysAddToPackageJson": false
+        },
+        "@testing-library/user-event": {
+          "version": "12.0.11",
           "alwaysAddToPackageJson": false
         }
       }

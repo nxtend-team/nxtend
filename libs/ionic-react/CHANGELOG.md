@@ -5,6 +5,12 @@
 ## Features
 
 - generate Capacitor project with application by default
+- upgrade `@testing-library/jest-dom` to 5.11.0
+- upgrade `@testing-library/user-event` to 12.0.11
+
+## Breaking Changes
+
+- `@testing-library/user-event` was upgraded two major versions ([11.0.0](https://github.com/testing-library/user-event/releases/tag/v12.0.0)) ([12.0.0](https://github.com/testing-library/user-event/releases/tag/v12.0.0))
 
 # 2.2.0
 
