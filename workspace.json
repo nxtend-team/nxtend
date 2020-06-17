@@ -11,12 +11,11 @@
           "builder": "@nrwl/linter:lint",
           "options": {
             "linter": "eslint",
-            "config": "libs/ionic-react/.eslintrc",
             "tsConfig": [
               "libs/ionic-react/tsconfig.lib.json",
               "libs/ionic-react/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/ionic-react/**"]
+            "exclude": ["**/node_modules/**", "!libs/ionic-react/**/*"]
           }
         },
         "test": {
