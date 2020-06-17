@@ -14,6 +14,9 @@ jobs:
       matrix:
         node-version: [12.x]
 
+    env:
+      NX_CLOUD_AUTH_TOKEN: ${{ secrets.NX_CLOUD_AUTH_TOKEN }}
+
     steps:
       - uses: actions/checkout@v2
         with:
