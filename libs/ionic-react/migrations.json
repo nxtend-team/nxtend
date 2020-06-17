@@ -33,7 +33,7 @@
     "upgrade-ionic-2.2.0": {
       "version": "2.2.0",
       "description": "Upgrade Ionic to 5.1.0",
-      "factory": "./src/migrations/upgrade-ionic-2-2-0/upgrade-ionic-2-2-0"
+      "factory": "./src/migrations/update-2-2-0/upgrade-ionic-2-2-0"
     }
   },
   "packageJsonUpdates": {
@@ -88,11 +88,11 @@
       "version": "2.2.0",
       "packages": {
         "@ionic/react": {
-          "version": "5.1.0",
+          "version": "5.2.1",
           "alwaysAddToPackageJson": false
         },
         "@ionic/react-router": {
-          "version": "5.1.0",
+          "version": "5.2.1",
           "alwaysAddToPackageJson": false
         }
       }

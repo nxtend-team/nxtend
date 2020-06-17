@@ -27,13 +27,13 @@ describe('Update 2.2.0', () => {
     );
   });
 
-  it(`should update Ionic to 5.1.0`, async () => {
+  it(`should update Ionic to 5.2.1`, async () => {
     const result = await schematicRunner
       .runSchematicAsync('upgrade-ionic-2.2.0', {}, initialTree)
       .toPromise();
 
     const { dependencies } = readJsonInTree(result, '/package.json');
-    expect(dependencies['@ionic/react']).toEqual('5.1.0');
-    expect(dependencies['@ionic/react-router']).toEqual('5.1.0');
+    expect(dependencies['@ionic/react']).toEqual('5.2.1');
+    expect(dependencies['@ionic/react-router']).toEqual('5.2.1');
   });
 });
