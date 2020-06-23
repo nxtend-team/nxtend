@@ -6,10 +6,10 @@
     "name": "Devin Shoemaker",
     "email": "devinshoe@gmail.com"
   },
-  "homepage": "https://github.com/devinshoemaker/nxtend",
+  "homepage": "https://github.com/nxtend-team/nxtend",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/devinshoemaker/nxtend.git"
+    "url": "git+https://github.com/nxtend-team/nxtend.git"
   },
   "license": "MIT",
   "scripts": {
