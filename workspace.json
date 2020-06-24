@@ -76,6 +76,25 @@
           }
         }
       }
+    },
+    "docs": {
+      "projectType": "application",
+      "root": "apps/docs",
+      "sourceRoot": "apps/docs/src",
+      "architect": {
+        "serve": {
+          "builder": "@nx-plus/docusaurus:docusaurus",
+          "options": {
+            "port": 4200
+          }
+        },
+        "build": {
+          "builder": "@nx-plus/docusaurus:build-docusaurus",
+          "options": {
+            "outputPath": "dist/apps/docs"
+          }
+        }
+      }
     }
   },
   "cli": {

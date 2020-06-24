@@ -17,6 +17,9 @@
     "ionic-react-e2e": {
       "tags": [],
       "implicitDependencies": ["ionic-react"]
+    },
+    "docs": {
+      "tags": []
     }
   },
   "tasksRunnerOptions": {

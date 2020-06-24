@@ -36,7 +36,13 @@
     "help": "nx help"
   },
   "private": true,
-  "dependencies": {},
+  "dependencies": {
+    "@docusaurus/core": "^2.0.0-alpha.50",
+    "@docusaurus/preset-classic": "^2.0.0-alpha.50",
+    "classnames": "^2.2.6",
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4"
+  },
   "devDependencies": {
     "@nrwl/eslint-plugin-nx": "9.4.3",
     "@nrwl/jest": "9.4.3",
@@ -44,6 +50,7 @@
     "@nrwl/react": "9.4.3",
     "@nrwl/web": "9.4.3",
     "@nrwl/workspace": "9.4.3",
+    "@nx-plus/docusaurus": "0.0.4",
     "@types/jest": "25.1.4",
     "@types/node": "~8.9.4",
     "@typescript-eslint/eslint-plugin": "2.3.2",
@@ -51,6 +58,7 @@
     "dotenv": "6.2.0",
     "eslint": "6.8.0",
     "eslint-config-prettier": "6.0.0",
+    "eslint-plugin-cypress": "^2.10.3",
     "husky": "^4.2.3",
     "jest": "25.2.4",
     "prettier": "2.0.4",
@@ -58,8 +66,7 @@
     "ts-jest": "25.2.1",
     "ts-node": "~7.0.0",
     "tslint": "6.0.0",
-    "typescript": "3.8.3",
-    "eslint-plugin-cypress": "^2.10.3"
+    "typescript": "3.8.3"
   },
   "husky": {
     "hooks": {
