@@ -3,7 +3,7 @@ import {
   ensureNxProject,
   readJson,
   runNxCommandAsync,
-  uniq
+  uniq,
 } from '@nrwl/nx-plugin/testing';
 import { Linter } from '@nrwl/workspace';
 import { ApplicationSchematicSchema } from '@nxtend/ionic-react';
@@ -17,7 +17,7 @@ describe('application e2e', () => {
     e2eTestRunner: 'cypress',
     linter: Linter.EsLint,
     js: false,
-    disableSanitizer: false
+    disableSanitizer: false,
   };
 
   async function generateApp(options: ApplicationSchematicSchema) {
@@ -117,11 +117,24 @@ describe('application e2e', () => {
     expect(e2eResults.stdout).toContain('All specs passed!');
   }
 
-  it('should generate JavaScript files', async done => {
+  it('should generate an application', async (done) => {
     const options: ApplicationSchematicSchema = {
       ...defaultOptions,
       name: uniq('ionic-react'),
-      js: true
+    };
+
+    await generateApp(options);
+    testGeneratedFiles(options);
+    await buildAndTestGeneratedApp(options.name);
+
+    done();
+  }, 120000);
+
+  it('should generate JavaScript files', async (done) => {
+    const options: ApplicationSchematicSchema = {
+      ...defaultOptions,
+      name: uniq('ionic-react'),
+      js: true,
     };
 
     await generateApp(options);
@@ -140,11 +153,11 @@ describe('application e2e', () => {
   }, 120000);
 
   describe('--directory', () => {
-    it('should create src in the specified directory', async done => {
+    it('should create src in the specified directory', async (done) => {
       const options: ApplicationSchematicSchema = {
         ...defaultOptions,
         name: uniq('ionic-react'),
-        directory: 'subdir'
+        directory: 'subdir',
       };
 
       ensureNxProject('@nxtend/ionic-react', 'dist/libs/ionic-react');
@@ -159,11 +172,11 @@ describe('application e2e', () => {
   });
 
   describe('--tags', () => {
-    it('should add tags to nx.json', async done => {
+    it('should add tags to nx.json', async (done) => {
       const options: ApplicationSchematicSchema = {
         ...defaultOptions,
         name: uniq('ionic-react'),
-        tags: 'e2etag,e2ePackage'
+        tags: 'e2etag,e2ePackage',
       };
 
       ensureNxProject('@nxtend/ionic-react', 'dist/libs/ionic-react');
@@ -174,7 +187,7 @@ describe('application e2e', () => {
       const nxJson = readJson('nx.json');
       expect(nxJson.projects[options.name].tags).toEqual([
         'e2etag',
-        'e2ePackage'
+        'e2ePackage',
       ]);
 
       await buildAndTestGeneratedApp(options.name);
@@ -185,11 +198,11 @@ describe('application e2e', () => {
 
   describe('--unitTestRunner', () => {
     describe('none', () => {
-      it('should not generate Jest mocks', async done => {
+      it('should not generate Jest mocks', async (done) => {
         const options: ApplicationSchematicSchema = {
           ...defaultOptions,
           name: uniq('ionic-react'),
-          unitTestRunner: 'none'
+          unitTestRunner: 'none',
         };
 
         await generateApp(options);
@@ -211,26 +224,13 @@ describe('application e2e', () => {
     });
   });
 
-  it('should generate an application', async done => {
-    const options: ApplicationSchematicSchema = {
-      ...defaultOptions,
-      name: uniq('ionic-react')
-    };
-
-    await generateApp(options);
-    testGeneratedFiles(options);
-    await buildAndTestGeneratedApp(options.name);
-
-    done();
-  }, 120000);
-
   describe('--style', () => {
     describe('scss', () => {
-      it('should generate application with Sass styles', async done => {
+      it('should generate application with Sass styles', async (done) => {
         const options: ApplicationSchematicSchema = {
           ...defaultOptions,
           name: uniq('ionic-react'),
-          style: 'scss'
+          style: 'scss',
         };
 
         await generateApp(options);
@@ -242,11 +242,11 @@ describe('application e2e', () => {
     });
 
     describe('stylus', () => {
-      it('should generate application with Stylus styles', async done => {
+      it('should generate application with Stylus styles', async (done) => {
         const options: ApplicationSchematicSchema = {
           ...defaultOptions,
           name: uniq('ionic-react'),
-          style: 'styl'
+          style: 'styl',
         };
 
         await generateApp(options);
@@ -258,11 +258,11 @@ describe('application e2e', () => {
     });
 
     describe('less', () => {
-      it('should generate application with Less styles', async done => {
+      it('should generate application with Less styles', async (done) => {
         const options: ApplicationSchematicSchema = {
           ...defaultOptions,
           name: uniq('ionic-react'),
-          style: 'less'
+          style: 'less',
         };
 
         await generateApp(options);
@@ -274,11 +274,11 @@ describe('application e2e', () => {
     });
 
     describe('styled-components', () => {
-      it('should generate application with styled-components styles', async done => {
+      it('should generate application with styled-components styles', async (done) => {
         const options: ApplicationSchematicSchema = {
           ...defaultOptions,
           name: uniq('ionic-react'),
-          style: 'styled-components'
+          style: 'styled-components',
         };
 
         await generateApp(options);
@@ -290,11 +290,11 @@ describe('application e2e', () => {
     });
 
     describe('@emotion/styled', () => {
-      it('should generate application with Emotion styles', async done => {
+      it('should generate application with Emotion styles', async (done) => {
         const options: ApplicationSchematicSchema = {
           ...defaultOptions,
           name: uniq('ionic-react'),
-          style: '@emotion/styled'
+          style: '@emotion/styled',
         };
 
         await generateApp(options);
@@ -308,11 +308,11 @@ describe('application e2e', () => {
 
   describe('--pascalCaseFiles', () => {
     describe('true', () => {
-      it('should generate with pascal case files', async done => {
+      it('should generate with pascal case files', async (done) => {
         const options: ApplicationSchematicSchema = {
           ...defaultOptions,
           name: uniq('ionic-react'),
-          pascalCaseFiles: true
+          pascalCaseFiles: true,
         };
 
         await generateApp(options);
@@ -326,11 +326,11 @@ describe('application e2e', () => {
 
   describe('--classComponent', () => {
     describe('true', () => {
-      it('should generate with class components', async done => {
+      it('should generate with class components', async (done) => {
         const options: ApplicationSchematicSchema = {
           ...defaultOptions,
           name: uniq('ionic-react'),
-          classComponent: true
+          classComponent: true,
         };
 
         await generateApp(options);
@@ -344,11 +344,11 @@ describe('application e2e', () => {
 
   describe('--disableSanitizer', () => {
     describe('true', () => {
-      it('should add disable the Ionic sanitizer', async done => {
+      it('should add disable the Ionic sanitizer', async (done) => {
         const options: ApplicationSchematicSchema = {
           ...defaultOptions,
           name: uniq('ionic-react'),
-          disableSanitizer: true
+          disableSanitizer: true,
         };
 
         await generateApp(options);

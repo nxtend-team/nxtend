@@ -88,11 +88,11 @@
       "version": "2.2.0",
       "packages": {
         "@ionic/react": {
-          "version": "5.2.1",
+          "version": "^5.2.2",
           "alwaysAddToPackageJson": false
         },
         "@ionic/react-router": {
-          "version": "5.2.1",
+          "version": "^5.2.2",
           "alwaysAddToPackageJson": false
         }
       }
