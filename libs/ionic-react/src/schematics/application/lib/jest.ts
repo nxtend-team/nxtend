@@ -9,7 +9,7 @@ import {
   noop,
   Rule,
   Tree,
-  url
+  url,
 } from '@angular-devkit/schematics';
 import { names, offsetFromRoot } from '@nrwl/workspace';
 import { Change } from '@nrwl/workspace/src/core/file-utils';
@@ -17,17 +17,17 @@ import {
   getSourceNodes,
   insert,
   InsertChange,
-  readWorkspace
+  readWorkspace,
 } from '@nrwl/workspace/src/utils/ast-utils';
 import * as ts from 'typescript';
-import { NormalizedSchema } from '../schematic';
+import { NormalizedSchema } from '../schema';
 
 export function executeJestProjectSchematic(options: NormalizedSchema): Rule {
   return externalSchematic('@nrwl/jest', 'jest-project', {
     project: options.projectName,
     supportTsx: true,
     skipSerializers: true,
-    setupFile: 'web-components'
+    setupFile: 'web-components',
   });
 }
 
@@ -70,9 +70,9 @@ export function addJestFiles(options: NormalizedSchema): Rule {
       applyTemplates({
         ...options,
         ...names(options.name),
-        offsetFromRoot: offsetFromRoot(options.projectRoot)
+        offsetFromRoot: offsetFromRoot(options.projectRoot),
       }),
-      move(options.projectRoot)
+      move(options.projectRoot),
     ]),
     MergeStrategy.Overwrite
   );
@@ -83,7 +83,7 @@ export function configureJestForIonic(options: NormalizedSchema): Rule {
     return chain([
       executeJestProjectSchematic(options),
       configureMocks(options),
-      addJestFiles(options)
+      addJestFiles(options),
     ]);
   } else {
     return noop();

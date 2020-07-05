@@ -1,4 +1,9 @@
-import { chain, externalSchematic, Rule } from '@angular-devkit/schematics';
+import {
+  chain,
+  externalSchematic,
+  noop,
+  Rule,
+} from '@angular-devkit/schematics';
 import {
   addDepsToPackageJson,
   formatFiles,
@@ -11,28 +16,15 @@ import init from '../init/schematic';
 import { configureCypressForIonic } from './lib/cypress';
 import { addIonicFiles, deleteUnusedFiles } from './lib/files';
 import { configureJestForIonic } from './lib/jest';
-import { updateWorkspaceForIonic, setDefaults } from './lib/update-workspace';
-import { ApplicationSchematicSchema } from './schema';
+import { setDefaults, updateWorkspaceForIonic } from './lib/update-workspace';
+import { ApplicationSchematicSchema, NormalizedSchema } from './schema';
 
 const projectType = ProjectType.Application;
-
-export interface NormalizedSchema extends ApplicationSchematicSchema {
-  projectName: string;
-  projectDirectory: string;
-  projectRoot: string;
-  e2eRoot: string;
-  parsedTags: string[];
-  appFileName: string;
-  homeFileName: string;
-  exploreContainerFileName: string;
-  viewMessageFileName: string;
-  messageListItemFileName: string;
-  styledModule: null | string;
-}
 
 function normalizeOptions(
   options: ApplicationSchematicSchema
 ): NormalizedSchema {
+  const appName = options.name;
   const name = toFileName(options.name);
   const projectDirectory = options.directory
     ? `${toFileName(options.directory)}/${name}`
@@ -64,6 +56,7 @@ function normalizeOptions(
 
   return {
     ...options,
+    appName,
     name: name,
     projectName,
     projectDirectory,
@@ -88,13 +81,27 @@ function addDependencies(): Rule {
   );
 }
 
-function generateNrwlReactApplication(options: ApplicationSchematicSchema) {
+function generateNrwlReactApplication(
+  options: ApplicationSchematicSchema
+): Rule {
   return externalSchematic('@nrwl/react', 'application', {
     ...options,
     routing: true,
     unitTestRunner: 'none',
     skipWorkspaceJson: true,
   });
+}
+
+function generateCapacitorProject(options: NormalizedSchema): Rule {
+  return options.capacitor
+    ? externalSchematic('@nxtend/capacitor', 'capacitor-project', {
+        project: options.name,
+        name: `${options.name}-cap`,
+        directory: options.directory,
+        appName: options.appName,
+        appId: 'io.ionic.starter',
+      })
+    : noop();
 }
 
 export default function (options: ApplicationSchematicSchema): Rule {
@@ -108,6 +115,7 @@ export default function (options: ApplicationSchematicSchema): Rule {
     configureCypressForIonic(normalizedOptions),
     deleteUnusedFiles(normalizedOptions),
     updateWorkspaceForIonic(normalizedOptions),
+    generateCapacitorProject(normalizedOptions),
     setDefaults(normalizedOptions),
     formatFiles(options),
   ]);

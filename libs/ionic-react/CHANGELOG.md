@@ -1,5 +1,11 @@
 # Changelog
 
+# 3.0.0
+
+## Features
+
+- generate Capacitor project with application by default
+
 # 2.2.0
 
 ## Bug Fixes

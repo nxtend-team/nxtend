@@ -1,6 +1,6 @@
 {
   "$schema": "../../node_modules/@angular-devkit/schematics/collection-schema.json",
-  "name": "ionic-react",
+  "name": "IonicReact",
   "version": "0.0.1",
   "extends": ["@nrwl/react"],
   "schematics": {

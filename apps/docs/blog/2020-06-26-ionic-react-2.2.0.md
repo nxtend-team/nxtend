@@ -20,6 +20,8 @@ It's been a while since the last `@nxtend/ionic-react` release, and as always, t
 - upgrade Ionic to 5.2.2
 - add `--disableSanitizer` flag to application schematic to disable the [Ionic sanitizer](https://ionicframework.com/docs/techniques/security#sanitizing-user-input)
 
+<!--truncate-->
+
 The Ionic framework has a built-in input sanitizer, however, they recently added the ability to disable this feature entirely. The `--disableSanitizer` flag for the `application` schematic will disable this feature when generating the initial app.
 
 I have upgraded the Ionic dependencies to `^5.2.2` in order to make user upgrades easier. I plan to continue to update dependencies with each release, but now users can upgrade compatible versions with their Node package manager.

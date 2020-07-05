@@ -2,63 +2,20 @@
 
 [![standard-readme compliant](https://img.shields.io/badge/standard--readme-OK-green.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
 
-An Nx plugin for developing Ionic React applications and libraries.
+An Nx plugin for developing [Ionic](https://ionicframework.com/docs) React applications and libraries.
+
+For more complete documentation, visit [nxtend.dev](https://nxtend.dev/docs/ionic-react/overview).
 
 ## Table of Contents
 
-- [Install](#install)
 - [Usage](#usage)
 - [Maintainers](#maintainers)
 - [Contributing](#contributing)
 - [License](#license)
 
-## Install
-
-If you use the Angular CLI, run:
-
-```
-ng add @nxtend/ionic-react
-```
-
-If you use the Nx CLI and Yarn, run:
-
-```
-yarn add --dev @nxtend/ionic-react
-```
-
-If you use the Nx CLI and NPM, run:
-
-```
-npm install --save-dev @nxtend/ionic-react
-```
-
 ## Usage
 
-### Application
-
-```
-nx generate @nxtend/ionic-react:application [name] [options,...]
-
-Options:
-  --name                  The name of the application.
-  --directory             The directory of the new application.
-  --style                 The file extension to be used for style files. (default: css)
-  --linter                The tool to use for running lint checks. (default: tslint)
-  --skipFormat            Skip formatting files
-  --skipWorkspaceJson     Skip updating workspace.json with default schematic options based on values provided to this app (e.g. babel, style)
-  --unitTestRunner        Test runner to use for unit tests (default: jest)
-  --e2eTestRunner         Test runner to use for end to end (e2e) tests (default: cypress)
-  --tags                  Add tags to the application (used for linting)
-  --pascalCaseFiles       Use pascal case component file name (e.g. App.tsx)
-  --classComponent        Use class components instead of functional component
-  --js                    Generate JavaScript files rather than TypeScript files
-  --dryRun                undefined
-  --help                  Show available options for project target.
-```
-
-### @nrwl/react
-
-This extends the official `@nrwl/react` plugin, so all of those [schematics](https://nx.dev/react/plugins_react/overview#schematics) are available as a fallback.
+Visit the official [Getting Started](https://nxtend.dev/docs/ionic-react/getting-started) documentation.
 
 ## Maintainers
 

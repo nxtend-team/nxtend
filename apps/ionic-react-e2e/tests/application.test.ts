@@ -18,6 +18,7 @@ describe('application e2e', () => {
     linter: Linter.EsLint,
     js: false,
     disableSanitizer: false,
+    capacitor: false,
   };
 
   async function generateApp(options: ApplicationSchematicSchema) {
@@ -32,7 +33,8 @@ describe('application e2e', () => {
        --pascalCaseFiles ${options.pascalCaseFiles} \
        --classComponent ${options.classComponent} \
        --js ${options.js} \
-       --disableSanitizer ${options.disableSanitizer}`
+       --disableSanitizer ${options.disableSanitizer} \
+       --capacitor ${options.capacitor}`
     );
   }
 
@@ -128,7 +130,7 @@ describe('application e2e', () => {
     await buildAndTestGeneratedApp(options.name);
 
     done();
-  }, 120000);
+  }, 150000);
 
   it('should generate JavaScript files', async (done) => {
     const options: ApplicationSchematicSchema = {
@@ -150,7 +152,7 @@ describe('application e2e', () => {
     expect(testResults.stderr).toContain('Test Suites: 1 passed, 1 total');
 
     done();
-  }, 120000);
+  }, 150000);
 
   describe('--directory', () => {
     it('should create src in the specified directory', async (done) => {
@@ -162,13 +164,13 @@ describe('application e2e', () => {
 
       ensureNxProject('@nxtend/ionic-react', 'dist/libs/ionic-react');
       await runNxCommandAsync(
-        `generate @nxtend/ionic-react:app ${options.name} --directory ${options.directory}`
+        `generate @nxtend/ionic-react:app ${options.name} --directory ${options.directory} --capacitor false`
       );
       testGeneratedFiles(options);
       await buildAndTestGeneratedApp(`${options.directory}-${options.name}`);
 
       done();
-    }, 120000);
+    }, 150000);
   });
 
   describe('--tags', () => {
@@ -181,7 +183,7 @@ describe('application e2e', () => {
 
       ensureNxProject('@nxtend/ionic-react', 'dist/libs/ionic-react');
       await runNxCommandAsync(
-        `generate @nxtend/ionic-react:app ${options.name} --tags ${options.tags}`
+        `generate @nxtend/ionic-react:app ${options.name} --tags ${options.tags} --capacitor false`
       );
 
       const nxJson = readJson('nx.json');
@@ -193,7 +195,7 @@ describe('application e2e', () => {
       await buildAndTestGeneratedApp(options.name);
 
       done();
-    }, 120000);
+    }, 150000);
   });
 
   describe('--unitTestRunner', () => {
@@ -220,7 +222,7 @@ describe('application e2e', () => {
         expect(e2eResults.stdout).toContain('All specs passed!');
 
         done();
-      }, 120000);
+      }, 150000);
     });
   });
 
@@ -238,7 +240,7 @@ describe('application e2e', () => {
         await buildAndTestGeneratedApp(options.name);
 
         done();
-      }, 120000);
+      }, 150000);
     });
 
     describe('stylus', () => {
@@ -254,7 +256,7 @@ describe('application e2e', () => {
         await buildAndTestGeneratedApp(options.name);
 
         done();
-      }, 120000);
+      }, 150000);
     });
 
     describe('less', () => {
@@ -270,7 +272,7 @@ describe('application e2e', () => {
         await buildAndTestGeneratedApp(options.name);
 
         done();
-      }, 120000);
+      }, 150000);
     });
 
     describe('styled-components', () => {
@@ -286,7 +288,7 @@ describe('application e2e', () => {
         await buildAndTestGeneratedApp(options.name);
 
         done();
-      }, 120000);
+      }, 150000);
     });
 
     describe('@emotion/styled', () => {
@@ -302,7 +304,7 @@ describe('application e2e', () => {
         await buildAndTestGeneratedApp(options.name);
 
         done();
-      }, 120000);
+      }, 150000);
     });
   });
 
@@ -320,7 +322,7 @@ describe('application e2e', () => {
         await buildAndTestGeneratedApp(options.name);
 
         done();
-      }, 120000);
+      }, 150000);
     });
   });
 
@@ -338,7 +340,7 @@ describe('application e2e', () => {
         await buildAndTestGeneratedApp(options.name);
 
         done();
-      }, 120000);
+      }, 150000);
     });
   });
 
@@ -356,7 +358,7 @@ describe('application e2e', () => {
         await buildAndTestGeneratedApp(options.name);
 
         done();
-      }, 120000);
+      }, 150000);
     });
   });
 });

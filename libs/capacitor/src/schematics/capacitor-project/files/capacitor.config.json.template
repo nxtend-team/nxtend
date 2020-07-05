@@ -1,0 +1,13 @@
+{
+  "appId": "<%= appId %>",
+  "appName": "<%= appName %>",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "<%= pathToRoot %>/<%= webDir %>",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  },
+  "cordova": {}
+}

@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema",
+  "$id": "https://json-schema.org/draft-07/schema",
+  "title": "Update builder",
+  "description": "Runs a builder that updates dependencies for a Capacitor project native platform.",
+  "type": "object",
+  "properties": {
+    "platform": {
+      "description": "The native platform to update.",
+      "type": "string",
+      "enum": ["android", "ios"]
+    }
+  },
+  "required": []
+}

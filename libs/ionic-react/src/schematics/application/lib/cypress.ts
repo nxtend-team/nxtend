@@ -1,19 +1,19 @@
 import { chain, noop, Rule, Tree } from '@angular-devkit/schematics';
 import { addDepsToPackageJson, updateJsonInTree } from '@nrwl/workspace';
 import { testingLibraryCypressVersion } from '../../../utils/versions';
-import { NormalizedSchema } from '../schematic';
+import { NormalizedSchema } from '../schema';
 
 export function addDependencies(): Rule {
   return addDepsToPackageJson(
     {},
     {
-      '@testing-library/cypress': testingLibraryCypressVersion
+      '@testing-library/cypress': testingLibraryCypressVersion,
     }
   );
 }
 
 export function configureTestingLibraryTypes(options: NormalizedSchema) {
-  return updateJsonInTree(options.e2eRoot + '/tsconfig.json', json => {
+  return updateJsonInTree(options.e2eRoot + '/tsconfig.json', (json) => {
     json.compilerOptions.types.push('@types/testing-library__cypress');
     return json;
   });
@@ -92,7 +92,7 @@ export function configureCypressForIonic(options: NormalizedSchema): Rule {
       configureTestingLibraryTypes(options),
       importTestingLibraryCommands(options),
       configureAppPageObjectForIonic(options),
-      configureAppTestForIonic(options)
+      configureAppTestForIonic(options),
     ]);
   } else {
     return noop();

@@ -119,6 +119,11 @@
       "type": "boolean",
       "description": "Disable Ionic sanitizer",
       "default": false
+    },
+    "capacitor": {
+      "type": "boolean",
+      "description": "Generate a Capacitor project.",
+      "default": true
     }
   },
   "required": ["name"]

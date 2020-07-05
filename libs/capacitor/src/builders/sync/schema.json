@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema",
+  "$id": "https://json-schema.org/draft-07/schema",
+  "title": "Sync builder",
+  "description": "Runs a builder that updates dependencies and copies an applications build output to a Capacitor project native platform.",
+  "type": "object",
+  "properties": {
+    "platform": {
+      "description": "The native platform to sync.",
+      "type": "string",
+      "enum": ["android", "ios"]
+    }
+  },
+  "required": []
+}

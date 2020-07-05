@@ -20,9 +20,9 @@ nx generate @nxtend/ionic-react:application myApp
 
 Alias(es): d
 
-Type: `string`
-
 Default: `null`
+
+Type: `string`
 
 The subdirectory of the new application. By default, apps will be generated under the `apps/` directory.
 
@@ -127,3 +127,11 @@ Default: `false`
 Type: `boolean`
 
 Disable Ionic sanitizer.
+
+### --capacitor
+
+Default: `true`
+
+Type: `boolean`
+
+Generate a Capacitor project.

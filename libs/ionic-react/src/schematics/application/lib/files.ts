@@ -13,7 +13,7 @@ import {
 } from '@angular-devkit/schematics';
 import { names, offsetFromRoot } from '@nrwl/workspace';
 import { toJS } from '@nrwl/workspace/src/utils/rules/to-js';
-import { NormalizedSchema } from '../schematic';
+import { NormalizedSchema } from '../schema';
 
 export function addBaseTemplate(options: NormalizedSchema): Rule {
   return mergeWith(

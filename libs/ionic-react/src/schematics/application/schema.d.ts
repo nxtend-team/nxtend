@@ -14,4 +14,20 @@ export interface ApplicationSchematicSchema {
   skipWorkspaceJson?: boolean;
   js?: boolean;
   disableSanitizer: boolean;
+  capacitor: boolean;
+}
+
+export interface NormalizedSchema extends ApplicationSchematicSchema {
+  appName: string;
+  projectName: string;
+  projectDirectory: string;
+  projectRoot: string;
+  e2eRoot: string;
+  parsedTags: string[];
+  appFileName: string;
+  homeFileName: string;
+  exploreContainerFileName: string;
+  viewMessageFileName: string;
+  messageListItemFileName: string;
+  styledModule: null | string;
 }

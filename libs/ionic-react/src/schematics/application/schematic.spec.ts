@@ -17,6 +17,7 @@ describe('application', () => {
     e2eTestRunner: 'cypress',
     linter: Linter.EsLint,
     disableSanitizer: false,
+    capacitor: false,
   };
 
   const projectRoot = `apps/${options.name}`;
@@ -120,6 +121,14 @@ describe('application', () => {
     expect(packageJSON.dependencies['@ionic/react-router']).toBeDefined();
   });
 
+  it('should generate application', async () => {
+    const tree = await testRunner
+      .runSchematicAsync('application', { ...options }, appTree)
+      .toPromise();
+
+    testGeneratedFiles(tree, { ...options });
+  });
+
   it('should delete unused @nrwl/react files', async () => {
     const tree = await testRunner
       .runSchematicAsync('application', options, appTree)
@@ -204,14 +213,59 @@ describe('application', () => {
     });
   });
 
-  describe('--js', () => {
-    describe('true', () => {
-      it('should generate JavaScript files', async () => {
+  describe('--style', () => {
+    describe('scss', () => {
+      it('should generate application with Sass styles', async () => {
+        const style = 'scss';
         const tree = await testRunner
-          .runSchematicAsync('application', { ...options, js: true }, appTree)
+          .runSchematicAsync('application', { ...options, style }, appTree)
           .toPromise();
 
-        testGeneratedFiles(tree, { ...options, js: true });
+        testGeneratedFiles(tree, { ...options, style });
+      });
+    });
+
+    describe('styl', () => {
+      it('should generate application with Stylus styles', async () => {
+        const style = 'styl';
+        const tree = await testRunner
+          .runSchematicAsync('application', { ...options, style }, appTree)
+          .toPromise();
+
+        testGeneratedFiles(tree, { ...options, style });
+      });
+    });
+
+    describe('less', () => {
+      it('should generate application with Less styles', async () => {
+        const style = 'less';
+        const tree = await testRunner
+          .runSchematicAsync('application', { ...options, style }, appTree)
+          .toPromise();
+
+        testGeneratedFiles(tree, { ...options, style });
+      });
+    });
+
+    describe('styled-components', () => {
+      it('should generate application with styled-components styles', async () => {
+        const style = 'styled-components';
+        const tree = await testRunner
+          .runSchematicAsync('application', { ...options, style }, appTree)
+          .toPromise();
+
+        testGeneratedFiles(tree, { ...options, style });
+      });
+    });
+
+    describe('@emotion/styled', () => {
+      it('should generate application with Emotion styles', async () => {
+        const style = '@emotion/styled';
+        const tree = await testRunner
+          .runSchematicAsync('application', { ...options, style }, appTree)
+          .toPromise();
+
+        testGeneratedFiles(tree, { ...options, style });
       });
     });
   });
@@ -344,88 +398,33 @@ describe('application', () => {
     });
   });
 
-  describe('--template', () => {
-    it('should generate application with blank starter template', async () => {
-      const tree = await testRunner
-        .runSchematicAsync('application', { ...options }, appTree)
-        .toPromise();
+  describe('--pascalCaseFiles', () => {
+    describe('true', () => {
+      it('should generate pascal case file names', async () => {
+        const tree = await testRunner
+          .runSchematicAsync(
+            'application',
+            { ...options, pascalCaseFiles: true },
+            appTree
+          )
+          .toPromise();
 
-      testGeneratedFiles(tree, { ...options });
-    });
-
-    describe('--pascalCaseFiles', () => {
-      describe('true', () => {
-        it('should generate pascal case file names', async () => {
-          const tree = await testRunner
-            .runSchematicAsync(
-              'application',
-              { ...options, pascalCaseFiles: true },
-              appTree
-            )
-            .toPromise();
-
-          testGeneratedFiles(tree, {
-            ...options,
-            pascalCaseFiles: true,
-          });
+        testGeneratedFiles(tree, {
+          ...options,
+          pascalCaseFiles: true,
         });
       });
     });
+  });
 
-    describe('--style', () => {
-      describe('scss', () => {
-        it('should generate application with Sass styles', async () => {
-          const style = 'scss';
-          const tree = await testRunner
-            .runSchematicAsync('application', { ...options, style }, appTree)
-            .toPromise();
+  describe('--js', () => {
+    describe('true', () => {
+      it('should generate JavaScript files', async () => {
+        const tree = await testRunner
+          .runSchematicAsync('application', { ...options, js: true }, appTree)
+          .toPromise();
 
-          testGeneratedFiles(tree, { ...options, style });
-        });
-      });
-
-      describe('styl', () => {
-        it('should generate application with Stylus styles', async () => {
-          const style = 'styl';
-          const tree = await testRunner
-            .runSchematicAsync('application', { ...options, style }, appTree)
-            .toPromise();
-
-          testGeneratedFiles(tree, { ...options, style });
-        });
-      });
-
-      describe('less', () => {
-        it('should generate application with Less styles', async () => {
-          const style = 'less';
-          const tree = await testRunner
-            .runSchematicAsync('application', { ...options, style }, appTree)
-            .toPromise();
-
-          testGeneratedFiles(tree, { ...options, style });
-        });
-      });
-
-      describe('styled-components', () => {
-        it('should generate application with styled-components styles', async () => {
-          const style = 'styled-components';
-          const tree = await testRunner
-            .runSchematicAsync('application', { ...options, style }, appTree)
-            .toPromise();
-
-          testGeneratedFiles(tree, { ...options, style });
-        });
-      });
-
-      describe('@emotion/styled', () => {
-        it('should generate application with Emotion styles', async () => {
-          const style = '@emotion/styled';
-          const tree = await testRunner
-            .runSchematicAsync('application', { ...options, style }, appTree)
-            .toPromise();
-
-          testGeneratedFiles(tree, { ...options, style });
-        });
+        testGeneratedFiles(tree, { ...options, js: true });
       });
     });
   });

@@ -95,6 +95,78 @@
           }
         }
       }
+    },
+    "capacitor": {
+      "root": "libs/capacitor",
+      "sourceRoot": "libs/capacitor/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "config": "libs/capacitor/.eslintrc",
+            "tsConfig": [
+              "libs/capacitor/tsconfig.lib.json",
+              "libs/capacitor/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/capacitor/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/capacitor/jest.config.js",
+            "tsConfig": "libs/capacitor/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        },
+        "build": {
+          "builder": "@nrwl/node:package",
+          "options": {
+            "outputPath": "dist/libs/capacitor",
+            "tsConfig": "libs/capacitor/tsconfig.lib.json",
+            "packageJson": "libs/capacitor/package.json",
+            "main": "libs/capacitor/src/index.ts",
+            "assets": [
+              "libs/capacitor/*.md",
+              {
+                "input": "./libs/capacitor/src",
+                "glob": "**/*.!(ts)",
+                "output": "./src"
+              },
+              {
+                "input": "./libs/capacitor",
+                "glob": "collection.json",
+                "output": "."
+              },
+              {
+                "input": "./libs/capacitor",
+                "glob": "builders.json",
+                "output": "."
+              }
+            ]
+          }
+        }
+      }
+    },
+    "capacitor-e2e": {
+      "projectType": "application",
+      "root": "apps/capacitor-e2e",
+      "sourceRoot": "apps/capacitor-e2e/src",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/nx-plugin:e2e",
+          "options": {
+            "target": "capacitor:build",
+            "npmPackageName": "@nxtend/capacitor",
+            "pluginOutputPath": "dist/libs/capacitor",
+            "jestConfig": "apps/capacitor-e2e/jest.config.js",
+            "tsSpecConfig": "apps/capacitor-e2e/tsconfig.spec.json"
+          }
+        }
+      }
     }
   },
   "cli": {

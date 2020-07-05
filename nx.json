@@ -20,6 +20,13 @@
     },
     "docs": {
       "tags": []
+    },
+    "capacitor": {
+      "tags": []
+    },
+    "capacitor-e2e": {
+      "tags": [],
+      "implicitDependencies": ["capacitor"]
     }
   },
   "tasksRunnerOptions": {
