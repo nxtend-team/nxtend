@@ -7,7 +7,7 @@
     "init": {
       "factory": "./src/schematics/init/schematic",
       "schema": "./src/schematics/init/schema.json",
-      "description": "Initialize the @nxtend/ionic-react plugin",
+      "description": "Initialize the @nxtend/ionic-react plugin.",
       "aliases": ["ng-add"],
       "hidden": true
     },
@@ -16,7 +16,7 @@
       "factory": "./src/schematics/application/schematic",
       "schema": "./src/schematics/application/schema.json",
       "aliases": ["app"],
-      "description": "Create an Ionic React application"
+      "description": "Create an Ionic React application."
     }
   }
 }

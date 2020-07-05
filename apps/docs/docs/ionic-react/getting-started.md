@@ -45,15 +45,15 @@ Options:
   --directory             The directory of the new application.
   --style                 The file extension to be used for style files. (default: css)
   --linter                The tool to use for running lint checks. (default: eslint)
-  --skipFormat            Skip formatting files
-  --skipWorkspaceJson     Skip updating workspace.json with default schematic options based on values provided to this app (e.g. babel, style)
-  --unitTestRunner        Test runner to use for unit tests (default: jest)
-  --e2eTestRunner         Test runner to use for end to end (e2e) tests (default: cypress)
-  --tags                  Add tags to the application (used for linting)
-  --pascalCaseFiles       Use pascal case component file name (e.g. App.tsx)
-  --classComponent        Use class components instead of functional component
-  --js                    Generate JavaScript files rather than TypeScript files
-  --disableSanitizer      Disable Ionic sanitizer
+  --skipFormat            Skip formatting files.
+  --skipWorkspaceJson     Skip updating workspace.json with default schematic options based on values provided to this app (e.g. babel, style).
+  --unitTestRunner        Test runner to use for unit tests. (default: jest)
+  --e2eTestRunner         Test runner to use for end to end (e2e) tests. (default: cypress)
+  --tags                  Add tags to the application (used for linting).
+  --pascalCaseFiles       Use pascal case component file name (e.g. App.tsx).
+  --classComponent        Use class components instead of functional component.
+  --js                    Generate JavaScript files rather than TypeScript files.
+  --disableSanitizer      Disable Ionic sanitizer.
   --capacitor             Generate a Capacitor project. (default: true)
   --dryRun                Runs through and reports activity without writing to disk.
   --help                  Show available options for project target.
