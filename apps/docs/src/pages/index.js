@@ -17,11 +17,11 @@ const features = [
     ),
   },
   {
-    title: <>Develop with Ionic in a Monorepo</>,
+    title: <>Develop Cross-Platform Applications in a Monorepo</>,
     description: (
       <>
-        The premier plugin <code>@nxtend/ionic-react</code> enables developers
-        to build Ionic React apps in a monorepo workspace.
+        The Ionic React and Capacitor plugins enable developers to build
+        cross-platform applications in an Nx workspace.
       </>
     ),
   },
