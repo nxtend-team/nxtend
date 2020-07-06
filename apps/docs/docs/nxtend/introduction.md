@@ -8,7 +8,7 @@ sidebar_label: Introduction
 
 [nxtend](https://github.com/nxtend-team/nxtend) is a collection of third-party plugins to extend the functionality of an Nx workspace.
 
-| Plugin                                                | Description                                                                                              |
-| ----------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
-| [`@nxtend/ionic-react`](./libs/ionic-react/README.md) | An Nx plugin for developing [Ionic](https://ionicframework.com/docs) React applications and libraries.   |
-| [`@nxtend/capacitor`](./libs/capacitor/README.md)     | An Nx plugin for developing cross-platform applications using [Capacitor](https://capacitorjs.com/docs). |
+| Plugin                                              | Description                                                                                              |
+| --------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| [`@nxtend/ionic-react`](../ionic-react/overview.md) | An Nx plugin for developing [Ionic](https://ionicframework.com/docs) React applications and libraries.   |
+| [`@nxtend/capacitor`](../capacitor/overview.md)     | An Nx plugin for developing cross-platform applications using [Capacitor](https://capacitorjs.com/docs). |
