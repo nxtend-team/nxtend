@@ -3,7 +3,7 @@ module.exports = {
     {
       type: 'category',
       label: 'nxtend',
-      items: ['nxtend/introduction', 'nxtend/contributing'],
+      items: ['nxtend/introduction', 'nxtend/upgrades', 'nxtend/contributing'],
     },
     {
       type: 'category',
