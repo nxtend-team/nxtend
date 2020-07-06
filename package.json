@@ -44,12 +44,12 @@
     "react-dom": "^16.8.4"
   },
   "devDependencies": {
-    "@nrwl/eslint-plugin-nx": "9.4.5",
-    "@nrwl/jest": "9.4.5",
-    "@nrwl/nx-plugin": "9.4.5",
-    "@nrwl/react": "9.4.5",
-    "@nrwl/web": "9.4.5",
-    "@nrwl/workspace": "9.4.5",
+    "@nrwl/eslint-plugin-nx": "9.5.1",
+    "@nrwl/jest": "9.5.1",
+    "@nrwl/nx-plugin": "9.5.1",
+    "@nrwl/react": "9.5.1",
+    "@nrwl/web": "9.5.1",
+    "@nrwl/workspace": "9.5.1",
     "@nx-plus/docusaurus": "0.0.4",
     "@types/jest": "25.1.4",
     "@types/node": "~8.9.4",
