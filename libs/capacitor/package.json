@@ -1,6 +1,6 @@
 {
   "name": "@nxtend/capacitor",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "An Nx plugin for developing cross-platform applications using Capacitor",
   "author": {
     "name": "Devin Shoemaker",
