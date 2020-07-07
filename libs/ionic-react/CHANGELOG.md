@@ -1,5 +1,11 @@
 # Changelog
 
+# 3.0.1
+
+## Features
+
+- upgrade Ionic to 5.2.3
+
 # 3.0.0
 
 ## Features
