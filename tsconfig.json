@@ -17,7 +17,8 @@
     "baseUrl": ".",
     "paths": {
       "@nxtend/ionic-react": ["libs/ionic-react/src/index.ts"],
-      "@nxtend/capacitor": ["libs/capacitor/src/index.ts"]
+      "@nxtend/capacitor": ["libs/capacitor/src/index.ts"],
+      "@nxtend/devto": ["libs/devto/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

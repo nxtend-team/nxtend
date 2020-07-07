@@ -167,6 +167,77 @@
           }
         }
       }
+    },
+    "devto": {
+      "root": "libs/devto",
+      "sourceRoot": "libs/devto/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "tsConfig": [
+              "libs/devto/tsconfig.lib.json",
+              "libs/devto/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/devto/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/devto/jest.config.js",
+            "tsConfig": "libs/devto/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        },
+        "build": {
+          "builder": "@nrwl/node:package",
+          "options": {
+            "outputPath": "dist/libs/devto",
+            "tsConfig": "libs/devto/tsconfig.lib.json",
+            "packageJson": "libs/devto/package.json",
+            "main": "libs/devto/src/index.ts",
+            "assets": [
+              "libs/devto/*.md",
+              {
+                "input": "./libs/devto/src",
+                "glob": "**/*.!(ts)",
+                "output": "./src"
+              },
+              {
+                "input": "./libs/devto",
+                "glob": "collection.json",
+                "output": "."
+              },
+              {
+                "input": "./libs/devto",
+                "glob": "builders.json",
+                "output": "."
+              }
+            ]
+          }
+        }
+      }
+    },
+    "devto-e2e": {
+      "projectType": "application",
+      "root": "apps/devto-e2e",
+      "sourceRoot": "apps/devto-e2e/src",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/nx-plugin:e2e",
+          "options": {
+            "target": "devto:build",
+            "npmPackageName": "@nxtend/devto",
+            "pluginOutputPath": "dist/libs/devto",
+            "jestConfig": "apps/devto-e2e/jest.config.js",
+            "tsSpecConfig": "apps/devto-e2e/tsconfig.spec.json"
+          }
+        }
+      }
     }
   },
   "cli": {

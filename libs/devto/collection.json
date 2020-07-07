@@ -1,0 +1,17 @@
+{
+  "$schema": "../../node_modules/@angular-devkit/schematics/collection-schema.json",
+  "name": "devto",
+  "version": "0.0.1",
+  "schematics": {
+    "blog": {
+      "factory": "./src/schematics/blog/schematic",
+      "schema": "./src/schematics/blog/schema.json",
+      "description": "Add a new dev.to blog"
+    },
+    "post": {
+      "factory": "./src/schematics/post/schematic",
+      "schema": "./src/schematics/post/schema.json",
+      "description": "Add a new dev.to blog post"
+    }
+  }
+}

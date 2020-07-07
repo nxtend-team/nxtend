@@ -1,0 +1,11 @@
+---
+published: false
+title: "<%= name %>"
+cover_image:
+description:
+tags:
+series:
+canonical_url:
+---
+
+This is a blog post!

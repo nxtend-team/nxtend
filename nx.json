@@ -27,6 +27,13 @@
     "capacitor-e2e": {
       "tags": [],
       "implicitDependencies": ["capacitor"]
+    },
+    "devto": {
+      "tags": []
+    },
+    "devto-e2e": {
+      "tags": [],
+      "implicitDependencies": ["devto"]
     }
   },
   "tasksRunnerOptions": {
