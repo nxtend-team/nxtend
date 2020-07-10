@@ -1,8 +1,8 @@
 import { BuilderContext } from '@angular-devkit/architect';
 import { NodeJsSyncHost } from '@angular-devkit/core/node';
 import { join } from 'path';
-import { from, of } from 'rxjs';
-import { mergeMap } from 'rxjs/operators';
+import { from } from 'rxjs';
+import { first, switchMap } from 'rxjs/operators';
 import { getProjectRoot } from './project-root';
 
 export function runCapacitorCommand(
@@ -13,7 +13,8 @@ export function runCapacitorCommand(
   const host = new NodeJsSyncHost();
 
   return from(getProjectRoot(context, host)).pipe(
-    mergeMap((sourceRoot) => {
+    first(),
+    switchMap((sourceRoot) => {
       return context.scheduleBuilder('@nrwl/workspace:run-commands', {
         cwd: join(context.workspaceRoot, sourceRoot),
         commands: [
@@ -23,10 +24,7 @@ export function runCapacitorCommand(
         ],
       });
     }),
-    mergeMap((run) => run.output),
-    mergeMap((output) => {
-      const success = !output.error;
-      return of({ success });
-    })
+    first(),
+    switchMap((run) => run.output)
   );
 }

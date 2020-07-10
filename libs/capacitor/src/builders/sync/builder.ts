@@ -5,7 +5,7 @@ import {
 } from '@angular-devkit/architect';
 import { Observable } from 'rxjs';
 import { assertValidPlatform } from '../../utils/assertion';
-import { runCapacitorCommand } from '../../utils/capacitor-command';
+import { runCapacitorCommand } from '../../utils/run-capacitor-command';
 import { SyncBuilderSchema } from './schema';
 
 export function runBuilder(

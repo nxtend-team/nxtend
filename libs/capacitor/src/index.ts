@@ -1,1 +1,1 @@
-export { runCapacitorCommand } from './utils/capacitor-command';
+export { runCapacitorCommand } from './utils/run-capacitor-command';
