@@ -27,6 +27,11 @@ describe('application', () => {
     join(__dirname, '../../../collection.json')
   );
 
+  testRunner.registerCollection(
+    '@nxtend/capacitor',
+    join(__dirname, '../../../../capacitor/collection.json')
+  );
+
   function testGeneratedFiles(tree: Tree, options: ApplicationSchematicSchema) {
     const componentExtension = options.js ? 'js' : 'tsx';
     const appFileName = options.pascalCaseFiles ? 'App' : 'app';
@@ -105,6 +110,14 @@ describe('application', () => {
       expect(
         tree.exists(`${projectRoot}/src/app/theme/variables.${options.style}`)
       ).toBeFalsy();
+
+      // Capacitor files
+      if (options.capacitor) {
+        expect(
+          tree.exists(`${projectRoot}-cap/capacitor.config.json`)
+        ).toBeTruthy();
+        expect(tree.exists(`${projectRoot}-cap/package.json`)).toBeTruthy();
+      }
     }
   }
 
@@ -448,6 +461,22 @@ describe('application', () => {
         expect(appTsx).toContain(`sanitizerEnabled: false`);
 
         testGeneratedFiles(tree, { ...options, disableSanitizer: true });
+      });
+    });
+  });
+
+  describe('--capacitor', () => {
+    describe('true', () => {
+      it('should generate Capacitor project', async () => {
+        const tree = await testRunner
+          .runSchematicAsync(
+            'application',
+            { ...options, capacitor: true },
+            appTree
+          )
+          .toPromise();
+
+        testGeneratedFiles(tree, { ...options, capacitor: true });
       });
     });
   });

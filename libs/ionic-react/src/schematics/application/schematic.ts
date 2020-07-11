@@ -107,7 +107,7 @@ function generateCapacitorProject(options: NormalizedSchema): Rule {
 export default function (options: ApplicationSchematicSchema): Rule {
   const normalizedOptions = normalizeOptions(options);
   return chain([
-    init(),
+    init(options),
     addDependencies(),
     generateNrwlReactApplication(options),
     addIonicFiles(normalizedOptions),

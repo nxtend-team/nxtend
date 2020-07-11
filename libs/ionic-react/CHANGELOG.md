@@ -1,5 +1,9 @@
 # Changelog
 
+# 3.0.2
+
+- properly initialize Capacitor plugin
+
 # 3.0.1
 
 ## Features
