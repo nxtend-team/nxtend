@@ -31,7 +31,7 @@ export function updateWebpackConfig(options: NormalizedSchema): Rule {
   });
 }
 
-export function updateWorkspaceForIonic(options: NormalizedSchema): Rule {
+export function addProject(options: NormalizedSchema): Rule {
   return chain([updateWorkspaceAssets(options), updateWebpackConfig(options)]);
 }
 

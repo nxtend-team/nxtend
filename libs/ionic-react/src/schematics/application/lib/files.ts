@@ -57,7 +57,7 @@ export function addBlankTemplate(options: NormalizedSchema): Rule {
   );
 }
 
-export function addIonicFiles(options: NormalizedSchema): Rule {
+export function addFiles(options: NormalizedSchema): Rule {
   return chain([addBaseTemplate(options), addBlankTemplate(options)]);
 }
 
