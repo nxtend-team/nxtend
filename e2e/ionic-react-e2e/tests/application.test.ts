@@ -22,7 +22,7 @@ describe('application e2e', () => {
   };
 
   async function generateApp(options: ApplicationSchematicSchema) {
-    ensureNxProject('@nxtend/ionic-react', 'dist/libs/ionic-react');
+    ensureNxProject('@nxtend/ionic-react', 'dist/packages/ionic-react');
     await runNxCommandAsync(
       `generate @nxtend/ionic-react:app ${options.name} \
        --style ${options.style} \
@@ -162,7 +162,7 @@ describe('application e2e', () => {
         directory: 'subdir',
       };
 
-      ensureNxProject('@nxtend/ionic-react', 'dist/libs/ionic-react');
+      ensureNxProject('@nxtend/ionic-react', 'dist/packages/ionic-react');
       await runNxCommandAsync(
         `generate @nxtend/ionic-react:app ${options.name} --directory ${options.directory} --capacitor false`
       );
@@ -181,7 +181,7 @@ describe('application e2e', () => {
         tags: 'e2etag,e2ePackage',
       };
 
-      ensureNxProject('@nxtend/ionic-react', 'dist/libs/ionic-react');
+      ensureNxProject('@nxtend/ionic-react', 'dist/packages/ionic-react');
       await runNxCommandAsync(
         `generate @nxtend/ionic-react:app ${options.name} --tags ${options.tags} --capacitor false`
       );

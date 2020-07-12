@@ -2,8 +2,8 @@
   "version": 1,
   "projects": {
     "ionic-react": {
-      "root": "libs/ionic-react",
-      "sourceRoot": "libs/ionic-react/src",
+      "root": "packages/ionic-react",
+      "sourceRoot": "packages/ionic-react/src",
       "projectType": "library",
       "schematics": {},
       "architect": {
@@ -12,46 +12,46 @@
           "options": {
             "linter": "eslint",
             "tsConfig": [
-              "libs/ionic-react/tsconfig.lib.json",
-              "libs/ionic-react/tsconfig.spec.json"
+              "packages/ionic-react/tsconfig.lib.json",
+              "packages/ionic-react/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/ionic-react/**/*"]
+            "exclude": ["**/node_modules/**", "!packages/ionic-react/**/*"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "libs/ionic-react/jest.config.js",
-            "tsConfig": "libs/ionic-react/tsconfig.spec.json",
+            "jestConfig": "packages/ionic-react/jest.config.js",
+            "tsConfig": "packages/ionic-react/tsconfig.spec.json",
             "passWithNoTests": true
           }
         },
         "build": {
           "builder": "@nrwl/node:package",
           "options": {
-            "outputPath": "dist/libs/ionic-react",
-            "tsConfig": "libs/ionic-react/tsconfig.lib.json",
-            "packageJson": "libs/ionic-react/package.json",
-            "main": "libs/ionic-react/src/index.ts",
+            "outputPath": "dist/packages/ionic-react",
+            "tsConfig": "packages/ionic-react/tsconfig.lib.json",
+            "packageJson": "packages/ionic-react/package.json",
+            "main": "packages/ionic-react/src/index.ts",
             "assets": [
-              "libs/ionic-react/*.md",
+              "packages/ionic-react/*.md",
               {
-                "input": "./libs/ionic-react/src",
+                "input": "./packages/ionic-react/src",
                 "glob": "**/*.!(ts)",
                 "output": "./src"
               },
               {
-                "input": "./libs/ionic-react",
+                "input": "./packages/ionic-react",
                 "glob": "collection.json",
                 "output": "."
               },
               {
-                "input": "./libs/ionic-react",
+                "input": "./packages/ionic-react",
                 "glob": "builders.json",
                 "output": "."
               },
               {
-                "input": "./libs/ionic-react",
+                "input": "./packages/ionic-react",
                 "glob": "migrations.json",
                 "output": "."
               }
@@ -62,25 +62,25 @@
     },
     "ionic-react-e2e": {
       "projectType": "application",
-      "root": "apps/ionic-react-e2e",
-      "sourceRoot": "apps/ionic-react-e2e/src",
+      "root": "e2e/ionic-react-e2e",
+      "sourceRoot": "e2e/ionic-react-e2e/src",
       "architect": {
         "e2e": {
           "builder": "@nrwl/nx-plugin:e2e",
           "options": {
             "target": "ionic-react:build",
             "npmPackageName": "@nxtend/ionic-react",
-            "pluginOutputPath": "dist/libs/ionic-react",
-            "jestConfig": "apps/ionic-react-e2e/jest.config.js",
-            "tsSpecConfig": "apps/ionic-react-e2e/tsconfig.spec.json"
+            "pluginOutputPath": "dist/packages/ionic-react",
+            "jestConfig": "e2e/ionic-react-e2e/jest.config.js",
+            "tsSpecConfig": "e2e/ionic-react-e2e/tsconfig.spec.json"
           }
         }
       }
     },
     "docs": {
-      "projectType": "application",
-      "root": "apps/docs",
-      "sourceRoot": "apps/docs/src",
+      "projectType": "library",
+      "root": "packages/docs",
+      "sourceRoot": "packages/docs/src",
       "architect": {
         "serve": {
           "builder": "@nx-plus/docusaurus:docusaurus",
@@ -91,14 +91,14 @@
         "build": {
           "builder": "@nx-plus/docusaurus:build-docusaurus",
           "options": {
-            "outputPath": "dist/apps/docs"
+            "outputPath": "dist/packages/docs"
           }
         }
       }
     },
     "capacitor": {
-      "root": "libs/capacitor",
-      "sourceRoot": "libs/capacitor/src",
+      "root": "packages/capacitor",
+      "sourceRoot": "packages/capacitor/src",
       "projectType": "library",
       "schematics": {},
       "architect": {
@@ -106,43 +106,43 @@
           "builder": "@nrwl/linter:lint",
           "options": {
             "linter": "eslint",
-            "config": "libs/capacitor/.eslintrc",
+            "config": "packages/capacitor/.eslintrc",
             "tsConfig": [
-              "libs/capacitor/tsconfig.lib.json",
-              "libs/capacitor/tsconfig.spec.json"
+              "packages/capacitor/tsconfig.lib.json",
+              "packages/capacitor/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/capacitor/**"]
+            "exclude": ["**/node_modules/**", "!packages/capacitor/**"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "libs/capacitor/jest.config.js",
-            "tsConfig": "libs/capacitor/tsconfig.spec.json",
+            "jestConfig": "packages/capacitor/jest.config.js",
+            "tsConfig": "packages/capacitor/tsconfig.spec.json",
             "passWithNoTests": true
           }
         },
         "build": {
           "builder": "@nrwl/node:package",
           "options": {
-            "outputPath": "dist/libs/capacitor",
-            "tsConfig": "libs/capacitor/tsconfig.lib.json",
-            "packageJson": "libs/capacitor/package.json",
-            "main": "libs/capacitor/src/index.ts",
+            "outputPath": "dist/packages/capacitor",
+            "tsConfig": "packages/capacitor/tsconfig.lib.json",
+            "packageJson": "packages/capacitor/package.json",
+            "main": "packages/capacitor/src/index.ts",
             "assets": [
-              "libs/capacitor/*.md",
+              "packages/capacitor/*.md",
               {
-                "input": "./libs/capacitor/src",
+                "input": "./packages/capacitor/src",
                 "glob": "**/*.!(ts)",
                 "output": "./src"
               },
               {
-                "input": "./libs/capacitor",
+                "input": "./packages/capacitor",
                 "glob": "collection.json",
                 "output": "."
               },
               {
-                "input": "./libs/capacitor",
+                "input": "./packages/capacitor",
                 "glob": "builders.json",
                 "output": "."
               }
@@ -153,17 +153,17 @@
     },
     "capacitor-e2e": {
       "projectType": "application",
-      "root": "apps/capacitor-e2e",
-      "sourceRoot": "apps/capacitor-e2e/src",
+      "root": "e2e/capacitor-e2e",
+      "sourceRoot": "e2e/capacitor-e2e/src",
       "architect": {
         "e2e": {
           "builder": "@nrwl/nx-plugin:e2e",
           "options": {
             "target": "capacitor:build",
             "npmPackageName": "@nxtend/capacitor",
-            "pluginOutputPath": "dist/libs/capacitor",
-            "jestConfig": "apps/capacitor-e2e/jest.config.js",
-            "tsSpecConfig": "apps/capacitor-e2e/tsconfig.spec.json"
+            "pluginOutputPath": "dist/packages/capacitor",
+            "jestConfig": "e2e/capacitor-e2e/jest.config.js",
+            "tsSpecConfig": "e2e/capacitor-e2e/tsconfig.spec.json"
           }
         }
       }

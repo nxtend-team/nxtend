@@ -1,5 +1,9 @@
 {
   "npmScope": "nxtend",
+  "workspaceLayout": {
+    "appsDir": "e2e",
+    "libsDir": "packages"
+  },
   "implicitDependencies": {
     "workspace.json": "*",
     "package.json": {

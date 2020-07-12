@@ -62,7 +62,7 @@ yarn build {plugin}
 Next, navigate to the build output directory:
 
 ```
-cd dist/libs/{plugin}
+cd dist/packages/{plugin}
 ```
 
 Next, if you want to test the plugin on a project that uses Yarn, run:

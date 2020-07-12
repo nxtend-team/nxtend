@@ -7,7 +7,7 @@ import {
 
 describe('capacitor-project e2e', () => {
   async function generateApp(plugin: string) {
-    ensureNxProject('@nxtend/ionic-react', 'dist/libs/ionic-react');
+    ensureNxProject('@nxtend/ionic-react', 'dist/packages/ionic-react');
     await runNxCommandAsync(
       `generate @nxtend/ionic-react:app ${plugin} --capacitor true`
     );
