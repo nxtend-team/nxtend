@@ -1,5 +1,11 @@
 # Changelog
 
+# 3.0.3
+
+## Bug Fixes
+
+- add `@nrwl/react` version based on the users Nx version
+
 # 3.0.2
 
 ## Bug Fixes

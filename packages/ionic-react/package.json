@@ -19,7 +19,6 @@
     "migrations": "./migrations.json"
   },
   "dependencies": {
-    "@nrwl/react": "*",
     "@nxtend/capacitor": "*"
   }
 }

@@ -14,6 +14,18 @@ describe('init', () => {
 
   beforeEach(() => {
     appTree = createEmptyWorkspace(Tree.empty());
+    appTree.overwrite(
+      'package.json',
+      `
+      {
+        "name": "test-name",
+        "dependencies": {},
+        "devDependencies": {
+          "@nrwl/workspace": "0.0.0"
+        }
+      }
+    `
+    );
   });
 
   it('should add Ionic React dependencies', async () => {
@@ -21,11 +33,9 @@ describe('init', () => {
       .runSchematicAsync('init', {}, appTree)
       .toPromise();
     const packageJson = readJsonInTree(result, 'package.json');
+
     expect(packageJson.dependencies['@ionic/react']).toBeDefined();
     expect(packageJson.dependencies['ionicons']).toBeDefined();
-    expect(packageJson.dependencies['react']).toBeDefined();
-    expect(packageJson.dependencies['react-dom']).toBeDefined();
-    expect(packageJson.devDependencies['@nrwl/react']).toBeDefined();
     expect(packageJson.devDependencies['@nxtend/ionic-react']).toBeDefined();
     expect(
       packageJson.devDependencies['@testing-library/user-event']
@@ -33,6 +43,35 @@ describe('init', () => {
     expect(
       packageJson.devDependencies['@testing-library/jest-dom']
     ).toBeDefined();
+  });
+
+  it('should add and initialize Nrwl React plugin', async () => {
+    const result = await testRunner
+      .runSchematicAsync('init', {}, appTree)
+      .toPromise();
+    const packageJson = readJsonInTree(result, 'package.json');
+
+    expect(packageJson.devDependencies['@nrwl/react']).toBeDefined();
+    expect(packageJson.devDependencies['@nrwl/react']).toEqual('0.0.0');
+
+    expect(packageJson.dependencies['react']).toBeDefined();
+    expect(packageJson.dependencies['react-dom']).toBeDefined();
+  });
+
+  it('should throw an error if Nrwl Workspace plugin is not installed', async () => {
+    appTree.overwrite(
+      'package.json',
+      `
+      {
+        "name": "test-name",
+        "dependencies": {},
+        "devDependencies": {}
+      }
+    `
+    );
+    await expect(
+      testRunner.runSchematicAsync('init', {}, appTree).toPromise()
+    ).rejects.toThrowError();
   });
 
   it('should set default collection', async () => {

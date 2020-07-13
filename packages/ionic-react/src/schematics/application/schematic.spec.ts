@@ -123,6 +123,18 @@ describe('application', () => {
 
   beforeEach(() => {
     appTree = createEmptyWorkspace(Tree.empty());
+    appTree.overwrite(
+      'package.json',
+      `
+      {
+        "name": "test-name",
+        "dependencies": {},
+        "devDependencies": {
+          "@nrwl/workspace": "0.0.0"
+        }
+      }
+    `
+    );
   });
 
   it('should add dependencies to package.json', async () => {
