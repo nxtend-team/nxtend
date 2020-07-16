@@ -1,3 +1,5 @@
+export const nxtendCapacitorVersion = '1.0.0';
+
 export const ionicReactVersion = '5.2.3';
 export const ionicReactRouterVersion = '5.2.3';
 export const ioniconsVersion = '5.0.1';

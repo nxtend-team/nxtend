@@ -6,6 +6,7 @@
 
 - add `@nrwl/react` version based on the users Nx version
 - don't unnecessarily add `@nxtend/ionic-react` dependency in `init` schematic
+- add `@nxtend/capacitor` 1.0.0 instead of `*`
 
 # 3.0.2
 
