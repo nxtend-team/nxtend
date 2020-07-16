@@ -5,6 +5,7 @@
 ## Bug Fixes
 
 - add `@nrwl/react` version based on the users Nx version
+- don't unnecessarily add `@nxtend/ionic-react` dependency in `init` schematic
 
 # 3.0.2
 

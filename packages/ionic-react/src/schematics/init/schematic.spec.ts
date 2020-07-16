@@ -36,7 +36,6 @@ describe('init', () => {
 
     expect(packageJson.dependencies['@ionic/react']).toBeDefined();
     expect(packageJson.dependencies['ionicons']).toBeDefined();
-    expect(packageJson.devDependencies['@nxtend/ionic-react']).toBeDefined();
     expect(
       packageJson.devDependencies['@testing-library/user-event']
     ).toBeDefined();

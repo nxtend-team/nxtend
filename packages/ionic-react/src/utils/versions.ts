@@ -1,5 +1,3 @@
-export const nxtendVersion = '*';
-
 export const ionicReactVersion = '5.2.3';
 export const ionicReactRouterVersion = '5.2.3';
 export const ioniconsVersion = '5.0.1';
