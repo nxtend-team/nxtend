@@ -1,32 +1,21 @@
-import {
-  chain,
-  externalSchematic,
-  noop,
-  Rule,
-  Tree,
-} from '@angular-devkit/schematics';
+import { noop, Rule, Tree } from '@angular-devkit/schematics';
 import { addDepsToPackageJson, readJsonInTree } from '@nrwl/workspace';
 import { nxtendCapacitorVersion } from '../../../utils/versions';
-import { InitSchematicSchema } from '../schema';
 
-export function addCapacitorPlugin(options: InitSchematicSchema): Rule {
+export function addCapacitorPlugin(): Rule {
   return (host: Tree) => {
     const packageJson = readJsonInTree(host, 'package.json');
 
     if (
-      options.capacitor &&
       !packageJson.dependencies['@nxtend/capacitor'] &&
       !packageJson.devDependencies['@nxtend/capacitor']
     ) {
-      return chain([
-        addDepsToPackageJson(
-          {},
-          {
-            '@nxtend/capacitor': nxtendCapacitorVersion,
-          }
-        ),
-        externalSchematic('@nxtend/capacitor', 'init', {}),
-      ]);
+      return addDepsToPackageJson(
+        {},
+        {
+          '@nxtend/capacitor': nxtendCapacitorVersion,
+        }
+      );
     } else {
       return noop();
     }

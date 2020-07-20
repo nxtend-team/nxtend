@@ -1,5 +1,11 @@
 # Changelog
 
+# 3.0.4
+
+## Bug Fixes
+
+- fix `Collection @nrwl/react not found` error if `@nrwl/react` is not added manually
+
 # 3.0.3
 
 ## Bug Fixes

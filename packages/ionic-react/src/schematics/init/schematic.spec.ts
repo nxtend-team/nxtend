@@ -1,4 +1,3 @@
-import * as ngSchematics from '@angular-devkit/schematics';
 import { Tree } from '@angular-devkit/schematics';
 import { SchematicTestRunner } from '@angular-devkit/schematics/testing';
 import { readJsonInTree } from '@nrwl/workspace';
@@ -56,24 +55,18 @@ describe('init', () => {
       .toPromise();
     const packageJson = readJsonInTree(result, 'package.json');
 
+    expect(packageJson.dependencies['@ionic/react']).toBeDefined();
+    expect(packageJson.dependencies['ionicons']).toBeDefined();
+
     expect(packageJson.devDependencies['@nrwl/react']).toBeDefined();
     expect(packageJson.devDependencies['@nrwl/react']).toEqual('0.0.0');
-
-    expect(packageJson.dependencies['react']).toBeDefined();
-    expect(packageJson.dependencies['react-dom']).toBeDefined();
-  });
-
-  it('should add and initialize nxtend Capacitor plugin', async () => {
-    const result = await testRunner
-      .runSchematicAsync('init', { capacitor: true }, appTree)
-      .toPromise();
-    const packageJson = readJsonInTree(result, 'package.json');
-
     expect(packageJson.devDependencies['@nxtend/capacitor']).toBeDefined();
-    expect(packageJson.devDependencies['@nxtend/capacitor']).not.toEqual('*');
-
-    expect(packageJson.dependencies['@capacitor/core']).toBeDefined();
-    expect(packageJson.devDependencies['@capacitor/cli']).toBeDefined();
+    expect(
+      packageJson.devDependencies['@testing-library/jest-dom']
+    ).toBeDefined();
+    expect(
+      packageJson.devDependencies['@testing-library/user-event']
+    ).toBeDefined();
   });
 
   it('should throw an error if Nrwl Workspace plugin is not installed', async () => {
@@ -99,23 +92,5 @@ describe('init', () => {
     const workspaceJson = readJsonInTree(result, 'workspace.json');
 
     expect(workspaceJson.cli.defaultCollection).toEqual('@nxtend/ionic-react');
-  });
-
-  describe('external schematics', () => {
-    it('should call the @nxtend/capacitor:init schematic', async () => {
-      const externalSchematicSpy = jest.spyOn(
-        ngSchematics,
-        'externalSchematic'
-      );
-      await testRunner
-        .runSchematicAsync('init', { capacitor: true }, appTree)
-        .toPromise();
-
-      expect(externalSchematicSpy).toBeCalledWith(
-        '@nxtend/capacitor',
-        'init',
-        expect.objectContaining({})
-      );
-    });
   });
 });

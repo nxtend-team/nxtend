@@ -55,3 +55,7 @@ Options:
   --dryRun                Runs through and reports activity without writing to disk.
   --help                  Show available options for project target.
 ```
+
+## Troubleshooting
+
+If you receive a `Collection cannot be resolved` error when attempting to generate an application then you likely need to execute the [`@nxtend/ionic-react:init`](./schematics/init) schematic.

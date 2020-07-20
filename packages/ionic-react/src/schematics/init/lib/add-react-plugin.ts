@@ -1,10 +1,4 @@
-import {
-  chain,
-  externalSchematic,
-  noop,
-  Rule,
-  Tree,
-} from '@angular-devkit/schematics';
+import { noop, Rule, Tree } from '@angular-devkit/schematics';
 import { addDepsToPackageJson, readJsonInTree } from '@nrwl/workspace';
 
 export function addReactPlugin(): Rule {
@@ -23,15 +17,12 @@ export function addReactPlugin(): Rule {
         throw new Error('@nrwl/workspace is not installed as a dependency.');
       }
 
-      return chain([
-        addDepsToPackageJson(
-          {},
-          {
-            '@nrwl/react': nxVersion,
-          }
-        ),
-        externalSchematic('@nrwl/react', 'init', {}),
-      ]);
+      return addDepsToPackageJson(
+        {},
+        {
+          '@nrwl/react': nxVersion,
+        }
+      );
     } else {
       return noop();
     }

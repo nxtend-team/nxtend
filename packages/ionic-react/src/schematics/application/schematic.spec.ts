@@ -480,6 +480,11 @@ describe('application', () => {
   describe('--capacitor', () => {
     describe('true', () => {
       it('should generate Capacitor project', async () => {
+        const externalSchematicSpy = jest.spyOn(
+          ngSchematics,
+          'externalSchematic'
+        );
+
         const tree = await testRunner
           .runSchematicAsync(
             'application',
@@ -487,6 +492,12 @@ describe('application', () => {
             appTree
           )
           .toPromise();
+
+        expect(externalSchematicSpy).toBeCalledWith(
+          '@nxtend/capacitor',
+          'capacitor-project',
+          expect.objectContaining({})
+        );
 
         testGeneratedFiles(tree, { ...options, capacitor: true });
       });

@@ -17,7 +17,7 @@ export default function (options: ApplicationSchematicSchema): Rule {
   const normalizedOptions = normalizeOptions(options);
 
   return chain([
-    init(options),
+    init(),
     addDependencies(),
     generateNrwlReactApplication(options),
     addFiles(normalizedOptions),
