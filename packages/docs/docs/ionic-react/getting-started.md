@@ -9,20 +9,17 @@ Adding the `@nxtend/ionic-react` plugin to your Nx workspace is trivial, and wor
 ## Initialize Plugin
 
 ```
-# Angular CLI
-ng add @nxtend/ionic-react
-```
-
-```
-# Nx CLI
-
 # npm
 npm install --save-dev --exact @nxtend/ionic-react
 
 # yarn
 yarn add --save-dev --exact @nxtend/ionic-react
 
+# Nx CLI
 nx generate @nxtend/ionic-react:init
+
+# Angular CLI
+ng generate @nxtend/ionic-react:init
 ```
 
 ## Generating Applications
