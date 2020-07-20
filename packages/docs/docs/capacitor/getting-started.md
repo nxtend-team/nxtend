@@ -16,15 +16,17 @@ ng add @nxtend/capacitor
 ```
 
 ```
-# Nx CLI
-
 # npm
 npm install --save-dev --exact @nxtend/capacitor
 
 # yarn
 yarn add --save-dev --exact @nxtend/capacitor
 
+# Nx CLI
 nx generate @nxtend/capacitor:init
+
+# Angular CLI
+ng generate @nxtend/capacitor:init
 ```
 
 ## Add Capacitor to Existing Project
