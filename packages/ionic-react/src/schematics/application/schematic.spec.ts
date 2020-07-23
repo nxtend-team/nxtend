@@ -1,4 +1,3 @@
-import * as ngSchematics from '@angular-devkit/schematics';
 import { Tree } from '@angular-devkit/schematics';
 import { SchematicTestRunner } from '@angular-devkit/schematics/testing';
 import { Linter, readJsonInTree } from '@nrwl/workspace';
@@ -194,48 +193,6 @@ describe('application', () => {
     expect(
       workspaceJson.schematics['@nxtend/ionic-react'].library.linter
     ).toEqual('eslint');
-  });
-
-  describe('external schematics', () => {
-    it('should call the @nrwl/react:application schematic', async () => {
-      const externalSchematicSpy = jest.spyOn(
-        ngSchematics,
-        'externalSchematic'
-      );
-      await testRunner
-        .runSchematicAsync('application', options, appTree)
-        .toPromise();
-
-      expect(externalSchematicSpy).toBeCalledWith(
-        '@nrwl/react',
-        'application',
-        expect.objectContaining({
-          routing: true,
-          unitTestRunner: 'none',
-          skipWorkspaceJson: true,
-        })
-      );
-    });
-
-    it('should call the @nrwl/jest:jest-project schematic', async () => {
-      const externalSchematicSpy = jest.spyOn(
-        ngSchematics,
-        'externalSchematic'
-      );
-      await testRunner
-        .runSchematicAsync('application', options, appTree)
-        .toPromise();
-
-      expect(externalSchematicSpy).toBeCalledWith(
-        '@nrwl/jest',
-        'jest-project',
-        expect.objectContaining({
-          supportTsx: true,
-          skipSerializers: true,
-          setupFile: 'web-components',
-        })
-      );
-    });
   });
 
   describe('--style', () => {
@@ -480,11 +437,6 @@ describe('application', () => {
   describe('--capacitor', () => {
     describe('true', () => {
       it('should generate Capacitor project', async () => {
-        const externalSchematicSpy = jest.spyOn(
-          ngSchematics,
-          'externalSchematic'
-        );
-
         const tree = await testRunner
           .runSchematicAsync(
             'application',
@@ -492,12 +444,6 @@ describe('application', () => {
             appTree
           )
           .toPromise();
-
-        expect(externalSchematicSpy).toBeCalledWith(
-          '@nxtend/capacitor',
-          'capacitor-project',
-          expect.objectContaining({})
-        );
 
         testGeneratedFiles(tree, { ...options, capacitor: true });
       });
