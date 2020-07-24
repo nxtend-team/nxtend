@@ -14,6 +14,14 @@ export function addDependencies(): Rule {
 
 export function configureTestingLibraryTypes(options: NormalizedSchema) {
   return updateJsonInTree(options.e2eRoot + '/tsconfig.json', (json) => {
+    if (!json.compilerOptions) {
+      json.compilerOptions = {};
+    }
+
+    if (!json.compilerOptions.types) {
+      json.compilerOptions.types = [];
+    }
+
     json.compilerOptions.types.push('@types/testing-library__cypress');
     return json;
   });

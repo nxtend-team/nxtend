@@ -1,5 +1,11 @@
 # Changelog
 
+# 3.0.5
+
+## Bug Fixes
+
+- improve null checks when updating `tsconfig.json` in application schematic to support Nx 10
+
 # 3.0.4
 
 ## Bug Fixes
