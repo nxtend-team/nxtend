@@ -71,7 +71,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "pretty-quick --staged --pattern '{apps,libs}/**/*.{js,jsx,ts,tsx,json,css,scss,md,html}'"
+      "pre-commit": "pretty-quick --staged --pattern '{packages,e2e}/**/*.{js,jsx,ts,tsx,json,css,scss,md,html}'"
     }
   }
 }
