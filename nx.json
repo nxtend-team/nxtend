@@ -10,9 +10,9 @@
       "dependencies": "*",
       "devDependencies": "*"
     },
-    "tsconfig.json": "*",
     "tslint.json": "*",
-    "nx.json": "*"
+    "nx.json": "*",
+    "tsconfig.base.json": "*"
   },
   "projects": {
     "ionic-react": {
@@ -43,5 +43,8 @@
         "showUsageWarnings": true
       }
     }
+  },
+  "affected": {
+    "defaultBase": "master"
   }
 }

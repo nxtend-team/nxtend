@@ -22,7 +22,6 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "packages/ionic-react/jest.config.js",
-            "tsConfig": "packages/ionic-react/tsconfig.spec.json",
             "passWithNoTests": true
           }
         },
@@ -118,7 +117,6 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "packages/capacitor/jest.config.js",
-            "tsConfig": "packages/capacitor/tsconfig.spec.json",
             "passWithNoTests": true
           }
         },
