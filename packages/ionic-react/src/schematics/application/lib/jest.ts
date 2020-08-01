@@ -12,7 +12,6 @@ import {
   url,
 } from '@angular-devkit/schematics';
 import { names, offsetFromRoot } from '@nrwl/workspace';
-import { Change } from '@nrwl/workspace/src/core/file-utils';
 import {
   getSourceNodes,
   insert,
@@ -45,7 +44,7 @@ export function configureMocks(options: NormalizedSchema) {
       ts.ScriptTarget.Latest
     );
 
-    const changes: Change[] = [];
+    const changes: InsertChange[] = [];
     const sourceNodes = getSourceNodes(sourceFile);
     const lastNode = sourceNodes[sourceNodes.length - 3];
     changes.push(
