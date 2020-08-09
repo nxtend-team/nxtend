@@ -5,6 +5,6 @@ module.exports = {
     '^.+\\.[tj]sx?$': 'ts-jest',
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'html'],
-  coverageDirectory: '../../coverage/libs/ionic-react',
+  coverageDirectory: '../../coverage/packages/ionic-react',
   globals: { 'ts-jest': { tsConfig: '<rootDir>/tsconfig.spec.json' } },
 };
