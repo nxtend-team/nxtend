@@ -23,7 +23,6 @@ describe('init', () => {
     const packageJson = readJsonInTree(result, 'package.json');
 
     expect(packageJson.dependencies['@capacitor/core']).toBeDefined();
-    expect(packageJson.devDependencies['@nxtend/capacitor']).toBeDefined();
     expect(packageJson.devDependencies['@capacitor/cli']).toBeDefined();
   });
 
