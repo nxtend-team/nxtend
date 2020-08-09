@@ -52,7 +52,6 @@ describe('capacitor schematic', () => {
       .toPromise();
 
     expect(tree.exists(`${projectRoot}/capacitor.config.json`)).toBeTruthy();
-    expect(tree.exists(`${projectRoot}/package.json`)).toBeTruthy();
   });
 
   it('should calculate webDir relative path', async () => {
@@ -109,9 +108,6 @@ describe('capacitor schematic', () => {
 
       expect(
         tree.exists(`apps/subdir/${options.name}/capacitor.config.json`)
-      ).toBeTruthy();
-      expect(
-        tree.exists(`apps/subdir/${options.name}/package.json`)
       ).toBeTruthy();
     });
 
