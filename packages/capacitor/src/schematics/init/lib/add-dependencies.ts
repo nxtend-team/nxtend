@@ -10,7 +10,6 @@ export function addDependencies(): Rule {
     {
       '@capacitor/cli': capacitorVersion,
       '@capacitor/android': capacitorVersion,
-      '@capacitor/electron': capacitorVersion,
       '@capacitor/ios': capacitorVersion,
     }
   );
