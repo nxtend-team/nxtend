@@ -44,6 +44,11 @@
       "version": "3.0.1",
       "description": "Upgrade Ionic to 5.2.3",
       "factory": "./src/migrations/update-3-0-1/upgrade-ionic-3-0-1"
+    },
+    "upgrade-ionic-3.1.0": {
+      "version": "3.1.0",
+      "description": "Upgrade Ionic to 5.3.1",
+      "factory": "./src/migrations/update-3-1-0/upgrade-ionic-3-1-0"
     }
   },
   "packageJsonUpdates": {
@@ -129,6 +134,19 @@
         },
         "@ionic/react-router": {
           "version": "5.2.3",
+          "alwaysAddToPackageJson": false
+        }
+      }
+    },
+    "3.1.0": {
+      "version": "3.1.0",
+      "packages": {
+        "@ionic/react": {
+          "version": "5.3.1",
+          "alwaysAddToPackageJson": false
+        },
+        "@ionic/react-router": {
+          "version": "5.3.1",
           "alwaysAddToPackageJson": false
         }
       }
