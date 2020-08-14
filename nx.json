@@ -16,8 +16,7 @@
   },
   "projects": {
     "ionic-react": {
-      "tags": [],
-      "implicitDependencies": ["capacitor"]
+      "tags": []
     },
     "ionic-react-e2e": {
       "tags": [],
