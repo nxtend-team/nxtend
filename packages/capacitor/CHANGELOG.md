@@ -4,4 +4,5 @@
 
 ## Features
 
+- upgrade Capacitor to 2.4.0
 - copy package.json from workspace root for cap commands
