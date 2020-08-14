@@ -109,14 +109,13 @@ describe('application', () => {
       expect(
         tree.exists(`${projectRoot}/src/app/theme/variables.${options.style}`)
       ).toBeFalsy();
+    }
 
-      // Capacitor files
-      if (options.capacitor) {
-        expect(
-          tree.exists(`${projectRoot}-cap/capacitor.config.json`)
-        ).toBeTruthy();
-        expect(tree.exists(`${projectRoot}-cap/package.json`)).toBeTruthy();
-      }
+    // Capacitor files
+    if (options.capacitor) {
+      expect(
+        tree.exists(`${projectRoot}-cap/capacitor.config.json`)
+      ).toBeTruthy();
     }
   }
 
