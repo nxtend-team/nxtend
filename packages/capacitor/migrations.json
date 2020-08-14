@@ -4,34 +4,7 @@
       "version": "1.1.0-beta.1",
       "description": "Delete Capacitor project package.json",
       "factory": "./src/migrations/update-1-1-0/delete-package-json-1-1-0"
-    },
-    "upgrade-capacitor-1-1-0": {
-      "version": "1.1.0-beta.1",
-      "description": "Upgrade Capacitor",
-      "factory": "./src/migrations/update-1-1-0/upgrade-capacitor-1-1-0"
     }
   },
-  "packageJsonUpdates": {
-    "1.1.0": {
-      "version": "1.1.0-beta.1",
-      "packages": {
-        "@capacitor/core": {
-          "version": "2.4.0",
-          "alwaysAddToPackageJson": false
-        },
-        "@capacitor/cli": {
-          "version": "2.4.0",
-          "alwaysAddToPackageJson": false
-        },
-        "@capacitor/android": {
-          "version": "2.4.0",
-          "alwaysAddToPackageJson": false
-        },
-        "@capacitor/ios": {
-          "version": "2.4.0",
-          "alwaysAddToPackageJson": false
-        }
-      }
-    }
-  }
+  "packageJsonUpdates": {}
 }
