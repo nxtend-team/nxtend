@@ -18,5 +18,7 @@
   "ng-update": {
     "migrations": "./migrations.json"
   },
-  "dependencies": {}
+  "peerDependencies": {
+    "@nxtend/capacitor": "*"
+  }
 }
