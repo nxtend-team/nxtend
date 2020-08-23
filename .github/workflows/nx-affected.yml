@@ -14,8 +14,8 @@ jobs:
       matrix:
         node-version: [12.x]
 
-    env:
-      NX_CLOUD_AUTH_TOKEN: ${{ secrets.NX_CLOUD_AUTH_TOKEN }}
+    # env:
+    #   NX_CLOUD_AUTH_TOKEN: ${{ secrets.NX_CLOUD_AUTH_TOKEN }}
 
     steps:
       - uses: actions/checkout@v2
@@ -28,7 +28,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - uses: bahmutov/npm-install@v1
       - run: git fetch --no-tags --prune --depth=5 origin master
-      - run: yarn affected:build --base=origin/master --with-deps
+      - run: yarn affected:build --base=origin/master
       - run: yarn affected:lint --base=origin/master
       - run: yarn affected:test --base=origin/master
-      - run: yarn affected:e2e --base=origin/master --skip-nx-cache
+      - run: yarn affected:e2e --base=origin/master
