@@ -31,4 +31,4 @@ jobs:
       - run: yarn affected:build --base=origin/master --with-deps
       - run: yarn affected:lint --base=origin/master
       - run: yarn affected:test --base=origin/master
-      - run: yarn affected:e2e --base=origin/master
+      - run: yarn affected:e2e --base=origin/master --skip-nx-cache
