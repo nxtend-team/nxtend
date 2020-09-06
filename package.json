@@ -47,7 +47,7 @@
     "@nrwl/cypress": "10.1.0",
     "@nrwl/eslint-plugin-nx": "10.1.0",
     "@nrwl/jest": "10.1.0",
-    "@nrwl/nx-cloud": "9.3.5",
+    "@nrwl/nx-cloud": "10.0.0",
     "@nrwl/nx-plugin": "10.1.0",
     "@nrwl/react": "10.1.0",
     "@nrwl/web": "10.1.0",

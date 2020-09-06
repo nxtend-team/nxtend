@@ -1887,14 +1887,16 @@
     webpack-merge "4.2.1"
     webpack-node-externals "1.7.2"
 
-"@nrwl/nx-cloud@9.3.5":
-  version "9.3.5"
-  resolved "https://registry.yarnpkg.com/@nrwl/nx-cloud/-/nx-cloud-9.3.5.tgz#72b324e6de55bb5e1dda752ee0556fb06f42de0c"
-  integrity sha512-zVF1FZbtxMRi+rC0Tg8dl90oBNlsYIfIxcs4vaBJmk2U80povO4MuVFie5mKrsvYeA4BJu6rdOqgRTA/dENTig==
+"@nrwl/nx-cloud@10.0.0":
+  version "10.0.0"
+  resolved "https://registry.yarnpkg.com/@nrwl/nx-cloud/-/nx-cloud-10.0.0.tgz#f88d83f6877cc3a3e7fb440b77053d2373261a5f"
+  integrity sha512-fEdP6lsAbyxRtkQNt6FvI/5+XFeuBOQpl7nc6pFKQlD4ZxNg0Ee9yLQdShiwSp0NTEPnmHf0NGCCr1volRUgWg==
   dependencies:
     axios "^0.19.0"
     node-machine-id "^1.1.12"
+    rxjs "6.5.5"
     tar "5.0.5"
+    uuid "^3.3.3"
 
 "@nrwl/nx-plugin@10.1.0":
   version "10.1.0"
@@ -14562,7 +14564,7 @@ utils-merge@1.0.1:
   resolved "https://registry.yarnpkg.com/utils-merge/-/utils-merge-1.0.1.tgz#9f95710f50a267947b2ccc124741c1028427e713"
   integrity sha1-n5VxD1CiZ5R7LMwSR0HBAoQn5xM=
 
-uuid@^3.0.1, uuid@^3.3.2, uuid@^3.4.0:
+uuid@^3.0.1, uuid@^3.3.2, uuid@^3.3.3, uuid@^3.4.0:
   version "3.4.0"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.4.0.tgz#b23e4358afa8a202fe7a100af1f5f883f02007ee"
   integrity sha512-HjSDRw6gZE5JMggctHBcjVak08+KEVhSIiDzFnT9S9aegmp85S/bReBVTb4QTFaRNptJ9kuYaNhnbNEOkbKb/A==
