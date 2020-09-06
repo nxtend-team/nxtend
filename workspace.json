@@ -54,7 +54,8 @@
                 "glob": "migrations.json",
                 "output": "."
               }
-            ]
+            ],
+            "srcRootForCompilationRoot": "packages/ionic-react"
           }
         }
       }
@@ -144,7 +145,8 @@
                 "glob": "builders.json",
                 "output": "."
               }
-            ]
+            ],
+            "srcRootForCompilationRoot": "packages/capacitor"
           }
         }
       }
