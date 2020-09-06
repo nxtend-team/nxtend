@@ -1,37 +1,40 @@
-it('should pass', () => {
-  expect(1).toBe(1);
+import {
+  checkFilesExist,
+  ensureNxProject,
+  patchPackageJsonForPlugin,
+  runNxCommandAsync,
+  runYarnInstall,
+  uniq,
+} from '@nrwl/nx-plugin/testing';
+
+describe('capacitor-project e2e', () => {
+  const asyncTimeout = 150000;
+
+  async function generateApp(plugin: string) {
+    ensureNxProject('@nxtend/ionic-react', 'dist/packages/ionic-react');
+    patchPackageJsonForPlugin('@nxtend/capacitor', 'dist/packages/capacitor');
+    runYarnInstall();
+    await runNxCommandAsync(
+      `generate @nxtend/ionic-react:app ${plugin} --capacitor true`
+    );
+  }
+
+  function testGeneratedFiles(plugin: string) {
+    expect(() => {
+      checkFilesExist(`apps/${plugin}-cap/capacitor.config.json`);
+    }).not.toThrow();
+  }
+
+  it(
+    'should generate Capacitor project',
+    async (done) => {
+      const plugin = uniq('capacitor');
+
+      await generateApp(plugin);
+      testGeneratedFiles(plugin);
+
+      done();
+    },
+    asyncTimeout
+  );
 });
-
-// import {
-//   checkFilesExist,
-//   ensureNxProject,
-//   runNxCommandAsync,
-//   uniq,
-// } from '@nrwl/nx-plugin/testing';
-
-// describe('capacitor-project e2e', () => {
-//   async function generateApp(plugin: string) {
-//     ensureNxProject('@nxtend/ionic-react', 'dist/packages/ionic-react');
-//     await runNxCommandAsync(
-//       `generate @nxtend/ionic-react:app ${plugin} --capacitor true`
-//     );
-//   }
-
-//   function testGeneratedFiles(plugin: string) {
-//     expect(() => {
-//       checkFilesExist(
-//         `apps/${plugin}-cap/capacitor.config.json`,
-//         `apps/${plugin}-cap/package.json`
-//       );
-//     }).not.toThrow();
-//   }
-
-//   it('should generate Capacitor project', async (done) => {
-//     const plugin = uniq('capacitor');
-
-//     await generateApp(plugin);
-//     testGeneratedFiles(plugin);
-
-//     done();
-//   }, 150000);
-// });
