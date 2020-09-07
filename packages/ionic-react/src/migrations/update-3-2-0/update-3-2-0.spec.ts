@@ -28,7 +28,7 @@ describe('Update 3.2.0', () => {
 
   it(`should upgrade @nxtend/capacitor`, async () => {
     const result = await schematicRunner
-      .runSchematicAsync('upgrade-nxtend-capacitor-3.2.0', {}, initialTree)
+      .runSchematicAsync('update-3.2.0', {}, initialTree)
       .toPromise();
 
     const { dependencies } = readJsonInTree(result, '/package.json');
