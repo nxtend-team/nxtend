@@ -37,4 +37,8 @@ describe('capacitor-project e2e', () => {
     },
     asyncTimeout
   );
+
+  it('should pass', () => {
+    expect(1).toEqual(1);
+  });
 });
