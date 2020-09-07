@@ -50,10 +50,10 @@
       "description": "Upgrade Ionic to 5.3.1",
       "factory": "./src/migrations/update-3-1-0/upgrade-ionic-3-1-0"
     },
-    "upgrade-nxtend-capacitor-3.2.0": {
+    "update-3.2.0": {
       "version": "3.2.0",
-      "description": "Upgrade @nxtend/capacitor to 1.1.0",
-      "factory": "./src/migrations/update-3-2-0/upgrade-nxtend-capacitor-3-2-0"
+      "description": "Update libraries",
+      "factory": "./src/migrations/update-3-2-0/update-3-2-0"
     }
   },
   "packageJsonUpdates": {
@@ -159,6 +159,14 @@
     "3.2.0": {
       "version": "3.2.0",
       "packages": {
+        "@ionic/react": {
+          "version": "5.3.2",
+          "alwaysAddToPackageJson": false
+        },
+        "@ionic/react-router": {
+          "version": "5.3.2",
+          "alwaysAddToPackageJson": false
+        },
         "@nxtend/capacitor": {
           "version": "1.1.0",
           "alwaysAddToPackageJson": false
