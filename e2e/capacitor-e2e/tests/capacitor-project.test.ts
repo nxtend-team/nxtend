@@ -1,21 +1,27 @@
 import {
   checkFilesExist,
   ensureNxProject,
-  patchPackageJsonForPlugin,
+  readFile,
   runNxCommandAsync,
   runYarnInstall,
   uniq,
+  updateFile,
 } from '@nrwl/nx-plugin/testing';
 
 describe('capacitor-project e2e', () => {
   const asyncTimeout = 150000;
 
   async function generateApp(plugin: string) {
-    ensureNxProject('@nxtend/ionic-react', 'dist/packages/ionic-react');
-    patchPackageJsonForPlugin('@nxtend/capacitor', 'dist/packages/capacitor');
+    ensureNxProject('@nxtend/capacitor', 'dist/packages/capacitor');
+
+    const packageJson = JSON.parse(readFile('package.json'));
+    packageJson.devDependencies['@nrwl/react'] = '*';
+    updateFile('package.json', JSON.stringify(packageJson));
     runYarnInstall();
+
+    await runNxCommandAsync(`generate @nrwl/react:app ${plugin}`);
     await runNxCommandAsync(
-      `generate @nxtend/ionic-react:app ${plugin} --capacitor true`
+      `generate @nxtend/capacitor:capacitor-project ${plugin}-cap --project ${plugin}`
     );
   }
 
