@@ -20,7 +20,10 @@ describe('Update 3.2.0', () => {
       'package.json',
       serializeJson({
         dependencies: {
+          '@ionic/react': '5.3.1',
+          '@ionic/react-router': '5.3.1',
           '@nxtend/capacitor': '1.0.0',
+          ionicons: '5.0.1',
         },
       })
     );
@@ -32,6 +35,9 @@ describe('Update 3.2.0', () => {
       .toPromise();
 
     const { dependencies } = readJsonInTree(result, '/package.json');
+    expect(dependencies['@ionic/react']).toEqual('5.3.2');
+    expect(dependencies['@ionic/react-router']).toEqual('5.3.2');
     expect(dependencies['@nxtend/capacitor']).toEqual('1.1.0');
+    expect(dependencies['ionicons']).toEqual('5.1.2');
   });
 });
