@@ -3,7 +3,8 @@
 # 3.2.0
 
 - upgrade `@nxtend/capacitor` to 1.1.0
-- upgrade Ionic to 3.2.0
+- upgrade Ionic to 5.3.2
+- upgrade Ionicons to 5.1.2
 
 # 3.1.0
 
