@@ -171,6 +171,10 @@
           "version": "1.1.0",
           "alwaysAddToPackageJson": false
         },
+        "@testing-library/jest-dom": {
+          "version": "5.11.4",
+          "alwaysAddToPackageJson": false
+        },
         "ionicons": {
           "version": "5.1.2",
           "alwaysAddToPackageJson": false

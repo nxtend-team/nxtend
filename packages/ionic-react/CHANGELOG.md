@@ -2,9 +2,10 @@
 
 # 3.2.0
 
-- upgrade `@nxtend/capacitor` to 1.1.0
-- upgrade Ionic to 5.3.2
-- upgrade Ionicons to 5.1.2
+- update `@nxtend/capacitor` to 1.1.0
+- update Ionic to 5.3.2
+- update Ionicons to 5.1.2
+- update `@testing-library/jest-dom` to 5.11.4
 
 # 3.1.0
 
