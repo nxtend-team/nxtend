@@ -24,6 +24,7 @@ describe('Update 3.2.0', () => {
           '@ionic/react-router': '5.3.1',
           '@nxtend/capacitor': '1.0.0',
           '@testing-library/jest-dom': '5.11.0',
+          '@testing-library/user-event': '12.0.11',
           ionicons: '5.0.1',
         },
       })
@@ -40,6 +41,7 @@ describe('Update 3.2.0', () => {
     expect(dependencies['@ionic/react-router']).toEqual('5.3.2');
     expect(dependencies['@nxtend/capacitor']).toEqual('1.1.0');
     expect(dependencies['@testing-library/jest-dom']).toEqual('5.11.4');
+    expect(dependencies['@testing-library/user-event']).toEqual('12.1.4');
     expect(dependencies['ionicons']).toEqual('5.1.2');
   });
 });

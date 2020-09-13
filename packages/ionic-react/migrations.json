@@ -175,6 +175,10 @@
           "version": "5.11.4",
           "alwaysAddToPackageJson": false
         },
+        "@testing-library/user-event": {
+          "version": "12.1.4",
+          "alwaysAddToPackageJson": false
+        },
         "ionicons": {
           "version": "5.1.2",
           "alwaysAddToPackageJson": false
