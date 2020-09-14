@@ -71,8 +71,7 @@
             "target": "ionic-react:build",
             "npmPackageName": "@nxtend/ionic-react",
             "pluginOutputPath": "dist/packages/ionic-react",
-            "jestConfig": "e2e/ionic-react-e2e/jest.config.js",
-            "tsSpecConfig": "e2e/ionic-react-e2e/tsconfig.spec.json"
+            "jestConfig": "e2e/ionic-react-e2e/jest.config.js"
           }
         }
       }
@@ -162,8 +161,7 @@
             "target": "capacitor:build",
             "npmPackageName": "@nxtend/capacitor",
             "pluginOutputPath": "dist/packages/capacitor",
-            "jestConfig": "e2e/capacitor-e2e/jest.config.js",
-            "tsSpecConfig": "e2e/capacitor-e2e/tsconfig.spec.json"
+            "jestConfig": "e2e/capacitor-e2e/jest.config.js"
           }
         }
       }
