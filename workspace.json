@@ -165,6 +165,75 @@
           }
         }
       }
+    },
+    "ionic-angular": {
+      "root": "packages/ionic-angular",
+      "sourceRoot": "packages/ionic-angular/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "tsConfig": [
+              "packages/ionic-angular/tsconfig.lib.json",
+              "packages/ionic-angular/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!packages/ionic-angular/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "packages/ionic-angular/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "build": {
+          "builder": "@nrwl/node:package",
+          "options": {
+            "outputPath": "dist/packages/ionic-angular",
+            "tsConfig": "packages/ionic-angular/tsconfig.lib.json",
+            "packageJson": "packages/ionic-angular/package.json",
+            "main": "packages/ionic-angular/src/index.ts",
+            "assets": [
+              "packages/ionic-angular/*.md",
+              {
+                "input": "./packages/ionic-angular/src",
+                "glob": "**/*.!(ts)",
+                "output": "./src"
+              },
+              {
+                "input": "./packages/ionic-angular",
+                "glob": "collection.json",
+                "output": "."
+              },
+              {
+                "input": "./packages/ionic-angular",
+                "glob": "builders.json",
+                "output": "."
+              }
+            ]
+          }
+        }
+      }
+    },
+    "ionic-angular-e2e": {
+      "projectType": "application",
+      "root": "e2e/ionic-angular-e2e",
+      "sourceRoot": "e2e/ionic-angular-e2e/src",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/nx-plugin:e2e",
+          "options": {
+            "target": "ionic-angular:build",
+            "npmPackageName": "@nxtend/ionic-angular",
+            "pluginOutputPath": "dist/packages/ionic-angular",
+            "jestConfig": "e2e/ionic-angular-e2e/jest.config.js"
+          }
+        }
+      }
     }
   },
   "cli": {

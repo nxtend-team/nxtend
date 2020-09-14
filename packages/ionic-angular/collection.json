@@ -1,0 +1,12 @@
+{
+  "$schema": "../../node_modules/@angular-devkit/schematics/collection-schema.json",
+  "name": "ionic-angular",
+  "version": "0.0.1",
+  "schematics": {
+    "ionic-angular": {
+      "factory": "./src/schematics/ionic-angular/schematic",
+      "schema": "./src/schematics/ionic-angular/schema.json",
+      "description": "ionic-angular schematic"
+    }
+  }
+}
