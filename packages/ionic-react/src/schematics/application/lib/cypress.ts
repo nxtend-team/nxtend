@@ -13,7 +13,7 @@ export function addDependencies(): Rule {
 }
 
 export function configureTestingLibraryTypes(options: NormalizedSchema) {
-  return updateJsonInTree(options.e2eRoot + '/tsconfig.json', (json) => {
+  return updateJsonInTree(options.e2eRoot + '/tsconfig.e2e.json', (json) => {
     if (!json.compilerOptions) {
       json.compilerOptions = {};
     }
@@ -22,7 +22,7 @@ export function configureTestingLibraryTypes(options: NormalizedSchema) {
       json.compilerOptions.types = [];
     }
 
-    json.compilerOptions.types.push('@types/testing-library__cypress');
+    json.compilerOptions.types.push('@testing-library/cypress');
     return json;
   });
 }

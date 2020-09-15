@@ -20,20 +20,30 @@ describe('Update 3.1.0', () => {
       'package.json',
       serializeJson({
         dependencies: {
-          '@ionic/react': '5.2.3',
-          '@ionic/react-router': '5.2.3',
+          '@ionic/react': '5.3.1',
+          '@ionic/react-router': '5.3.1',
+          '@nxtend/capacitor': '1.0.0',
+          '@testing-library/cypress': '6.0.0',
+          '@testing-library/jest-dom': '5.11.0',
+          '@testing-library/user-event': '12.0.11',
+          ionicons: '5.0.1',
         },
       })
     );
   });
 
-  it(`should upgrade testing libraries`, async () => {
+  it(`should upgrade @nxtend/capacitor`, async () => {
     const result = await schematicRunner
-      .runSchematicAsync('upgrade-ionic-3.1.0', {}, initialTree)
+      .runSchematicAsync('update-3.1.0', {}, initialTree)
       .toPromise();
 
     const { dependencies } = readJsonInTree(result, '/package.json');
-    expect(dependencies['@ionic/react']).toEqual('5.3.1');
-    expect(dependencies['@ionic/react-router']).toEqual('5.3.1');
+    expect(dependencies['@ionic/react']).toEqual('5.3.2');
+    expect(dependencies['@ionic/react-router']).toEqual('5.3.2');
+    expect(dependencies['@nxtend/capacitor']).toEqual('1.1.0');
+    expect(dependencies['@testing-library/cypress']).toEqual('7.0.0');
+    expect(dependencies['@testing-library/jest-dom']).toEqual('5.11.4');
+    expect(dependencies['@testing-library/user-event']).toEqual('12.1.5');
+    expect(dependencies['ionicons']).toEqual('5.1.2');
   });
 });
