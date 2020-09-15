@@ -1,6 +1,6 @@
 # Changelog
 
-# 3.2.0
+# 3.1.0
 
 # Features
 
@@ -16,12 +16,6 @@
 - `@testing-library/cypress`
   - `get` and `query` queries (which have been deprecated) have now been removed. Use `find` queries only.
   - **TS**: TypeScript type definitions have been brought into this module and no longer needs to be referenced from DefinitelyTyped
-
-# 3.1.0
-
-## Features
-
-- upgrade Ionic to 5.3.1
 
 # 3.0.5
 
