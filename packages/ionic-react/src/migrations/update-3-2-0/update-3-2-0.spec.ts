@@ -43,7 +43,7 @@ describe('Update 3.2.0', () => {
     expect(dependencies['@nxtend/capacitor']).toEqual('1.1.0');
     expect(dependencies['@testing-library/cypress']).toEqual('7.0.0');
     expect(dependencies['@testing-library/jest-dom']).toEqual('5.11.4');
-    expect(dependencies['@testing-library/user-event']).toEqual('12.1.4');
+    expect(dependencies['@testing-library/user-event']).toEqual('12.1.5');
     expect(dependencies['ionicons']).toEqual('5.1.2');
   });
 });
