@@ -9,7 +9,7 @@
 - update Ionicons to 5.1.2
 - update `@testing-library/cypress` to 7.0.0
 - update `@testing-library/jest-dom` to 5.11.4
-- update `@testing-library/user-event` to 12.1.4
+- update `@testing-library/user-event` to 12.1.5
 
 # BREAKING CHANGES
 

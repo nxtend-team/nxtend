@@ -180,7 +180,7 @@
           "alwaysAddToPackageJson": false
         },
         "@testing-library/user-event": {
-          "version": "12.1.4",
+          "version": "12.1.5",
           "alwaysAddToPackageJson": false
         },
         "ionicons": {
