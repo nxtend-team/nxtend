@@ -339,11 +339,11 @@ describe('application', () => {
 
         const tsconfigJson = readJsonInTree(
           tree,
-          `${projectRoot}-e2e/tsconfig.json`
+          `${projectRoot}-e2e/tsconfig.e2e.json`
         );
         expect(
           tsconfigJson.compilerOptions.types.includes(
-            '@types/testing-library__cypress'
+            '@testing-library/cypress'
           )
         ).toBeTruthy();
       });

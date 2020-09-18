@@ -5,7 +5,11 @@ import {
   SchematicContext,
   Tree,
 } from '@angular-devkit/schematics';
-import { readJsonInTree, updatePackagesInPackageJson } from '@nrwl/workspace';
+import {
+  formatFiles,
+  readJsonInTree,
+  updatePackagesInPackageJson,
+} from '@nrwl/workspace';
 import * as path from 'path';
 
 function displayInformation(host: Tree, context: SchematicContext) {
@@ -24,7 +28,8 @@ export default function update(): Rule {
     displayInformation,
     updatePackagesInPackageJson(
       path.join(__dirname, '../../../', 'migrations.json'),
-      '3.2.0'
+      '3.1.0'
     ),
+    formatFiles(),
   ]);
 }
