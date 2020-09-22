@@ -85,7 +85,7 @@ module.exports = {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
           editUrl:
-            'https://github.com/nxtend-team/nxtend/edit/master/packages/docs/',
+            'https://github.com/nxtend-team/nxtend/edit/main/packages/docs/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
