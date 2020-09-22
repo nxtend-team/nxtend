@@ -2,9 +2,9 @@ name: Nx Affected CI
 
 on:
   push:
-    branches: [master]
+    branches: [main]
   pull_request:
-    branches: [master]
+    branches: [main]
 
 jobs:
   build:
@@ -26,8 +26,8 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - uses: bahmutov/npm-install@v1
-      - run: git fetch --no-tags --prune --depth=5 origin master
-      - run: yarn affected:build --base=origin/master --with-deps
-      - run: yarn affected:lint --base=origin/master
-      - run: yarn affected:test --base=origin/master
-      - run: yarn affected:e2e --base=origin/master
+      - run: git fetch --no-tags --prune --depth=5 origin main
+      - run: yarn affected:build --base=origin/main --with-deps
+      - run: yarn affected:lint --base=origin/main
+      - run: yarn affected:test --base=origin/main
+      - run: yarn affected:e2e --base=origin/main

@@ -1,5 +1,8 @@
 {
   "npmScope": "nxtend",
+  "affected": {
+    "defaultBase": "main"
+  },
   "workspaceLayout": {
     "appsDir": "e2e",
     "libsDir": "packages"
@@ -51,8 +54,5 @@
         "showUsageWarnings": true
       }
     }
-  },
-  "affected": {
-    "defaultBase": "master"
   }
 }
