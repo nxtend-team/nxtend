@@ -1,0 +1,8 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "id": "IonicAngularInit",
+  "title": "Add Nxtend Ionic Angular Schematics",
+  "type": "object",
+  "properties": {},
+  "required": []
+}

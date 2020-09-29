@@ -37,7 +37,8 @@
       "implicitDependencies": ["capacitor"]
     },
     "ionic-angular": {
-      "tags": []
+      "tags": [],
+      "implicitDependencies": ["capacitor"]
     },
     "ionic-angular-e2e": {
       "tags": [],
