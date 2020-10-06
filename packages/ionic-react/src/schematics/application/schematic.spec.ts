@@ -114,7 +114,7 @@ describe('application', () => {
     // Capacitor files
     if (options.capacitor) {
       expect(
-        tree.exists(`${projectRoot}-cap/capacitor.config.json`)
+        tree.exists(`${projectRoot}/capacitor.config.json`)
       ).toBeTruthy();
     }
   }

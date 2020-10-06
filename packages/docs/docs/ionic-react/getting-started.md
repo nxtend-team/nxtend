@@ -56,6 +56,28 @@ Options:
   --help                  Show available options for project target.
 ```
 
+## Add Native Platform
+
+`@nxtend/ionic-react` uses the `@nxtend/capacitor` plugin to add Capacitor support to an Ionic React application in an Nx workspace. By default, Capacitor configuration are added to new `@nxtend/ionic-react` applications. To disable this, pass `--capacitor false` into the `@nxtend/ionic-react` application schematic command.
+
+```
+nx run {frontend project name}:add --platform {native platform}
+
+nx run mobile-app:add --platform android
+```
+
+## Open Native Platform
+
+Finally, you can open the native platform in it's respective IDE:
+
+```
+nx run {frontend project name}:open --platform {native platform}
+
+nx run mobile-app:open --platform android
+```
+
+To learn more about using Capacitor with `@nxtend/capacitor` then visit the [Getting Started](../capacitor/getting-started.md) page.
+
 ## Troubleshooting
 
 If you receive a `Collection cannot be resolved` error when attempting to generate an application then you likely need to execute the [`@nxtend/ionic-react:init`](./schematics/init) schematic.

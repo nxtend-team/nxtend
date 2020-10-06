@@ -1,38 +1,30 @@
+import { updateWorkspaceInTree } from '@nrwl/workspace';
 import { NormalizedSchema } from '../schema';
-import { updateWorkspace, ProjectType } from '@nrwl/workspace';
 
 export function addProject(options: NormalizedSchema) {
-  return updateWorkspace((workspace) => {
-    const project = workspace.projects.add({
-      name: options.projectName,
-      root: options.projectRoot,
-      sourceRoot: `${options.projectRoot}/src`,
-      projectType: ProjectType.Application,
-    });
+  return updateWorkspaceInTree((json) => {
+    const architect = json.projects[options.project].architect;
 
-    project.targets.add({
-      name: 'add',
+    architect.add = {
       builder: '@nxtend/capacitor:add',
-    });
+    };
 
-    project.targets.add({
-      name: 'copy',
+    architect.copy = {
       builder: '@nxtend/capacitor:copy',
-    });
+    };
 
-    project.targets.add({
-      name: 'open',
+    architect.open = {
       builder: '@nxtend/capacitor:open',
-    });
+    };
 
-    project.targets.add({
-      name: 'sync',
+    architect.sync = {
       builder: '@nxtend/capacitor:sync',
-    });
+    };
 
-    project.targets.add({
-      name: 'update',
+    architect.update = {
       builder: '@nxtend/capacitor:update',
-    });
+    };
+
+    return json;
   });
 }

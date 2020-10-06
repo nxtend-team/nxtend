@@ -6,7 +6,7 @@ import {
   Rule,
   url,
 } from '@angular-devkit/schematics';
-import { names, offsetFromRoot } from '@nrwl/workspace';
+import { names } from '@nrwl/workspace';
 import { NormalizedSchema } from '../schema';
 
 export function generateFiles(options: NormalizedSchema): Rule {
@@ -14,8 +14,7 @@ export function generateFiles(options: NormalizedSchema): Rule {
     apply(url(`./files`), [
       applyTemplates({
         ...options,
-        ...names(options.name),
-        offsetFromRoot: offsetFromRoot(options.projectRoot),
+        ...names(options.project),
       }),
       move(options.projectRoot),
     ])
