@@ -21,13 +21,13 @@ describe('capacitor-project e2e', () => {
 
     await runNxCommandAsync(`generate @nrwl/react:app ${plugin}`);
     await runNxCommandAsync(
-      `generate @nxtend/capacitor:capacitor-project ${plugin}-cap --project ${plugin}`
+      `generate @nxtend/capacitor:capacitor-project --project ${plugin}`
     );
   }
 
   function testGeneratedFiles(plugin: string) {
     expect(() => {
-      checkFilesExist(`apps/${plugin}-cap/capacitor.config.json`);
+      checkFilesExist(`apps/${plugin}/capacitor.config.json`);
     }).not.toThrow();
   }
 

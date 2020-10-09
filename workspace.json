@@ -143,6 +143,11 @@
                 "input": "./packages/capacitor",
                 "glob": "builders.json",
                 "output": "."
+              },
+              {
+                "input": "./packages/capacitor",
+                "glob": "migrations.json",
+                "output": "."
               }
             ],
             "srcRootForCompilationRoot": "packages/capacitor"

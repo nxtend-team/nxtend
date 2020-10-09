@@ -1,5 +1,11 @@
 # Changelog
 
+# 2.0.0
+
+# Features
+
+- add Capacitor configs to frontend application
+
 # 1.1.0
 
 ## Features

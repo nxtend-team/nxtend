@@ -10,12 +10,11 @@ describe('capacitor schematic', () => {
 
   const options: CapacitorSchematicSchema = {
     project: 'capacitor-app',
-    name: 'capacitor-app-cap',
     appId: 'com.example.capacitorapp',
     appName: 'Capacitor App',
   };
 
-  const projectRoot = `apps/${options.name}`;
+  const projectRoot = `apps/${options.project}`;
 
   const testRunner = new SchematicTestRunner(
     '@nxtend/capacitor',
@@ -31,6 +30,7 @@ describe('capacitor schematic', () => {
           workspace.projects.add({
             name: options.project,
             root: `apps/${options.project}`,
+            architect: {},
           });
         }),
         appTree
@@ -74,77 +74,17 @@ describe('capacitor schematic', () => {
       .toPromise();
     const workspaceJson = readJsonInTree(tree, '/workspace.json');
 
-    expect(workspaceJson.projects[options.name].projectType).toEqual(
-      `application`
-    );
-    expect(workspaceJson.projects[options.name].root).toEqual(projectRoot);
-    expect(workspaceJson.projects[options.name].sourceRoot).toEqual(
-      `${projectRoot}/src`
-    );
-
-    expect(workspaceJson.projects[options.name].architect.copy.builder).toEqual(
-      '@nxtend/capacitor:copy'
-    );
-    expect(workspaceJson.projects[options.name].architect.open.builder).toEqual(
-      '@nxtend/capacitor:open'
-    );
-    expect(workspaceJson.projects[options.name].architect.sync.builder).toEqual(
-      '@nxtend/capacitor:sync'
-    );
     expect(
-      workspaceJson.projects[options.name].architect.update.builder
+      workspaceJson.projects[options.project].architect.copy.builder
+    ).toEqual('@nxtend/capacitor:copy');
+    expect(
+      workspaceJson.projects[options.project].architect.open.builder
+    ).toEqual('@nxtend/capacitor:open');
+    expect(
+      workspaceJson.projects[options.project].architect.sync.builder
+    ).toEqual('@nxtend/capacitor:sync');
+    expect(
+      workspaceJson.projects[options.project].architect.update.builder
     ).toEqual('@nxtend/capacitor:update');
-  });
-
-  describe('--directory', () => {
-    it('should add files to subdir', async () => {
-      const tree = await testRunner
-        .runSchematicAsync(
-          'capacitor-project',
-          { ...options, directory: 'subdir' },
-          appTree
-        )
-        .toPromise();
-
-      expect(
-        tree.exists(`apps/subdir/${options.name}/capacitor.config.json`)
-      ).toBeTruthy();
-    });
-
-    it('should calculate webDir relative path', async () => {
-      const tree = await testRunner
-        .runSchematicAsync(
-          'capacitor-project',
-          { ...options, directory: 'subdir' },
-          appTree
-        )
-        .toPromise();
-      const capacitorConfigJson = readJsonInTree(
-        tree,
-        `apps/subdir/${options.name}/capacitor.config.json`
-      );
-
-      expect(capacitorConfigJson.webDir).toEqual(
-        `../../../dist/apps/${options.project}`
-      );
-    });
-
-    it('should update workspace.json', async () => {
-      const tree = await testRunner
-        .runSchematicAsync(
-          'capacitor-project',
-          { ...options, directory: 'subdir' },
-          appTree
-        )
-        .toPromise();
-      const workspaceJson = readJsonInTree(tree, '/workspace.json');
-
-      expect(workspaceJson.projects[`subdir-${options.name}`].root).toEqual(
-        `apps/subdir/${options.name}`
-      );
-      expect(
-        workspaceJson.projects[`subdir-${options.name}`].sourceRoot
-      ).toEqual(`apps/subdir/${options.name}/src`);
-    });
   });
 });

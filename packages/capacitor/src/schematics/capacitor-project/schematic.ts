@@ -1,5 +1,4 @@
 import { chain, Rule, Tree } from '@angular-devkit/schematics';
-import { addProjectToNxJsonInTree } from '@nrwl/workspace';
 import init from '../init/schematic';
 import { addProject } from './lib/add-project';
 import { generateFiles } from './lib/generate-files';
@@ -13,9 +12,6 @@ export default function (options: CapacitorSchematicSchema): Rule {
       init(),
       generateFiles(normalizedOptions),
       addProject(normalizedOptions),
-      addProjectToNxJsonInTree(normalizedOptions.projectName, {
-        tags: [],
-      }),
     ]);
   };
 }

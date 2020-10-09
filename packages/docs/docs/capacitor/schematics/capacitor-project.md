@@ -24,16 +24,6 @@ Type: `string`
 
 The name of the frontend project for Capacitor.
 
-### --directory
-
-Alias(es): d
-
-Default: `null`
-
-Type: `string`
-
-The directory of the new Capacitor project.
-
 ### --appId
 
 Default: `io.ionic.starter`

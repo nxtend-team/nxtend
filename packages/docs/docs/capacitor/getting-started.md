@@ -34,23 +34,21 @@ ng generate @nxtend/capacitor:init
 Once the plugin has been added to your Nx workspace you can generate a Capacitor project from an existing frontend project:
 
 ```
-nx generate @nxtend/capacitor:capacitor-project {Capacitor project name} --project {frontend project name}
+nx generate @nxtend/capacitor:capacitor-project --project {frontend project name}
 
-nx generate @nxtend/capacitor:capacitor-project mobile-app-cap --project mobile-app
+nx generate @nxtend/capacitor:capacitor-project --project mobile-app
 ```
 
 Nx will ask you some questions about the application, but you can customize it further by passing these options:
 
 ```
-nx generate @nxtend/capacitor:capacitor-project [name] [options,...]
+nx generate @nxtend/capacitor:capacitor-project [options,...]
 
 Options:
   --project               The name of the frontend project for Capacitor.
-  --name                  The name of the Capacitor project.
-  --directory             A directory where the project is placed
   --appId                 The app ID for the project. (default: io.ionic.starter)
-  --appName               The app name for the project.
-  --webDir                The directory of your projects built web assets
+  --appName               The application name for the project.
+  --webDir                The directory of your projects built web assets.
   --dryRun                Runs through and reports activity without writing to disk.
   --help                  Show available options for project target.
 ```
@@ -60,9 +58,9 @@ Options:
 Now that a Capacitor project has been added to your Nx workspace you can begin adding support for native platforms. Currently, Capacitor supports Android and iOS with Electron support being in beta.
 
 ```
-nx run {Capacitor project name}:add --platform {native platform}
+nx run {frontend project name}:add --platform {native platform}
 
-nx run mobile-app-cap:add --platform android
+nx run mobile-app:add --platform android
 ```
 
 ## Sync Native Platform
@@ -70,19 +68,19 @@ nx run mobile-app-cap:add --platform android
 Running the sync command will update the native platform dependencies and copy a build of your frontend project to the Capacitor project:
 
 ```
-nx run {Capacitor project name}:sync --platform {native platform}
+nx run {frontend project name}:sync --platform {native platform}
 
-nx run mobile-app-cap:sync --platform android
+nx run mobile-app:sync --platform android
 ```
 
 ## Open Native Platform
 
-Finally, you can open the native platform:
+Finally, you can open the native platform in it's respective IDE:
 
 ```
-nx run {Capacitor project name}:open --platform {native platform}
+nx run {frontend project name}:open --platform {native platform}
 
-nx run mobile-app-cap:open --platform android
+nx run mobile-app:open --platform android
 ```
 
 To learn more about Capacitor, including the native API's available, please read the [official Capacitor documentation](https://capacitorjs.com/docs).
