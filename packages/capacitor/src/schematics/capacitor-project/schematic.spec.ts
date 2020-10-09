@@ -5,13 +5,14 @@ import { createEmptyWorkspace } from '@nrwl/workspace/testing';
 import { join } from 'path';
 import { CapacitorSchematicSchema } from './schema';
 
-describe('capacitor schematic', () => {
+describe('capacitor-project', () => {
   let appTree: Tree;
 
   const options: CapacitorSchematicSchema = {
     project: 'capacitor-app',
     appId: 'com.example.capacitorapp',
     appName: 'Capacitor App',
+    npmClient: 'yarn',
   };
 
   const projectRoot = `apps/${options.project}`;
@@ -86,5 +87,92 @@ describe('capacitor schematic', () => {
     expect(
       workspaceJson.projects[options.project].architect.update.builder
     ).toEqual('@nxtend/capacitor:update');
+  });
+
+  it('should add project package.json', async () => {
+    const tree = await testRunner
+      .runSchematicAsync('capacitor-project', options, appTree)
+      .toPromise();
+    const packageJson = readJsonInTree(
+      tree,
+      `apps/${options.project}/package.json`
+    );
+
+    expect(packageJson.devDependencies[`@capacitor/cli`]).toBeDefined();
+  });
+
+  it('should update project package.json', async () => {
+    appTree.create(
+      `apps/${options.project}/package.json`,
+      JSON.stringify({
+        name: 'test-name',
+      })
+    );
+    const tree = await testRunner
+      .runSchematicAsync('capacitor-project', options, appTree)
+      .toPromise();
+    const packageJson = readJsonInTree(
+      tree,
+      `apps/${options.project}/package.json`
+    );
+
+    expect(packageJson.devDependencies[`@capacitor/cli`]).toBeDefined();
+  });
+
+  it('should add project .gitignore', async () => {
+    const tree = await testRunner
+      .runSchematicAsync('capacitor-project', options, appTree)
+      .toPromise();
+    const gitignore = tree
+      .read(`apps/${options.project}/.gitignore`)
+      .toString();
+
+    expect(gitignore).toContain('/node_modules');
+  });
+
+  it('should update project .gitignore', async () => {
+    appTree.create(`apps/${options.project}/.gitignore`, '/dist\n');
+    const tree = await testRunner
+      .runSchematicAsync('capacitor-project', options, appTree)
+      .toPromise();
+    const gitignore = tree
+      .read(`apps/${options.project}/.gitignore`)
+      .toString();
+
+    expect(gitignore).toContain('/dist\n/node_modules');
+  });
+
+  describe('--npmClient', () => {
+    it('npm', async () => {
+      const tree = await testRunner
+        .runSchematicAsync(
+          'capacitor-project',
+          { ...options, npmClient: 'npm' },
+          appTree
+        )
+        .toPromise();
+      const capacitorConfigJson = readJsonInTree(
+        tree,
+        `apps/${options.project}/capacitor.config.json`
+      );
+
+      expect(capacitorConfigJson.npmClient).toEqual('npm');
+    });
+
+    it('yarn', async () => {
+      const tree = await testRunner
+        .runSchematicAsync(
+          'capacitor-project',
+          { ...options, npmClient: 'yarn' },
+          appTree
+        )
+        .toPromise();
+      const capacitorConfigJson = readJsonInTree(
+        tree,
+        `apps/${options.project}/capacitor.config.json`
+      );
+
+      expect(capacitorConfigJson.npmClient).toEqual('yarn');
+    });
   });
 });

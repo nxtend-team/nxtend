@@ -24,10 +24,19 @@
       "description": "The application name for the project.",
       "x-prompt": "What app name would you like to use?"
     },
+    "npmClient": {
+      "type": "string",
+      "description": "The npm client to use for Capacitor.",
+      "x-prompt": {
+        "message": "What npm client would you like to use?",
+        "type": "list",
+        "items": ["yarn", "npm"]
+      }
+    },
     "webDir": {
       "type": "string",
       "description": "The directory of your projects built web assets."
     }
   },
-  "required": ["project"]
+  "required": ["project", "npmClient"]
 }

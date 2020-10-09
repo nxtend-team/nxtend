@@ -5,6 +5,11 @@
 # Features
 
 - add Capacitor configs to frontend application
+- add or update `package.json` in project folder when generating a Capacitor project
+
+# BREAKING CHANGES
+
+- Capacitor plugins must now be added to both the root and project-level `package.json`
 
 # 1.1.0
 

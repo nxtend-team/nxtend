@@ -107,7 +107,7 @@ describe('application e2e', () => {
     }
   }
 
-  async function buildAndTestGeneratedApp(plugin: string) {
+  async function buildAndTestApp(plugin: string) {
     const buildResults = await runNxCommandAsync(`build ${plugin}`);
     expect(buildResults.stdout).toContain('Built at');
 
@@ -131,7 +131,7 @@ describe('application e2e', () => {
 
       await generateApp(options);
       testGeneratedFiles(options);
-      await buildAndTestGeneratedApp(options.name);
+      await buildAndTestApp(options.name);
 
       done();
     },
@@ -179,7 +179,7 @@ describe('application e2e', () => {
           `generate @nxtend/ionic-react:app ${options.name} --directory ${options.directory} --capacitor false`
         );
         testGeneratedFiles(options);
-        await buildAndTestGeneratedApp(`${options.directory}-${options.name}`);
+        await buildAndTestApp(`${options.directory}-${options.name}`);
 
         done();
       },
@@ -208,7 +208,7 @@ describe('application e2e', () => {
           'e2ePackage',
         ]);
 
-        await buildAndTestGeneratedApp(options.name);
+        await buildAndTestApp(options.name);
 
         done();
       },
@@ -261,7 +261,7 @@ describe('application e2e', () => {
 
           await generateApp(options);
           testGeneratedFiles(options);
-          await buildAndTestGeneratedApp(options.name);
+          await buildAndTestApp(options.name);
 
           done();
         },
@@ -281,7 +281,7 @@ describe('application e2e', () => {
 
           await generateApp(options);
           testGeneratedFiles(options);
-          await buildAndTestGeneratedApp(options.name);
+          await buildAndTestApp(options.name);
 
           done();
         },
@@ -301,7 +301,7 @@ describe('application e2e', () => {
 
           await generateApp(options);
           testGeneratedFiles(options);
-          await buildAndTestGeneratedApp(options.name);
+          await buildAndTestApp(options.name);
 
           done();
         },
@@ -321,7 +321,7 @@ describe('application e2e', () => {
 
           await generateApp(options);
           testGeneratedFiles(options);
-          await buildAndTestGeneratedApp(options.name);
+          await buildAndTestApp(options.name);
 
           done();
         },
@@ -341,7 +341,7 @@ describe('application e2e', () => {
 
           await generateApp(options);
           testGeneratedFiles(options);
-          await buildAndTestGeneratedApp(options.name);
+          await buildAndTestApp(options.name);
 
           done();
         },
@@ -363,7 +363,7 @@ describe('application e2e', () => {
 
           await generateApp(options);
           testGeneratedFiles(options);
-          await buildAndTestGeneratedApp(options.name);
+          await buildAndTestApp(options.name);
 
           done();
         },
@@ -385,7 +385,7 @@ describe('application e2e', () => {
 
           await generateApp(options);
           testGeneratedFiles(options);
-          await buildAndTestGeneratedApp(options.name);
+          await buildAndTestApp(options.name);
 
           done();
         },
@@ -407,7 +407,7 @@ describe('application e2e', () => {
 
           await generateApp(options);
           testGeneratedFiles(options);
-          await buildAndTestGeneratedApp(options.name);
+          await buildAndTestApp(options.name);
 
           done();
         },
