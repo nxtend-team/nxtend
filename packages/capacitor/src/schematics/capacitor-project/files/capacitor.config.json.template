@@ -2,7 +2,7 @@
   "appId": "<%= appId %>",
   "appName": "<%= appName %>",
   "bundledWebRuntime": false,
-  "npmClient": "npm",
+  "npmClient": "<%= npmClient %>",
   "webDir": "<%= pathToRoot %>/<%= webDir %>",
   "plugins": {
     "SplashScreen": {

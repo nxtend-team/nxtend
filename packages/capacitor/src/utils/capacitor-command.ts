@@ -1,9 +1,8 @@
 import { BuilderContext, BuilderOutput } from '@angular-devkit/architect';
 import { NodeJsSyncHost } from '@angular-devkit/core/node';
-import { execSync } from 'child_process';
 import * as fs from 'fs';
 import { join } from 'path';
-import { from, Observable, of } from 'rxjs';
+import { from, Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { getProjectRoot } from './project-root';
 
@@ -16,23 +15,27 @@ export function runCapacitorCommand(
 
   return from(getProjectRoot(context, host)).pipe(
     switchMap((projectRoot) => {
-      fs.copyFileSync(
-        `${context.workspaceRoot}/package.json`,
-        `${context.workspaceRoot}/${projectRoot}/package.json`
+      const frontendProjectRoot = join(context.workspaceRoot, projectRoot);
+
+      const capacitorConfigJson = JSON.parse(
+        fs
+          .readFileSync(`${frontendProjectRoot}/capacitor.config.json`)
+          .toString()
       );
 
-      try {
-        execSync(
-          `node ${context.workspaceRoot}/node_modules/.bin/cap ${command} ${platform}`,
-          { cwd: join(context.workspaceRoot, projectRoot) }
-        );
-
-        return of({ success: false });
-      } catch {
-        return of({ success: false });
-      } finally {
-        fs.unlinkSync(`${context.workspaceRoot}/${projectRoot}/package.json`);
-      }
-    })
+      return context.scheduleBuilder('@nrwl/workspace:run-commands', {
+        cwd: frontendProjectRoot,
+        parallel: false,
+        commands: [
+          {
+            command: `${capacitorConfigJson.npmClient} install`,
+          },
+          {
+            command: `node ${context.workspaceRoot}/node_modules/.bin/cap ${command} ${platform}`,
+          },
+        ],
+      });
+    }),
+    switchMap((run) => run.output)
   );
 }

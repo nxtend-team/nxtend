@@ -3,6 +3,7 @@ export interface CapacitorSchematicSchema {
   appId: string;
   appName?: string;
   webDir?: string;
+  npmClient: string;
 }
 
 export interface NormalizedSchema extends CapacitorSchematicSchema {
