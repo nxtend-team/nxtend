@@ -76,17 +76,104 @@ describe('capacitor-project', () => {
     const workspaceJson = readJsonInTree(tree, '/workspace.json');
 
     expect(
+      workspaceJson.projects[options.project].architect.add.builder
+    ).toEqual('@nxtend/capacitor:command');
+    expect(
+      workspaceJson.projects[options.project].architect.add.options
+    ).toEqual({
+      command: 'add',
+      platform: '',
+    });
+    expect(
+      workspaceJson.projects[options.project].architect.add.configurations[
+        'ios'
+      ].platform
+    ).toEqual('ios');
+    expect(
+      workspaceJson.projects[options.project].architect.add.configurations[
+        'android'
+      ].platform
+    ).toEqual('android');
+
+    expect(
       workspaceJson.projects[options.project].architect.copy.builder
-    ).toEqual('@nxtend/capacitor:copy');
+    ).toEqual('@nxtend/capacitor:command');
+    expect(
+      workspaceJson.projects[options.project].architect.copy.options
+    ).toEqual({
+      command: 'copy',
+      platform: '',
+    });
+    expect(
+      workspaceJson.projects[options.project].architect.copy.configurations[
+        'ios'
+      ].platform
+    ).toEqual('ios');
+    expect(
+      workspaceJson.projects[options.project].architect.copy.configurations[
+        'android'
+      ].platform
+    ).toEqual('android');
+
     expect(
       workspaceJson.projects[options.project].architect.open.builder
-    ).toEqual('@nxtend/capacitor:open');
+    ).toEqual('@nxtend/capacitor:command');
+    expect(
+      workspaceJson.projects[options.project].architect.open.options
+    ).toEqual({
+      command: 'open',
+      platform: '',
+    });
+    expect(
+      workspaceJson.projects[options.project].architect.open.configurations[
+        'ios'
+      ].platform
+    ).toEqual('ios');
+    expect(
+      workspaceJson.projects[options.project].architect.open.configurations[
+        'android'
+      ].platform
+    ).toEqual('android');
+
     expect(
       workspaceJson.projects[options.project].architect.sync.builder
-    ).toEqual('@nxtend/capacitor:sync');
+    ).toEqual('@nxtend/capacitor:command');
+    expect(
+      workspaceJson.projects[options.project].architect.sync.options
+    ).toEqual({
+      command: 'sync',
+      platform: '',
+    });
+    expect(
+      workspaceJson.projects[options.project].architect.sync.configurations[
+        'ios'
+      ].platform
+    ).toEqual('ios');
+    expect(
+      workspaceJson.projects[options.project].architect.sync.configurations[
+        'android'
+      ].platform
+    ).toEqual('android');
+
     expect(
       workspaceJson.projects[options.project].architect.update.builder
-    ).toEqual('@nxtend/capacitor:update');
+    ).toEqual('@nxtend/capacitor:command');
+    expect(
+      workspaceJson.projects[options.project].architect.update.options
+    ).toEqual({
+      command: 'update',
+      platform: '',
+    });
+    expect(
+      workspaceJson.projects[options.project].architect.update.configurations[
+        'ios'
+      ].platform
+    ).toEqual('ios');
+    expect(
+      workspaceJson.projects[options.project].architect.update.configurations[
+        'android'
+      ].platform
+    ).toEqual('android');
   });
 
   it('should add project package.json', async () => {

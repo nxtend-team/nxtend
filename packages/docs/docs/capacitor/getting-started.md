@@ -58,9 +58,11 @@ Options:
 Now that a Capacitor project has been added to your Nx workspace you can begin adding support for native platforms. Currently, Capacitor supports Android and iOS with Electron support being in beta.
 
 ```
-nx run {frontend project name}:add --platform {native platform}
+nx run {frontend project}:add:ios
+nx run {frontend project}:add:android
+nx run {frontend project}:add --platform {native platform}
 
-nx run mobile-app:add --platform android
+nx run my-app:add:android
 ```
 
 ## Sync Native Platform
@@ -68,9 +70,11 @@ nx run mobile-app:add --platform android
 Running the sync command will update the native platform dependencies and copy a build of your frontend project to the Capacitor project:
 
 ```
-nx run {frontend project name}:sync --platform {native platform}
+nx run {frontend project}:sync:ios
+nx run {frontend project}:sync:android
+nx run {frontend project}:sync --platform {native platform}
 
-nx run mobile-app:sync --platform android
+nx run my-app:sync:android
 ```
 
 ## Open Native Platform
@@ -78,9 +82,11 @@ nx run mobile-app:sync --platform android
 Finally, you can open the native platform in it's respective IDE:
 
 ```
-nx run {frontend project name}:open --platform {native platform}
+nx run {frontend project}:open:ios
+nx run {frontend project}:open:android
+nx run {frontend project}:open --platform {native platform}
 
-nx run mobile-app:open --platform android
+nx run my-app:open:android
 ```
 
 ## Adding Capacitor Plugins
