@@ -6,6 +6,7 @@
 
 - add Capacitor configs to frontend application
 - add or update `package.json` in project folder when generating a Capacitor project
+- add builder configurations for Nx Console
 
 # BREAKING CHANGES
 

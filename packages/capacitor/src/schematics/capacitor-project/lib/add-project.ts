@@ -4,26 +4,25 @@ import { NormalizedSchema } from '../schema';
 export function addProject(options: NormalizedSchema) {
   return updateWorkspaceInTree((json) => {
     const architect = json.projects[options.project].architect;
+    const commands = ['add', 'copy', 'open', 'sync', 'update'];
+    const platforms = ['ios', 'android'];
 
-    architect.add = {
-      builder: '@nxtend/capacitor:add',
-    };
+    let command: string, platform: string;
 
-    architect.copy = {
-      builder: '@nxtend/capacitor:copy',
-    };
+    for (command of commands) {
+      architect[command] = {
+        builder: `@nxtend/capacitor:command`,
+        options: {
+          command: `${command}`,
+          platform: '',
+        },
+        configurations: { platform },
+      };
 
-    architect.open = {
-      builder: '@nxtend/capacitor:open',
-    };
-
-    architect.sync = {
-      builder: '@nxtend/capacitor:sync',
-    };
-
-    architect.update = {
-      builder: '@nxtend/capacitor:update',
-    };
+      for (platform of platforms) {
+        architect[command].configurations[platform] = { platform: platform };
+      }
+    }
 
     return json;
   });

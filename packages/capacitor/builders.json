@@ -1,30 +1,10 @@
 {
   "$schema": "../../node_modules/@angular-devkit/architect/src/builders-schema.json",
   "builders": {
-    "add": {
-      "implementation": "./src/builders/add/builder",
-      "schema": "./src/builders/add/schema.json",
-      "description": "Add a Capacitor native platform"
-    },
-    "open": {
-      "implementation": "./src/builders/open/builder",
-      "schema": "./src/builders/open/schema.json",
-      "description": "Open a Capacitor native platform"
-    },
-    "sync": {
-      "implementation": "./src/builders/sync/builder",
-      "schema": "./src/builders/sync/schema.json",
-      "description": "Sync a Capacitor native platform"
-    },
-    "update": {
-      "implementation": "./src/builders/update/builder",
-      "schema": "./src/builders/update/schema.json",
-      "description": "Update a Capacitor native platform"
-    },
-    "copy": {
-      "implementation": "./src/builders/copy/builder",
-      "schema": "./src/builders/copy/schema.json",
-      "description": "Copy a Capacitor native platform"
+    "command": {
+      "implementation": "./src/builders/command/builder",
+      "schema": "./src/builders/command/schema.json",
+      "description": "Run a Capacitor command"
     }
   }
 }

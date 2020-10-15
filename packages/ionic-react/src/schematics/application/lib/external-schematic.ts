@@ -24,8 +24,6 @@ export function generateCapacitorProject(options: NormalizedSchema): Rule {
     return options.capacitor
       ? externalSchematic('@nxtend/capacitor', 'capacitor-project', {
           project: options.name,
-          name: `${options.name}-cap`,
-          directory: options.directory,
           appName: options.appName,
           appId: 'io.ionic.starter',
           npmClient,
