@@ -9,7 +9,10 @@ export function normalizeOptions(
 ): NormalizedSchema {
   const appName = options.appName ? options.appName : options.project;
   const { root: projectRoot } = getProjectConfig(host, options.project);
-  const pathToRoot = relative(`${process.cwd()}/${projectRoot}`, process.cwd());
+  const pathToRoot = relative(
+    `${process.cwd()}/${projectRoot}`,
+    process.cwd()
+  ).replace(/\\/g, '/');
   const webDir = options.webDir ? options.webDir : `dist/${projectRoot}`;
 
   return {

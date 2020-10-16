@@ -35,7 +35,7 @@ export function runBuilder(
             command: `${capacitorConfigJson.npmClient} install`,
           },
           {
-            command: `node ${context.workspaceRoot}/node_modules/.bin/cap ${options.command} ${options.platform}`,
+            command: `npx cap ${options.command} ${options.platform}`,
           },
         ],
       });

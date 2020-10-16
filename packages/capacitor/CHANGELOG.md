@@ -2,6 +2,10 @@
 
 # 2.0.0
 
+# Fixes
+
+- fix Windows support
+
 # Features
 
 - add Capacitor configs to frontend application
