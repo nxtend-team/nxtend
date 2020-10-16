@@ -31,6 +31,14 @@ ng generate @nxtend/capacitor:init
 
 ## Add Capacitor to Existing Project
 
+First, ensure that the frontend project has been built:
+
+```
+nx build {frontend project name}
+
+nx build mobile-app
+```
+
 Once the plugin has been added to your Nx workspace you can generate a Capacitor project from an existing frontend project:
 
 ```
