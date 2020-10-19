@@ -14,6 +14,11 @@
       "factory": "./src/schematics/capacitor-project/schematic",
       "schema": "./src/schematics/capacitor-project/schema.json",
       "description": "Add a Capacitor project"
+    },
+    "add-plugin": {
+      "factory": "./src/schematics/add-plugin/schematic",
+      "schema": "./src/schematics/add-plugin/schema.json",
+      "description": "Add a Capacitor plugin to an application"
     }
   }
 }
