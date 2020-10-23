@@ -1,16 +1,16 @@
 module.exports = {
-  title: 'nxtend',
+  title: 'Nxtend',
   tagline: 'A collection of third-party Nx plugins',
   url: 'https://nxtend.dev',
   baseUrl: '/',
   favicon: 'img/favicon.ico',
   organizationName: 'Devin Shoemaker',
-  projectName: 'nxtend',
+  projectName: 'Nxtend',
   themeConfig: {
     navbar: {
-      title: 'nxtend',
+      title: 'Nxtend',
       logo: {
-        alt: 'nxtend Logo',
+        alt: 'Nxtend Logo',
         src: 'img/favicon-32x32.png',
       },
       links: [

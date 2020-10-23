@@ -1,4 +1,4 @@
-# nxtend
+# Nxtend
 
 [![standard-readme compliant](https://img.shields.io/badge/standard--readme-OK-green.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
 
@@ -6,10 +6,12 @@ A collection of third-party Nx plugins.
 
 ## Table of Contents
 
-- [Plugins](#plugins)
-- [Maintainers](#maintainers)
-- [Contributing](#contributing)
-- [License](#license)
+- [Nxtend](#nxtend)
+  - [Table of Contents](#table-of-contents)
+  - [Plugins](#plugins)
+  - [Maintainers](#maintainers)
+  - [Contributing](#contributing)
+  - [License](#license)
 
 ## Plugins
 

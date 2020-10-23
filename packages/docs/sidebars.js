@@ -2,7 +2,7 @@ module.exports = {
   someSidebar: [
     {
       type: 'category',
-      label: 'nxtend',
+      label: 'Nxtend',
       items: ['nxtend/introduction', 'nxtend/upgrades', 'nxtend/contributing'],
     },
     {
