@@ -8,6 +8,7 @@
 
 # Features
 
+- update Capacitor to 2.4.2
 - add Capacitor configs to frontend application
 - add or update `package.json` in project folder when generating a Capacitor project
 - add builder configurations for Nx Console
