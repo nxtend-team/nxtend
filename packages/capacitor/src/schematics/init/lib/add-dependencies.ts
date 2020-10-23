@@ -8,7 +8,6 @@ export function addDependencies(): Rule {
       '@capacitor/core': capacitorVersion,
     },
     {
-      '@capacitor/cli': capacitorVersion,
       '@capacitor/android': capacitorVersion,
       '@capacitor/ios': capacitorVersion,
     }

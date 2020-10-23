@@ -28,3 +28,5 @@ If everything works as expected then you can safely remove the Capacitor project
 ```
 nx g @nrwl/workspace:remove my-app
 ```
+
+The `@capacitor/cli` dependency in the root `package.json` is also no longer needed and can be removed.
