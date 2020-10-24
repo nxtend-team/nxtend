@@ -37,6 +37,27 @@
           "alwaysAddToPackageJson": false
         }
       }
+    },
+    "2.0.0": {
+      "version": "2.0.0-beta.1",
+      "packages": {
+        "@capacitor/core": {
+          "version": "2.4.2",
+          "alwaysAddToPackageJson": false
+        },
+        "@capacitor/cli": {
+          "version": "2.4.2",
+          "alwaysAddToPackageJson": false
+        },
+        "@capacitor/android": {
+          "version": "2.4.2",
+          "alwaysAddToPackageJson": false
+        },
+        "@capacitor/ios": {
+          "version": "2.4.2",
+          "alwaysAddToPackageJson": false
+        }
+      }
     }
   }
 }
