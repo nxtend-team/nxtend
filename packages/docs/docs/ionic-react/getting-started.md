@@ -32,6 +32,8 @@ nx generate @nxtend/ionic-react:application myApp
 
 By default, a [Capacitor](../../docs/capacitor/overview.md) project will be generated that will allow you to compile your application as a native platform.
 
+`@nxtend/ionic-react` uses the `@nxtend/capacitor` plugin to add Capacitor support to an Ionic React application in an Nx workspace. By default, Capacitor configuration are added to new `@nxtend/ionic-react` applications. To disable this, pass `--capacitor false` into the `@nxtend/ionic-react` application schematic command.
+
 Nx will ask you some questions about the application, but you can customize it further by passing these options:
 
 ```
@@ -58,7 +60,15 @@ Options:
 
 ## Add Native Platform
 
-`@nxtend/ionic-react` uses the `@nxtend/capacitor` plugin to add Capacitor support to an Ionic React application in an Nx workspace. By default, Capacitor configuration are added to new `@nxtend/ionic-react` applications. To disable this, pass `--capacitor false` into the `@nxtend/ionic-react` application schematic command.
+First, ensure that the frontend project has been built:
+
+```
+nx build {frontend project name}
+
+nx build mobile-app
+```
+
+Now that a Capacitor project has been added to your Nx workspace you can begin adding support for native platforms. Currently, Capacitor supports Android and iOS, but other platforms can be added with Capacitor plugins.
 
 ```
 nx run {frontend project}:add:ios

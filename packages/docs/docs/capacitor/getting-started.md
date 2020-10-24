@@ -63,7 +63,7 @@ Options:
 
 ## Add Native Platforms
 
-Now that a Capacitor project has been added to your Nx workspace you can begin adding support for native platforms. Currently, Capacitor supports Android and iOS with Electron support being in beta.
+Now that a Capacitor project has been added to your Nx workspace you can begin adding support for native platforms. Currently, Capacitor supports Android and iOS, but other platforms can be added with Capacitor plugins.
 
 ```
 nx run {frontend project}:add:ios
