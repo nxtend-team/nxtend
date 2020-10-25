@@ -23,6 +23,8 @@ describe('init', () => {
     const packageJson = readJsonInTree(result, 'package.json');
 
     expect(packageJson.dependencies['@capacitor/core']).toBeDefined();
+    expect(packageJson.devDependencies['@capacitor/android']).toBeDefined();
+    expect(packageJson.devDependencies['@capacitor/ios']).toBeDefined();
   });
 
   it('should set default collection', async () => {
