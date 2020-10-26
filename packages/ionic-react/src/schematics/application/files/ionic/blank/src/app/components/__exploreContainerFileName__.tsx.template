@@ -40,6 +40,7 @@ import './<%= exploreContainerFileName %>.<%= style %>';
 <%
 var innerJsx = `
   <div className="container">
+    <h1>Welcome to ${projectName}!</h1>
     <strong>Ready to create an app?</strong>
     <p>
       Start with Ionic{' '}

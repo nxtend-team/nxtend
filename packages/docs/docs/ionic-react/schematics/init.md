@@ -15,9 +15,6 @@ This schematic adds the following dependencies:
 @ionic/react-router
 @nrwl/react
 @nxtend/capacitor
-@testing-library/user-event
-@testing-library/jest-dom
-@testing-library/cypress
 ```
 
 ## Usage

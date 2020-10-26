@@ -149,15 +149,7 @@ describe('application e2e', () => {
 
       await generateApp(options);
       testGeneratedFiles(options);
-
-      const buildResults = await runNxCommandAsync(`build ${options.name}`);
-      expect(buildResults.stdout).toContain('Built at');
-
-      const lintResults = await runNxCommandAsync(`lint ${options.name}`);
-      expect(lintResults.stdout).toContain('All files pass linting');
-
-      const testResults = await runNxCommandAsync(`test ${options.name}`);
-      expect(testResults.stderr).toContain('Test Suites: 1 passed, 1 total');
+      await buildAndTestApp(options.name);
 
       done();
     },

@@ -1,5 +1,11 @@
 # Changelog
 
+# 4.0.0
+
+# BREAKING CHANGES
+
+- don't install and configure Cypress Testing Library
+
 # 3.1.0
 
 # Features
