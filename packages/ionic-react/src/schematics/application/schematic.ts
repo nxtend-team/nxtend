@@ -2,7 +2,6 @@ import { chain, Rule } from '@angular-devkit/schematics';
 import { formatFiles } from '@nrwl/workspace';
 import init from '../init/schematic';
 import { addDependencies } from './lib/add-dependencies';
-import { configureCypressForIonic } from './lib/cypress';
 import {
   generateCapacitorProject,
   generateNrwlReactApplication,
@@ -22,7 +21,6 @@ export default function (options: ApplicationSchematicSchema): Rule {
     generateNrwlReactApplication(options),
     addFiles(normalizedOptions),
     configureJestForIonic(normalizedOptions),
-    configureCypressForIonic(normalizedOptions),
     deleteUnusedFiles(normalizedOptions),
     addProject(normalizedOptions),
     generateCapacitorProject(normalizedOptions),

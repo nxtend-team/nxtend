@@ -113,9 +113,7 @@ describe('application', () => {
 
     // Capacitor files
     if (options.capacitor) {
-      expect(
-        tree.exists(`${projectRoot}/capacitor.config.json`)
-      ).toBeTruthy();
+      expect(tree.exists(`${projectRoot}/capacitor.config.json`)).toBeTruthy();
     }
   }
 
@@ -315,66 +313,6 @@ describe('application', () => {
 
         expect(tree.exists(`${projectRoot}/src/app/app.spec.tsx`)).toBeFalsy();
         testGeneratedFiles(tree, { ...options, unitTestRunner: 'none' });
-      });
-    });
-  });
-
-  describe('--e2eTestRunner', () => {
-    describe('cypress', () => {
-      it('should add Cypress Testing Library dependency', async () => {
-        const tree = await testRunner
-          .runSchematicAsync('application', options, appTree)
-          .toPromise();
-
-        const packageJson = readJsonInTree(tree, 'package.json');
-        expect(
-          packageJson.devDependencies['@testing-library/cypress']
-        ).toBeDefined();
-      });
-
-      it('should add Cypress Testing Library type to tsconfig.json', async () => {
-        const tree = await testRunner
-          .runSchematicAsync('application', options, appTree)
-          .toPromise();
-
-        const tsconfigJson = readJsonInTree(
-          tree,
-          `${projectRoot}-e2e/tsconfig.e2e.json`
-        );
-        expect(
-          tsconfigJson.compilerOptions.types.includes(
-            '@testing-library/cypress'
-          )
-        ).toBeTruthy();
-      });
-    });
-
-    describe('none', () => {
-      it('should not add Cypress Testing Library dependency', async () => {
-        const tree = await testRunner
-          .runSchematicAsync(
-            'application',
-            { ...options, e2eTestRunner: 'none' },
-            appTree
-          )
-          .toPromise();
-
-        const packageJson = readJsonInTree(tree, 'package.json');
-        expect(
-          packageJson.devDependencies['@testing-library/cypress']
-        ).toBeFalsy();
-      });
-
-      it('should not add Cypress Testing Library type to tsconfig.json', async () => {
-        const tree = await testRunner
-          .runSchematicAsync(
-            'application',
-            { ...options, e2eTestRunner: 'none' },
-            appTree
-          )
-          .toPromise();
-
-        expect(tree.exists(`${projectRoot}-e2e/tsconfig.json`)).toBeFalsy();
       });
     });
   });
