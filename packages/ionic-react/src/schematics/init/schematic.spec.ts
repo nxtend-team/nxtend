@@ -41,12 +41,6 @@ describe('init', () => {
 
     expect(packageJson.dependencies['@ionic/react']).toBeDefined();
     expect(packageJson.dependencies['ionicons']).toBeDefined();
-    expect(
-      packageJson.devDependencies['@testing-library/user-event']
-    ).toBeDefined();
-    expect(
-      packageJson.devDependencies['@testing-library/jest-dom']
-    ).toBeDefined();
   });
 
   it('should add and initialize Nrwl React plugin', async () => {
@@ -55,18 +49,17 @@ describe('init', () => {
       .toPromise();
     const packageJson = readJsonInTree(result, 'package.json');
 
-    expect(packageJson.dependencies['@ionic/react']).toBeDefined();
-    expect(packageJson.dependencies['ionicons']).toBeDefined();
-
     expect(packageJson.devDependencies['@nrwl/react']).toBeDefined();
     expect(packageJson.devDependencies['@nrwl/react']).toEqual('0.0.0');
+  });
+
+  it('should add and initialize Nxtend Capacitor plugin', async () => {
+    const result = await testRunner
+      .runSchematicAsync('init', {}, appTree)
+      .toPromise();
+    const packageJson = readJsonInTree(result, 'package.json');
+
     expect(packageJson.devDependencies['@nxtend/capacitor']).toBeDefined();
-    expect(
-      packageJson.devDependencies['@testing-library/jest-dom']
-    ).toBeDefined();
-    expect(
-      packageJson.devDependencies['@testing-library/user-event']
-    ).toBeDefined();
   });
 
   it('should throw an error if Nrwl Workspace plugin is not installed', async () => {
