@@ -2,6 +2,10 @@
 
 # 4.0.0
 
+# Features
+
+- update Ionic to 5.4.1
+
 # BREAKING CHANGES
 
 - don't install and configure Cypress Testing Library

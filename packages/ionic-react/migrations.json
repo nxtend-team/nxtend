@@ -54,6 +54,11 @@
       "version": "3.1.0",
       "description": "Update @testing-library/cypress tsconfig types",
       "factory": "./src/migrations/update-3-1-0/update-testing-library-cypress-tsconfig-types-3-1-0"
+    },
+    "update-4.0.0": {
+      "version": "4.0.0",
+      "description": "Update libraries",
+      "factory": "./src/migrations/update-4-0-0/update-4-0-0"
     }
   },
   "packageJsonUpdates": {
@@ -175,6 +180,10 @@
           "alwaysAddToPackageJson": false
         }
       }
+    },
+    "4.0.0": {
+      "version": "4.0.0",
+      "packages": {}
     }
   }
 }
