@@ -115,11 +115,6 @@
       "description": "Generate JavaScript files rather than TypeScript files.",
       "default": false
     },
-    "disableSanitizer": {
-      "type": "boolean",
-      "description": "Disable Ionic sanitizer.",
-      "default": false
-    },
     "capacitor": {
       "type": "boolean",
       "description": "Generate a Capacitor project.",

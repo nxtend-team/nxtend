@@ -1,4 +1,4 @@
-import { IonApp, IonRouterOutlet<% if (disableSanitizer) { %>, setupConfig<% } %> } from '@ionic/react';
+import { IonApp, IonRouterOutlet } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 
 <% if (style === 'styled-components') { %>
@@ -265,12 +265,6 @@ import '@ionic/react/css/display.css';
 <% } else { %>
 /* Theme variables */
 import './theme/variables.<%= style %>';
-<% } %>
-
-<% if (disableSanitizer) { %>
-setupConfig({
-  sanitizerEnabled: false
-});
 <% } %>
 
 <%

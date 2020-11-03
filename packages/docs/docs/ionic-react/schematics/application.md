@@ -120,14 +120,6 @@ Type: `boolean`
 
 Generate JavaScript files rather than TypeScript files.
 
-### --disableSanitizer
-
-Default: `false`
-
-Type: `boolean`
-
-Disable Ionic sanitizer.
-
 ### --capacitor
 
 Default: `true`
