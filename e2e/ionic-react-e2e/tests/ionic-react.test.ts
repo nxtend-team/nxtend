@@ -54,6 +54,7 @@ describe('application e2e', () => {
     // Common files
     expect(() => {
       checkFilesExist(
+        `${projectRoot}/ionic.config.json`,
         `${projectRoot}/.eslintrc`,
         `${projectRoot}/src/index.html`,
         `${projectRoot}/src/manifest.json`,
