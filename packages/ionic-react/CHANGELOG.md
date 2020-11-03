@@ -6,6 +6,7 @@
 
 - update Ionic to 5.4.1
 - add `ionic.config.json` to application
+- update starter template
 
 # BREAKING CHANGES
 

@@ -10,4 +10,6 @@ tags: [ionic-react, capacitor, release]
 
 One of the major changes of this release is that `@nxtend/ionic-react` will no longer add and configure Cypress Testing Library dependencies. We are big fans of the project, but maintaining the dependencies and breaking changes has become more effort than it's worth for this plugin. If you are generating a new project then I would highly recommend you configure this yourself. If you need help getting started, then please visit the [official documentation](https://testing-library.com/docs/cypress-testing-library/intro).
 
+The latest updates from the Ionic React blank starter template have also been added to the plugin.
+
 For information on upgrading the plugin, visit the [nxtend upgrades documentation](../docs/nxtend/upgrades).
