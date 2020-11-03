@@ -12,4 +12,6 @@ One of the major changes of this release is that `@nxtend/ionic-react` will no l
 
 The latest updates from the Ionic React blank starter template have also been added to the plugin.
 
+The `disableSanitizer` flag has been removed from the `application` schematic. This plugin supports many permutations due to the amount of configuration options when generating an application, and as many of these permutations are end-to-end testing as much as possible. Every new option that is added increases the level of maintenance required as well as the test times, and at this point, it does not seem worth it to continue supporting the `disableSanitizer` flag. The built-in Ionic sanitizer should only be disabled unless it explicitely needs to, and this process is well documented in the official [Ionic documentation](https://ionicframework.com/docs/techniques/security#ejecting-from-the-built-in-sanitizer).
+
 For information on upgrading the plugin, visit the [nxtend upgrades documentation](../docs/nxtend/upgrades).

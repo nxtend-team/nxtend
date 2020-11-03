@@ -19,7 +19,6 @@ describe('application e2e', () => {
     e2eTestRunner: 'cypress',
     linter: Linter.EsLint,
     js: false,
-    disableSanitizer: false,
     capacitor: false,
   };
 
@@ -35,7 +34,6 @@ describe('application e2e', () => {
        --pascalCaseFiles ${options.pascalCaseFiles} \
        --classComponent ${options.classComponent} \
        --js ${options.js} \
-       --disableSanitizer ${options.disableSanitizer} \
        --capacitor ${options.capacitor}`
     );
   }
@@ -374,28 +372,6 @@ describe('application e2e', () => {
             ...defaultOptions,
             name: uniq('ionic-react'),
             classComponent: true,
-          };
-
-          await generateApp(options);
-          testGeneratedFiles(options);
-          await buildAndTestApp(options.name);
-
-          done();
-        },
-        asyncTimeout
-      );
-    });
-  });
-
-  describe('--disableSanitizer', () => {
-    describe('true', () => {
-      it(
-        'should add disable the Ionic sanitizer',
-        async (done) => {
-          const options: ApplicationSchematicSchema = {
-            ...defaultOptions,
-            name: uniq('ionic-react'),
-            disableSanitizer: true,
           };
 
           await generateApp(options);

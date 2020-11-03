@@ -52,7 +52,6 @@ Options:
   --pascalCaseFiles       Use pascal case component file name (e.g. App.tsx).
   --classComponent        Use class components instead of functional component.
   --js                    Generate JavaScript files rather than TypeScript files.
-  --disableSanitizer      Disable Ionic sanitizer.
   --capacitor             Generate a Capacitor project. (default: true)
   --dryRun                Runs through and reports activity without writing to disk.
   --help                  Show available options for project target.

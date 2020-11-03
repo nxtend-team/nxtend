@@ -11,6 +11,7 @@
 # BREAKING CHANGES
 
 - don't install and configure Cypress Testing Library
+- removed `disableSanitizer` flag from `application` schematic
 
 # 3.1.0
 

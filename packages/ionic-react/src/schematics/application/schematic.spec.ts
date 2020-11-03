@@ -15,7 +15,6 @@ describe('application', () => {
     unitTestRunner: 'jest',
     e2eTestRunner: 'cypress',
     linter: Linter.EsLint,
-    disableSanitizer: false,
     capacitor: false,
   };
 
@@ -344,29 +343,6 @@ describe('application', () => {
           .toPromise();
 
         testGeneratedFiles(tree, { ...options, js: true });
-      });
-    });
-  });
-
-  describe('--disableSanitizer', () => {
-    describe('true', () => {
-      it('should add disable the Ionic sanitizer', async () => {
-        const tree = await testRunner
-          .runSchematicAsync(
-            'application',
-            { ...options, disableSanitizer: true },
-            appTree
-          )
-          .toPromise();
-
-        const appTsx = tree.readContent(`${projectRoot}/src/app/app.tsx`);
-
-        expect(appTsx).toContain(
-          `import { IonApp, IonRouterOutlet, setupConfig } from '@ionic/react';`
-        );
-        expect(appTsx).toContain(`sanitizerEnabled: false`);
-
-        testGeneratedFiles(tree, { ...options, disableSanitizer: true });
       });
     });
   });
