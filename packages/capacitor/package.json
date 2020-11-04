@@ -1,12 +1,12 @@
 {
   "name": "@nxtend/capacitor",
-  "version": "2.0.0",
+  "version": "2.0.2",
   "description": "An Nx plugin for developing cross-platform applications using Capacitor",
   "author": {
     "name": "Devin Shoemaker",
     "email": "devinshoe@gmail.com"
   },
-  "homepage": "https://nxtend.dev/docs/capacitor/getting-started",
+  "homepage": "httpnd.dev/docs/capacitor/getting-started",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nxtend-team/nxtend.git"
