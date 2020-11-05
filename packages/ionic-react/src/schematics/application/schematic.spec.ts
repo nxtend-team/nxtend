@@ -39,7 +39,7 @@ describe('application', () => {
       : 'explore-container';
 
     // Common files
-    expect(tree.exists(`${projectRoot}/.eslintrc`)).toBeTruthy();
+    expect(tree.exists(`${projectRoot}/.eslintrc.json`)).toBeTruthy();
     expect(tree.exists(`${projectRoot}/src/index.html`)).toBeTruthy();
     expect(tree.exists(`${projectRoot}/src/manifest.json`)).toBeTruthy();
     expect(

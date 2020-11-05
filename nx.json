@@ -15,7 +15,8 @@
     },
     "tslint.json": "*",
     "nx.json": "*",
-    "tsconfig.base.json": "*"
+    "tsconfig.base.json": "*",
+    ".eslintrc.json": "*"
   },
   "projects": {
     "ionic-react": {

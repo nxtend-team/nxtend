@@ -3,7 +3,6 @@ import {
   BuilderOutput,
   createBuilder,
 } from '@angular-devkit/architect';
-import { NodeJsSyncHost } from '@angular-devkit/core/node';
 import * as fs from 'fs';
 import { join } from 'path';
 import { from, Observable } from 'rxjs';
@@ -15,9 +14,7 @@ export function runBuilder(
   options: CommandBuilderSchema,
   context: BuilderContext
 ): Observable<BuilderOutput> {
-  const host = new NodeJsSyncHost();
-
-  return from(getProjectRoot(context, host)).pipe(
+  return from(getProjectRoot(context)).pipe(
     switchMap((projectRoot) => {
       const frontendProjectRoot = join(context.workspaceRoot, projectRoot);
 

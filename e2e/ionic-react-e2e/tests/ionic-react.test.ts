@@ -38,74 +38,6 @@ describe('application e2e', () => {
     );
   }
 
-  function testGeneratedFiles(options: ApplicationSchematicSchema) {
-    const projectRoot = options.directory
-      ? `apps/${options.directory}/${options.name}`
-      : `apps/${options.name}`;
-    const componentExtension = options.js ? 'js' : 'tsx';
-    const appFileName = options.pascalCaseFiles ? 'App' : 'app';
-    const homeFileName = options.pascalCaseFiles ? 'Home' : 'home';
-    const exploreContainerFileName = options.pascalCaseFiles
-      ? 'ExploreContainer'
-      : 'explore-container';
-
-    // Common files
-    expect(() => {
-      checkFilesExist(
-        `${projectRoot}/ionic.config.json`,
-        `${projectRoot}/.eslintrc`,
-        `${projectRoot}/src/index.html`,
-        `${projectRoot}/src/manifest.json`,
-        `${projectRoot}/src/assets/icon/favicon.png`,
-        `${projectRoot}/src/assets/icon/icon.png`
-      );
-    }).not.toThrow();
-
-    // Jest
-    if (options.unitTestRunner === 'jest') {
-      expect(() =>
-        checkFilesExist(
-          `${projectRoot}/jest.config.js`,
-          `${projectRoot}/src/app/__mocks__/fileMock.js`
-        )
-      ).not.toThrow();
-    } else if (options.unitTestRunner === 'none') {
-      expect(() =>
-        checkFilesExist(`${projectRoot}/src/app/__mocks__/fileMock.js`)
-      ).toThrow();
-    }
-
-    // Ionic files
-    expect(() => {
-      checkFilesExist(
-        `${projectRoot}/src/app/${appFileName}.${componentExtension}`,
-        `${projectRoot}/src/app/pages/${homeFileName}.${componentExtension}`,
-        `${projectRoot}/src/app/components/${exploreContainerFileName}.${componentExtension}`
-      );
-    }).not.toThrow();
-
-    if (
-      options.style !== 'styled-components' &&
-      options.style !== '@emotion/styled'
-    ) {
-      expect(() => {
-        checkFilesExist(
-          `${projectRoot}/src/app/components/${exploreContainerFileName}.${options.style}`,
-          `${projectRoot}/src/app/pages/${homeFileName}.${options.style}`,
-          `${projectRoot}/src/app/theme/variables.${options.style}`
-        );
-      }).not.toThrow();
-    } else {
-      expect(() => {
-        checkFilesExist(
-          `${projectRoot}/src/app/components/${exploreContainerFileName}.${options.style}`,
-          `${projectRoot}/src/app/pages/${homeFileName}.${options.style}`,
-          `${projectRoot}/src/app/theme/variables.${options.style}`
-        );
-      }).toThrow();
-    }
-  }
-
   async function buildAndTestApp(plugin: string) {
     const buildResults = await runNxCommandAsync(`build ${plugin}`);
     expect(buildResults.stdout).toContain('Built at');
@@ -129,7 +61,6 @@ describe('application e2e', () => {
       };
 
       await generateApp(options);
-      testGeneratedFiles(options);
       await buildAndTestApp(options.name);
 
       done();
@@ -147,7 +78,6 @@ describe('application e2e', () => {
       };
 
       await generateApp(options);
-      testGeneratedFiles(options);
       await buildAndTestApp(options.name);
 
       done();
@@ -169,7 +99,6 @@ describe('application e2e', () => {
         await runNxCommandAsync(
           `generate @nxtend/ionic-react:app ${options.name} --directory ${options.directory} --capacitor false`
         );
-        testGeneratedFiles(options);
         await buildAndTestApp(`${options.directory}-${options.name}`);
 
         done();
@@ -219,7 +148,6 @@ describe('application e2e', () => {
           };
 
           await generateApp(options);
-          testGeneratedFiles(options);
 
           const buildResults = await runNxCommandAsync(`build ${options.name}`);
           expect(buildResults.stdout).toContain('Built at');
@@ -251,7 +179,6 @@ describe('application e2e', () => {
           };
 
           await generateApp(options);
-          testGeneratedFiles(options);
           await buildAndTestApp(options.name);
 
           done();
@@ -271,7 +198,6 @@ describe('application e2e', () => {
           };
 
           await generateApp(options);
-          testGeneratedFiles(options);
           await buildAndTestApp(options.name);
 
           done();
@@ -291,7 +217,6 @@ describe('application e2e', () => {
           };
 
           await generateApp(options);
-          testGeneratedFiles(options);
           await buildAndTestApp(options.name);
 
           done();
@@ -311,7 +236,6 @@ describe('application e2e', () => {
           };
 
           await generateApp(options);
-          testGeneratedFiles(options);
           await buildAndTestApp(options.name);
 
           done();
@@ -331,7 +255,6 @@ describe('application e2e', () => {
           };
 
           await generateApp(options);
-          testGeneratedFiles(options);
           await buildAndTestApp(options.name);
 
           done();
@@ -353,7 +276,6 @@ describe('application e2e', () => {
           };
 
           await generateApp(options);
-          testGeneratedFiles(options);
           await buildAndTestApp(options.name);
 
           done();
@@ -375,7 +297,6 @@ describe('application e2e', () => {
           };
 
           await generateApp(options);
-          testGeneratedFiles(options);
           await buildAndTestApp(options.name);
 
           done();
