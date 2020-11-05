@@ -3,6 +3,7 @@
     "nrwl.angular-console",
     "dbaeumer.vscode-eslint",
     "esbenp.prettier-vscode",
-    "jpoissonnier.vscode-styled-components"
+    "jpoissonnier.vscode-styled-components",
+    "firsttris.vscode-jest-runner"
   ]
 }

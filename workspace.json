@@ -8,14 +8,16 @@
       "schematics": {},
       "architect": {
         "lint": {
-          "builder": "@nrwl/linter:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
-            "linter": "eslint",
-            "tsConfig": [
-              "packages/ionic-react/tsconfig.lib.json",
-              "packages/ionic-react/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!packages/ionic-react/**/*"]
+            "lintFilePatterns": [
+              "packages/ionic-react/**/*.ts",
+              "packages/ionic-react/**/*.spec.ts",
+              "packages/ionic-react/**/*.spec.tsx",
+              "packages/ionic-react/**/*.spec.js",
+              "packages/ionic-react/**/*.spec.jsx",
+              "packages/ionic-react/**/*.d.ts"
+            ]
           }
         },
         "test": {
@@ -102,15 +104,16 @@
       "schematics": {},
       "architect": {
         "lint": {
-          "builder": "@nrwl/linter:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
-            "linter": "eslint",
-            "config": "packages/capacitor/.eslintrc",
-            "tsConfig": [
-              "packages/capacitor/tsconfig.lib.json",
-              "packages/capacitor/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!packages/capacitor/**"]
+            "lintFilePatterns": [
+              "packages/capacitor/**/*.ts",
+              "packages/capacitor/**/*.spec.ts",
+              "packages/capacitor/**/*.spec.tsx",
+              "packages/capacitor/**/*.spec.js",
+              "packages/capacitor/**/*.spec.jsx",
+              "packages/capacitor/**/*.d.ts"
+            ]
           }
         },
         "test": {
@@ -178,14 +181,16 @@
       "schematics": {},
       "architect": {
         "lint": {
-          "builder": "@nrwl/linter:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
-            "linter": "eslint",
-            "tsConfig": [
-              "packages/ionic-angular/tsconfig.lib.json",
-              "packages/ionic-angular/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!packages/ionic-angular/**/*"]
+            "lintFilePatterns": [
+              "packages/ionic-angular/**/*.ts",
+              "packages/ionic-angular/**/*.spec.ts",
+              "packages/ionic-angular/**/*.spec.tsx",
+              "packages/ionic-angular/**/*.spec.js",
+              "packages/ionic-angular/**/*.spec.jsx",
+              "packages/ionic-angular/**/*.d.ts"
+            ]
           }
         },
         "test": {
