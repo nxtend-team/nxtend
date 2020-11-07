@@ -3,12 +3,12 @@ import {
   applyTemplates,
   MergeStrategy,
   mergeWith,
-  Rule,
   move,
+  Rule,
   Tree,
   url,
 } from '@angular-devkit/schematics';
-import { names, offsetFromRoot } from '@nrwl/workspace';
+import { names } from '@nrwl/workspace';
 import { NormalizedSchema } from '../schema';
 
 export function addFiles(options: NormalizedSchema): Rule {
@@ -18,7 +18,7 @@ export function addFiles(options: NormalizedSchema): Rule {
         ...options,
         ...names(options.name),
       }),
-      move(options.projectRoot),
+      move(options.appProjectRoot),
     ]),
     MergeStrategy.Overwrite
   );
@@ -26,7 +26,7 @@ export function addFiles(options: NormalizedSchema): Rule {
 
 export function removeFiles(options: NormalizedSchema): Rule {
   return (host: Tree) => {
-    host.delete(`${options.projectRoot}/src/favicon.ico`);
+    host.delete(`${options.appProjectRoot}/src/favicon.ico`);
     return host;
   };
 }

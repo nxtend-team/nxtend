@@ -1,13 +1,13 @@
 import { Tree } from '@angular-devkit/schematics';
 import { SchematicTestRunner } from '@angular-devkit/schematics/testing';
-import { readJsonInTree } from '@nrwl/workspace';
+import { NxJson, readJsonInTree } from '@nrwl/workspace';
 import { createEmptyWorkspace } from '@nrwl/workspace/testing';
 import { join } from 'path';
 import { ApplicationSchematicSchema } from './schema';
 
 describe('application schematic', () => {
   let appTree: Tree;
-  const options: ApplicationSchematicSchema = { name: 'test' };
+  const options: ApplicationSchematicSchema = { name: 'my-app' };
   const projectRoot = `apps/${options.name}`;
 
   const testRunner = new SchematicTestRunner(
@@ -116,5 +116,59 @@ describe('application schematic', () => {
         }),
       ])
     );
+  });
+
+  describe('--directory', () => {
+    it('should update workspace.json', async () => {
+      const tree = await testRunner
+        .runSchematicAsync(
+          'application',
+          { ...options, directory: 'myDir' },
+          appTree
+        )
+        .toPromise();
+
+      const workspaceJson = readJsonInTree(tree, 'workspace.json');
+
+      expect(workspaceJson.projects['my-dir-my-app'].root).toEqual(
+        'apps/my-dir/my-app'
+      );
+      expect(workspaceJson.projects['my-dir-my-app-e2e'].root).toEqual(
+        'apps/my-dir/my-app-e2e'
+      );
+    });
+
+    it('should update nx.json', async () => {
+      const tree = await testRunner
+        .runSchematicAsync(
+          'application',
+          { ...options, directory: 'myDir' },
+          appTree
+        )
+        .toPromise();
+
+      const nxJson = readJsonInTree<NxJson>(tree, '/nx.json');
+      expect(nxJson.projects).toEqual({
+        'my-dir-my-app': {
+          tags: [],
+        },
+        'my-dir-my-app-e2e': {
+          tags: [],
+          implicitDependencies: ['my-dir-my-app'],
+        },
+      });
+    });
+
+    it('should generate files', async () => {
+      const tree = await testRunner
+        .runSchematicAsync(
+          'application',
+          { ...options, directory: 'my-dir' },
+          appTree
+        )
+        .toPromise();
+
+      expect(tree.exists('apps/my-dir/my-app/src/main.ts'));
+    });
   });
 });

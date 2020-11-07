@@ -1,10 +1,7 @@
 import { Tree } from '@angular-devkit/schematics';
-import {
-  getNpmScope,
-  projectRootDir,
-  ProjectType,
-  toFileName,
-} from '@nrwl/workspace';
+import { getNpmScope, toFileName } from '@nrwl/workspace';
+import { appsDir } from '@nrwl/workspace/src/utils/ast-utils';
+import { normalize } from 'path';
 import { ApplicationSchematicSchema, NormalizedSchema } from '../schema';
 
 export function normalizeOptions(
@@ -12,13 +9,19 @@ export function normalizeOptions(
   options: ApplicationSchematicSchema
 ): NormalizedSchema {
   const name = toFileName(options.name);
-  const projectRoot = `${projectRootDir(ProjectType.Application)}/${name}`;
   const prefix = getNpmScope(host);
+
+  const appDirectory = options.directory
+    ? `${toFileName(options.directory)}/${toFileName(options.name)}`
+    : toFileName(options.name);
+  const appProjectName = appDirectory.replace(new RegExp('/', 'g'), '-');
+  const appProjectRoot = normalize(`${appsDir(host)}/${appDirectory}`);
 
   return {
     ...options,
     name,
-    projectRoot,
+    appProjectName,
+    appProjectRoot,
     prefix,
   };
 }
