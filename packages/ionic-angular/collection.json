@@ -8,6 +8,12 @@
       "schema": "./src/schematics/init/schema.json",
       "description": "Initialize the @nxtend/ionic-angular plugin",
       "aliases": ["ng-add"]
+    },
+    "application": {
+      "factory": "./src/schematics/application/schematic",
+      "schema": "./src/schematics/application/schema.json",
+      "aliases": ["app"],
+      "description": "Create an application"
     }
   }
 }
