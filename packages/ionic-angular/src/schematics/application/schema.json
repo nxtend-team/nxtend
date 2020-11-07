@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "id": "IonicAngularApp",
+  "title": "Create an Ionic Angular Application for Nx",
+  "type": "object",
+  "properties": {
+    "name": {
+      "description": "The name of the application.",
+      "type": "string",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      },
+      "x-prompt": "What name would you like to use for the application?",
+      "pattern": "^[a-zA-Z]{1}.*$"
+    }
+  },
+  "required": []
+}

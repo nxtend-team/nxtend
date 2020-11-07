@@ -44,6 +44,7 @@
     "react-dom": "^16.8.4"
   },
   "devDependencies": {
+    "@nrwl/angular": "10.3.2",
     "@nrwl/cli": "10.3.2",
     "@nrwl/cypress": "10.3.2",
     "@nrwl/eslint-plugin-nx": "10.3.2",
