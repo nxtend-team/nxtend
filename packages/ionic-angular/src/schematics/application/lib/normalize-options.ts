@@ -14,14 +14,19 @@ export function normalizeOptions(
   const appDirectory = options.directory
     ? `${toFileName(options.directory)}/${toFileName(options.name)}`
     : toFileName(options.name);
-  const appProjectName = appDirectory.replace(new RegExp('/', 'g'), '-');
+  const projectName = appDirectory.replace(new RegExp('/', 'g'), '-');
   const appProjectRoot = normalize(`${appsDir(host)}/${appDirectory}`);
+
+  const parsedTags = options.tags
+    ? options.tags.split(',').map((s) => s.trim())
+    : [];
 
   return {
     ...options,
     name,
-    appProjectName,
-    appProjectRoot,
     prefix,
+    projectName,
+    appProjectRoot,
+    parsedTags,
   };
 }

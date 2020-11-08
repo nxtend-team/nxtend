@@ -171,4 +171,27 @@ describe('application schematic', () => {
       expect(tree.exists('apps/my-dir/my-app/src/main.ts'));
     });
   });
+
+  describe('--tags', () => {
+    it('should update nx.json', async () => {
+      const tree = await testRunner
+        .runSchematicAsync(
+          'application',
+          { ...options, tags: 'one,two' },
+          appTree
+        )
+        .toPromise();
+
+      const nxJson = readJsonInTree<NxJson>(tree, '/nx.json');
+      expect(nxJson.projects).toEqual({
+        'my-app': {
+          tags: ['one', 'two'],
+        },
+        'my-app-e2e': {
+          tags: [],
+          implicitDependencies: ['my-app'],
+        },
+      });
+    });
+  });
 });

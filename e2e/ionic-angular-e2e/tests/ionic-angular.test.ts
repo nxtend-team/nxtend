@@ -82,4 +82,20 @@ describe('Ionic Angular Application', () => {
     },
     asyncTimeout
   );
+
+  it(
+    'should add tags',
+    async (done) => {
+      const appName = uniq('ionic-angular');
+      ensureNxProject('@nxtend/ionic-angular', 'dist/packages/ionic-angular');
+      await runNxCommandAsync(
+        `generate @nxtend/ionic-angular:app --name ${appName} --tags one,two`
+      );
+
+      await buildAndTestApp(appName);
+
+      done();
+    },
+    asyncTimeout
+  );
 });
