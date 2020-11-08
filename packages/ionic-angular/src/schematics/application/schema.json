@@ -18,6 +18,10 @@
       "description": "The directory of the new application.",
       "type": "string",
       "alias": "d"
+    },
+    "tags": {
+      "type": "string",
+      "description": "Add tags to the application (used for linting)."
     }
   },
   "required": []

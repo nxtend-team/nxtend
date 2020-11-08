@@ -6,6 +6,7 @@ import { addProject } from './lib/add-project';
 import { generateNrwlAngularApplication } from './lib/external-schematic';
 import { addFiles, removeFiles } from './lib/files';
 import { normalizeOptions } from './lib/normalize-options';
+import { updateNxJson } from './lib/update-nx-json';
 import { ApplicationSchematicSchema } from './schema';
 
 export default function (options: ApplicationSchematicSchema): Rule {
@@ -17,8 +18,9 @@ export default function (options: ApplicationSchematicSchema): Rule {
       addDependencies(),
       generateNrwlAngularApplication(normalizedOptions),
       addFiles(normalizedOptions),
-      addProject(normalizedOptions),
       removeFiles(normalizedOptions),
+      addProject(normalizedOptions),
+      updateNxJson(normalizedOptions),
       formatFiles({ skipFormat: false }),
     ]);
   };
