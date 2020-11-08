@@ -66,4 +66,20 @@ describe('Ionic Angular Application', () => {
     },
     asyncTimeout
   );
+
+  it(
+    'should generate application in subdir',
+    async (done) => {
+      const appName = uniq('ionic-angular');
+      ensureNxProject('@nxtend/ionic-angular', 'dist/packages/ionic-angular');
+      await runNxCommandAsync(
+        `generate @nxtend/ionic-angular:app --name ${appName} --directory myDir`
+      );
+
+      await buildAndTestApp(`my-dir-${appName}`);
+
+      done();
+    },
+    asyncTimeout
+  );
 });

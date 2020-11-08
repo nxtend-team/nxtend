@@ -4,7 +4,8 @@ import { NormalizedSchema } from '../schema';
 
 export function addProject(options: NormalizedSchema): Rule {
   return updateWorkspaceInTree((json) => {
-    let assets = json.projects[options.name].architect.build.options.assets;
+    let assets =
+      json.projects[options.appProjectName].architect.build.options.assets;
     assets = assets.filter(
       (asset: any) => !asset.toString().includes('src/favicon.ico')
     );
@@ -13,10 +14,15 @@ export function addProject(options: NormalizedSchema): Rule {
       input: 'node_modules/ionicons/dist/ionicons/svg',
       output: './svg',
     });
-    json.projects[options.name].architect.build.options.assets = assets;
+    json.projects[
+      options.appProjectName
+    ].architect.build.options.assets = assets;
 
-    const styles = json.projects[options.name].architect.build.options.styles;
-    styles.push({ input: `${options.projectRoot}/src/theme/variables.scss` });
+    const styles =
+      json.projects[options.appProjectName].architect.build.options.styles;
+    styles.push({
+      input: `${options.appProjectRoot}/src/theme/variables.scss`,
+    });
 
     return json;
   });

@@ -13,6 +13,11 @@
       },
       "x-prompt": "What name would you like to use for the application?",
       "pattern": "^[a-zA-Z]{1}.*$"
+    },
+    "directory": {
+      "description": "The directory of the new application.",
+      "type": "string",
+      "alias": "d"
     }
   },
   "required": []
