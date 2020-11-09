@@ -7,12 +7,20 @@ import { ApplicationSchematicSchema } from './schema';
 
 describe('application schematic', () => {
   let appTree: Tree;
-  const options: ApplicationSchematicSchema = { name: 'my-app' };
+  const options: ApplicationSchematicSchema = {
+    name: 'my-app',
+    capacitor: false,
+  };
   const projectRoot = `apps/${options.name}`;
 
   const testRunner = new SchematicTestRunner(
     '@nxtend/ionic-angular',
     join(__dirname, '../../../collection.json')
+  );
+
+  testRunner.registerCollection(
+    '@nxtend/capacitor',
+    join(__dirname, '../../../../capacitor/collection.json')
   );
 
   beforeEach(() => {
@@ -191,6 +199,24 @@ describe('application schematic', () => {
           tags: [],
           implicitDependencies: ['my-app'],
         },
+      });
+    });
+  });
+
+  describe('--capacitor', () => {
+    describe('true', () => {
+      it('should generate Capacitor project', async () => {
+        const tree = await testRunner
+          .runSchematicAsync(
+            'application',
+            { ...options, capacitor: true },
+            appTree
+          )
+          .toPromise();
+
+        expect(
+          readJsonInTree(tree, `${projectRoot}/capacitor.config.json`)
+        ).toBeDefined();
       });
     });
   });

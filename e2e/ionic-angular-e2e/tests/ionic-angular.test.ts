@@ -57,7 +57,7 @@ describe('Ionic Angular Application', () => {
       const appName = uniq('ionic-angular');
       ensureNxProject('@nxtend/ionic-angular', 'dist/packages/ionic-angular');
       await runNxCommandAsync(
-        `generate @nxtend/ionic-angular:app --name ${appName}`
+        `generate @nxtend/ionic-angular:app --name ${appName} --capacitor false`
       );
 
       await buildAndTestApp(appName);
@@ -73,7 +73,7 @@ describe('Ionic Angular Application', () => {
       const appName = uniq('ionic-angular');
       ensureNxProject('@nxtend/ionic-angular', 'dist/packages/ionic-angular');
       await runNxCommandAsync(
-        `generate @nxtend/ionic-angular:app --name ${appName} --directory myDir`
+        `generate @nxtend/ionic-angular:app --name ${appName} --capacitor false --directory myDir`
       );
 
       await buildAndTestApp(`my-dir-${appName}`);
@@ -89,7 +89,7 @@ describe('Ionic Angular Application', () => {
       const appName = uniq('ionic-angular');
       ensureNxProject('@nxtend/ionic-angular', 'dist/packages/ionic-angular');
       await runNxCommandAsync(
-        `generate @nxtend/ionic-angular:app --name ${appName} --tags one,two`
+        `generate @nxtend/ionic-angular:app --name ${appName} --capacitor false --tags one,two`
       );
 
       await buildAndTestApp(appName);

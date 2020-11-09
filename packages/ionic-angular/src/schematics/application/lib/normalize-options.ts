@@ -8,6 +8,7 @@ export function normalizeOptions(
   host: Tree,
   options: ApplicationSchematicSchema
 ): NormalizedSchema {
+  const appName = options.name;
   const name = toFileName(options.name);
   const prefix = getNpmScope(host);
 
@@ -23,6 +24,7 @@ export function normalizeOptions(
 
   return {
     ...options,
+    appName,
     name,
     prefix,
     projectName,

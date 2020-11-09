@@ -3,7 +3,10 @@ import { formatFiles } from '@nrwl/workspace';
 import init from '../init/schematic';
 import { addDependencies } from './lib/add-dependencies';
 import { addProject } from './lib/add-project';
-import { generateNrwlAngularApplication } from './lib/external-schematic';
+import {
+  generateCapacitorProject,
+  generateNrwlAngularApplication,
+} from './lib/external-schematic';
 import { addFiles, removeFiles } from './lib/files';
 import { normalizeOptions } from './lib/normalize-options';
 import { updateNxJson } from './lib/update-nx-json';
@@ -21,6 +24,7 @@ export default function (options: ApplicationSchematicSchema): Rule {
       removeFiles(normalizedOptions),
       addProject(normalizedOptions),
       updateNxJson(normalizedOptions),
+      generateCapacitorProject(normalizedOptions),
       formatFiles({ skipFormat: false }),
     ]);
   };

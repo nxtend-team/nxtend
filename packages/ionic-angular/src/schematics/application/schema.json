@@ -22,7 +22,12 @@
     "tags": {
       "type": "string",
       "description": "Add tags to the application (used for linting)."
+    },
+    "capacitor": {
+      "type": "boolean",
+      "description": "Generate a Capacitor project.",
+      "default": true
     }
   },
-  "required": []
+  "required": ["name"]
 }
