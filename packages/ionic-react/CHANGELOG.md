@@ -1,5 +1,9 @@
 # Changelog
 
+# 4.1.0
+
+- initialize plugin with `@nxtend/capacitor` 2.0.2
+
 # 4.0.0
 
 # Features
