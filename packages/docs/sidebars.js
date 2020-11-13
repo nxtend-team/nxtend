@@ -21,6 +21,20 @@ module.exports = {
     },
     {
       type: 'category',
+      label: 'Ionic Angular',
+      items: [
+        'ionic-angular/overview',
+        'ionic-angular/getting-started',
+        {
+          Schematics: [
+            'ionic-angular/schematics/init',
+            'ionic-angular/schematics/application',
+          ],
+        },
+      ],
+    },
+    {
+      type: 'category',
       label: 'Capacitor',
       items: [
         'capacitor/overview',
