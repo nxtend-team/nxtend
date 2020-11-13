@@ -48,6 +48,20 @@ Options:
   --help                  Show available options for project target.
 ```
 
+## Targets
+
+Generated applications expose several functions to the CLI that allow users to build, lint, test, and so on.
+
+```
+nx build {frontend project name}
+nx lint {frontend project name}
+nx serve {frontend project name}
+nx test {frontend project name}
+nx e2e {frontend project name}-e2e
+```
+
+These applications are also supported by the Nx [affected](https://nx.dev/latest/angular/cli/affected#affected) commands.
+
 ## Add Native Platform
 
 First, ensure that the frontend project has been built:
