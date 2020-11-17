@@ -68,12 +68,12 @@ describe('application', () => {
     ).toBeTruthy();
     expect(
       tree.exists(
-        `${projectRoot}/src/pages/${homeFileName}.${componentExtension}`
+        `${projectRoot}/src/app/pages/${homeFileName}.${componentExtension}`
       )
     ).toBeTruthy();
     expect(
       tree.exists(
-        `${projectRoot}/src/components/${exploreContainerFileName}.${componentExtension}`
+        `${projectRoot}/src/app/components/${exploreContainerFileName}.${componentExtension}`
       )
     ).toBeTruthy();
 
@@ -83,11 +83,13 @@ describe('application', () => {
     ) {
       expect(
         tree.exists(
-          `${projectRoot}/src/components/${exploreContainerFileName}.${options.style}`
+          `${projectRoot}/src/app/components/${exploreContainerFileName}.${options.style}`
         )
       ).toBeTruthy();
       expect(
-        tree.exists(`${projectRoot}/src/pages/${homeFileName}.${options.style}`)
+        tree.exists(
+          `${projectRoot}/src/app/pages/${homeFileName}.${options.style}`
+        )
       ).toBeTruthy();
       expect(
         tree.exists(`${projectRoot}/src/app/theme/variables.${options.style}`)
@@ -95,11 +97,13 @@ describe('application', () => {
     } else {
       expect(
         tree.exists(
-          `${projectRoot}/src/components/${exploreContainerFileName}.${options.style}`
+          `${projectRoot}/src/app/components/${exploreContainerFileName}.${options.style}`
         )
       ).toBeFalsy();
       expect(
-        tree.exists(`${projectRoot}/src/pages/${homeFileName}.${options.style}`)
+        tree.exists(
+          `${projectRoot}/src/app/pages/${homeFileName}.${options.style}`
+        )
       ).toBeFalsy();
       expect(
         tree.exists(`${projectRoot}/src/app/theme/variables.${options.style}`)
