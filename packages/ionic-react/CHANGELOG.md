@@ -1,14 +1,6 @@
 # Changelog
 
-# 4.1.1
-
-# Bug Fixes
-
-- generate `__mocks__/` directory under `src/`
-
 # 4.1.0
-
-# Features
 
 - initialize plugin with `@nxtend/capacitor` 2.0.2
 
