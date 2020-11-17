@@ -5,6 +5,7 @@
 # Bug Fixes
 
 - generate `__mocks__/` directory under `src/`
+- generate `components/` and `pages/` directory under `src/`
 
 # 4.1.0
 
