@@ -1,8 +1,4 @@
-<% if (classComponent) { %>
-import React, { Component } from 'react';
-<% } else { %>
 import React from 'react';
-<% } %>
 
 <% if (styledModule) { %>
 import styled from '<%= styledModule %>';
@@ -56,24 +52,15 @@ var innerJsx = `
 `;
 %>
 
-<% if (classComponent) { %>
-export class ExploreContainer extends Component {
-  render() {
-    return (
-      <% if (styledModule) { %><StyledExploreContainer><% } %>
-        <%= innerJsx %>
-      <% if (styledModule) { %></StyledExploreContainer><% } %>
-    );
-  }
-}
-<% } else { %>
-export const ExploreContainer = () => {
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+interface ContainerProps { }
+
+const ExploreContainer: React.FC<ContainerProps> = () => {
   return (
     <% if (styledModule) { %><StyledExploreContainer><% } %>
       <%= innerJsx %>
     <% if (styledModule) { %></StyledExploreContainer><% } %>
   );
 };
-<% } %>
 
 export default ExploreContainer;

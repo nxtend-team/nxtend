@@ -32,7 +32,6 @@ describe('application e2e', () => {
        --e2eTestRunner ${options.e2eTestRunner} \
        --linter ${options.linter} \
        --pascalCaseFiles ${options.pascalCaseFiles} \
-       --classComponent ${options.classComponent} \
        --js ${options.js} \
        --capacitor ${options.capacitor}`
     );
@@ -273,27 +272,6 @@ describe('application e2e', () => {
             ...defaultOptions,
             name: uniq('ionic-react'),
             pascalCaseFiles: true,
-          };
-
-          await generateApp(options);
-          await buildAndTestApp(options.name);
-
-          done();
-        },
-        asyncTimeout
-      );
-    });
-  });
-
-  describe('--classComponent', () => {
-    describe('true', () => {
-      it(
-        'should generate with class components',
-        async (done) => {
-          const options: ApplicationSchematicSchema = {
-            ...defaultOptions,
-            name: uniq('ionic-react'),
-            classComponent: true,
           };
 
           await generateApp(options);

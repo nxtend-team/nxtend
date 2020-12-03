@@ -5,12 +5,7 @@ import {
   IonTitle,
   IonToolbar
 } from '@ionic/react';
-
-<% if (classComponent) { %>
-import React, { Component } from 'react';
-<% } else { %>
 import React from 'react';
-<% } %>
 
 import ExploreContainer from '../components/<%= exploreContainerFileName %>';
 
@@ -42,24 +37,12 @@ var innerJsx = `
 `;
 %>
 
-<% if (classComponent) { %>
-export class Home extends Component {
-  render() {
-    return (
-      <% if (styledModule) { %><StyledHome><% } %>
-        <%= innerJsx %>
-      <% if (styledModule) { %></StyledHome><% } %>
-    );
-  }
-}
-<% } else { %>
-export const Home = () => {
+const Home: React.FC = () => {
   return (
     <% if (styledModule) { %><StyledHome><% } %>
       <%= innerJsx %>
     <% if (styledModule) { %></StyledHome><% } %>
   );
 };
-<% } %>
 
 export default Home;

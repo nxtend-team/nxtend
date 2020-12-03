@@ -6,14 +6,6 @@
     {
       "command": "g app myapp --directory=myorg",
       "description": "Generate apps/myorg/myapp and apps/myorg/myapp-e2e"
-    },
-    {
-      "command": "g app myapp --classComponent",
-      "description": "Use class components instead of functional components"
-    },
-    {
-      "command": "g app myapp --routing",
-      "description": "Set up React Router"
     }
   ],
   "type": "object",
@@ -102,12 +94,6 @@
       "type": "boolean",
       "description": "Use pascal case component file name (e.g. App.tsx).",
       "alias": "P",
-      "default": false
-    },
-    "classComponent": {
-      "type": "boolean",
-      "description": "Use class components instead of functional component.",
-      "alias": "C",
       "default": false
     },
     "js": {

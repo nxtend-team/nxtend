@@ -13,6 +13,7 @@ export function generateNrwlReactApplication(
     ...options,
     routing: true,
     unitTestRunner: 'none',
+    classComponent: false,
     skipWorkspaceJson: true,
   });
 }

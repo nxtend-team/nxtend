@@ -1,5 +1,9 @@
 # Changelog
 
+# 5.0.0
+
+- remove `classComponent` option from `application` schematic
+
 # 4.1.0
 
 - initialize plugin with `@nxtend/capacitor` 2.0.2

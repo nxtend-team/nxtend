@@ -102,16 +102,6 @@ Type: `boolean`
 
 Use pascal case component file name (e.g. App.tsx).
 
-### --classComponent
-
-Alias(es): C
-
-Default: `false`
-
-Type: `boolean`
-
-Use class components instead of functional component.
-
 ### --js
 
 Default: `false`

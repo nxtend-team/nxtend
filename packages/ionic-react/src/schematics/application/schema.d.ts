@@ -10,7 +10,6 @@ export interface ApplicationSchematicSchema {
   e2eTestRunner: 'cypress' | 'none';
   linter: Linter;
   pascalCaseFiles?: boolean;
-  classComponent?: boolean;
   skipWorkspaceJson?: boolean;
   js?: boolean;
   capacitor: boolean;
