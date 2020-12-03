@@ -12,7 +12,6 @@ describe('application e2e', () => {
 
   const defaultOptions: ApplicationSchematicSchema = {
     name: 'test',
-    skipFormat: false,
     unitTestRunner: 'jest',
     e2eTestRunner: 'cypress',
     linter: Linter.EsLint,
@@ -24,7 +23,6 @@ describe('application e2e', () => {
     ensureNxProject('@nxtend/ionic-react', 'dist/packages/ionic-react');
     await runNxCommandAsync(
       `generate @nxtend/ionic-react:app ${options.name} \
-       --skipFormat ${options.skipFormat} \
        --unitTestRunner ${options.unitTestRunner} \
        --e2eTestRunner ${options.e2eTestRunner} \
        --linter ${options.linter} \

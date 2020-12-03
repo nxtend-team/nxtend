@@ -36,14 +36,6 @@ Possible values: `eslint`, `tslint`
 
 The tool to use for running lint checks.
 
-### --skipFormat
-
-Default: `false`
-
-Type: `boolean`
-
-Skip formatting files.
-
 ### --skipWorkspaceJson
 
 Default: `false`

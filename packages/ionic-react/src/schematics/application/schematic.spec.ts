@@ -10,7 +10,6 @@ describe('application', () => {
 
   const options: ApplicationSchematicSchema = {
     name: 'test',
-    skipFormat: false,
     unitTestRunner: 'jest',
     e2eTestRunner: 'cypress',
     linter: Linter.EsLint,

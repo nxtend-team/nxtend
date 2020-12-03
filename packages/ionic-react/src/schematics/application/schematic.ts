@@ -25,6 +25,6 @@ export default function (options: ApplicationSchematicSchema): Rule {
     addProject(normalizedOptions),
     generateCapacitorProject(normalizedOptions),
     setDefaults(normalizedOptions),
-    formatFiles(options),
+    formatFiles(),
   ]);
 }
