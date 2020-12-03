@@ -82,6 +82,30 @@ nx run {frontend project}:add --platform {native platform}
 nx run my-app:add:android
 ```
 
+## Copy Build Output
+
+Copy the lastest build output to the native platforms:
+
+```
+nx run {frontend project}:copy:ios
+nx run {frontend project}:copy:android
+nx run {frontend project}:copy --platform {native platform}
+
+nx run my-app:copy:android
+```
+
+## Sync Build Output and Dependencies
+
+Copy the latest build output to the native platforms and sync native platform dependencies:
+
+```
+nx run {frontend project}:sync:ios
+nx run {frontend project}:sync:android
+nx run {frontend project}:sync --platform {native platform}
+
+nx run my-app:sync:android
+```
+
 ## Open Native Platform
 
 Finally, you can open the native platform in it's respective IDE:
