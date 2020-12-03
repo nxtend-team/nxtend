@@ -7,12 +7,7 @@ import { createGlobalStyle } from '<%= styledModule %>';
 import { Global, css } from '@emotion/core';
 <% } %>
 
-<% if (classComponent) { %>
-import React, { Component } from 'react';
-<% } else { %>
 import React from 'react';
-<% } %>
-
 import { Redirect, Route } from 'react-router-dom';
 import Home from './pages/<%= homeFileName %>';
 
@@ -282,20 +277,8 @@ var innerJsx = `
 `;
 %>
 
-<% if (classComponent) { %>
-export class App extends Component {
-  render() {
-    return (
-      <%= innerJsx %>
-    );
-  }
-}
-<% } else { %>
-export const App = () => {
-  return (
-    <%= innerJsx %>
-  )
-};
-<% } %>
+const App: React.FC = () => (
+  <%= innerJsx %>
+);
 
 export default App;
