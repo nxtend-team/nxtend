@@ -34,10 +34,6 @@ export function normalizeOptions(
     ? 'MessageListItem'
     : 'message-list-item';
 
-  const styledModule = /^(css|scss|less|styl)$/.test(options.style)
-    ? null
-    : options.style;
-
   return {
     ...options,
     appName,
@@ -52,6 +48,5 @@ export function normalizeOptions(
     exploreContainerFileName,
     viewMessageFileName,
     messageListItemFileName,
-    styledModule,
   };
 }

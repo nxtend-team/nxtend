@@ -1,65 +1,25 @@
 import React from 'react';
-
-<% if (styledModule) { %>
-import styled from '<%= styledModule %>';
-
-const StyledExploreContainer = styled.div`
-  .container {
-    text-align: center;
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-  }
-
-  .container strong {
-    font-size: 20px;
-    line-height: 26px;
-  }
-
-  .container p {
-    font-size: 16px;
-    line-height: 22px;
-    color: #8c8c8c;
-    margin: 0;
-  }
-
-  .container a {
-    text-decoration: none;
-  }
-`;
-<% } else { %>
-import './<%= exploreContainerFileName %>.<%= style %>';
-<% } %>
-
-<%
-var innerJsx = `
-  <div className="container">
-    <h1>Welcome to ${projectName}!</h1>
-    <strong>Ready to create an app?</strong>
-    <p>
-      Start with Ionic{' '}
-      <a
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://ionicframework.com/docs/components"
-      >
-        UI Components
-      </a>
-    </p>
-  </div>
-`;
-%>
+import './<%= exploreContainerFileName %>.css';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 interface ContainerProps { }
 
 const ExploreContainer: React.FC<ContainerProps> = () => {
   return (
-    <% if (styledModule) { %><StyledExploreContainer><% } %>
-      <%= innerJsx %>
-    <% if (styledModule) { %></StyledExploreContainer><% } %>
+    <div className="container">
+      <h1>Welcome to <%= projectName %>!</h1>
+      <strong>Ready to create an app?</strong>
+      <p>
+        Start with Ionic{' '}
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://ionicframework.com/docs/components"
+        >
+          UI Components
+        </a>
+      </p>
+    </div>
   );
 };
 

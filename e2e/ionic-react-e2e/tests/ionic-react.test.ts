@@ -1,5 +1,4 @@
 import {
-  checkFilesExist,
   ensureNxProject,
   readJson,
   runNxCommandAsync,
@@ -13,7 +12,6 @@ describe('application e2e', () => {
 
   const defaultOptions: ApplicationSchematicSchema = {
     name: 'test',
-    style: 'css',
     skipFormat: false,
     unitTestRunner: 'jest',
     e2eTestRunner: 'cypress',
@@ -26,7 +24,6 @@ describe('application e2e', () => {
     ensureNxProject('@nxtend/ionic-react', 'dist/packages/ionic-react');
     await runNxCommandAsync(
       `generate @nxtend/ionic-react:app ${options.name} \
-       --style ${options.style} \
        --skipFormat ${options.skipFormat} \
        --unitTestRunner ${options.unitTestRunner} \
        --e2eTestRunner ${options.e2eTestRunner} \
@@ -158,103 +155,6 @@ describe('application e2e', () => {
             `e2e ${options.name}-e2e --headless`
           );
           expect(e2eResults.stdout).toContain('All specs passed!');
-
-          done();
-        },
-        asyncTimeout
-      );
-    });
-  });
-
-  describe('--style', () => {
-    describe('scss', () => {
-      it(
-        'should generate application with Sass styles',
-        async (done) => {
-          const options: ApplicationSchematicSchema = {
-            ...defaultOptions,
-            name: uniq('ionic-react'),
-            style: 'scss',
-          };
-
-          await generateApp(options);
-          await buildAndTestApp(options.name);
-
-          done();
-        },
-        asyncTimeout
-      );
-    });
-
-    describe('stylus', () => {
-      it(
-        'should generate application with Stylus styles',
-        async (done) => {
-          const options: ApplicationSchematicSchema = {
-            ...defaultOptions,
-            name: uniq('ionic-react'),
-            style: 'styl',
-          };
-
-          await generateApp(options);
-          await buildAndTestApp(options.name);
-
-          done();
-        },
-        asyncTimeout
-      );
-    });
-
-    describe('less', () => {
-      it(
-        'should generate application with Less styles',
-        async (done) => {
-          const options: ApplicationSchematicSchema = {
-            ...defaultOptions,
-            name: uniq('ionic-react'),
-            style: 'less',
-          };
-
-          await generateApp(options);
-          await buildAndTestApp(options.name);
-
-          done();
-        },
-        asyncTimeout
-      );
-    });
-
-    describe('styled-components', () => {
-      it(
-        'should generate application with styled-components styles',
-        async (done) => {
-          const options: ApplicationSchematicSchema = {
-            ...defaultOptions,
-            name: uniq('ionic-react'),
-            style: 'styled-components',
-          };
-
-          await generateApp(options);
-          await buildAndTestApp(options.name);
-
-          done();
-        },
-        asyncTimeout
-      );
-    });
-
-    describe('@emotion/styled', () => {
-      it(
-        'should generate application with Emotion styles',
-        async (done) => {
-          const options: ApplicationSchematicSchema = {
-            ...defaultOptions,
-            name: uniq('ionic-react'),
-            style: '@emotion/styled',
-          };
-
-          await generateApp(options);
-          await buildAndTestApp(options.name);
 
           done();
         },

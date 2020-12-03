@@ -2,7 +2,6 @@ import { Linter } from '@nrwl/workspace';
 
 export interface ApplicationSchematicSchema {
   name: string;
-  style?: string;
   skipFormat: boolean;
   directory?: string;
   tags?: string;
@@ -27,5 +26,4 @@ export interface NormalizedSchema extends ApplicationSchematicSchema {
   exploreContainerFileName: string;
   viewMessageFileName: string;
   messageListItemFileName: string;
-  styledModule: null | string;
 }

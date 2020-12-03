@@ -10,7 +10,6 @@ describe('application', () => {
 
   const options: ApplicationSchematicSchema = {
     name: 'test',
-    style: 'css',
     skipFormat: false,
     unitTestRunner: 'jest',
     e2eTestRunner: 'cypress',
@@ -77,38 +76,17 @@ describe('application', () => {
       )
     ).toBeTruthy();
 
-    if (
-      options.style !== 'styled-components' &&
-      options.style !== '@emotion/styled'
-    ) {
-      expect(
-        tree.exists(
-          `${projectRoot}/src/app/components/${exploreContainerFileName}.${options.style}`
-        )
-      ).toBeTruthy();
-      expect(
-        tree.exists(
-          `${projectRoot}/src/app/pages/${homeFileName}.${options.style}`
-        )
-      ).toBeTruthy();
-      expect(
-        tree.exists(`${projectRoot}/src/app/theme/variables.${options.style}`)
-      ).toBeTruthy();
-    } else {
-      expect(
-        tree.exists(
-          `${projectRoot}/src/app/components/${exploreContainerFileName}.${options.style}`
-        )
-      ).toBeFalsy();
-      expect(
-        tree.exists(
-          `${projectRoot}/src/app/pages/${homeFileName}.${options.style}`
-        )
-      ).toBeFalsy();
-      expect(
-        tree.exists(`${projectRoot}/src/app/theme/variables.${options.style}`)
-      ).toBeFalsy();
-    }
+    expect(
+      tree.exists(
+        `${projectRoot}/src/app/components/${exploreContainerFileName}.css`
+      )
+    ).toBeTruthy();
+    expect(
+      tree.exists(`${projectRoot}/src/app/pages/${homeFileName}.css`)
+    ).toBeTruthy();
+    expect(
+      tree.exists(`${projectRoot}/src/app/theme/variables.css`)
+    ).toBeTruthy();
 
     // Capacitor files
     if (options.capacitor) {
@@ -175,77 +153,11 @@ describe('application', () => {
     ).toEqual('@nxtend/ionic-react/plugins/webpack');
 
     expect(
-      workspaceJson.schematics['@nxtend/ionic-react'].application.style
-    ).toEqual('css');
-    expect(
       workspaceJson.schematics['@nxtend/ionic-react'].application.linter
     ).toEqual('eslint');
     expect(
-      workspaceJson.schematics['@nxtend/ionic-react'].component.style
-    ).toEqual('css');
-    expect(
-      workspaceJson.schematics['@nxtend/ionic-react'].library.style
-    ).toEqual('css');
-    expect(
       workspaceJson.schematics['@nxtend/ionic-react'].library.linter
     ).toEqual('eslint');
-  });
-
-  describe('--style', () => {
-    describe('scss', () => {
-      it('should generate application with Sass styles', async () => {
-        const style = 'scss';
-        const tree = await testRunner
-          .runSchematicAsync('application', { ...options, style }, appTree)
-          .toPromise();
-
-        testGeneratedFiles(tree, { ...options, style });
-      });
-    });
-
-    describe('styl', () => {
-      it('should generate application with Stylus styles', async () => {
-        const style = 'styl';
-        const tree = await testRunner
-          .runSchematicAsync('application', { ...options, style }, appTree)
-          .toPromise();
-
-        testGeneratedFiles(tree, { ...options, style });
-      });
-    });
-
-    describe('less', () => {
-      it('should generate application with Less styles', async () => {
-        const style = 'less';
-        const tree = await testRunner
-          .runSchematicAsync('application', { ...options, style }, appTree)
-          .toPromise();
-
-        testGeneratedFiles(tree, { ...options, style });
-      });
-    });
-
-    describe('styled-components', () => {
-      it('should generate application with styled-components styles', async () => {
-        const style = 'styled-components';
-        const tree = await testRunner
-          .runSchematicAsync('application', { ...options, style }, appTree)
-          .toPromise();
-
-        testGeneratedFiles(tree, { ...options, style });
-      });
-    });
-
-    describe('@emotion/styled', () => {
-      it('should generate application with Emotion styles', async () => {
-        const style = '@emotion/styled';
-        const tree = await testRunner
-          .runSchematicAsync('application', { ...options, style }, appTree)
-          .toPromise();
-
-        testGeneratedFiles(tree, { ...options, style });
-      });
-    });
   });
 
   describe('--unitTestRunner', () => {

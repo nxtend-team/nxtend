@@ -11,9 +11,10 @@ export function generateNrwlReactApplication(
 ): Rule {
   return externalSchematic('@nrwl/react', 'application', {
     ...options,
-    routing: true,
+    style: 'css',
     unitTestRunner: 'none',
     classComponent: false,
+    routing: true,
     skipWorkspaceJson: true,
   });
 }
