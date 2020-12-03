@@ -13,6 +13,4 @@ export interface NormalizedSchema extends ApplicationSchematicSchema {
   projectName: string;
   projectDirectory: string;
   projectRoot: string;
-  e2eRoot: string;
-  parsedTags: string[];
 }

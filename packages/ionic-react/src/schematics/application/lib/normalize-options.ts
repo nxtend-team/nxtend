@@ -14,14 +14,6 @@ export function normalizeOptions(
     ProjectType.Application
   )}/${projectDirectory}`;
 
-  const e2eRoot = `${projectRootDir(
-    ProjectType.Application
-  )}/${projectDirectory}-e2e`;
-
-  const parsedTags = options.tags
-    ? options.tags.split(',').map((s) => s.trim())
-    : [];
-
   return {
     ...options,
     appName,
@@ -29,7 +21,5 @@ export function normalizeOptions(
     projectName,
     projectDirectory,
     projectRoot,
-    e2eRoot,
-    parsedTags,
   };
 }
