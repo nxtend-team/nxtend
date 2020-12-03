@@ -4,6 +4,7 @@ import {
   Rule,
   Tree,
 } from '@angular-devkit/schematics';
+import { Linter } from '@nrwl/workspace';
 import { ApplicationSchematicSchema, NormalizedSchema } from '../schema';
 
 export function generateNrwlReactApplication(
@@ -13,6 +14,7 @@ export function generateNrwlReactApplication(
     ...options,
     style: 'css',
     unitTestRunner: 'none',
+    linter: Linter.EsLint,
     pascalCaseFiles: true,
     classComponent: false,
     routing: true,

@@ -9,7 +9,7 @@ import {
 import { addFiles, deleteUnusedFiles } from './lib/files';
 import { configureJestForIonic } from './lib/jest';
 import { normalizeOptions } from './lib/normalize-options';
-import { addProject, setDefaults } from './lib/update-workspace';
+import { addProject } from './lib/update-workspace';
 import { ApplicationSchematicSchema } from './schema';
 
 export default function (options: ApplicationSchematicSchema): Rule {
@@ -24,7 +24,6 @@ export default function (options: ApplicationSchematicSchema): Rule {
     deleteUnusedFiles(normalizedOptions),
     addProject(normalizedOptions),
     generateCapacitorProject(normalizedOptions),
-    setDefaults(normalizedOptions),
     formatFiles(),
   ]);
 }
