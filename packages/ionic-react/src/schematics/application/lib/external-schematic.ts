@@ -13,6 +13,7 @@ export function generateNrwlReactApplication(
     ...options,
     style: 'css',
     unitTestRunner: 'none',
+    pascalCaseFiles: true,
     classComponent: false,
     routing: true,
     skipWorkspaceJson: true,

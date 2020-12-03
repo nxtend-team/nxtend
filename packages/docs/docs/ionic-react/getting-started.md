@@ -48,7 +48,6 @@ Options:
   --unitTestRunner        Test runner to use for unit tests. (default: jest)
   --e2eTestRunner         Test runner to use for end to end (e2e) tests. (default: cypress)
   --tags                  Add tags to the application (used for linting).
-  --pascalCaseFiles       Use pascal case component file name (e.g. App.tsx).
   --js                    Generate JavaScript files rather than TypeScript files.
   --capacitor             Generate a Capacitor project. (default: true)
   --dryRun                Runs through and reports activity without writing to disk.

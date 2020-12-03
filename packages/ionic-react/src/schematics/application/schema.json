@@ -57,12 +57,6 @@
       "description": "Add tags to the application (used for linting).",
       "alias": "t"
     },
-    "pascalCaseFiles": {
-      "type": "boolean",
-      "description": "Use pascal case component file name (e.g. App.tsx).",
-      "alias": "P",
-      "default": false
-    },
     "js": {
       "type": "boolean",
       "description": "Generate JavaScript files rather than TypeScript files.",

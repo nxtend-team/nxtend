@@ -28,7 +28,6 @@ describe('application e2e', () => {
        --unitTestRunner ${options.unitTestRunner} \
        --e2eTestRunner ${options.e2eTestRunner} \
        --linter ${options.linter} \
-       --pascalCaseFiles ${options.pascalCaseFiles} \
        --js ${options.js} \
        --capacitor ${options.capacitor}`
     );
@@ -155,27 +154,6 @@ describe('application e2e', () => {
             `e2e ${options.name}-e2e --headless`
           );
           expect(e2eResults.stdout).toContain('All specs passed!');
-
-          done();
-        },
-        asyncTimeout
-      );
-    });
-  });
-
-  describe('--pascalCaseFiles', () => {
-    describe('true', () => {
-      it(
-        'should generate with pascal case files',
-        async (done) => {
-          const options: ApplicationSchematicSchema = {
-            ...defaultOptions,
-            name: uniq('ionic-react'),
-            pascalCaseFiles: true,
-          };
-
-          await generateApp(options);
-          await buildAndTestApp(options.name);
 
           done();
         },
