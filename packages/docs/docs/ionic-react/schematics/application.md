@@ -24,25 +24,7 @@ Default: `null`
 
 Type: `string`
 
-The subdirectory of the new application. By default, apps will be generated under the `apps/` directory.
-
-### --linter
-
-Default: `eslint`
-
-Type: `string`
-
-Possible values: `eslint`, `tslint`
-
-The tool to use for running lint checks.
-
-### --skipWorkspaceJson
-
-Default: `false`
-
-Type: `boolean`
-
-Skip updating workspace.json with default schematic options based on values provided to this app (e.g. babel, style).
+The subdirectory of the new application. By default, apps will be generated under the `apps/` directory.z
 
 ### --unitTestRunner
 

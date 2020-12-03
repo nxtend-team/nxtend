@@ -1,13 +1,9 @@
-import { Linter } from '@nrwl/workspace';
-
 export interface ApplicationSchematicSchema {
   name: string;
   directory?: string;
   tags?: string;
   unitTestRunner: 'jest' | 'none';
   e2eTestRunner: 'cypress' | 'none';
-  linter: Linter;
-  skipWorkspaceJson?: boolean;
   js?: boolean;
   capacitor: boolean;
 }

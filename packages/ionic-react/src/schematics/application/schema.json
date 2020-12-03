@@ -24,17 +24,6 @@
       "type": "string",
       "alias": "d"
     },
-    "linter": {
-      "description": "The tool to use for running lint checks.",
-      "type": "string",
-      "enum": ["eslint", "tslint"],
-      "default": "eslint"
-    },
-    "skipWorkspaceJson": {
-      "description": "Skip updating workspace.json with default schematic options based on values provided to this app (e.g. babel, style).",
-      "type": "boolean",
-      "default": false
-    },
     "unitTestRunner": {
       "type": "string",
       "enum": ["jest", "none"],

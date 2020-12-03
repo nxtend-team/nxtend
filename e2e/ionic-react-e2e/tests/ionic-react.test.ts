@@ -4,7 +4,6 @@ import {
   runNxCommandAsync,
   uniq,
 } from '@nrwl/nx-plugin/testing';
-import { Linter } from '@nrwl/workspace';
 import { ApplicationSchematicSchema } from '@nxtend/ionic-react';
 
 describe('application e2e', () => {
@@ -14,7 +13,6 @@ describe('application e2e', () => {
     name: 'test',
     unitTestRunner: 'jest',
     e2eTestRunner: 'cypress',
-    linter: Linter.EsLint,
     js: false,
     capacitor: false,
   };
@@ -25,7 +23,6 @@ describe('application e2e', () => {
       `generate @nxtend/ionic-react:app ${options.name} \
        --unitTestRunner ${options.unitTestRunner} \
        --e2eTestRunner ${options.e2eTestRunner} \
-       --linter ${options.linter} \
        --js ${options.js} \
        --capacitor ${options.capacitor}`
     );

@@ -1,6 +1,6 @@
 import { Tree } from '@angular-devkit/schematics';
 import { SchematicTestRunner } from '@angular-devkit/schematics/testing';
-import { Linter, readJsonInTree } from '@nrwl/workspace';
+import { readJsonInTree } from '@nrwl/workspace';
 import { createEmptyWorkspace } from '@nrwl/workspace/testing';
 import { join } from 'path';
 import { ApplicationSchematicSchema } from './schema';
@@ -12,7 +12,6 @@ describe('application', () => {
     name: 'test',
     unitTestRunner: 'jest',
     e2eTestRunner: 'cypress',
-    linter: Linter.EsLint,
     capacitor: false,
   };
 
@@ -139,13 +138,6 @@ describe('application', () => {
     expect(
       workspaceJson.projects[options.name].architect.build.options.webpackConfig
     ).toEqual('@nxtend/ionic-react/plugins/webpack');
-
-    expect(
-      workspaceJson.schematics['@nxtend/ionic-react'].application.linter
-    ).toEqual('eslint');
-    expect(
-      workspaceJson.schematics['@nxtend/ionic-react'].library.linter
-    ).toEqual('eslint');
   });
 
   describe('--unitTestRunner', () => {
