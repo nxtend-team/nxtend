@@ -22,18 +22,6 @@ export function normalizeOptions(
     ? options.tags.split(',').map((s) => s.trim())
     : [];
 
-  const appFileName = options.pascalCaseFiles ? 'App' : 'app';
-  const homeFileName = options.pascalCaseFiles ? 'Home' : 'home';
-  const exploreContainerFileName = options.pascalCaseFiles
-    ? 'ExploreContainer'
-    : 'explore-container';
-  const viewMessageFileName = options.pascalCaseFiles
-    ? 'ViewMessage'
-    : 'view-message';
-  const messageListItemFileName = options.pascalCaseFiles
-    ? 'MessageListItem'
-    : 'message-list-item';
-
   return {
     ...options,
     appName,
@@ -43,10 +31,5 @@ export function normalizeOptions(
     projectRoot,
     e2eRoot,
     parsedTags,
-    appFileName,
-    homeFileName,
-    exploreContainerFileName,
-    viewMessageFileName,
-    messageListItemFileName,
   };
 }

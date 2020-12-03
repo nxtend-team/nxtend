@@ -58,7 +58,7 @@ export function addFiles(options: NormalizedSchema): Rule {
 export function deleteUnusedFiles(options: NormalizedSchema): Rule {
   return (tree: Tree) => {
     tree.delete(options.projectRoot + '/src/favicon.ico');
-    tree.delete(options.projectRoot + `/src/app/${options.appFileName}.css`);
+    tree.delete(options.projectRoot + `/src/app/App.css`);
 
     return tree;
   };

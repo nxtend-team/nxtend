@@ -31,11 +31,6 @@ describe('application', () => {
 
   function testGeneratedFiles(tree: Tree, options: ApplicationSchematicSchema) {
     const componentExtension = options.js ? 'js' : 'tsx';
-    const appFileName = options.pascalCaseFiles ? 'App' : 'app';
-    const homeFileName = options.pascalCaseFiles ? 'Home' : 'home';
-    const exploreContainerFileName = options.pascalCaseFiles
-      ? 'ExploreContainer'
-      : 'explore-container';
 
     // Common files
     expect(tree.exists(`${projectRoot}/.eslintrc.json`)).toBeTruthy();
@@ -63,27 +58,21 @@ describe('application', () => {
 
     // Starter templates
     expect(
-      tree.exists(`${projectRoot}/src/app/${appFileName}.${componentExtension}`)
+      tree.exists(`${projectRoot}/src/app/App.${componentExtension}`)
+    ).toBeTruthy();
+    expect(
+      tree.exists(`${projectRoot}/src/app/pages/Home.${componentExtension}`)
     ).toBeTruthy();
     expect(
       tree.exists(
-        `${projectRoot}/src/app/pages/${homeFileName}.${componentExtension}`
-      )
-    ).toBeTruthy();
-    expect(
-      tree.exists(
-        `${projectRoot}/src/app/components/${exploreContainerFileName}.${componentExtension}`
+        `${projectRoot}/src/app/components/ExploreContainer.${componentExtension}`
       )
     ).toBeTruthy();
 
     expect(
-      tree.exists(
-        `${projectRoot}/src/app/components/${exploreContainerFileName}.css`
-      )
+      tree.exists(`${projectRoot}/src/app/components/ExploreContainer.css`)
     ).toBeTruthy();
-    expect(
-      tree.exists(`${projectRoot}/src/app/pages/${homeFileName}.css`)
-    ).toBeTruthy();
+    expect(tree.exists(`${projectRoot}/src/app/pages/Home.css`)).toBeTruthy();
     expect(
       tree.exists(`${projectRoot}/src/app/theme/variables.css`)
     ).toBeTruthy();
@@ -224,25 +213,6 @@ describe('application', () => {
 
         expect(tree.exists(`${projectRoot}/src/app/app.spec.tsx`)).toBeFalsy();
         testGeneratedFiles(tree, { ...options, unitTestRunner: 'none' });
-      });
-    });
-  });
-
-  describe('--pascalCaseFiles', () => {
-    describe('true', () => {
-      it('should generate pascal case file names', async () => {
-        const tree = await testRunner
-          .runSchematicAsync(
-            'application',
-            { ...options, pascalCaseFiles: true },
-            appTree
-          )
-          .toPromise();
-
-        testGeneratedFiles(tree, {
-          ...options,
-          pascalCaseFiles: true,
-        });
       });
     });
   });

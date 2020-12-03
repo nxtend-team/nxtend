@@ -80,16 +80,6 @@ Type: `string`
 
 Add tags to the application (used for linting).
 
-### --pascalCaseFiles
-
-Alias(es): P
-
-Default: `false`
-
-Type: `boolean`
-
-Use pascal case component file name (e.g. App.tsx).
-
 ### --js
 
 Default: `false`

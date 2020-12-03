@@ -6,6 +6,7 @@
 
 - remove `classComponent` option from `application` schematic (now defaults to functional components)
 - remove `style` option from the `application` schematic (now defaults to CSS)
+- remove `pascalCaseComponent` option from the `application` schematic (now defaults to true)
 
 # 4.1.0
 

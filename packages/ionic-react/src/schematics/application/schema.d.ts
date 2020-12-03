@@ -8,7 +8,6 @@ export interface ApplicationSchematicSchema {
   unitTestRunner: 'jest' | 'none';
   e2eTestRunner: 'cypress' | 'none';
   linter: Linter;
-  pascalCaseFiles?: boolean;
   skipWorkspaceJson?: boolean;
   js?: boolean;
   capacitor: boolean;
@@ -21,9 +20,4 @@ export interface NormalizedSchema extends ApplicationSchematicSchema {
   projectRoot: string;
   e2eRoot: string;
   parsedTags: string[];
-  appFileName: string;
-  homeFileName: string;
-  exploreContainerFileName: string;
-  viewMessageFileName: string;
-  messageListItemFileName: string;
 }
