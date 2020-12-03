@@ -42,7 +42,6 @@ nx generate @nxtend/ionic-react:application [name] [options,...]
 Options:
   --name                  The name of the application.
   --directory             The directory of the new application.
-  --style                 The file extension to be used for style files. (default: css)
   --linter                The tool to use for running lint checks. (default: eslint)
   --skipFormat            Skip formatting files.
   --skipWorkspaceJson     Skip updating workspace.json with default schematic options based on values provided to this app (e.g. babel, style).

@@ -26,18 +26,6 @@ Type: `string`
 
 The subdirectory of the new application. By default, apps will be generated under the `apps/` directory.
 
-### --style
-
-Alias(es): s
-
-Default: `css`
-
-Type: `string`
-
-Possible values: `css`, `scss`, `styl`, `less`, `styled-components`, `@emotion/styled`, `none`
-
-The file extension to be used for style files.
-
 ### --linter
 
 Default: `eslint`

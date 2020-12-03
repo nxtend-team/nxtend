@@ -2,7 +2,10 @@
 
 # 5.0.0
 
-- remove `classComponent` option from `application` schematic
+## BREAKING CHANGES
+
+- remove `classComponent` option from `application` schematic (now defaults to functional components)
+- remove `style` option from the `application` schematic (now defaults to CSS)
 
 # 4.1.0
 

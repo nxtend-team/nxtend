@@ -23,9 +23,6 @@ export function addBaseTemplate(options: NormalizedSchema): Rule {
         ...names(options.name),
         offsetFromRoot: offsetFromRoot(options.projectRoot),
       }),
-      options.styledModule
-        ? filter((file) => !file.endsWith(`.${options.style}`))
-        : noop(),
       options.unitTestRunner === 'none'
         ? filter((file) => !file.endsWith('.spec.tsx'))
         : noop(),
@@ -44,9 +41,6 @@ export function addBlankTemplate(options: NormalizedSchema): Rule {
         ...names(options.name),
         offsetFromRoot: offsetFromRoot(options.projectRoot),
       }),
-      options.styledModule
-        ? filter((file) => !file.endsWith(`.${options.style}`))
-        : noop(),
       options.unitTestRunner === 'none'
         ? filter((file) => !file.endsWith('.spec.tsx'))
         : noop(),
@@ -64,12 +58,7 @@ export function addFiles(options: NormalizedSchema): Rule {
 export function deleteUnusedFiles(options: NormalizedSchema): Rule {
   return (tree: Tree) => {
     tree.delete(options.projectRoot + '/src/favicon.ico');
-
-    if (!options.styledModule) {
-      tree.delete(
-        options.projectRoot + `/src/app/${options.appFileName}.` + options.style
-      );
-    }
+    tree.delete(options.projectRoot + `/src/app/${options.appFileName}.css`);
 
     return tree;
   };

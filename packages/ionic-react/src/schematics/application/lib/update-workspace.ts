@@ -49,16 +49,13 @@ export function setDefaults(options: NormalizedSchema): Rule {
           '@nxtend/ionic-react': {
             ...prev,
             application: {
-              style: options.style,
               linter: options.linter,
               ...prev.application,
             },
             component: {
-              style: options.style,
               ...prev.component,
             },
             library: {
-              style: options.style,
               linter: options.linter,
               ...prev.library,
             },
