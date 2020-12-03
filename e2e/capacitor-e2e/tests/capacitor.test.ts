@@ -3,7 +3,7 @@ import {
   ensureNxProject,
   readFile,
   runNxCommandAsync,
-  runYarnInstall,
+  runPackageManagerInstall,
   uniq,
   updateFile,
 } from '@nrwl/nx-plugin/testing';
@@ -32,7 +32,7 @@ async function generateApp(options: CapacitorSchematicSchema) {
   const packageJson = JSON.parse(readFile('package.json'));
   packageJson.devDependencies['@nrwl/react'] = '*';
   updateFile('package.json', JSON.stringify(packageJson));
-  runYarnInstall();
+  runPackageManagerInstall();
 
   await runNxCommandAsync(`generate @nrwl/react:app ${options.project}`);
   await runNxCommandAsync(
