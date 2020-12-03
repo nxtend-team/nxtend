@@ -17,6 +17,7 @@ A collection of third-party Nx plugins.
 
 | Plugin | Description |
 | ------ | ----------- |
+| [`@nxtend/ionic-angular`](./packages/ionic-angular/README.md) | An Nx plugin for developing [Ionic](https://ionicframework.com/docs) Angular applications and libraries. |
 | [`@nxtend/ionic-react`](./packages/ionic-react/README.md) | An Nx plugin for developing [Ionic](https://ionicframework.com/docs) React applications and libraries. |
 | [`@nxtend/capacitor`](./packages/capacitor/README.md) | An Nx plugin for developing cross-platform applications using [Capacitor](https://capacitorjs.com/docs). |
 
