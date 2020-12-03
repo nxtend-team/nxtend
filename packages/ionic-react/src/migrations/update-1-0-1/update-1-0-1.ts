@@ -7,6 +7,6 @@ export default function update(): Rule {
     updatePackagesInPackageJson(
       path.join(__dirname, '../../../', 'migrations.json'),
       '1.0.1'
-    )
+    ),
   ]);
 }

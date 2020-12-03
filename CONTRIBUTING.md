@@ -88,4 +88,3 @@ npm link @nxtend/{plugin}
 # Pull Requests
 
 Ensure that you have completed the PR checklist in the [pull request template](PULL_REQUEST_TEMPLATE.md) prior to opening a pull request.
-

@@ -3,7 +3,7 @@ import {
   chain,
   Rule,
   SchematicContext,
-  Tree
+  Tree,
 } from '@angular-devkit/schematics';
 
 function displayInformation(host: Tree, context: SchematicContext) {

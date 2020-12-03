@@ -26,8 +26,8 @@ describe('Update 0-1-0', () => {
     const packageJson = readJsonInTree(tree, '/package.json');
     expect(packageJson).toMatchObject({
       devDependencies: {
-        '@nrwl/react': '9.0.0'
-      }
+        '@nrwl/react': '9.0.0',
+      },
     });
   });
 });

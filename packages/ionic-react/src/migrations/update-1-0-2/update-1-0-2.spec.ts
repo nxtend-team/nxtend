@@ -21,8 +21,8 @@ describe('Update 1.0.2', () => {
       serializeJson({
         dependencies: {
           '@ionic/react': '5.0.5',
-          '@ionic/react-router': '5.0.5'
-        }
+          '@ionic/react-router': '5.0.5',
+        },
       })
     );
   });

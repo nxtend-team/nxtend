@@ -22,8 +22,8 @@ describe('Update 2.0.0', () => {
         devDependencies: {
           '@testing-library/cypress': '5.3.0',
           '@testing-library/jest-dom': '4.2.4',
-          '@testing-library/user-event': '8.1.3'
-        }
+          '@testing-library/user-event': '8.1.3',
+        },
       })
     );
   });

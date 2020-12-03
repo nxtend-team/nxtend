@@ -8,7 +8,7 @@ author_image_url: https://avatars2.githubusercontent.com/u/1919548?s=460&u=e8799
 tags: [ionic-react, capacitor, release]
 ---
 
-A bug was introduced with `@nxtend/ionic-react` 3.0.4 where `@nrwl/react` would not get installed to the users dependencies properly. This required new users to manually install `@nrwl/react` before using `@nxtend/ionic-react`. 
+A bug was introduced with `@nxtend/ionic-react` 3.0.4 where `@nrwl/react` would not get installed to the users dependencies properly. This required new users to manually install `@nrwl/react` before using `@nxtend/ionic-react`.
 
 ## Bug Fixes
 

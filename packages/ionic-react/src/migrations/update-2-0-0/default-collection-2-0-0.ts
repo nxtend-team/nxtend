@@ -3,7 +3,7 @@ import {
   chain,
   Rule,
   SchematicContext,
-  Tree
+  Tree,
 } from '@angular-devkit/schematics';
 import { setDefaultCollection } from '@nrwl/workspace/src/utils/rules/workspace';
 
@@ -17,6 +17,6 @@ function displayInformation(host: Tree, context: SchematicContext) {
 export default function update(): Rule {
   return chain([
     displayInformation,
-    setDefaultCollection('@nxtend/ionic-react')
+    setDefaultCollection('@nxtend/ionic-react'),
   ]);
 }

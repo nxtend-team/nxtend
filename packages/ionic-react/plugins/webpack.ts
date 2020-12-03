@@ -7,7 +7,7 @@ function getCustomWebpackConfig(webpackConfig) {
   // Polyfill Node
   config.node = {
     global: true,
-    process: true
+    process: true,
   };
 
   return config;

@@ -22,8 +22,8 @@ describe('Update 1.0.1', () => {
         dependencies: {
           '@ionic/react': '5.0.4',
           '@ionic/react-router': '5.0.4',
-          ionicons: '5.0.0'
-        }
+          ionicons: '5.0.0',
+        },
       })
     );
   });
