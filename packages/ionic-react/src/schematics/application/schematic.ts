@@ -1,4 +1,4 @@
-import { chain, Rule } from '@angular-devkit/schematics';
+import { chain, Rule, Tree } from '@angular-devkit/schematics';
 import { formatFiles } from '@nrwl/workspace';
 import init from '../init/schematic';
 import { addDependencies } from './lib/add-dependencies';
@@ -13,17 +13,19 @@ import { addProject } from './lib/update-workspace';
 import { ApplicationSchematicSchema } from './schema';
 
 export default function (options: ApplicationSchematicSchema): Rule {
-  const normalizedOptions = normalizeOptions(options);
+  return (host: Tree) => {
+    const normalizedOptions = normalizeOptions(host, options);
 
-  return chain([
-    init(),
-    addDependencies(),
-    generateNrwlReactApplication(options),
-    addFiles(normalizedOptions),
-    configureJestForIonic(normalizedOptions),
-    deleteUnusedFiles(normalizedOptions),
-    addProject(normalizedOptions),
-    generateCapacitorProject(normalizedOptions),
-    formatFiles(),
-  ]);
+    return chain([
+      init(),
+      addDependencies(),
+      generateNrwlReactApplication(options),
+      addFiles(normalizedOptions),
+      configureJestForIonic(normalizedOptions),
+      deleteUnusedFiles(normalizedOptions),
+      addProject(normalizedOptions),
+      generateCapacitorProject(normalizedOptions),
+      formatFiles(),
+    ]);
+  };
 }

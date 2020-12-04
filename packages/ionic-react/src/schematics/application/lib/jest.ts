@@ -23,7 +23,7 @@ import { NormalizedSchema } from '../schema';
 
 export function executeJestProjectSchematic(options: NormalizedSchema): Rule {
   return externalSchematic('@nrwl/jest', 'jest-project', {
-    project: options.projectName,
+    project: options.appProjectName,
     supportTsx: true,
     skipSerializers: true,
     setupFile: 'web-components',
@@ -34,7 +34,7 @@ export function configureMocks(options: NormalizedSchema) {
   return (host: Tree) => {
     const workspaceConfig = readWorkspace(host);
     const configPath =
-      workspaceConfig.projects[options.projectName].architect.test.options
+      workspaceConfig.projects[options.appProjectName].architect.test.options
         .jestConfig;
     const contents = host.read(configPath).toString();
 
@@ -69,9 +69,9 @@ export function addJestFiles(options: NormalizedSchema): Rule {
       applyTemplates({
         ...options,
         ...names(options.name),
-        offsetFromRoot: offsetFromRoot(options.projectRoot),
+        offsetFromRoot: offsetFromRoot(options.appProjectRoot),
       }),
-      move(options.projectRoot),
+      move(options.appProjectRoot),
     ]),
     MergeStrategy.Overwrite
   );

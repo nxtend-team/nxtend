@@ -2,6 +2,10 @@
 
 # 5.0.0
 
+## Features
+
+- support custom Nx layouts
+
 ## BREAKING CHANGES
 
 - remove `classComponent` option from `application` schematic (now defaults to functional components)
