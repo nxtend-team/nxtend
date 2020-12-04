@@ -18,10 +18,6 @@ export function normalizeOptions(
   const projectName = appDirectory.replace(new RegExp('/', 'g'), '-');
   const appProjectRoot = normalize(`${appsDir(host)}/${appDirectory}`);
 
-  const parsedTags = options.tags
-    ? options.tags.split(',').map((s) => s.trim())
-    : [];
-
   return {
     ...options,
     appName,
@@ -29,6 +25,5 @@ export function normalizeOptions(
     prefix,
     projectName,
     appProjectRoot,
-    parsedTags,
   };
 }

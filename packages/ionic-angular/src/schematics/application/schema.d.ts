@@ -10,5 +10,4 @@ export interface NormalizedSchema extends ApplicationSchematicSchema {
   prefix: string;
   projectName: string;
   appProjectRoot: string;
-  parsedTags: string[];
 }
