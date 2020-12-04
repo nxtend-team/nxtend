@@ -10,7 +10,6 @@ export interface ApplicationSchematicSchema {
 
 export interface NormalizedSchema extends ApplicationSchematicSchema {
   appName: string;
-  projectName: string;
-  projectDirectory: string;
-  projectRoot: string;
+  appProjectName: string;
+  appProjectRoot: string;
 }

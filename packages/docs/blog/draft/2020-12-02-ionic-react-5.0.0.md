@@ -24,6 +24,10 @@ Ionic is built with the intention of supporting a certain stack, and maintaining
 
 I hope the users of this plugin will understand this decision. Removing functionality is never a good user experience, but I believe that this change will pay dividends in the future.
 
+## Features
+
+- support custom Nx layouts
+
 ## BREAKING CHANGES
 
 - remove `classComponent` option from `application` schematic (now defaults to functional components)
