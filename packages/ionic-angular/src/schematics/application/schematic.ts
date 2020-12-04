@@ -9,7 +9,6 @@ import {
 } from './lib/external-schematic';
 import { addFiles, removeFiles } from './lib/files';
 import { normalizeOptions } from './lib/normalize-options';
-import { updateNxJson } from './lib/update-nx-json';
 import { ApplicationSchematicSchema } from './schema';
 
 export default function (options: ApplicationSchematicSchema): Rule {
@@ -23,9 +22,8 @@ export default function (options: ApplicationSchematicSchema): Rule {
       addFiles(normalizedOptions),
       removeFiles(normalizedOptions),
       addProject(normalizedOptions),
-      updateNxJson(normalizedOptions),
       generateCapacitorProject(normalizedOptions),
-      formatFiles({ skipFormat: false }),
+      formatFiles(),
     ]);
   };
 }
