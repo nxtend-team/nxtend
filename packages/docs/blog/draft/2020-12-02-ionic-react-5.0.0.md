@@ -27,6 +27,7 @@ I hope the users of this plugin will understand this decision. Removing function
 ## Features
 
 - support custom Nx layouts
+- update Ionic to 5.5.1
 
 ## BREAKING CHANGES
 

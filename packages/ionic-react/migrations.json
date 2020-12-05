@@ -64,6 +64,11 @@
       "version": "4.0.0",
       "description": "Add Ionic config to Ionic React applications",
       "factory": "./src/migrations/update-4-0-0/add-ionic-config-4-0-0"
+    },
+    "update-5.0.0": {
+      "version": "5.0.0-alpha.1",
+      "description": "Update libraries",
+      "factory": "./src/migrations/update-5-0-0/update-5-0-0"
     }
   },
   "packageJsonUpdates": {
@@ -189,6 +194,23 @@
     "4.0.0": {
       "version": "4.0.0",
       "packages": {}
+    },
+    "5.0.0": {
+      "version": "5.0.0",
+      "packages": {
+        "@ionic/react": {
+          "version": "^5.5.1",
+          "alwaysAddToPackageJson": false
+        },
+        "@ionic/react-router": {
+          "version": "^5.5.1",
+          "alwaysAddToPackageJson": false
+        },
+        "ionicons": {
+          "version": "^5.2.3",
+          "alwaysAddToPackageJson": false
+        }
+      }
     }
   }
 }
