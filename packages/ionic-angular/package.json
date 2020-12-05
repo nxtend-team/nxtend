@@ -7,5 +7,8 @@
   "peerDependencies": {
     "@nrwl/angular": "*",
     "@nxtend/capacitor": "^1.0.0"
+  },
+  "ng-update": {
+    "migrations": "./migrations.json"
   }
 }

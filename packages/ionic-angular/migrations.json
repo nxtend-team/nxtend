@@ -1,0 +1,32 @@
+{
+  "schematics": {
+    "update-1.1.0": {
+      "version": "1.1.0",
+      "description": "update-1.1.0",
+      "factory": "./src/migrations/update-1-1-0/update-1-1-0"
+    }
+  },
+  "packageJsonUpdates": {
+    "1.1.0": {
+      "version": "1.1.0-alpha.1",
+      "packages": {
+        "@ionic/angular": {
+          "version": "^5.5.1",
+          "alwaysAddToPackageJson": false
+        },
+        "@ionic-native/core": {
+          "version": "^5.30.0",
+          "alwaysAddToPackageJson": false
+        },
+        "@ionic-native/splash-screen": {
+          "version": "^5.30.0",
+          "alwaysAddToPackageJson": false
+        },
+        "@ionic-native/status-bar": {
+          "version": "^5.30.0",
+          "alwaysAddToPackageJson": false
+        }
+      }
+    }
+  }
+}
