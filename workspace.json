@@ -223,6 +223,11 @@
                 "input": "./packages/ionic-angular",
                 "glob": "builders.json",
                 "output": "."
+              },
+              {
+                "input": "./packages/ionic-angular",
+                "glob": "migrations.json",
+                "output": "."
               }
             ]
           }
