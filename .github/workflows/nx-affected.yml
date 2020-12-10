@@ -7,6 +7,28 @@ on:
     branches: [main]
 
 jobs:
+  format:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x]
+
+    env:
+      NX_CLOUD_AUTH_TOKEN: ${{ secrets.NX_CLOUD_AUTH_TOKEN }}
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - uses: bahmutov/npm-install@v1
+      - run: git fetch --no-tags --prune --depth=5 origin main
+      - run: yarn format:check --base=origin/main --parallel
+
   build:
     runs-on: ubuntu-latest
 
@@ -27,8 +49,70 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - uses: bahmutov/npm-install@v1
       - run: git fetch --no-tags --prune --depth=5 origin main
-      - run: yarn format:check --base=origin/main
-      - run: yarn affected:build --base=origin/main --with-deps
-      - run: yarn affected:lint --base=origin/main
-      - run: yarn affected:test --base=origin/main
-      - run: yarn affected:e2e --base=origin/main
+      - run: yarn affected:build --base=origin/main --with-deps --parallel
+
+  lint:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x]
+
+    env:
+      NX_CLOUD_AUTH_TOKEN: ${{ secrets.NX_CLOUD_AUTH_TOKEN }}
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - uses: bahmutov/npm-install@v1
+      - run: git fetch --no-tags --prune --depth=5 origin main
+      - run: yarn affected:lint --base=origin/main --parallel
+
+  test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x]
+
+    env:
+      NX_CLOUD_AUTH_TOKEN: ${{ secrets.NX_CLOUD_AUTH_TOKEN }}
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - uses: bahmutov/npm-install@v1
+      - run: git fetch --no-tags --prune --depth=5 origin main
+      - run: yarn affected:test --base=origin/main --parallel
+
+  e2e:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x]
+
+    env:
+      NX_CLOUD_AUTH_TOKEN: ${{ secrets.NX_CLOUD_AUTH_TOKEN }}
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - uses: bahmutov/npm-install@v1
+      - run: git fetch --no-tags --prune --depth=5 origin main
+      - run: yarn affected:e2e --base=origin/main --parallel
