@@ -13,7 +13,6 @@ describe('application e2e', () => {
     name: 'test',
     unitTestRunner: 'jest',
     e2eTestRunner: 'cypress',
-    js: false,
     capacitor: false,
   };
 
@@ -23,7 +22,6 @@ describe('application e2e', () => {
       `generate @nxtend/ionic-react:app ${options.name} \
        --unitTestRunner ${options.unitTestRunner} \
        --e2eTestRunner ${options.e2eTestRunner} \
-       --js ${options.js} \
        --capacitor ${options.capacitor}`
     );
   }
@@ -48,23 +46,6 @@ describe('application e2e', () => {
       const options: ApplicationSchematicSchema = {
         ...defaultOptions,
         name: uniq('ionic-react'),
-      };
-
-      await generateApp(options);
-      await buildAndTestApp(options.name);
-
-      done();
-    },
-    asyncTimeout
-  );
-
-  it(
-    'should generate JavaScript files',
-    async (done) => {
-      const options: ApplicationSchematicSchema = {
-        ...defaultOptions,
-        name: uniq('ionic-react'),
-        js: true,
       };
 
       await generateApp(options);

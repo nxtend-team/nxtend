@@ -18,6 +18,7 @@ This includes:
 --pascalCaseComponent
 --skipFromat
 --linter
+--js
 ```
 
 Ionic is built with the intention of supporting a certain stack, and maintaining additional configurations take a lot of effort, and a lot of CI/CD time. End-to-end tests for this plugin alone exceed 25 minutes, and every new configuration that is supported only adds to that. It will also be much easier to adopt upstream changes to the Ionic starters if there's not a need to support a variety of different configurations. In the future I want to support more schematics such as libraries, pages, and more, and I want to be able add these enhancements in a scalable manner.
@@ -36,5 +37,6 @@ I hope the users of this plugin will understand this decision. Removing function
 - remove `pascalCaseComponent` option from the `application` schematic (now defaults to true)
 - remove `skipFormat` option from the `application` schematic (now defaults to false)
 - remove `linter` option from the `application` schematic (now defaults to ESLint)
+- remove `js` option from the `application` schematic (now defaults to true)
 
 For information on upgrading the plugin, visit the [nxtend upgrades documentation](../docs/nxtend/upgrades).
