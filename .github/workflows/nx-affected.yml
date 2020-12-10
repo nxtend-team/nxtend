@@ -115,4 +115,5 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - uses: bahmutov/npm-install@v1
       - run: git fetch --no-tags --prune --depth=5 origin main
+      - run: yarn affected:build --base=origin/main --with-deps --parallel
       - run: yarn affected:e2e --base=origin/main --parallel

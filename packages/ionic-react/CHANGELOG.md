@@ -14,6 +14,7 @@
 - remove `pascalCaseComponent` option from the `application` schematic (now defaults to true)
 - remove `skipFormat` option from the `application` schematic (now defaults to false)
 - remove `linter` option from the `application` schematic (now defaults to ESLint)
+- remove `js` option from the `application` schematic (now defaults to true)
 
 # 4.1.0
 

@@ -4,7 +4,6 @@ export interface ApplicationSchematicSchema {
   tags?: string;
   unitTestRunner: 'jest' | 'none';
   e2eTestRunner: 'cypress' | 'none';
-  js?: boolean;
   capacitor: boolean;
 }
 

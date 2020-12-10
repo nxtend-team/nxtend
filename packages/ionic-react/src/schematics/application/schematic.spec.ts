@@ -28,8 +28,6 @@ describe('application', () => {
   );
 
   function testGeneratedFiles(tree: Tree, options: ApplicationSchematicSchema) {
-    const componentExtension = options.js ? 'js' : 'tsx';
-
     // Common files
     expect(tree.exists(`${projectRoot}/.eslintrc.json`)).toBeTruthy();
     expect(tree.exists(`${projectRoot}/src/index.html`)).toBeTruthy();
@@ -55,16 +53,10 @@ describe('application', () => {
     }
 
     // Starter templates
+    expect(tree.exists(`${projectRoot}/src/app/App.tsx`)).toBeTruthy();
+    expect(tree.exists(`${projectRoot}/src/app/pages/Home.tsx`)).toBeTruthy();
     expect(
-      tree.exists(`${projectRoot}/src/app/App.${componentExtension}`)
-    ).toBeTruthy();
-    expect(
-      tree.exists(`${projectRoot}/src/app/pages/Home.${componentExtension}`)
-    ).toBeTruthy();
-    expect(
-      tree.exists(
-        `${projectRoot}/src/app/components/ExploreContainer.${componentExtension}`
-      )
+      tree.exists(`${projectRoot}/src/app/components/ExploreContainer.tsx`)
     ).toBeTruthy();
 
     expect(
@@ -204,18 +196,6 @@ describe('application', () => {
 
         expect(tree.exists(`${projectRoot}/src/app/app.spec.tsx`)).toBeFalsy();
         testGeneratedFiles(tree, { ...options, unitTestRunner: 'none' });
-      });
-    });
-  });
-
-  describe('--js', () => {
-    describe('true', () => {
-      it('should generate JavaScript files', async () => {
-        const tree = await testRunner
-          .runSchematicAsync('application', { ...options, js: true }, appTree)
-          .toPromise();
-
-        testGeneratedFiles(tree, { ...options, js: true });
       });
     });
   });

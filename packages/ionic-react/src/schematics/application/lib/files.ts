@@ -27,7 +27,6 @@ export function addBaseTemplate(options: NormalizedSchema): Rule {
         ? filter((file) => !file.endsWith('.spec.tsx'))
         : noop(),
       move(options.appProjectRoot),
-      options.js ? toJS() : noop(),
     ]),
     MergeStrategy.Overwrite
   );
@@ -45,7 +44,6 @@ export function addBlankTemplate(options: NormalizedSchema): Rule {
         ? filter((file) => !file.endsWith('.spec.tsx'))
         : noop(),
       move(options.appProjectRoot),
-      options.js ? toJS() : noop(),
     ]),
     MergeStrategy.Overwrite
   );
