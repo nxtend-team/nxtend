@@ -106,35 +106,4 @@ describe('application e2e', () => {
       asyncTimeout
     );
   });
-
-  describe('--unitTestRunner', () => {
-    describe('none', () => {
-      it(
-        'should not generate Jest mocks',
-        async (done) => {
-          const options: ApplicationSchematicSchema = {
-            ...defaultOptions,
-            name: uniq('ionic-react'),
-            unitTestRunner: 'none',
-          };
-
-          await generateApp(options);
-
-          const buildResults = await runNxCommandAsync(`build ${options.name}`);
-          expect(buildResults.stdout).toContain('Built at');
-
-          const lintResults = await runNxCommandAsync(`lint ${options.name}`);
-          expect(lintResults.stdout).toContain('All files pass linting');
-
-          const e2eResults = await runNxCommandAsync(
-            `e2e ${options.name}-e2e --headless`
-          );
-          expect(e2eResults.stdout).toContain('All specs passed!');
-
-          done();
-        },
-        asyncTimeout
-      );
-    });
-  });
 });
