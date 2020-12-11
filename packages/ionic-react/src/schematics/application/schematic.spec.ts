@@ -40,13 +40,11 @@ describe('application', () => {
     // Jest
     if (options.unitTestRunner === 'jest') {
       expect(tree.exists(`${projectRoot}/jest.config.js`)).toBeTruthy();
-      expect(tree.exists(`${projectRoot}/src/test-setup.ts`)).toBeTruthy();
       expect(
         tree.exists(`${projectRoot}/src/app/__mocks__/fileMock.js`)
       ).toBeTruthy();
     } else if (options.unitTestRunner === 'none') {
       expect(tree.exists(`${projectRoot}/jest.config.js`)).toBeFalsy();
-      expect(tree.exists(`${projectRoot}/src/test-setup.ts`)).toBeFalsy();
       expect(
         tree.exists(`${projectRoot}/src/app/__mocks__/fileMock.js`)
       ).toBeFalsy();
