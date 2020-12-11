@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: '<%= prefix %>-app-home',
+  selector: '<%= prefix %>-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
