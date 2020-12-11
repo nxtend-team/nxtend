@@ -13,7 +13,6 @@ export function generateNrwlReactApplication(
   return externalSchematic('@nrwl/react', 'application', {
     ...options,
     style: 'css',
-    unitTestRunner: 'none',
     linter: Linter.EsLint,
     pascalCaseFiles: true,
     classComponent: false,

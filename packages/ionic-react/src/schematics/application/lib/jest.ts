@@ -21,15 +21,6 @@ import {
 import * as ts from 'typescript';
 import { NormalizedSchema } from '../schema';
 
-export function executeJestProjectSchematic(options: NormalizedSchema): Rule {
-  return externalSchematic('@nrwl/jest', 'jest-project', {
-    project: options.appProjectName,
-    supportTsx: true,
-    skipSerializers: true,
-    setupFile: 'web-components',
-  });
-}
-
 export function configureMocks(options: NormalizedSchema) {
   return (host: Tree) => {
     const workspaceConfig = readWorkspace(host);
@@ -51,7 +42,7 @@ export function configureMocks(options: NormalizedSchema) {
       new InsertChange(
         configPath,
         lastNode.getFullStart(),
-        `,\nmoduleNameMapper: {
+        `\nmoduleNameMapper: {
           '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
             '<rootDir>/src/app/__mocks__/fileMock.js'
         },
@@ -79,11 +70,7 @@ export function addJestFiles(options: NormalizedSchema): Rule {
 
 export function configureJestForIonic(options: NormalizedSchema): Rule {
   if (options.unitTestRunner === 'jest') {
-    return chain([
-      executeJestProjectSchematic(options),
-      configureMocks(options),
-      addJestFiles(options),
-    ]);
+    return chain([configureMocks(options), addJestFiles(options)]);
   } else {
     return noop();
   }
