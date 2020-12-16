@@ -2,6 +2,7 @@ export interface ApplicationSchematicSchema {
   name: string;
   directory?: string;
   tags?: string;
+  template: string;
   capacitor: boolean;
 }
 

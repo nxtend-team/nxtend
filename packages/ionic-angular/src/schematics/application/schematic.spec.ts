@@ -9,6 +9,7 @@ describe('application schematic', () => {
   let appTree: Tree;
   const options: ApplicationSchematicSchema = {
     name: 'my-app',
+    template: 'blank',
     capacitor: false,
   };
   const projectRoot = `apps/${options.name}`;
@@ -58,45 +59,6 @@ describe('application schematic', () => {
     expect(packageJson.dependencies['@ionic-native/status-bar']).toBeDefined();
   });
 
-  it('should add files', async () => {
-    const tree = await testRunner
-      .runSchematicAsync('application', options, appTree)
-      .toPromise();
-
-    expect(tree.exists(`${projectRoot}/ionic.config.json`)).toBeTruthy();
-
-    expect(tree.exists(`${projectRoot}/src/favicon.ico`)).toBeFalsy();
-    expect(tree.exists(`${projectRoot}/src/assets/shapes.svg`)).toBeTruthy();
-    expect(
-      tree.exists(`${projectRoot}/src/assets/icon/favicon.png`)
-    ).toBeTruthy();
-
-    expect(tree.exists(`${projectRoot}/src/theme/variables.scss`)).toBeTruthy();
-
-    expect(
-      tree.exists(`${projectRoot}/src/app/app-routing.module.ts`)
-    ).toBeTruthy();
-
-    expect(
-      tree.exists(`${projectRoot}/src/app/home/home-routing.module.ts`)
-    ).toBeTruthy();
-    expect(
-      tree.exists(`${projectRoot}/src/app/home/home.module.ts`)
-    ).toBeTruthy();
-    expect(
-      tree.exists(`${projectRoot}/src/app/home/home.page.html`)
-    ).toBeTruthy();
-    expect(
-      tree.exists(`${projectRoot}/src/app/home/home.page.scss`)
-    ).toBeTruthy();
-    expect(
-      tree.exists(`${projectRoot}/src/app/home/home.page.spec.ts`)
-    ).toBeTruthy();
-    expect(
-      tree.exists(`${projectRoot}/src/app/home/home.page.ts`)
-    ).toBeTruthy();
-  });
-
   it('should update workspace.json', async () => {
     const tree = await testRunner
       .runSchematicAsync('application', options, appTree)
@@ -124,6 +86,86 @@ describe('application schematic', () => {
         }),
       ])
     );
+  });
+
+  describe('--template', () => {
+    it('should add base template files', async () => {
+      const tree = await testRunner
+        .runSchematicAsync('application', options, appTree)
+        .toPromise();
+
+      expect(tree.exists(`${projectRoot}/ionic.config.json`)).toBeTruthy();
+
+      expect(tree.exists(`${projectRoot}/src/favicon.ico`)).toBeFalsy();
+      expect(tree.exists(`${projectRoot}/src/assets/shapes.svg`)).toBeTruthy();
+      expect(
+        tree.exists(`${projectRoot}/src/assets/icon/favicon.png`)
+      ).toBeTruthy();
+
+      expect(
+        tree.exists(`${projectRoot}/src/theme/variables.scss`)
+      ).toBeTruthy();
+
+      expect(tree.exists(`${projectRoot}/src/app/app.module.ts`)).toBeTruthy();
+    });
+
+    it('--blank', async () => {
+      const tree = await testRunner
+        .runSchematicAsync(
+          'application',
+          { ...options, template: 'blank' },
+          appTree
+        )
+        .toPromise();
+
+      expect(
+        tree.exists(`${projectRoot}/src/app/home/home.module.ts`)
+      ).toBeTruthy();
+    });
+
+    it('--list', async () => {
+      const tree = await testRunner
+        .runSchematicAsync(
+          'application',
+          { ...options, template: 'list' },
+          appTree
+        )
+        .toPromise();
+
+      expect(
+        tree.exists(
+          `${projectRoot}/src/app/view-message/view-message.module.ts`
+        )
+      ).toBeTruthy();
+    });
+
+    it('--sidemenu', async () => {
+      const tree = await testRunner
+        .runSchematicAsync(
+          'application',
+          { ...options, template: 'sidemenu' },
+          appTree
+        )
+        .toPromise();
+
+      expect(
+        tree.exists(`${projectRoot}/src/app/folder/folder.module.ts`)
+      ).toBeTruthy();
+    });
+
+    it('--tabs', async () => {
+      const tree = await testRunner
+        .runSchematicAsync(
+          'application',
+          { ...options, template: 'tabs' },
+          appTree
+        )
+        .toPromise();
+
+      expect(
+        tree.exists(`${projectRoot}/src/app/tabs/tabs.module.ts`)
+      ).toBeTruthy();
+    });
   });
 
   describe('--directory', () => {

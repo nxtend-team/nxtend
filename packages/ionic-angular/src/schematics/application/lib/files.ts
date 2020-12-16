@@ -5,7 +5,6 @@ import {
   MergeStrategy,
   mergeWith,
   move,
-  noop,
   Rule,
   Tree,
   url,
@@ -13,7 +12,7 @@ import {
 import { names } from '@nrwl/workspace';
 import { NormalizedSchema } from '../schema';
 
-function addBaseTemplateFiles(options: NormalizedSchema): Rule {
+function addBaseFiles(options: NormalizedSchema): Rule {
   return mergeWith(
     apply(url(`./files/base`), [
       applyTemplates({
@@ -26,9 +25,9 @@ function addBaseTemplateFiles(options: NormalizedSchema): Rule {
   );
 }
 
-function addBlankTemplateFiles(options: NormalizedSchema): Rule {
+function addTemplateFiles(options: NormalizedSchema): Rule {
   return mergeWith(
-    apply(url(`./files/blank`), [
+    apply(url(`./files/${options.template}`), [
       applyTemplates({
         ...options,
         ...names(options.name),
@@ -40,7 +39,7 @@ function addBlankTemplateFiles(options: NormalizedSchema): Rule {
 }
 
 export function addFiles(options: NormalizedSchema): Rule {
-  return chain([addBaseTemplateFiles(options), addBlankTemplateFiles(options)]);
+  return chain([addBaseFiles(options), addTemplateFiles(options)]);
 }
 
 export function removeFiles(options: NormalizedSchema): Rule {

@@ -34,6 +34,16 @@ Type: `string`
 
 Add tags to the application (used for linting).
 
+### ---template
+
+Default: `blank`
+
+Type: `string`
+
+Possible values: `blank`, `list`, `sidemenu`, `tabs`
+
+The starter template to use.
+
 ### --capacitor
 
 Default: `true`
