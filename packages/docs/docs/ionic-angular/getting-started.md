@@ -43,6 +43,7 @@ Options:
   --name                  The name of the application.
   --directory             The directory of the new application.
   --tags                  Add tags to the application (used for linting).
+  --template              The starter template to use. (default: blank)
   --capacitor             Generate a Capacitor project. (default: true)
   --dryRun                Runs through and reports activity without writing to disk.
   --help                  Show available options for project target.

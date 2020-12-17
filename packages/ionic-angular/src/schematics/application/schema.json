@@ -23,6 +23,30 @@
       "type": "string",
       "description": "Add tags to the application (used for linting)."
     },
+    "template": {
+      "description": "The starter template to use.",
+      "type": "string",
+      "default": "blank",
+      "x-prompt": {
+        "message": "Which starter template would you like to use?",
+        "type": "list",
+        "items": [
+          { "value": "blank", "label": "blank     | A blank starter project" },
+          {
+            "value": "list",
+            "label": "list      | A starting project with a list"
+          },
+          {
+            "value": "sidemenu",
+            "label": "sidemenu  | A starting project with a list"
+          },
+          {
+            "value": "tabs",
+            "label": "tabs      | A starting project with a simple tabbed interface"
+          }
+        ]
+      }
+    },
     "capacitor": {
       "type": "boolean",
       "description": "Generate a Capacitor project.",
