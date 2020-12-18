@@ -10,6 +10,8 @@ describe('application schematic', () => {
   const options: ApplicationSchematicSchema = {
     name: 'my-app',
     template: 'blank',
+    unitTestRunner: 'karma',
+    e2eTestRunner: 'cypress',
     capacitor: false,
   };
   const projectRoot = `apps/${options.name}`;
@@ -219,6 +221,22 @@ describe('application schematic', () => {
         .toPromise();
 
       expect(tree.exists('apps/my-dir/my-app/src/main.ts'));
+    });
+  });
+
+  describe('--unitTestRunner', () => {
+    it('none', async () => {
+      const tree = await testRunner
+        .runSchematicAsync(
+          'application',
+          { ...options, unitTestRunner: 'none' },
+          appTree
+        )
+        .toPromise();
+
+      expect(
+        tree.exists(`${projectRoot}/src/app/home/home.page.spec.ts`)
+      ).toBeFalsy();
     });
   });
 

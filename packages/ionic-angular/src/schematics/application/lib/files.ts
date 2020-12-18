@@ -2,9 +2,11 @@ import {
   apply,
   applyTemplates,
   chain,
+  filter,
   MergeStrategy,
   mergeWith,
   move,
+  noop,
   Rule,
   Tree,
   url,
@@ -19,6 +21,9 @@ function addBaseFiles(options: NormalizedSchema): Rule {
         ...options,
         ...names(options.name),
       }),
+      options.unitTestRunner === 'none'
+        ? filter((file) => !file.endsWith('.spec.ts'))
+        : noop(),
       move(options.appProjectRoot),
     ]),
     MergeStrategy.Overwrite
@@ -32,6 +37,9 @@ function addTemplateFiles(options: NormalizedSchema): Rule {
         ...options,
         ...names(options.name),
       }),
+      options.unitTestRunner === 'none'
+        ? filter((file) => !file.endsWith('.spec.ts'))
+        : noop(),
       move(options.appProjectRoot),
     ]),
     MergeStrategy.Overwrite

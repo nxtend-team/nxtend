@@ -42,6 +42,8 @@ nx generate @nxtend/ionic-angular:application [name] [options,...]
 Options:
   --name                  The name of the application.
   --directory             The directory of the new application.
+  --unitTestRunner        Test runner to use for unit tests (default: karma)
+  --e2eTestRunner         Test runner to use for end to end (e2e) tests (default: cypress)
   --tags                  Add tags to the application (used for linting).
   --template              The starter template to use. (default: blank)
   --capacitor             Generate a Capacitor project. (default: true)

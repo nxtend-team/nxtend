@@ -26,6 +26,26 @@ Type: `string`
 
 The subdirectory of the new application. By default, apps will be generated under the `apps/` directory.
 
+### ---unitTestRunner
+
+Default: `karma`
+
+Type: `string`
+
+Possible values: `karma`, `none`
+
+Test runner to use for unit tests.
+
+### ---e2eTestRunner
+
+Default: `cypress`
+
+Type: `string`
+
+Possible values: `cypress`, `none`
+
+Test runner to use for end to end (e2e) tests.
+
 ### --tags
 
 Alias(es): t
