@@ -12,6 +12,7 @@ describe('application', () => {
     name: 'test',
     unitTestRunner: 'jest',
     e2eTestRunner: 'cypress',
+    template: 'blank',
     capacitor: false,
   };
 
@@ -61,9 +62,6 @@ describe('application', () => {
       tree.exists(`${projectRoot}/src/app/components/ExploreContainer.css`)
     ).toBeTruthy();
     expect(tree.exists(`${projectRoot}/src/app/pages/Home.css`)).toBeTruthy();
-    expect(
-      tree.exists(`${projectRoot}/src/app/theme/variables.css`)
-    ).toBeTruthy();
 
     // Capacitor files
     if (options.capacitor) {
@@ -128,6 +126,71 @@ describe('application', () => {
     expect(
       workspaceJson.projects[options.name].architect.build.options.webpackConfig
     ).toEqual('@nxtend/ionic-react/plugins/webpack');
+  });
+
+  describe('--template', () => {
+    it('should add base template files', async () => {
+      const tree = await testRunner
+        .runSchematicAsync('application', options, appTree)
+        .toPromise();
+
+      expect(tree.exists(`${projectRoot}/ionic.config.json`)).toBeTruthy();
+      expect(
+        tree.exists(`${projectRoot}/src/app/theme/variables.css`)
+      ).toBeTruthy();
+    });
+
+    it('should add blank template files', async () => {
+      const tree = await testRunner
+        .runSchematicAsync(
+          'application',
+          { ...options, template: 'blank' },
+          appTree
+        )
+        .toPromise();
+
+      expect(
+        tree.exists(`${projectRoot}/src/app/components/ExploreContainer.tsx`)
+      ).toBeTruthy();
+    });
+
+    it('should add list template files', async () => {
+      const tree = await testRunner
+        .runSchematicAsync(
+          'application',
+          { ...options, template: 'list' },
+          appTree
+        )
+        .toPromise();
+
+      expect(
+        tree.exists(`${projectRoot}/src/app/pages/ViewMessage.tsx`)
+      ).toBeTruthy();
+    });
+
+    it('should add sidemenu template files', async () => {
+      const tree = await testRunner
+        .runSchematicAsync(
+          'application',
+          { ...options, template: 'sidemenu' },
+          appTree
+        )
+        .toPromise();
+
+      expect(tree.exists(`${projectRoot}/src/app/pages/Page.tsx`)).toBeTruthy();
+    });
+
+    it('should add tabs template files', async () => {
+      const tree = await testRunner
+        .runSchematicAsync(
+          'application',
+          { ...options, template: 'tabs' },
+          appTree
+        )
+        .toPromise();
+
+      expect(tree.exists(`${projectRoot}/src/app/pages/Tab1.tsx`)).toBeTruthy();
+    });
   });
 
   describe('--unitTestRunner', () => {
