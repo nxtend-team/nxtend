@@ -18,6 +18,7 @@ export function generateNrwlReactApplication(
     classComponent: false,
     routing: true,
     skipWorkspaceJson: true,
+    globalCss: true,
   });
 }
 

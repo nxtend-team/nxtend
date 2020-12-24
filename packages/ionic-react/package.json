@@ -15,10 +15,11 @@
   "main": "src/index.js",
   "schematics": "./collection.json",
   "builders": "./builders.json",
-  "ng-update": {
+  "nx-migrations": {
     "migrations": "./migrations.json"
   },
   "peerDependencies": {
+    "@nrwl/react": "^11.0.19",
     "@nxtend/capacitor": "*"
   }
 }

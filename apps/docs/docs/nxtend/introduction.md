@@ -8,6 +8,8 @@ sidebar_label: Introduction
 
 [Nxtend](https://github.com/nxtend-team/nxtend) is a collection of third-party plugins to extend the functionality of an Nx workspace.
 
+### Supported Nx Version: 11
+
 | Plugin                                                  | Description                                                                                              |
 | ------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
 | [`@nxtend/ionic-angular`](../ionic-angular/overview.md) | An Nx plugin for developing [Ionic](https://ionicframework.com/docs) Angular applications and libraries. |
