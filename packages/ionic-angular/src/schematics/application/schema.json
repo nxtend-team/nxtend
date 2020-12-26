@@ -19,6 +19,18 @@
       "type": "string",
       "alias": "d"
     },
+    "unitTestRunner": {
+      "type": "string",
+      "enum": ["karma", "none"],
+      "description": "Test runner to use for unit tests.",
+      "default": "karma"
+    },
+    "e2eTestRunner": {
+      "type": "string",
+      "enum": ["cypress", "none"],
+      "description": "Test runner to use for end to end (e2e) tests.",
+      "default": "cypress"
+    },
     "tags": {
       "type": "string",
       "description": "Add tags to the application (used for linting)."

@@ -1,6 +1,8 @@
 export interface ApplicationSchematicSchema {
   name: string;
   directory?: string;
+  unitTestRunner: 'karma' | 'none';
+  e2eTestRunner: 'cypress' | 'none';
   tags?: string;
   template: string;
   capacitor: boolean;

@@ -15,8 +15,6 @@ export function generateNrwlAngularApplication(
     routing: true,
     style: 'scss',
     linter: Linter.TsLint,
-    unitTestRunner: 'karma',
-    e2eTestRunner: 'cypress',
   });
 }
 
