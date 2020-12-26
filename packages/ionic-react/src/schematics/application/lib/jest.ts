@@ -2,7 +2,6 @@ import {
   apply,
   applyTemplates,
   chain,
-  externalSchematic,
   MergeStrategy,
   mergeWith,
   move,

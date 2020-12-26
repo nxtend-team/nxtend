@@ -13,18 +13,9 @@ describe('application e2e', () => {
     name: 'test',
     unitTestRunner: 'jest',
     e2eTestRunner: 'cypress',
+    template: 'blank',
     capacitor: false,
   };
-
-  async function generateApp(options: ApplicationSchematicSchema) {
-    ensureNxProject('@nxtend/ionic-react', 'dist/packages/ionic-react');
-    await runNxCommandAsync(
-      `generate @nxtend/ionic-react:app ${options.name} \
-       --unitTestRunner ${options.unitTestRunner} \
-       --e2eTestRunner ${options.e2eTestRunner} \
-       --capacitor ${options.capacitor}`
-    );
-  }
 
   async function buildAndTestApp(plugin: string) {
     const buildResults = await runNxCommandAsync(`build ${plugin}`);
@@ -40,21 +31,71 @@ describe('application e2e', () => {
     expect(e2eResults.stdout).toContain('All specs passed!');
   }
 
-  it(
-    'should generate an application',
-    async (done) => {
-      const options: ApplicationSchematicSchema = {
-        ...defaultOptions,
-        name: uniq('ionic-react'),
-      };
+  describe('--template', () => {
+    it(
+      'blank',
+      async (done) => {
+        const appName = uniq('ionic-react');
+        ensureNxProject('@nxtend/ionic-react', 'dist/packages/ionic-react');
+        await runNxCommandAsync(
+          `generate @nxtend/ionic-react:app --name ${appName} --capacitor false --template blank`
+        );
 
-      await generateApp(options);
-      await buildAndTestApp(options.name);
+        await buildAndTestApp(appName);
 
-      done();
-    },
-    asyncTimeout
-  );
+        done();
+      },
+      asyncTimeout
+    );
+
+    it(
+      'list',
+      async (done) => {
+        const appName = uniq('ionic-react');
+        ensureNxProject('@nxtend/ionic-react', 'dist/packages/ionic-react');
+        await runNxCommandAsync(
+          `generate @nxtend/ionic-react:app --name ${appName} --capacitor false --template list`
+        );
+
+        await buildAndTestApp(appName);
+
+        done();
+      },
+      asyncTimeout
+    );
+
+    it(
+      'sidemenu',
+      async (done) => {
+        const appName = uniq('ionic-react');
+        ensureNxProject('@nxtend/ionic-react', 'dist/packages/ionic-react');
+        await runNxCommandAsync(
+          `generate @nxtend/ionic-react:app --name ${appName} --capacitor false --template sidemenu`
+        );
+
+        await buildAndTestApp(appName);
+
+        done();
+      },
+      asyncTimeout
+    );
+
+    it(
+      'tabs',
+      async (done) => {
+        const appName = uniq('ionic-react');
+        ensureNxProject('@nxtend/ionic-react', 'dist/packages/ionic-react');
+        await runNxCommandAsync(
+          `generate @nxtend/ionic-react:app --name ${appName} --capacitor false --template tabs`
+        );
+
+        await buildAndTestApp(appName);
+
+        done();
+      },
+      asyncTimeout
+    );
+  });
 
   describe('--directory', () => {
     it(

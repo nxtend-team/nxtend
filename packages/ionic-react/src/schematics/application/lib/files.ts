@@ -12,10 +12,9 @@ import {
   url,
 } from '@angular-devkit/schematics';
 import { names, offsetFromRoot } from '@nrwl/workspace';
-import { toJS } from '@nrwl/workspace/src/utils/rules/to-js';
 import { NormalizedSchema } from '../schema';
 
-export function addBaseTemplate(options: NormalizedSchema): Rule {
+export function addBaseFiles(options: NormalizedSchema): Rule {
   return mergeWith(
     apply(url(`./files/ionic/base`), [
       applyTemplates({
@@ -32,9 +31,9 @@ export function addBaseTemplate(options: NormalizedSchema): Rule {
   );
 }
 
-export function addBlankTemplate(options: NormalizedSchema): Rule {
+export function addTemplateFiles(options: NormalizedSchema): Rule {
   return mergeWith(
-    apply(url(`./files/ionic/blank`), [
+    apply(url(`./files/ionic/${options.template}`), [
       applyTemplates({
         ...options,
         ...names(options.name),
@@ -50,7 +49,7 @@ export function addBlankTemplate(options: NormalizedSchema): Rule {
 }
 
 export function addFiles(options: NormalizedSchema): Rule {
-  return chain([addBaseTemplate(options), addBlankTemplate(options)]);
+  return chain([addBaseFiles(options), addTemplateFiles(options)]);
 }
 
 export function deleteUnusedFiles(options: NormalizedSchema): Rule {

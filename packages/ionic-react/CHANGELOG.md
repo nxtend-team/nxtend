@@ -1,9 +1,10 @@
 # Changelog
 
-# 5.0.0
+# 11.0.0
 
 ## Features
 
+- add additional Ionic starter templates to application schematic
 - support custom Nx layouts
 - update Ionic to 5.5.1
 
