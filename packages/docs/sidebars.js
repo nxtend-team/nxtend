@@ -11,6 +11,7 @@ module.exports = {
       items: [
         'ionic-react/overview',
         'ionic-react/getting-started',
+        'ionic-react/capacitor',
         {
           Schematics: [
             'ionic-react/schematics/init',
@@ -25,6 +26,7 @@ module.exports = {
       items: [
         'ionic-angular/overview',
         'ionic-angular/getting-started',
+        'ionic-angular/capacitor',
         {
           Schematics: [
             'ionic-angular/schematics/init',
