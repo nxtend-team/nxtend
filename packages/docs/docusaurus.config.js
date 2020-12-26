@@ -8,11 +8,7 @@ module.exports = {
   projectName: 'Nxtend',
   themeConfig: {
     navbar: {
-      title: 'Nxtend',
-      logo: {
-        alt: 'Nxtend Logo',
-        src: 'img/favicon-32x32.png',
-      },
+      title: 'Home',
       links: [
         {
           to: 'docs/nxtend/introduction',
