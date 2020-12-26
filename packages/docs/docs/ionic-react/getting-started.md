@@ -65,64 +65,6 @@ nx e2e {frontend project name}-e2e
 
 These applications are also supported by the Nx [affected](https://nx.dev/latest/react/cli/affected#affected) commands.
 
-## Add Native Platform
+## Capacitor
 
-First, ensure that the frontend project has been built:
-
-```
-nx build {frontend project name}
-
-nx build mobile-app
-```
-
-Now that a Capacitor project has been added to your Nx workspace you can begin adding support for native platforms. Currently, Capacitor supports Android and iOS, but other platforms can be added with Capacitor plugins.
-
-```
-nx run {frontend project}:add:ios
-nx run {frontend project}:add:android
-nx run {frontend project}:add --platform {native platform}
-
-nx run my-app:add:android
-```
-
-## Copy Build Output
-
-Copy the lastest build output to the native platforms:
-
-```
-nx run {frontend project}:copy:ios
-nx run {frontend project}:copy:android
-nx run {frontend project}:copy --platform {native platform}
-
-nx run my-app:copy:android
-```
-
-## Sync Build Output and Dependencies
-
-Copy the latest build output to the native platforms and sync native platform dependencies:
-
-```
-nx run {frontend project}:sync:ios
-nx run {frontend project}:sync:android
-nx run {frontend project}:sync --platform {native platform}
-
-nx run my-app:sync:android
-```
-
-## Open Native Platform
-
-Finally, you can open the native platform in it's respective IDE:
-
-```
-nx run {frontend project}:open:ios
-nx run {frontend project}:open:android
-nx run {frontend project}:open --platform {native platform}
-
-nx run my-app:open:android
-```
-
-To learn more about using Capacitor with `@nxtend/capacitor` then visit the [Getting Started](../capacitor/getting-started.md) page.
-
-## Troubleshooting
-
-If you receive a `Collection cannot be resolved` error when attempting to generate an application then you likely need to execute the [`@nxtend/ionic-react:init`](./schematics/init) schematic.
+To learn how to utilize Capacitor with a generated app, visit the plugin [Capacitor documentation](./capacitor).
