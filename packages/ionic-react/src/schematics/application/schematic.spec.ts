@@ -38,19 +38,6 @@ describe('application', () => {
     ).toBeTruthy();
     expect(tree.exists(`${projectRoot}/src/assets/icon/icon.png`)).toBeTruthy();
 
-    // Jest
-    if (options.unitTestRunner === 'jest') {
-      expect(tree.exists(`${projectRoot}/jest.config.js`)).toBeTruthy();
-      expect(
-        tree.exists(`${projectRoot}/src/app/__mocks__/fileMock.js`)
-      ).toBeTruthy();
-    } else if (options.unitTestRunner === 'none') {
-      expect(tree.exists(`${projectRoot}/jest.config.js`)).toBeFalsy();
-      expect(
-        tree.exists(`${projectRoot}/src/app/__mocks__/fileMock.js`)
-      ).toBeFalsy();
-    }
-
     // Starter templates
     expect(tree.exists(`${projectRoot}/src/app/App.tsx`)).toBeTruthy();
     expect(tree.exists(`${projectRoot}/src/app/pages/Home.tsx`)).toBeTruthy();
@@ -194,70 +181,16 @@ describe('application', () => {
   });
 
   describe('--unitTestRunner', () => {
-    describe('jest', () => {
-      it('should update Jest config', async () => {
-        const tree = await testRunner
-          .runSchematicAsync(
-            'application',
-            { ...options, unitTestRunner: 'jest' },
-            appTree
-          )
-          .toPromise();
+    it('none', async () => {
+      const tree = await testRunner
+        .runSchematicAsync(
+          'application',
+          { ...options, unitTestRunner: 'none' },
+          appTree
+        )
+        .toPromise();
 
-        const workspaceJson = readJsonInTree(tree, '/workspace.json');
-        const jestConfigPath =
-          workspaceJson.projects['test'].architect.test.options.jestConfig;
-        const jestConfig = tree.readContent(jestConfigPath);
-
-        expect(jestConfig).toContain('moduleNameMapper');
-        expect(jestConfig).toContain('modulePathIgnorePatterns:');
-
-        testGeneratedFiles(tree, { ...options, unitTestRunner: 'jest' });
-      });
-
-      it('should generate Jest test setup', async () => {
-        const tree = await testRunner
-          .runSchematicAsync(
-            'application',
-            { ...options, unitTestRunner: 'jest' },
-            appTree
-          )
-          .toPromise();
-        const workspaceJson = readJsonInTree(tree, '/workspace.json');
-
-        expect(
-          workspaceJson.projects[options.name].architect.build.options.assets
-        ).toContain(`${projectRoot}/src/manifest.json`);
-
-        testGeneratedFiles(tree, { ...options, unitTestRunner: 'jest' });
-      });
-    });
-
-    describe('none', () => {
-      it('should not generate Jest mocks', async () => {
-        const tree = await testRunner
-          .runSchematicAsync(
-            'application',
-            { ...options, unitTestRunner: 'none' },
-            appTree
-          )
-          .toPromise();
-
-        testGeneratedFiles(tree, { ...options, unitTestRunner: 'none' });
-      });
-
-      it('should not generate test files', async () => {
-        const tree = await testRunner
-          .runSchematicAsync(
-            'application',
-            { ...options, unitTestRunner: 'none' },
-            appTree
-          )
-          .toPromise();
-
-        expect(tree.exists(`${projectRoot}/src/app/app.spec.tsx`)).toBeFalsy();
-        testGeneratedFiles(tree, { ...options, unitTestRunner: 'none' });
-      });
+      expect(tree.exists(`${projectRoot}/src/app/App.spec.tsx`)).toBeFalsy();
     });
   });
 
