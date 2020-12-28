@@ -237,13 +237,13 @@
       "sourceRoot": "apps/docs/src",
       "architect": {
         "serve": {
-          "builder": "@nx-plus/docusaurus:docusaurus",
+          "builder": "@nx-plus/docusaurus:dev-server",
           "options": {
             "port": 4200
           }
         },
         "build": {
-          "builder": "@nx-plus/docusaurus:build-docusaurus",
+          "builder": "@nx-plus/docusaurus:browser",
           "options": {
             "outputPath": "dist/apps/docs"
           }

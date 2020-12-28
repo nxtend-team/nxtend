@@ -1,5 +1,4 @@
 ---
-id: ionic-react-3.0.3
 title: '@nxtend/ionic-react 3.0.3'
 author: Devin Shoemaker
 author_title: Maintainer of nxtend
@@ -24,4 +23,4 @@ An update has also been made that avoids adding `@nxtend/ionic-react` unnecessar
 
 Finally, the plugin will install version 1.0.0 of `@nxtend/capacitor` instead of version `*`.
 
-For information on upgrading the plugin, visit the [nxtend upgrades documentation](../docs/nxtend/upgrades).
+For information on upgrading the plugin, visit the [nxtend upgrades documentation](../../../../docs/nxtend/upgrades).

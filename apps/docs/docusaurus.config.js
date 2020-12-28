@@ -9,7 +9,7 @@ module.exports = {
   themeConfig: {
     navbar: {
       title: 'Home',
-      links: [
+      items: [
         {
           to: 'docs/nxtend/introduction',
           activeBasePath: 'docs',

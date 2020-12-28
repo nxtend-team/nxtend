@@ -1,5 +1,4 @@
 ---
-id: ionic-react-3.0.2
 title: '@nxtend/ionic-react 3.0.2'
 author: Devin Shoemaker
 author_title: Maintainer of nxtend
@@ -22,4 +21,4 @@ This change ensures that the `@nxtend/capacitor` plugin is added to the users `p
 
 Unit and e2e tests have also been added to ensure this functionality doesn't break in the future.
 
-For information on upgrading the plugin, visit the [nxtend upgrades documentation](../docs/nxtend/upgrades).
+For information on upgrading the plugin, visit the [nxtend upgrades documentation](../../../../docs/nxtend/upgrades).

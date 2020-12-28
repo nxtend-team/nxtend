@@ -1,5 +1,4 @@
 ---
-id: ionic-react-4.0.0
 title: 'Release @nxtend/ionic-react 4.0.0'
 author: Devin Shoemaker
 author_title: Maintainer of nxtend
@@ -31,4 +30,4 @@ The `disableSanitizer` flag has been removed from the `application` schematic. T
 
 Nxtend Capacitor has also been [updated](2020-11-03-capacitor-2.0.2.md), so it is recommended you update that plugin as well.
 
-For information on upgrading the plugin, visit the [nxtend upgrades documentation](../docs/nxtend/upgrades).
+For information on upgrading the plugin, visit the [nxtend upgrades documentation](../../../../docs/nxtend/upgrades).

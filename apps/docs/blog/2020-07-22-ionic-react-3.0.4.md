@@ -1,5 +1,4 @@
 ---
-id: ionic-react-3.0.4
 title: '@nxtend/ionic-react 3.0.4'
 author: Devin Shoemaker
 author_title: Maintainer of nxtend
@@ -18,6 +17,6 @@ A bug was introduced with `@nxtend/ionic-react` 3.0.4 where `@nrwl/react` would 
 
 Due to recent changes, a user would encounter a "collection not found" error if they did not manually add `@nrwl/react` before using the `@nxtend/ionic-react` plugin.
 
-This change now adds a requirement for users to execute the `init` schematic before the `application` schematic, but seems to be the best compromise at the moment. For various reasons, this has always been the recommended workflow in the (../docs/ionic-react/getting-started) guide so this should not be a disruptive change to users.
+This change now adds a requirement for users to execute the `init` schematic before the `application` schematic, but seems to be the best compromise at the moment. For various reasons, this has always been the recommended workflow in the (../../../../docs/ionic-react/getting-started) guide so this should not be a disruptive change to users.
 
-For information on upgrading the plugin, visit the [nxtend upgrades documentation](../docs/nxtend/upgrades).
+For information on upgrading the plugin, visit the [nxtend upgrades documentation](../../../../docs/nxtend/upgrades).
