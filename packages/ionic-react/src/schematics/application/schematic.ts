@@ -7,7 +7,6 @@ import {
   generateNrwlReactApplication,
 } from './lib/external-schematic';
 import { addFiles, deleteUnusedFiles } from './lib/files';
-import { configureJestForIonic } from './lib/jest';
 import { normalizeOptions } from './lib/normalize-options';
 import { addProject } from './lib/update-workspace';
 import { ApplicationSchematicSchema } from './schema';
@@ -21,7 +20,6 @@ export default function (options: ApplicationSchematicSchema): Rule {
       addDependencies(),
       generateNrwlReactApplication(options),
       addFiles(normalizedOptions),
-      configureJestForIonic(normalizedOptions),
       deleteUnusedFiles(normalizedOptions),
       addProject(normalizedOptions),
       generateCapacitorProject(normalizedOptions),

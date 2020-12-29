@@ -16,7 +16,7 @@ import { NormalizedSchema } from '../schema';
 
 export function addBaseFiles(options: NormalizedSchema): Rule {
   return mergeWith(
-    apply(url(`./files/ionic/base`), [
+    apply(url(`./files/base`), [
       applyTemplates({
         ...options,
         ...names(options.name),
@@ -33,7 +33,7 @@ export function addBaseFiles(options: NormalizedSchema): Rule {
 
 export function addTemplateFiles(options: NormalizedSchema): Rule {
   return mergeWith(
-    apply(url(`./files/ionic/${options.template}`), [
+    apply(url(`./files/${options.template}`), [
       applyTemplates({
         ...options,
         ...names(options.name),
