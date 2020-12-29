@@ -1,5 +1,4 @@
 ---
-id: ionic-react-3.1.0
 title: 'Release @nxtend/ionic-react 3.1.0'
 author: Devin Shoemaker
 author_title: Maintainer of nxtend

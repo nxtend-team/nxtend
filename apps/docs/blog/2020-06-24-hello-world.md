@@ -1,5 +1,4 @@
 ---
-id: hello-world
 title: Hello World!
 author: Devin Shoemaker
 author_title: Maintainer of nxtend

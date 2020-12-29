@@ -37,8 +37,8 @@
   },
   "private": true,
   "dependencies": {
-    "@docusaurus/core": "^2.0.0-alpha.50",
-    "@docusaurus/preset-classic": "^2.0.0-alpha.50",
+    "@docusaurus/core": "2.0.0-alpha.70",
+    "@docusaurus/preset-classic": "2.0.0-alpha.70",
     "classnames": "^2.2.6",
     "react": "17.0.1",
     "react-dom": "17.0.1"
@@ -55,7 +55,7 @@
     "@nrwl/tao": "10.4.4",
     "@nrwl/web": "10.4.4",
     "@nrwl/workspace": "10.4.4",
-    "@nx-plus/docusaurus": "0.0.4",
+    "@nx-plus/docusaurus": "10.2.0",
     "@types/jest": "26.0.8",
     "@types/node": "~8.9.4",
     "@typescript-eslint/eslint-plugin": "4.3.0",
@@ -74,6 +74,9 @@
     "ts-node": "~7.0.0",
     "tslint": "6.0.0",
     "typescript": "4.0.5"
+  },
+  "resolutions": {
+    "terser": "^4.0.0"
   },
   "husky": {
     "hooks": {

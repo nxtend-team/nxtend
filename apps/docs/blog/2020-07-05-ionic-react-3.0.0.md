@@ -1,5 +1,4 @@
 ---
-id: ionic-react-3.0.0
 title: '@nxtend/ionic-react 3.0.0'
 author: Devin Shoemaker
 author_title: Maintainer of nxtend
@@ -24,6 +23,6 @@ The `@nxtend/capacitor` Nx plugin has finally been released, and an accompanying
 
 With this update, developing cross-platform applications in a monorepo architecture has never been easier. I'm incredibly excited to see what users do with this technology, and I can't thank [Nrwl](https://nrwl.io) and [Ionic](https://ionicframework.com) enough for their work.
 
-To learn more about the new `@nxtend/capacitor` plugin, visit the [release blog post](./2020-07-05-capacitor-1.0.0.md) or the [Getting Started](../docs/capacitor/getting-started.md) documentation.
+To learn more about the new `@nxtend/capacitor` plugin, visit the [release blog post](./2020-07-05-capacitor-1.0.0.md) or the [Getting Started](../../../../docs/capacitor/getting-started) documentation.
 
-To upgrade, follow the official [upgrade documentation](../docs/nxtend/upgrades.md).
+To upgrade, follow the official [upgrade documentation](../../../../docs/nxtend/upgrades).

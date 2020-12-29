@@ -1,5 +1,4 @@
 ---
-id: ionic-react-2.2.0
 title: '@nxtend/ionic-react 2.2.0'
 author: Devin Shoemaker
 author_title: Maintainer of nxtend
