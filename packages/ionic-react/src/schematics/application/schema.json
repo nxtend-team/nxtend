@@ -1,5 +1,5 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema",
+  "$schema": "http://json-schema.org/schema",
   "id": "Application",
   "title": "Create an Ionic React Application for Nx",
   "examples": [
@@ -49,7 +49,10 @@
         "message": "Which starter template would you like to use?",
         "type": "list",
         "items": [
-          { "value": "blank", "label": "blank     | A blank starter project" },
+          {
+            "value": "blank",
+            "label": "blank     | A blank starter project"
+          },
           {
             "value": "list",
             "label": "list      | A starting project with a list"
