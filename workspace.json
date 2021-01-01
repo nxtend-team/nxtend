@@ -24,8 +24,10 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "packages/ionic-react/jest.config.js",
-            "passWithNoTests": true
-          }
+            "passWithNoTests": true,
+            "tsConfig": "packages/ionic-react/tsconfig.spec.json"
+          },
+          "outputs": ["coverage/packages/ionic-react"]
         },
         "build": {
           "builder": "@nrwl/node:package",
@@ -58,7 +60,8 @@
               }
             ],
             "srcRootForCompilationRoot": "packages/ionic-react"
-          }
+          },
+          "outputs": ["{options.outputPath}"]
         }
       }
     },
@@ -101,8 +104,10 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "packages/capacitor/jest.config.js",
-            "passWithNoTests": true
-          }
+            "passWithNoTests": true,
+            "tsConfig": "packages/capacitor/tsconfig.spec.json"
+          },
+          "outputs": ["coverage/packages/capacitor"]
         },
         "build": {
           "builder": "@nrwl/node:package",
@@ -135,7 +140,8 @@
               }
             ],
             "srcRootForCompilationRoot": "packages/capacitor"
-          }
+          },
+          "outputs": ["{options.outputPath}"]
         }
       }
     },
@@ -178,8 +184,10 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "packages/ionic-angular/jest.config.js",
-            "passWithNoTests": true
-          }
+            "passWithNoTests": true,
+            "tsConfig": "packages/ionic-angular/tsconfig.spec.json"
+          },
+          "outputs": ["coverage/packages/ionic-angular"]
         },
         "build": {
           "builder": "@nrwl/node:package",
@@ -211,7 +219,8 @@
                 "output": "."
               }
             ]
-          }
+          },
+          "outputs": ["{options.outputPath}"]
         }
       }
     },
