@@ -76,104 +76,108 @@ describe('capacitor-project', () => {
     const workspaceJson = readJsonInTree(tree, '/workspace.json');
 
     expect(
+      workspaceJson.projects[options.project].architect.cap.builder
+    ).toEqual('@nxtend/capacitor:cap');
+    expect(
+      workspaceJson.projects[options.project].architect.cap.options
+    ).toEqual({
+      cmd: '--help',
+    });
+
+    expect(
       workspaceJson.projects[options.project].architect.add.builder
-    ).toEqual('@nxtend/capacitor:command');
+    ).toEqual('@nxtend/capacitor:cap');
     expect(
       workspaceJson.projects[options.project].architect.add.options
     ).toEqual({
-      command: 'add',
-      platform: '',
+      cmd: 'add',
     });
     expect(
       workspaceJson.projects[options.project].architect.add.configurations[
         'ios'
-      ].platform
-    ).toEqual('ios');
+      ].cmd
+    ).toEqual('add ios');
     expect(
       workspaceJson.projects[options.project].architect.add.configurations[
         'android'
-      ].platform
-    ).toEqual('android');
+      ].cmd
+    ).toEqual('add android');
 
     expect(
       workspaceJson.projects[options.project].architect.copy.builder
-    ).toEqual('@nxtend/capacitor:command');
+    ).toEqual('@nxtend/capacitor:cap');
     expect(
       workspaceJson.projects[options.project].architect.copy.options
     ).toEqual({
-      command: 'copy',
-      platform: '',
+      cmd: 'copy',
     });
     expect(
       workspaceJson.projects[options.project].architect.copy.configurations[
         'ios'
-      ].platform
-    ).toEqual('ios');
+      ].cmd
+    ).toEqual('copy ios');
     expect(
       workspaceJson.projects[options.project].architect.copy.configurations[
         'android'
-      ].platform
-    ).toEqual('android');
+      ].cmd
+    ).toEqual('copy android');
 
     expect(
       workspaceJson.projects[options.project].architect.open.builder
-    ).toEqual('@nxtend/capacitor:command');
+    ).toEqual('@nxtend/capacitor:cap');
     expect(
       workspaceJson.projects[options.project].architect.open.options
     ).toEqual({
-      command: 'open',
-      platform: '',
+      cmd: 'open',
     });
     expect(
       workspaceJson.projects[options.project].architect.open.configurations[
         'ios'
-      ].platform
-    ).toEqual('ios');
+      ].cmd
+    ).toEqual('open ios');
     expect(
       workspaceJson.projects[options.project].architect.open.configurations[
         'android'
-      ].platform
-    ).toEqual('android');
+      ].cmd
+    ).toEqual('open android');
 
     expect(
       workspaceJson.projects[options.project].architect.sync.builder
-    ).toEqual('@nxtend/capacitor:command');
+    ).toEqual('@nxtend/capacitor:cap');
     expect(
       workspaceJson.projects[options.project].architect.sync.options
     ).toEqual({
-      command: 'sync',
-      platform: '',
+      cmd: 'sync',
     });
     expect(
       workspaceJson.projects[options.project].architect.sync.configurations[
         'ios'
-      ].platform
-    ).toEqual('ios');
+      ].cmd
+    ).toEqual('sync ios');
     expect(
       workspaceJson.projects[options.project].architect.sync.configurations[
         'android'
-      ].platform
-    ).toEqual('android');
+      ].cmd
+    ).toEqual('sync android');
 
     expect(
       workspaceJson.projects[options.project].architect.update.builder
-    ).toEqual('@nxtend/capacitor:command');
+    ).toEqual('@nxtend/capacitor:cap');
     expect(
       workspaceJson.projects[options.project].architect.update.options
     ).toEqual({
-      command: 'update',
-      platform: '',
+      cmd: 'update',
     });
     expect(
       workspaceJson.projects[options.project].architect.update.configurations[
         'ios'
-      ].platform
-    ).toEqual('ios');
+      ].cmd
+    ).toEqual('update ios');
     expect(
       workspaceJson.projects[options.project].architect.update.configurations[
         'android'
-      ].platform
-    ).toEqual('android');
+      ].cmd
+    ).toEqual('update android');
   });
 
   it('should add project package.json', async () => {
