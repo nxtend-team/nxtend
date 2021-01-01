@@ -43,7 +43,10 @@
         "message": "Which starter template would you like to use?",
         "type": "list",
         "items": [
-          { "value": "blank", "label": "blank     | A blank starter project" },
+          {
+            "value": "blank",
+            "label": "blank     | A blank starter project"
+          },
           {
             "value": "list",
             "label": "list      | A starting project with a list"
