@@ -7,20 +7,28 @@ export function addProject(options: NormalizedSchema) {
     const commands = ['add', 'copy', 'open', 'sync', 'update'];
     const platforms = ['ios', 'android'];
 
+    architect['cap'] = {
+      builder: '@nxtend/capacitor:cap',
+      options: {
+        cmd: '--help',
+      },
+    };
+
     let command: string, platform: string;
 
     for (command of commands) {
       architect[command] = {
-        builder: `@nxtend/capacitor:command`,
+        builder: `@nxtend/capacitor:cap`,
         options: {
-          command: `${command}`,
-          platform: '',
+          cmd: `${command}`,
         },
-        configurations: { platform },
+        configurations: {},
       };
 
       for (platform of platforms) {
-        architect[command].configurations[platform] = { platform: platform };
+        architect[command].configurations[platform] = {
+          cmd: `${command} ${platform}`,
+        };
       }
     }
 

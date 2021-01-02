@@ -5,6 +5,11 @@
 ## Features
 
 - Nx 11 support (Nx 11 now required)
+- added `cap` builder for a more generic interface with the Capacitor CLI
+
+## BREAKING CHANGES
+
+- the `command` builder has been removed
 
 # 2.0.2
 

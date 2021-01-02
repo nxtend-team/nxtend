@@ -7,10 +7,7 @@ import {
   uniq,
   updateFile,
 } from '@nrwl/nx-plugin/testing';
-import {
-  AddPluginSchematicSchema,
-  CapacitorSchematicSchema,
-} from '@nxtend/capacitor';
+import { CapacitorSchematicSchema } from '@nxtend/capacitor';
 
 const asyncTimeout = 150000;
 
@@ -18,12 +15,6 @@ const defaultCapacitorProjectOptions: CapacitorSchematicSchema = {
   project: 'test-app',
   appId: 'test-id',
   npmClient: 'yarn',
-};
-
-const defaultAddPluginOptions: AddPluginSchematicSchema = {
-  plugin: 'test-plugin',
-  version: '0.0.0',
-  project: 'test-app',
 };
 
 async function generateApp(options: CapacitorSchematicSchema) {
@@ -59,66 +50,22 @@ async function buildAndTestApp(plugin: string) {
 
   const e2eResults = await runNxCommandAsync(`e2e ${plugin}-e2e --headless`);
   expect(e2eResults.stdout).toContain('All specs passed!');
+
+  const capResults = await runNxCommandAsync(`run ${plugin}:cap`);
+  expect(capResults.stdout).toContain('Usage: cap');
 }
 
 describe('capacitor-project e2e', () => {
-  describe('npmClient', () => {
-    it(
-      'npm',
-      async (done) => {
-        const plugin = uniq('capacitor');
-        const options: CapacitorSchematicSchema = {
-          ...defaultCapacitorProjectOptions,
-          project: plugin,
-        };
-
-        await generateApp(options);
-        testGeneratedFiles(plugin);
-        await buildAndTestApp(plugin);
-
-        done();
-      },
-      asyncTimeout
-    );
-
-    it(
-      'yarn',
-      async (done) => {
-        const plugin = uniq('capacitor');
-        const options: CapacitorSchematicSchema = {
-          ...defaultCapacitorProjectOptions,
-          project: plugin,
-        };
-
-        await generateApp(options);
-        testGeneratedFiles(plugin);
-        await buildAndTestApp(plugin);
-
-        done();
-      },
-      asyncTimeout
-    );
-  });
-});
-
-describe('add-plugin e2e', () => {
   it(
-    'should add Capacitor plugin to project package.json',
+    'should build and test successfully',
     async (done) => {
       const plugin = uniq('capacitor');
-      const capacitorProjectOptions: CapacitorSchematicSchema = {
+      const options: CapacitorSchematicSchema = {
         ...defaultCapacitorProjectOptions,
         project: plugin,
       };
-      const addPluginOptions: AddPluginSchematicSchema = {
-        ...defaultAddPluginOptions,
-        project: plugin,
-      };
 
-      await generateApp(capacitorProjectOptions);
-      await runNxCommandAsync(
-        `generate @nxtend/capacitor:add-plugin ${addPluginOptions.plugin} --version ${addPluginOptions.version} --project ${addPluginOptions.project}`
-      );
+      await generateApp(options);
       testGeneratedFiles(plugin);
       await buildAndTestApp(plugin);
 

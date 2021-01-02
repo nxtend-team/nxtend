@@ -32,7 +32,7 @@ export function runBuilder(
             command: `${capacitorConfigJson.npmClient} install`,
           },
           {
-            command: `npx cap ${options.command} ${options.platform}`,
+            command: `npx cap ${options.cmd}`,
           },
         ],
       });

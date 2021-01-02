@@ -47,7 +47,7 @@ module.exports = {
             'capacitor/schematics/capacitor-project',
             'capacitor/schematics/add-plugin',
           ],
-          Builders: ['capacitor/builders/command'],
+          Builders: ['capacitor/builders/cap'],
         },
       ],
     },

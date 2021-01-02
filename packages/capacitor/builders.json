@@ -1,9 +1,9 @@
 {
   "$schema": "../../node_modules/@angular-devkit/architect/src/builders-schema.json",
   "builders": {
-    "command": {
-      "implementation": "./src/builders/command/builder",
-      "schema": "./src/builders/command/schema.json",
+    "cap": {
+      "implementation": "./src/builders/cap/builder",
+      "schema": "./src/builders/cap/schema.json",
       "description": "Run a Capacitor command"
     }
   }
