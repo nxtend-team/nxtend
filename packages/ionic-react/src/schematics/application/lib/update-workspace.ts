@@ -18,19 +18,6 @@ export function updateWorkspaceAssets(options: NormalizedSchema): Rule {
   });
 }
 
-export function updateWebpackConfig(options: NormalizedSchema): Rule {
-  return updateWorkspaceInTree((json) => {
-    const architect = json.projects[options.appProjectName].architect;
-
-    architect.build.options.webpackConfig =
-      '@nxtend/ionic-react/plugins/webpack';
-
-    json.projects[options.appProjectName].architect = architect;
-
-    return json;
-  });
-}
-
 export function addProject(options: NormalizedSchema): Rule {
-  return chain([updateWorkspaceAssets(options), updateWebpackConfig(options)]);
+  return chain([updateWorkspaceAssets(options)]);
 }

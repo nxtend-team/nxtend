@@ -110,9 +110,6 @@ describe('application', () => {
     expect(
       workspaceJson.projects[options.name].architect.build.options.assets
     ).toContain(`${projectRoot}/src/manifest.json`);
-    expect(
-      workspaceJson.projects[options.name].architect.build.options.webpackConfig
-    ).toEqual('@nxtend/ionic-react/plugins/webpack');
   });
 
   describe('--template', () => {
