@@ -7,7 +7,7 @@
 - Nx 11 support (Nx 11 now required)
 - add additional Ionic starter templates to application schematic
 - support custom Nx layouts
-- update Ionic to 5.5.1
+- update Ionic to 5.5.2
 
 ## BREAKING CHANGES
 
