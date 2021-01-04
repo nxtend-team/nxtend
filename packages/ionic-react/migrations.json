@@ -74,6 +74,11 @@
       "version": "11.0.0-beta.1",
       "description": "Update libraries",
       "factory": "./src/migrations/update-11-0-0/update-11-0-0"
+    },
+    "update-webpack-config-11.0.0": {
+      "version": "11.0.0-beta.1",
+      "description": "Update Webpack config",
+      "factory": "./src/migrations/update-11-0-0/update-webpack-config-11-0-0"
     }
   },
   "packageJsonUpdates": {
