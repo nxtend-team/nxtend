@@ -17,8 +17,15 @@ function updateCapacitorBuilder() {
         isProjectCapacitor = true;
 
         target.builder = '@nxtend/capacitor:cap';
+
+        const packageInstall =
+          target.options.command === 'add' ||
+          target.options.command === 'update' ||
+          target.options.command === 'sync';
+
         target.options = {
           cmd: target.options.command,
+          packageInstall,
         };
 
         if (!target.configurations) {
@@ -39,6 +46,7 @@ function updateCapacitorBuilder() {
           builder: '@nxtend/capacitor:cap',
           options: {
             cmd: '--help',
+            packageInstall: true,
           },
         };
       }

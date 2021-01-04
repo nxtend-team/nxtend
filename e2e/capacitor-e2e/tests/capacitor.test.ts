@@ -52,7 +52,12 @@ async function buildAndTestApp(plugin: string) {
   expect(e2eResults.stdout).toContain('All specs passed!');
 
   const capResults = await runNxCommandAsync(`run ${plugin}:cap`);
-  expect(capResults.stdout).toContain('Usage: cap');
+  expect(capResults.stdout).toContain('success');
+
+  const capPackageInstallResults = await runNxCommandAsync(
+    `run ${plugin}:cap --packageInstall false`
+  );
+  expect(capPackageInstallResults.stdout).toContain('Usage: cap');
 }
 
 describe('capacitor-project e2e', () => {

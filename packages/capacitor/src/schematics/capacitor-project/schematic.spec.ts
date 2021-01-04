@@ -91,6 +91,7 @@ describe('capacitor-project', () => {
       workspaceJson.projects[options.project].architect.add.options
     ).toEqual({
       cmd: 'add',
+      packageInstall: true,
     });
     expect(
       workspaceJson.projects[options.project].architect.add.configurations[
@@ -110,6 +111,7 @@ describe('capacitor-project', () => {
       workspaceJson.projects[options.project].architect.copy.options
     ).toEqual({
       cmd: 'copy',
+      packageInstall: false,
     });
     expect(
       workspaceJson.projects[options.project].architect.copy.configurations[
@@ -129,6 +131,7 @@ describe('capacitor-project', () => {
       workspaceJson.projects[options.project].architect.open.options
     ).toEqual({
       cmd: 'open',
+      packageInstall: false,
     });
     expect(
       workspaceJson.projects[options.project].architect.open.configurations[
@@ -148,6 +151,7 @@ describe('capacitor-project', () => {
       workspaceJson.projects[options.project].architect.sync.options
     ).toEqual({
       cmd: 'sync',
+      packageInstall: true,
     });
     expect(
       workspaceJson.projects[options.project].architect.sync.configurations[
@@ -167,6 +171,7 @@ describe('capacitor-project', () => {
       workspaceJson.projects[options.project].architect.update.options
     ).toEqual({
       cmd: 'update',
+      packageInstall: true,
     });
     expect(
       workspaceJson.projects[options.project].architect.update.configurations[
