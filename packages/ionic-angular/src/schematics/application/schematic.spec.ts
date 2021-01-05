@@ -222,6 +222,20 @@ describe('application schematic', () => {
 
       expect(tree.exists('apps/my-dir/my-app/src/main.ts'));
     });
+
+    it('should generate Capacitor project', async () => {
+      const tree = await testRunner
+        .runSchematicAsync(
+          'application',
+          { ...options, directory: 'my-dir', capacitor: true },
+          appTree
+        )
+        .toPromise();
+
+      expect(
+        readJsonInTree(tree, `apps/my-dir/my-app/capacitor.config.json`)
+      ).toBeDefined();
+    });
   });
 
   describe('--unitTestRunner', () => {
