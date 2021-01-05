@@ -9,6 +9,10 @@
 - support custom Nx layouts
 - update Ionic to 5.5.2
 
+## Bug Fixes
+
+- fix generating an application in a sub-directory with Capacitor enabled
+
 ## BREAKING CHANGES
 
 - remove `classComponent` option from `application` schematic (now defaults to functional components)
