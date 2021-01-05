@@ -32,7 +32,9 @@ function updateCapacitorBuilder() {
           return;
         }
 
-        Object.values<any>(target.configurations).forEach(
+        Object.values<any>(target.configurations)
+          .filter((configuration: any) => configuration.platform !== undefined)
+          .forEach(
           (configuration: any) => {
             const platform = configuration.platform;
             configuration.cmd = `${target.options.cmd} ${platform}`;
