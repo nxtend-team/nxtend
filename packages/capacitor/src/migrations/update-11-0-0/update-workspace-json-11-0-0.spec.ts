@@ -29,6 +29,7 @@ describe('Update 2.0.0', () => {
                   platform: '',
                 },
                 configurations: {
+                  platform: 'android',
                   ios: {
                     platform: 'ios',
                   },
