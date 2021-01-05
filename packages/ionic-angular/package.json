@@ -1,12 +1,12 @@
 {
   "name": "@nxtend/ionic-angular",
-  "version": "1.0.0",
+  "version": "11.0.0",
   "main": "src/index.js",
   "schematics": "./collection.json",
   "builders": "./builders.json",
   "peerDependencies": {
     "@nrwl/angular": "^11.0.19",
-    "@nxtend/capacitor": "^1.0.0"
+    "@nxtend/capacitor": "^11.0.0"
   },
   "nx-migrations": {
     "migrations": "./migrations.json"
