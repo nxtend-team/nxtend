@@ -32,6 +32,10 @@ function updateCapacitorBuilder() {
           return;
         }
 
+        if (target.configurations.platform) {
+          delete target.configurations.platform;
+        }
+
         Object.values<any>(target.configurations).forEach(
           (configuration: any) => {
             const platform = configuration.platform;

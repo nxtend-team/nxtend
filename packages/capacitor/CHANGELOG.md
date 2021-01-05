@@ -2,6 +2,12 @@
 
 # 11.0.0
 
+## Bug Fixes
+
+- fix 11.0.0 workspace migration
+
+# 11.0.0
+
 ## Features
 
 - Nx 11 support (Nx 11 now required)
