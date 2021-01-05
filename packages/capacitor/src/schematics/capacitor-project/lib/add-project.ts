@@ -17,10 +17,14 @@ export function addProject(options: NormalizedSchema) {
     let command: string, platform: string;
 
     for (command of commands) {
+      const packageInstall =
+        command === 'add' || command === 'update' || command === 'sync';
+
       architect[command] = {
         builder: `@nxtend/capacitor:cap`,
         options: {
           cmd: `${command}`,
+          packageInstall,
         },
         configurations: {},
       };

@@ -24,17 +24,28 @@ export function runBuilder(
           .toString()
       );
 
-      return context.scheduleBuilder('@nrwl/workspace:run-commands', {
-        cwd: frontendProjectRoot,
-        parallel: false,
-        commands: [
+      let commands = [
+        {
+          command: `npx cap ${options.cmd}`,
+        },
+      ];
+
+      if (
+        options.packageInstall === true ||
+        options.packageInstall === undefined
+      ) {
+        commands = [
           {
             command: `${capacitorConfigJson.npmClient} install`,
           },
-          {
-            command: `npx cap ${options.cmd}`,
-          },
-        ],
+          ...commands,
+        ];
+      }
+
+      return context.scheduleBuilder('@nrwl/workspace:run-commands', {
+        cwd: frontendProjectRoot,
+        parallel: false,
+        commands,
       });
     }),
     switchMap((run) => run.output)

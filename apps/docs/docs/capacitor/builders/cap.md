@@ -24,7 +24,8 @@ Runs a builder that executes a Capacitor command.
     "copy": {
       "builder": "@nxtend/capacitor:cap",
       "options": {
-        "cmd": "copy"
+        "cmd": "copy",
+        "packageInstall": false
       },
       "configurations": {
         "ios": {
@@ -55,3 +56,11 @@ Default: `null`
 Type: `string`
 
 The Capacitor command.
+
+### --packageInstall
+
+Default: `undefined`
+
+Type: `boolean`
+
+Whether or not to install dependencies in the application directory.

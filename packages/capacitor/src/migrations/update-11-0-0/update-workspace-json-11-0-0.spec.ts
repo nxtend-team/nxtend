@@ -37,6 +37,36 @@ describe('Update 2.0.0', () => {
                   },
                 },
               },
+              copy: {
+                builder: '@nxtend/capacitor:command',
+                options: {
+                  command: 'copy',
+                  platform: '',
+                },
+                configurations: {
+                  ios: {
+                    platform: 'ios',
+                  },
+                  android: {
+                    platform: 'android',
+                  },
+                },
+              },
+              update: {
+                builder: '@nxtend/capacitor:command',
+                options: {
+                  command: 'update',
+                  platform: '',
+                },
+                configurations: {
+                  ios: {
+                    platform: 'ios',
+                  },
+                  android: {
+                    platform: 'android',
+                  },
+                },
+              },
             },
           },
           ['my-app-2']: {
@@ -68,12 +98,19 @@ describe('Update 2.0.0', () => {
     expect(
       workspaceJson.projects['my-app-1'].architect['cap'].options.cmd
     ).toEqual('--help');
+    expect(
+      workspaceJson.projects['my-app-1'].architect['cap'].options.packageInstall
+    ).toEqual(true);
+
     expect(workspaceJson.projects['my-app-1'].architect['add'].builder).toEqual(
       '@nxtend/capacitor:cap'
     );
     expect(
       workspaceJson.projects['my-app-1'].architect['add'].options.cmd
     ).toEqual('add');
+    expect(
+      workspaceJson.projects['my-app-1'].architect['add'].options.packageInstall
+    ).toEqual(true);
     expect(
       workspaceJson.projects['my-app-1'].architect['add'].configurations['ios']
         .cmd
@@ -84,12 +121,54 @@ describe('Update 2.0.0', () => {
       ].cmd
     ).toEqual('add android');
 
+    expect(workspaceJson.projects['my-app-1'].architect['add'].builder).toEqual(
+      '@nxtend/capacitor:cap'
+    );
+    expect(
+      workspaceJson.projects['my-app-1'].architect['copy'].options.cmd
+    ).toEqual('copy');
+    expect(
+      workspaceJson.projects['my-app-1'].architect['copy'].options
+        .packageInstall
+    ).toEqual(false);
+    expect(
+      workspaceJson.projects['my-app-1'].architect['copy'].configurations['ios']
+        .cmd
+    ).toEqual('copy ios');
+    expect(
+      workspaceJson.projects['my-app-1'].architect['copy'].configurations[
+        'android'
+      ].cmd
+    ).toEqual('copy android');
+
+    expect(
+      workspaceJson.projects['my-app-1'].architect['update'].builder
+    ).toEqual('@nxtend/capacitor:cap');
+    expect(
+      workspaceJson.projects['my-app-1'].architect['update'].options.cmd
+    ).toEqual('update');
+    expect(
+      workspaceJson.projects['my-app-1'].architect['update'].options
+        .packageInstall
+    ).toEqual(true);
+    expect(
+      workspaceJson.projects['my-app-1'].architect['update'].configurations[
+        'ios'
+      ].cmd
+    ).toEqual('update ios');
+    expect(
+      workspaceJson.projects['my-app-1'].architect['update'].configurations[
+        'android'
+      ].cmd
+    ).toEqual('update android');
+
     expect(workspaceJson.projects['my-app-2'].architect['cap'].builder).toEqual(
       '@nxtend/capacitor:cap'
     );
     expect(
       workspaceJson.projects['my-app-2'].architect['cap'].options.cmd
     ).toEqual('--help');
+
     expect(workspaceJson.projects['my-app-2'].architect['add'].builder).toEqual(
       '@nxtend/capacitor:cap'
     );
