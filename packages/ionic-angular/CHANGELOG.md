@@ -9,6 +9,10 @@
 - add additional Ionic starter templates to application schematic
 - support `none` as a unit test and e2e config for the application schematic
 
+## Bug Fixes
+
+- fix generating an application in a sub-directory with Capacitor enabled
+
 # 1.1.0
 
 ## Features
