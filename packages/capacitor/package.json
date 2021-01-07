@@ -14,7 +14,7 @@
   "license": "MIT",
   "main": "src/index.js",
   "schematics": "./collection.json",
-  "builders": "./builders.json",
+  "executors": "./executors.json",
   "nx-migrations": {
     "migrations": "./migrations.json"
   },

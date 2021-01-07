@@ -10,10 +10,10 @@ import { switchMap } from 'rxjs/operators';
 import { getProjectRoot } from '../../utils/project-root';
 import { CommandBuilderSchema } from './schema';
 
-export function runBuilder(
+export default async function runExecutor(
   options: CommandBuilderSchema,
   context: BuilderContext
-): Observable<BuilderOutput> {
+) {
   return from(getProjectRoot(context)).pipe(
     switchMap((projectRoot) => {
       const frontendProjectRoot = join(context.workspaceRoot, projectRoot);
@@ -51,5 +51,3 @@ export function runBuilder(
     switchMap((run) => run.output)
   );
 }
-
-export default createBuilder(runBuilder);

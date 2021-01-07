@@ -130,7 +130,7 @@
               },
               {
                 "input": "./packages/capacitor",
-                "glob": "builders.json",
+                "glob": "executors.json",
                 "output": "."
               },
               {
