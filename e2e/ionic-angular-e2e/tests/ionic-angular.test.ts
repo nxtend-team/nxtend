@@ -15,7 +15,7 @@ describe('Ionic Angular Application', () => {
     expect(lintResults.stdout).not.toContain('ERROR');
 
     const testResults = await runNxCommandAsync(
-      `test ${plugin} --browsers ChromeHeadless`
+      `test ${plugin} --browsers ChromeHeadless --watch false`
     );
     expect(testResults.stdout).toContain('SUCCESS');
 

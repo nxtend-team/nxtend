@@ -258,6 +258,71 @@
           }
         }
       }
+    },
+    "firebase": {
+      "root": "packages/firebase",
+      "sourceRoot": "packages/firebase/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["packages/firebase/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/packages/firebase"],
+          "options": {
+            "jestConfig": "packages/firebase/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "build": {
+          "builder": "@nrwl/node:package",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/packages/firebase",
+            "tsConfig": "packages/firebase/tsconfig.lib.json",
+            "packageJson": "packages/firebase/package.json",
+            "main": "packages/firebase/src/index.ts",
+            "assets": [
+              "packages/firebase/*.md",
+              {
+                "input": "./packages/firebase/src",
+                "glob": "**/*.!(ts)",
+                "output": "./src"
+              },
+              {
+                "input": "./packages/firebase",
+                "glob": "collection.json",
+                "output": "."
+              },
+              {
+                "input": "./packages/firebase",
+                "glob": "builders.json",
+                "output": "."
+              }
+            ]
+          }
+        }
+      }
+    },
+    "firebase-e2e": {
+      "projectType": "application",
+      "root": "e2e/firebase-e2e",
+      "sourceRoot": "e2e/firebase-e2e/src",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/nx-plugin:e2e",
+          "options": {
+            "target": "firebase:build",
+            "npmPackageName": "@nxtend/firebase",
+            "pluginOutputPath": "dist/packages/firebase",
+            "jestConfig": "e2e/firebase-e2e/jest.config.js"
+          }
+        }
+      }
     }
   },
   "cli": {
