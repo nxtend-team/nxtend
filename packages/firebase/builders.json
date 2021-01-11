@@ -1,0 +1,10 @@
+{
+  "$schema": "../../node_modules/@angular-devkit/architect/src/builders-schema.json",
+  "builders": {
+    "firebase": {
+      "implementation": "./src/builders/firebase/builder",
+      "schema": "./src/builders/firebase/schema.json",
+      "description": "Firebase builder"
+    }
+  }
+}

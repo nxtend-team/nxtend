@@ -1,0 +1,7 @@
+{
+  "name": "@nxtend/firebase",
+  "version": "0.0.1",
+  "main": "src/index.js",
+  "builders": "./builders.json",
+  "schematics": "./collection.json"
+}

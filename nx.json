@@ -44,6 +44,13 @@
     "ionic-angular-e2e": {
       "tags": [],
       "implicitDependencies": ["ionic-angular"]
+    },
+    "firebase": {
+      "tags": []
+    },
+    "firebase-e2e": {
+      "tags": [],
+      "implicitDependencies": ["firebase"]
     }
   },
   "tasksRunnerOptions": {
