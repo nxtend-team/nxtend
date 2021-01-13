@@ -1,12 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { chain, Rule, Tree } from '@angular-devkit/schematics';
-import { readJsonInTree } from '@nrwl/workspace';
+import { chain, Rule } from '@angular-devkit/schematics';
+import { updateWorkspaceInTree } from '@nrwl/workspace';
 
 function updateCapacitorBuilder() {
-  return (host: Tree) => {
-    const workspaceJson = readJsonInTree(host, 'workspace.json');
-
-    Object.values<any>(workspaceJson.projects).forEach((project) => {
+  return updateWorkspaceInTree((json) => {
+    Object.values<any>(json.projects).forEach((project) => {
       let isProjectCapacitor = false;
 
       Object.values<any>(project.architect).forEach((target) => {
@@ -56,8 +54,8 @@ function updateCapacitorBuilder() {
       }
     });
 
-    host.overwrite('workspace.json', JSON.stringify(workspaceJson));
-  };
+    return json;
+  });
 }
 
 export default function update(): Rule {
