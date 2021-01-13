@@ -1,6 +1,12 @@
 # Changelog
 
-# 11.0.0
+# 11.0.2
+
+## Bug Fixes
+
+- support `angular.json` as well as `workspace.json` during migrations
+
+# 11.0.1
 
 ## Bug Fixes
 
