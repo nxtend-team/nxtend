@@ -34,7 +34,7 @@ describe('Update Webpack Config 11.0.0', () => {
     );
   });
 
-  it(`should update dependencies`, async () => {
+  it(`should Webpack plugin`, async () => {
     const result = await schematicRunner
       .runSchematicAsync('update-webpack-config-11.0.0', {}, initialTree)
       .toPromise();
