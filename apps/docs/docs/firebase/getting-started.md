@@ -66,4 +66,10 @@ nx run my-app:firebase --cmd init
 nx run my-app:firebase --cmd deploy
 ```
 
+If you want to pass additional options to the Firebase command then you can wrap the command option in quotes:
+
+```
+nx run my-app:firebase --cmd "emulators:start --import=./ --export-on-exit"
+```
+
 To learn more about Firebase, including the `firebase-tools` commands available, please read the [official Firebase documentation](https://firebase.google.com/docs).

@@ -16,13 +16,17 @@ export function runBuilder(
   return from(getProjectRoot(context)).pipe(
     switchMap((projectRoot) => {
       const frontendProjectRoot = join(context.workspaceRoot, projectRoot);
+      let cmd = options.cmd;
+      if (cmd[0] === '"' && cmd[cmd.length - 1] === '"') {
+        cmd = cmd.substring(1).substring(cmd.length);
+      }
 
       return context.scheduleBuilder('@nrwl/workspace:run-commands', {
         cwd: frontendProjectRoot,
         parallel: false,
         commands: [
           {
-            command: `firebase ${options.cmd}`,
+            command: `firebase ${cmd}`,
           },
         ],
       });
