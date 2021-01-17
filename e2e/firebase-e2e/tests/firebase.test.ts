@@ -45,6 +45,13 @@ async function buildAndTestApp(plugin: string) {
   expect(firebaseResults.stdout).toContain(
     'Usage: firebase [options] [command]'
   );
+
+  const firebaseHelpResults = await runNxCommandAsync(
+    `run ${plugin}:firebase --cmd "help"`
+  );
+  expect(firebaseHelpResults.stdout).toContain(
+    'Usage: firebase [options] [command]'
+  );
 }
 
 describe('capacitor-project e2e', () => {

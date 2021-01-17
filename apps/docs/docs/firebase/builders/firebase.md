@@ -30,6 +30,7 @@ Runs a builder that executes a Firebase command.
 ```
 nx run my-app:firebase --cmd init
 nx run my-app:firebase --cmd deploy
+nx run my-app:firebase --cmd "emulators:start --import=./ --export-on-exit"
 ```
 
 ## Properties
