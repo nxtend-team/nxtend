@@ -43,7 +43,7 @@ Runs a builder that executes a Capacitor command.
 **CLI:**
 
 ```
-nx run my-app:cap --cmd add ios
+nx run my-app:cap --cmd="add ios"
 nx run my-app:copy:ios
 ```
 

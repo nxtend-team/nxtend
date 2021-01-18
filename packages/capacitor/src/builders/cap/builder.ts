@@ -17,6 +17,10 @@ export function runBuilder(
   return from(getProjectRoot(context)).pipe(
     switchMap((projectRoot) => {
       const frontendProjectRoot = join(context.workspaceRoot, projectRoot);
+      let cmd = options.cmd;
+      if (cmd[0] === '"' && cmd[cmd.length - 1] === '"') {
+        cmd = cmd.substring(1).slice(0, -1);
+      }
 
       const capacitorConfigJson = JSON.parse(
         fs
@@ -26,7 +30,7 @@ export function runBuilder(
 
       let commands = [
         {
-          command: `npx cap ${options.cmd}`,
+          command: `npx cap ${cmd}`,
         },
       ];
 
