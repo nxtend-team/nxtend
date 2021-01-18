@@ -18,7 +18,7 @@ export function runBuilder(
       const frontendProjectRoot = join(context.workspaceRoot, projectRoot);
       let cmd = options.cmd;
       if (cmd[0] === '"' && cmd[cmd.length - 1] === '"') {
-        cmd = cmd.substring(1).substring(cmd.length);
+        cmd = cmd.substring(1).slice(0, -1);
       }
 
       return context.scheduleBuilder('@nrwl/workspace:run-commands', {
