@@ -47,7 +47,7 @@ async function buildAndTestApp(plugin: string) {
   );
 
   const firebaseHelpResults = await runNxCommandAsync(
-    `run ${plugin}:firebase --cmd "help"`
+    `run ${plugin}:firebase --cmd="--help"`
   );
   expect(firebaseHelpResults.stdout).toContain(
     'Usage: firebase [options] [command]'
