@@ -71,6 +71,7 @@ nx run {frontend project}:add:android
 nx run {frontend project}:add --platform {native platform}
 
 nx run my-app:add:android
+nx run my-app:cap --cmd="add android"
 ```
 
 ## Sync Native Platform
@@ -83,6 +84,7 @@ nx run {frontend project}:sync:android
 nx run {frontend project}:sync --platform {native platform}
 
 nx run my-app:sync:android
+nx run my-app:cap --cmd="sync android"
 ```
 
 ## Open Native Platform
@@ -95,6 +97,7 @@ nx run {frontend project}:open:android
 nx run {frontend project}:open --platform {native platform}
 
 nx run my-app:open:android
+nx run my-app:cap --cmd="open android"
 ```
 
 ## Adding Capacitor Plugins

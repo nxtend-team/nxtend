@@ -1,5 +1,11 @@
 # Changelog
 
+# 11.1.0
+
+## Features
+
+- support quotes in `cap` builder `cmd` option (useful for passing additional options for Capacitor commands)
+
 # 11.0.2
 
 ## Bug Fixes

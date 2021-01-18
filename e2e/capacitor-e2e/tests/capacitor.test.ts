@@ -58,6 +58,11 @@ async function buildAndTestApp(plugin: string) {
     `run ${plugin}:cap --packageInstall false`
   );
   expect(capPackageInstallResults.stdout).toContain('Usage: cap');
+
+  const capHelpResults = await runNxCommandAsync(
+    `run ${plugin}:cap --cmd="--help"`
+  );
+  expect(capHelpResults.stdout).toContain('Usage: cap');
 }
 
 describe('capacitor-project e2e', () => {
