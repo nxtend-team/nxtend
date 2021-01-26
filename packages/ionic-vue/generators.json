@@ -1,0 +1,12 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "name": "ionic-vue",
+  "version": "0.0.1",
+  "generators": {
+    "ionic-vue": {
+      "factory": "./src/generators/ionic-vue/generator",
+      "schema": "./src/generators/ionic-vue/schema.json",
+      "description": "ionic-vue generator"
+    }
+  }
+}
