@@ -1,8 +1,14 @@
 {
-  "$schema": "http://json-schema.org/schema",
-  "name": "ionic-vue",
+  "$schema": "../../node_modules/@angular-devkit/schematics/collection-schema.json",
+  "name": "Nxtend Ionic Vue",
   "version": "0.0.1",
   "schematics": {
+    "init": {
+      "factory": "./src/schematics/init/schematic",
+      "schema": "./src/schematics/init/schema.json",
+      "description": "Initialize the @nxtend/ionic-vue plugin",
+      "aliases": ["ng-add"]
+    },
     "ionic-vue": {
       "factory": "./src/schematics/ionic-vue/schematic",
       "schema": "./src/schematics/ionic-vue/schema.json",
