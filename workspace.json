@@ -323,6 +323,71 @@
           }
         }
       }
+    },
+    "ionic-vue": {
+      "root": "packages/ionic-vue",
+      "sourceRoot": "packages/ionic-vue/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["packages/ionic-vue/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/packages/ionic-vue"],
+          "options": {
+            "jestConfig": "packages/ionic-vue/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "build": {
+          "builder": "@nrwl/node:package",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/packages/ionic-vue",
+            "tsConfig": "packages/ionic-vue/tsconfig.lib.json",
+            "packageJson": "packages/ionic-vue/package.json",
+            "main": "packages/ionic-vue/src/index.ts",
+            "assets": [
+              "packages/ionic-vue/*.md",
+              {
+                "input": "./packages/ionic-vue/src",
+                "glob": "**/*.!(ts)",
+                "output": "./src"
+              },
+              {
+                "input": "./packages/ionic-vue",
+                "glob": "collection.json",
+                "output": "."
+              },
+              {
+                "input": "./packages/ionic-vue",
+                "glob": "builders.json",
+                "output": "."
+              }
+            ]
+          }
+        }
+      }
+    },
+    "ionic-vue-e2e": {
+      "projectType": "application",
+      "root": "e2e/ionic-vue-e2e",
+      "sourceRoot": "e2e/ionic-vue-e2e/src",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/nx-plugin:e2e",
+          "options": {
+            "target": "ionic-vue:build",
+            "npmPackageName": "@nxtend/ionic-vue",
+            "pluginOutputPath": "dist/packages/ionic-vue",
+            "jestConfig": "e2e/ionic-vue-e2e/jest.config.js"
+          }
+        }
+      }
     }
   },
   "cli": {

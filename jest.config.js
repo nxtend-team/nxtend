@@ -8,5 +8,7 @@ module.exports = {
     '<rootDir>/packages/ionic-angular-e2e',
     '<rootDir>/packages/firebase',
     '<rootDir>/e2e/firebase-e2e',
+    '<rootDir>/packages/ionic-vue',
+    '<rootDir>/e2e/ionic-vue-e2e',
   ],
 };
