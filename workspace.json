@@ -360,7 +360,7 @@
               },
               {
                 "input": "./packages/ionic-vue",
-                "glob": "generators.json",
+                "glob": "builders.json",
                 "output": "."
               },
               {
