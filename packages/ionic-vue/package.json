@@ -2,6 +2,6 @@
   "name": "@nxtend/ionic-vue",
   "version": "0.0.1",
   "main": "src/index.js",
-  "generators": "./builders.json",
-  "executors": "./executors.json"
+  "schematics": "./collection.json",
+  "builders": "./builders.json"
 }

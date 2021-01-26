@@ -1,7 +1,7 @@
 import { createTreeWithEmptyWorkspace } from '@nrwl/devkit/testing';
 import { Tree, readProjectConfiguration } from '@nrwl/devkit';
 
-import generator from './generator';
+import schematic from './schematic';
 import { IonicVueGeneratorSchema } from './schema';
 
 describe('ionic-vue generator', () => {
@@ -13,7 +13,7 @@ describe('ionic-vue generator', () => {
   });
 
   it('should run successfully', async () => {
-    await generator(appTree, options);
+    await schematic(appTree, options);
     const config = readProjectConfiguration(appTree, 'test');
     expect(config).toBeDefined();
   });
