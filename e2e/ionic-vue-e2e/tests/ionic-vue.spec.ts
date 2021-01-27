@@ -56,6 +56,22 @@ describe('Ionic Vue Application', () => {
       asyncTimeout
     );
 
+    it(
+      'sidemenu',
+      async (done) => {
+        const appName = uniq('ionic-vue');
+        ensureNxProject('@nxtend/ionic-vue', 'dist/packages/ionic-vue');
+        await runNxCommandAsync(`generate @nxtend/ionic-vue:init`);
+        await runNxCommandAsync(
+          `generate @nxtend/ionic-vue:app --name ${appName} --capacitor false --template sidemenu`
+        );
+
+        await buildAndTestApp(appName);
+
+        done();
+      },
+      asyncTimeout
+    );
     // it(
     //   'list',
     //   async (done) => {

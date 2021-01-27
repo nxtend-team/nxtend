@@ -4,7 +4,8 @@ export interface ApplicationSchematicSchema {
   unitTestRunner: 'jest' | 'none';
   e2eTestRunner: 'cypress' | 'none';
   tags?: string;
-  template: string;
+  template: 'blank' | 'tabs';
+  sidemenu;
   capacitor: boolean;
 }
 
