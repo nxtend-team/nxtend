@@ -3,5 +3,9 @@
   "version": "0.0.1",
   "main": "src/index.js",
   "schematics": "./collection.json",
-  "builders": "./builders.json"
+  "builders": "./builders.json",
+  "peerDependencies": {
+    "@nxtend/capacitor": "^11.0.0",
+    "@nx-plus/vue": "^10.0.0"
+  }
 }
