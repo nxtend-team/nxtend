@@ -1,46 +1,122 @@
 import {
-  checkFilesExist,
   ensureNxProject,
-  readJson,
   runNxCommandAsync,
   uniq,
 } from '@nrwl/nx-plugin/testing';
-describe('ionic-vue e2e', () => {
-  it('should create ionic-vue', async (done) => {
-    const plugin = uniq('ionic-vue');
-    ensureNxProject('@nxtend/ionic-vue', 'dist/packages/ionic-vue');
-    await runNxCommandAsync(`generate @nxtend/ionic-vue:ionic-vue ${plugin}`);
 
-    const result = await runNxCommandAsync(`build ${plugin}`);
-    expect(result.stdout).toContain('Executor ran');
+describe('Ionic Vue Application', () => {
+  const asyncTimeout = 180000;
 
-    done();
+  async function buildAndTestApp(plugin: string) {
+    const buildResults = await runNxCommandAsync(`build ${plugin}`);
+    expect(buildResults.stdout).not.toContain('ERROR');
+
+    const lintResults = await runNxCommandAsync(`lint ${plugin}`);
+    expect(lintResults.stdout).not.toContain('error');
+
+    const testResults = await runNxCommandAsync(`test ${plugin}`);
+    expect(testResults.stdout).not.toContain(/fail/i);
+
+    // const e2eResults = await runNxCommandAsync(`e2e ${plugin}-e2e --headless`);
+    // expect(e2eResults.stdout).toContain('All specs passed!');
+  }
+
+  describe('--template', () => {
+    it(
+      'blank',
+      async (done) => {
+        const appName = uniq('ionic-vue');
+        ensureNxProject('@nxtend/ionic-vue', 'dist/packages/ionic-vue');
+        await runNxCommandAsync(`generate @nxtend/ionic-vue:init`);
+        await runNxCommandAsync(
+          `generate @nxtend/ionic-vue:app --name ${appName} --capacitor false --template blank`
+        );
+
+        await buildAndTestApp(appName);
+
+        done();
+      },
+      asyncTimeout
+    );
+
+    // it(
+    //   'list',
+    //   async (done) => {
+    //     const appName = uniq('ionic-angular');
+    //     ensureNxProject('@nxtend/ionic-angular', 'dist/packages/ionic-angular');
+    //     await runNxCommandAsync(
+    //       `generate @nxtend/ionic-angular:app --name ${appName} --capacitor false --template list`
+    //     );
+
+    //     await buildAndTestApp(appName);
+
+    //     done();
+    //   },
+    //   asyncTimeout
+    // );
+
+    // it(
+    //   'sidemenu',
+    //   async (done) => {
+    //     const appName = uniq('ionic-angular');
+    //     ensureNxProject('@nxtend/ionic-angular', 'dist/packages/ionic-angular');
+    //     await runNxCommandAsync(
+    //       `generate @nxtend/ionic-angular:app --name ${appName} --capacitor false --template sidemenu`
+    //     );
+
+    //     await buildAndTestApp(appName);
+
+    //     done();
+    //   },
+    //   asyncTimeout
+    // );
+
+    // it(
+    //   'tabs',
+    //   async (done) => {
+    //     const appName = uniq('ionic-angular');
+    //     ensureNxProject('@nxtend/ionic-angular', 'dist/packages/ionic-angular');
+    //     await runNxCommandAsync(
+    //       `generate @nxtend/ionic-angular:app --name ${appName} --capacitor false --template tabs`
+    //     );
+
+    //     await buildAndTestApp(appName);
+
+    //     done();
+    //   },
+    //   asyncTimeout
+    // );
   });
 
-  describe('--directory', () => {
-    it('should create src in the specified directory', async (done) => {
-      const plugin = uniq('ionic-vue');
-      ensureNxProject('@nxtend/ionic-vue', 'dist/packages/ionic-vue');
-      await runNxCommandAsync(
-        `generate @nxtend/ionic-vue:ionic-vue ${plugin} --directory subdir`
-      );
-      expect(() =>
-        checkFilesExist(`libs/subdir/${plugin}/src/index.ts`)
-      ).not.toThrow();
-      done();
-    });
-  });
+  // it(
+  //   'should generate application in subdir',
+  //   async (done) => {
+  //     const appName = uniq('ionic-angular');
+  //     ensureNxProject('@nxtend/ionic-angular', 'dist/packages/ionic-angular');
+  //     await runNxCommandAsync(
+  //       `generate @nxtend/ionic-angular:app --name ${appName} --capacitor false --directory myDir`
+  //     );
 
-  describe('--tags', () => {
-    it('should add tags to nx.json', async (done) => {
-      const plugin = uniq('ionic-vue');
-      ensureNxProject('@nxtend/ionic-vue', 'dist/packages/ionic-vue');
-      await runNxCommandAsync(
-        `generate @nxtend/ionic-vue:ionic-vue ${plugin} --tags e2etag,e2ePackage`
-      );
-      const nxJson = readJson('nx.json');
-      expect(nxJson.projects[plugin].tags).toEqual(['e2etag', 'e2ePackage']);
-      done();
-    });
-  });
+  //     await buildAndTestApp(`my-dir-${appName}`);
+
+  //     done();
+  //   },
+  //   asyncTimeout
+  // );
+
+  // it(
+  //   'should add tags',
+  //   async (done) => {
+  //     const appName = uniq('ionic-angular');
+  //     ensureNxProject('@nxtend/ionic-angular', 'dist/packages/ionic-angular');
+  //     await runNxCommandAsync(
+  //       `generate @nxtend/ionic-angular:app --name ${appName} --capacitor false --tags one,two`
+  //     );
+
+  //     await buildAndTestApp(appName);
+
+  //     done();
+  //   },
+  //   asyncTimeout
+  // );
 });

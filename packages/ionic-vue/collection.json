@@ -9,6 +9,12 @@
       "description": "Initialize the @nxtend/ionic-vue plugin",
       "aliases": ["ng-add"]
     },
+    "application": {
+      "factory": "./src/schematics/application/schematic",
+      "schema": "./src/schematics/application/schema.json",
+      "aliases": ["app"],
+      "description": "Create an application"
+    },
     "ionic-vue": {
       "factory": "./src/schematics/ionic-vue/schematic",
       "schema": "./src/schematics/ionic-vue/schema.json",
