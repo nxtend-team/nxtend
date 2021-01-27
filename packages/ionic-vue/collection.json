@@ -14,11 +14,6 @@
       "schema": "./src/schematics/application/schema.json",
       "aliases": ["app"],
       "description": "Create an application"
-    },
-    "ionic-vue": {
-      "factory": "./src/schematics/ionic-vue/schematic",
-      "schema": "./src/schematics/ionic-vue/schema.json",
-      "description": "ionic-vue generator"
     }
   }
 }
