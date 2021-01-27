@@ -1,6 +1,6 @@
 import { noop, Rule, Tree } from '@angular-devkit/schematics';
 import { addDepsToPackageJson, readJsonInTree } from '@nrwl/workspace';
-import { nxPlusVueVersion } from 'packages/ionic-vue/src/utils/versions';
+import { nxPlusVueVersion } from '../../../utils/versions';
 
 export function addPeerDeps(): Rule {
   return (host: Tree) => {
