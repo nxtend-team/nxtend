@@ -11,7 +11,8 @@ export function configureEslint(options: NormalizedSchema) {
       'rules: {}',
       `rules: {
         'vue/no-deprecated-slot-attribute': 'off',
-        '@typescript-eslint/explicit-module-boundary-types': 'off'
+        '@typescript-eslint/explicit-module-boundary-types': 'off',
+        '@typescript-eslint/no-explicit-any': 'off'
       }`
     );
     host.overwrite(configPath, contents);

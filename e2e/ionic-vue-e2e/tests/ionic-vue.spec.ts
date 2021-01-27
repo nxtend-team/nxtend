@@ -40,6 +40,23 @@ describe('Ionic Vue Application', () => {
     );
 
     it(
+      'list',
+      async (done) => {
+        const appName = uniq('ionic-vue');
+        ensureNxProject('@nxtend/ionic-vue', 'dist/packages/ionic-vue');
+        await runNxCommandAsync(`generate @nxtend/ionic-vue:init`);
+        await runNxCommandAsync(
+          `generate @nxtend/ionic-vue:app --name ${appName} --capacitor false --template list`
+        );
+
+        await buildAndTestApp(appName);
+
+        done();
+      },
+      asyncTimeout
+    );
+
+    it(
       'tabs',
       async (done) => {
         const appName = uniq('ionic-vue');
