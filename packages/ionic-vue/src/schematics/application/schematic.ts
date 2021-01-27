@@ -2,6 +2,7 @@ import { chain, Rule, Tree } from '@angular-devkit/schematics';
 import { formatFiles } from '@nrwl/workspace';
 import init from '../init/schematic';
 import { addDependencies } from './lib/add-dependencies';
+import { configureEslint } from './lib/eslint';
 // import { addProject } from './lib/add-project';
 import {
   generateCapacitorProject,
@@ -23,6 +24,7 @@ export default function (options: ApplicationSchematicSchema): Rule {
       addFiles(normalizedOptions),
       removeFiles(normalizedOptions),
       configureJest(normalizedOptions),
+      configureEslint(normalizedOptions),
       // addProject(normalizedOptions),
       generateCapacitorProject(normalizedOptions),
       formatFiles(),
