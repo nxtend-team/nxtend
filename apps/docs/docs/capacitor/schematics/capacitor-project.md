@@ -40,6 +40,16 @@ Type: `string`
 
 The application name for the project.
 
+### --npmClient
+
+Default: `null`
+
+Type: `string`
+
+Possible values: `yarn`, `npm`
+
+The npm client to use for Capacitor.
+
 ### --webDir
 
 Default: dynamically calculated project build output directory.
