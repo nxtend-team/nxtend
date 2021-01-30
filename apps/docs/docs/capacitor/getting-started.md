@@ -42,9 +42,9 @@ nx build mobile-app
 Once the plugin has been added to your Nx workspace you can generate a Capacitor project from an existing frontend project:
 
 ```
-nx generate @nxtend/capacitor:capacitor-project --project {frontend project name}
+nx generate @nxtend/capacitor:capacitor-project --project {frontend project name} --npmClient {yarn or npm}
 
-nx generate @nxtend/capacitor:capacitor-project --project mobile-app
+nx generate @nxtend/capacitor:capacitor-project --project mobile-app --npmClient yarn
 ```
 
 Nx will ask you some questions about the application, but you can customize it further by passing these options:
@@ -56,6 +56,7 @@ Options:
   --project               The name of the frontend project for Capacitor.
   --appId                 The app ID for the project. (default: io.ionic.starter)
   --appName               The application name for the project.
+  --npmClient             The npm client to use for Capacitor.
   --webDir                The directory of your projects built web assets.
   --dryRun                Runs through and reports activity without writing to disk.
   --help                  Show available options for project target.
