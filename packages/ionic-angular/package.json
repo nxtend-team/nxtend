@@ -1,9 +1,14 @@
 {
   "name": "@nxtend/ionic-angular",
-  "version": "11.0.0",
+  "version": "11.0.1",
   "main": "src/index.js",
   "schematics": "./collection.json",
   "builders": "./builders.json",
+  "dependencies": {
+    "@angular-devkit/architect": "~0.1100.1",
+    "@angular-devkit/core": "~11.0.1",
+    "@angular-devkit/schematics": "~11.0.1"
+  },
   "peerDependencies": {
     "@nrwl/angular": "^11.0.19",
     "@nxtend/capacitor": "^11.0.0"
