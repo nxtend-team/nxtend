@@ -18,6 +18,11 @@
   "nx-migrations": {
     "migrations": "./migrations.json"
   },
+  "dependencies": {
+    "@angular-devkit/architect": "~0.1100.1",
+    "@angular-devkit/core": "~11.0.1",
+    "@angular-devkit/schematics": "~11.0.1"
+  },
   "peerDependencies": {
     "@nrwl/react": "^11.0.19",
     "@nxtend/capacitor": "^11.0.0"
