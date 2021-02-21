@@ -1,5 +1,11 @@
 # Changelog
 
+# 11.1.1
+
+## Bug Fixes
+
+- support Nx 11.3.0
+
 # 11.1.0
 
 ## Features
