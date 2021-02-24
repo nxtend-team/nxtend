@@ -28,7 +28,7 @@ A collection of third-party Nx plugins.
 
 ## Contributing
 
-See [the contributing file](contributing.md)!
+See [the contributing file](CONTRIBUTING.md)!
 
 PRs accepted.
 
