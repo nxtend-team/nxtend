@@ -5,10 +5,13 @@ export function addReactPlugin(): Rule {
   return (host: Tree) => {
     const packageJson = readJsonInTree(host, 'package.json');
 
-    if (
-      !packageJson.dependencies['@nrwl/react'] &&
-      !packageJson.devDependencies['@nrwl/react']
-    ) {
+    const hasNrwlReactDep: boolean =
+      packageJson.dependencies && packageJson.dependencies['@nrwl/react'];
+
+    const hasNrwlReactDevDep: boolean =
+      packageJson.devDependencies && packageJson.devDependencies['@nrwl/react'];
+
+    if (!hasNrwlReactDep && !hasNrwlReactDevDep) {
       const nxVersion = packageJson.devDependencies['@nrwl/workspace']
         ? packageJson.devDependencies['@nrwl/workspace']
         : packageJson.dependencies['@nrwl/workspace'];
