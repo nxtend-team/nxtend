@@ -6,10 +6,14 @@ export function addCapacitorPlugin(): Rule {
   return (host: Tree) => {
     const packageJson = readJsonInTree(host, 'package.json');
 
-    if (
-      !packageJson.dependencies['@nxtend/capacitor'] &&
-      !packageJson.devDependencies['@nxtend/capacitor']
-    ) {
+    const hasNxtendCapacitorDep: boolean =
+      packageJson.dependencies && packageJson.dependencies['@nxtend/capacitor'];
+
+    const hasNxtendCapacitorDevDep: boolean =
+      packageJson.devDependencies &&
+      packageJson.devDependencies['@nxtend/capacitor'];
+
+    if (!hasNxtendCapacitorDep && !hasNxtendCapacitorDevDep) {
       return addDepsToPackageJson(
         {},
         {
