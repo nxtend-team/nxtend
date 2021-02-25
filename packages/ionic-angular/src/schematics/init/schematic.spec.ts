@@ -70,4 +70,26 @@ describe('init', () => {
 
     expect(packageJson.dependencies['@ionic/angular']).toBeDefined();
   });
+
+  it(`should add plugins if dependencies don't exist in package.json`, async () => {
+    appTree.overwrite(
+      'package.json',
+      `
+      {
+        "name": "test-name",
+        "devDependencies": {
+          "@nrwl/workspace": "0.0.0"
+        }
+      }
+    `
+    );
+
+    const result = await testRunner
+      .runSchematicAsync('init', {}, appTree)
+      .toPromise();
+    const packageJson = readJsonInTree(result, 'package.json');
+
+    expect(packageJson.devDependencies['@nrwl/angular']).toBeDefined();
+    expect(packageJson.devDependencies['@nxtend/capacitor']).toBeDefined();
+  });
 });

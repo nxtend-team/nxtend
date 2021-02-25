@@ -5,10 +5,14 @@ export function addAngularPlugin(): Rule {
   return (host: Tree) => {
     const packageJson = readJsonInTree(host, 'package.json');
 
-    if (
-      !packageJson.dependencies['@nrwl/angular'] &&
-      !packageJson.devDependencies['@nrwl/angular']
-    ) {
+    const hasNrwlAngularDep: boolean =
+      packageJson.dependencies && packageJson.dependencies['@nrwl/angular'];
+
+    const hasNrwlAngularDevDep: boolean =
+      packageJson.devDependencies &&
+      packageJson.devDependencies['@nrwl/angular'];
+
+    if (!hasNrwlAngularDep && !hasNrwlAngularDevDep) {
       const nxVersion = packageJson.devDependencies['@nrwl/workspace']
         ? packageJson.devDependencies['@nrwl/workspace']
         : packageJson.dependencies['@nrwl/workspace'];

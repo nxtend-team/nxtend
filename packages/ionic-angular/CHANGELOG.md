@@ -1,5 +1,11 @@
 # Changelog
 
+# 11.0.2
+
+## Bug Fixes
+
+- support Node 15 and npm 7
+
 # 11.0.1
 
 ## Bug Fixes
