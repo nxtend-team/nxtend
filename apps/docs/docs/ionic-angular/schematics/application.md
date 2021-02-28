@@ -54,6 +54,16 @@ Type: `string`
 
 Add tags to the application (used for linting).
 
+### --linter
+
+Default: `eslint`
+
+Type: `string`
+
+Posible values: `eslint`, `tslint`
+
+The tool to use for running lint checks.
+
 ### ---template
 
 Default: `blank`
