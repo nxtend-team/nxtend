@@ -1,7 +1,7 @@
 export interface ApplicationSchematicSchema {
   name: string;
   directory?: string;
-  unitTestRunner: 'karma' | 'none';
+  unitTestRunner: 'jest' | 'karma' | 'none';
   e2eTestRunner: 'cypress' | 'none';
   tags?: string;
   linter: 'eslint' | 'tslint';
