@@ -5,7 +5,7 @@ import {
 } from '@nrwl/nx-plugin/testing';
 
 describe('Ionic Angular Application', () => {
-  const asyncTimeout = 180000;
+  const asyncTimeout = 300000;
 
   async function buildAndTestApp(plugin: string) {
     const buildResults = await runNxCommandAsync(`build ${plugin}`);
