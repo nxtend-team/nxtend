@@ -1,5 +1,11 @@
 # Changelog
 
+# 11.1.0
+
+# Features
+
+- update application starter templates
+
 # 11.0.2
 
 ## Bug Fixes
