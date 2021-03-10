@@ -12,6 +12,7 @@ describe('application schematic', () => {
     template: 'blank',
     unitTestRunner: 'karma',
     e2eTestRunner: 'cypress',
+    linter: 'eslint',
     capacitor: false,
   };
   const projectRoot = `apps/${options.name}`;
@@ -88,6 +89,50 @@ describe('application schematic', () => {
         }),
       ])
     );
+  });
+
+  describe('--linter', () => {
+    it('should update .eslintrc.json', async () => {
+      const tree = await testRunner
+        .runSchematicAsync('application', options, appTree)
+        .toPromise();
+
+      const eslintrcJson = readJsonInTree(
+        tree,
+        `apps/${options.name}/.eslintrc.json`
+      );
+      const tsOverride = eslintrcJson.overrides.find(
+        (override: { files: string | string[] }) =>
+          override.files.includes('*.ts')
+      );
+
+      expect(
+        tsOverride.rules['@angular-eslint/component-class-suffix']
+      ).toEqual([
+        'error',
+        {
+          suffixes: ['Page', 'Component'],
+        },
+      ]);
+      expect(
+        tsOverride.rules['@angular-eslint/no-empty-lifecycle-method']
+      ).toEqual(0);
+      expect(tsOverride.rules['@typescript-eslint/no-empty-function']).toEqual(
+        0
+      );
+    });
+
+    it('should generate tslint.json', async () => {
+      const tree = await testRunner
+        .runSchematicAsync(
+          'application',
+          { ...options, linter: 'tslint' },
+          appTree
+        )
+        .toPromise();
+
+      expect(tree.exists(`apps/${options.name}/tslint.json`)).toBeTruthy();
+    });
   });
 
   describe('--template', () => {

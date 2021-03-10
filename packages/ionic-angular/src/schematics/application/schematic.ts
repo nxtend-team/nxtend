@@ -10,6 +10,7 @@ import {
 import { addFiles, removeFiles } from './lib/files';
 import { normalizeOptions } from './lib/normalize-options';
 import { ApplicationSchematicSchema } from './schema';
+import { updateEslintConfig } from './lib/update-eslint-config';
 
 export default function (options: ApplicationSchematicSchema): Rule {
   return (host: Tree) => {
@@ -22,6 +23,7 @@ export default function (options: ApplicationSchematicSchema): Rule {
       addFiles(normalizedOptions),
       removeFiles(normalizedOptions),
       addProject(normalizedOptions),
+      updateEslintConfig(normalizedOptions),
       generateCapacitorProject(normalizedOptions),
       formatFiles(),
     ]);

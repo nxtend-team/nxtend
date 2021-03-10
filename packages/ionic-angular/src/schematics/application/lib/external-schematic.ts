@@ -4,7 +4,6 @@ import {
   Rule,
   Tree,
 } from '@angular-devkit/schematics';
-import { Linter } from '@nrwl/workspace';
 import { NormalizedSchema } from '../schema';
 
 export function generateNrwlAngularApplication(
@@ -14,7 +13,6 @@ export function generateNrwlAngularApplication(
     ...options,
     routing: true,
     style: 'scss',
-    linter: Linter.TsLint,
   });
 }
 
