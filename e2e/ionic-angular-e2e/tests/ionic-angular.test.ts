@@ -19,7 +19,7 @@ describe('Ionic Angular Application', () => {
 
     if (unitTestRunner === 'jest') {
       const testResults = await runNxCommandAsync(`test ${plugin}`);
-      expect(testResults.stdout).toContain('Done in');
+      expect(testResults.stderr).not.toContain(/fail/i);
     }
     if (unitTestRunner === 'karma') {
       const testResults = await runNxCommandAsync(
