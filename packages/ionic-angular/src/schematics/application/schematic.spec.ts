@@ -10,7 +10,7 @@ describe('application schematic', () => {
   const options: ApplicationSchematicSchema = {
     name: 'my-app',
     template: 'blank',
-    unitTestRunner: 'karma',
+    unitTestRunner: 'jest',
     e2eTestRunner: 'cypress',
     linter: 'eslint',
     capacitor: false,
@@ -293,9 +293,43 @@ describe('application schematic', () => {
         )
         .toPromise();
 
+      expect(tree.readContent(`package.json`).includes('jest')).toBeFalsy();
+      expect(tree.readContent(`package.json`).includes('karma')).toBeFalsy();
       expect(
         tree.exists(`${projectRoot}/src/app/home/home.page.spec.ts`)
       ).toBeFalsy();
+    });
+
+    it('jest', async () => {
+      const tree = await testRunner
+        .runSchematicAsync(
+          'application',
+          { ...options, unitTestRunner: 'jest' },
+          appTree
+        )
+        .toPromise();
+
+      expect(tree.readContent(`package.json`).includes('jest')).toBeTruthy();
+      expect(tree.readContent(`package.json`).includes('karma')).toBeFalsy();
+      expect(
+        tree.exists(`${projectRoot}/src/app/home/home.page.spec.ts`)
+      ).toBeTruthy();
+    });
+
+    it('karma', async () => {
+      const tree = await testRunner
+        .runSchematicAsync(
+          'application',
+          { ...options, unitTestRunner: 'karma' },
+          appTree
+        )
+        .toPromise();
+
+      expect(tree.readContent(`package.json`).includes('jest')).toBeFalsy();
+      expect(tree.readContent(`package.json`).includes('karma')).toBeTruthy();
+      expect(
+        tree.exists(`${projectRoot}/src/app/home/home.page.spec.ts`)
+      ).toBeTruthy();
     });
   });
 

@@ -28,11 +28,11 @@ The subdirectory of the new application. By default, apps will be generated unde
 
 ### ---unitTestRunner
 
-Default: `karma`
+Default: `jest`
 
 Type: `string`
 
-Possible values: `karma`, `none`
+Possible values: `jest`, `karma`, `none`
 
 Test runner to use for unit tests.
 

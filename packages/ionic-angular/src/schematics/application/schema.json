@@ -21,9 +21,9 @@
     },
     "unitTestRunner": {
       "type": "string",
-      "enum": ["karma", "none"],
+      "enum": ["jest", "karma", "none"],
       "description": "Test runner to use for unit tests.",
-      "default": "karma"
+      "default": "jest"
     },
     "e2eTestRunner": {
       "type": "string",
