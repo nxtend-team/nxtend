@@ -10,11 +10,11 @@ export function updateEslintConfig(options: NormalizedSchema) {
   return updateJsonInTree(
     `${options.appProjectRoot}/.eslintrc.json`,
     (json) => {
-      console.log(json);
-      const tsOverride = json.overrides.find(
-        (override: { files: string | string[] }) =>
+      const tsOverride =
+        json.overrides?.find((override: { files: string | string[] }) =>
           override.files.includes('*.ts')
-      );
+        ) || {};
+      tsOverride.rules = tsOverride?.rules || {};
       tsOverride.rules['@angular-eslint/component-class-suffix'] = [
         'error',
         {
