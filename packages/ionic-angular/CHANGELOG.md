@@ -1,8 +1,14 @@
 # Changelog
 
+# 11.1.1
+
+## Bug Fixes
+
+- improve reliability of ESLint configuration
+
 # 11.1.0
 
-# Features
+## Features
 
 - update application starter templates
 - support ESLint when generating applications

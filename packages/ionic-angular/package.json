@@ -1,6 +1,6 @@
 {
   "name": "@nxtend/ionic-angular",
-  "version": "11.1.0",
+  "version": "11.1.1",
   "main": "src/index.js",
   "schematics": "./collection.json",
   "builders": "./builders.json",
