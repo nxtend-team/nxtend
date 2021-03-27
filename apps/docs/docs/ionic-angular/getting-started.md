@@ -13,7 +13,7 @@ Adding the `@nxtend/ionic-angular` plugin to your Nx workspace is trivial, and w
 npm install --save-dev --exact @nxtend/ionic-angular
 
 # yarn
-yarn add --save-dev --exact @nxtend/ionic-angular
+yarn add --dev --exact @nxtend/ionic-angular
 
 # Nx CLI
 nx generate @nxtend/ionic-angular:init
