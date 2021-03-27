@@ -1,5 +1,11 @@
 # Changelog
 
+# 11.2.0
+
+## Firebase
+
+- migrate to `@nrwl/devkit`
+
 # 11.1.2
 
 ## Bug Fixes

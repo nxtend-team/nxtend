@@ -4,9 +4,16 @@
   "version": "0.0.1",
   "schematics": {
     "firebase-project": {
-      "factory": "./src/schematics/firebase-project/schematic",
-      "schema": "./src/schematics/firebase-project/schema.json",
-      "description": "Firebase project schematic"
+      "factory": "./src/generators/firebase-project/firebase-project#firebaseProjectSchematic",
+      "schema": "./src/generators/firebase-project/schema.json",
+      "description": "Add Firebase configuration to a project"
+    }
+  },
+  "generators": {
+    "firebase-project": {
+      "factory": "./src/generators/firebase-project/firebase-project#firebaseProjectGenerator",
+      "schema": "./src/generators/firebase-project/schema.json",
+      "description": "Add Firebase configuration to a project"
     }
   }
 }

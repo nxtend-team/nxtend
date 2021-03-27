@@ -1,1 +1,1 @@
-export { FirebaseProjectSchematicSchema } from './schematics/firebase-project/schema';
+export { FirebaseProjectSchema } from './generators/firebase-project/schema';

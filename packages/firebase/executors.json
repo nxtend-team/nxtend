@@ -1,0 +1,17 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "builders": {
+    "firebase": {
+      "implementation": "./src/executors/firebase/compat",
+      "schema": "./src/executors/firebase/schema.json",
+      "description": "Execute a Firebase command"
+    }
+  },
+  "executors": {
+    "firebase": {
+      "implementation": "./src/executors/firebase/executor",
+      "schema": "./src/executors/firebase/schema.json",
+      "description": "Execute a Firebase command"
+    }
+  }
+}

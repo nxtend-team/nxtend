@@ -1,12 +1,27 @@
 {
   "name": "@nxtend/firebase",
   "version": "11.1.2",
+  "description": "An Nx plugin for developing Firebase applications",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nxtend-team/nxtend.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nxtend-team/nxtend/issues"
+  },
+  "keywords": [
+    "Monorepo",
+    "Firebase",
+    "Web",
+    "CLI"
+  ],
+  "author": {
+    "name": "Devin Shoemaker",
+    "email": "devinshoe@gmail.com"
+  },
+  "homepage": "https://nxtend.dev/docs/firebase/getting-started",
+  "license": "MIT",
   "main": "src/index.js",
-  "builders": "./builders.json",
-  "schematics": "./collection.json",
-  "dependencies": {
-    "@angular-devkit/architect": "~0.1100.1",
-    "@angular-devkit/core": "~11.0.1",
-    "@angular-devkit/schematics": "~11.0.1"
-  }
+  "builders": "./executors.json",
+  "schematics": "./collection.json"
 }

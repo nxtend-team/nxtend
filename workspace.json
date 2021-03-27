@@ -300,7 +300,7 @@
               },
               {
                 "input": "./packages/firebase",
-                "glob": "builders.json",
+                "glob": "executors.json",
                 "output": "."
               }
             ]
