@@ -42,21 +42,21 @@
     "classnames": "^2.2.6",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "@ngrx/component-store": "11.0.0"
+    "@ngrx/component-store": "12.0.0"
   },
   "devDependencies": {
-    "@nrwl/angular": "12.0.8",
-    "@nrwl/cli": "12.0.8",
-    "@nrwl/cypress": "12.0.8",
-    "@nrwl/devkit": "12.0.8",
-    "@nrwl/eslint-plugin-nx": "12.0.8",
-    "@nrwl/jest": "12.0.8",
-    "@nrwl/nx-cloud": "12.0.0",
-    "@nrwl/nx-plugin": "12.0.8",
-    "@nrwl/react": "12.0.8",
-    "@nrwl/tao": "12.0.8",
-    "@nrwl/web": "12.0.8",
-    "@nrwl/workspace": "12.0.8",
+    "@nrwl/angular": "12.3.4",
+    "@nrwl/cli": "12.3.4",
+    "@nrwl/cypress": "12.3.4",
+    "@nrwl/devkit": "12.3.4",
+    "@nrwl/eslint-plugin-nx": "12.3.4",
+    "@nrwl/jest": "12.3.4",
+    "@nrwl/nx-cloud": "12.1.3",
+    "@nrwl/nx-plugin": "12.3.4",
+    "@nrwl/react": "12.3.4",
+    "@nrwl/tao": "12.3.4",
+    "@nrwl/web": "12.3.4",
+    "@nrwl/workspace": "12.3.4",
     "@nx-plus/docusaurus": "10.2.0",
     "@types/jest": "26.0.8",
     "@types/node": "14.14.33",
@@ -72,11 +72,11 @@
     "jest": "26.2.2",
     "prettier": "2.2.1",
     "pretty-quick": "^2.0.1",
-    "ts-jest": "26.4.0",
+    "ts-jest": "26.5.5",
     "ts-node": "9.1.1",
     "tslib": "^2.0.0",
     "tslint": "6.1.3",
-    "typescript": "4.1.4"
+    "typescript": "4.2.4"
   },
   "resolutions": {
     "terser": "^4.0.0"

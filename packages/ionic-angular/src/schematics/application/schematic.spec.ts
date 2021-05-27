@@ -12,7 +12,6 @@ describe('application schematic', () => {
     template: 'blank',
     unitTestRunner: 'jest',
     e2eTestRunner: 'cypress',
-    linter: 'eslint',
     capacitor: false,
   };
   const projectRoot = `apps/${options.name}`;
@@ -122,17 +121,17 @@ describe('application schematic', () => {
       );
     });
 
-    it('should generate tslint.json', async () => {
-      const tree = await testRunner
-        .runSchematicAsync(
-          'application',
-          { ...options, linter: 'tslint' },
-          appTree
-        )
-        .toPromise();
+    // it('should generate tslint.json', async () => {
+    //   const tree = await testRunner
+    //     .runSchematicAsync(
+    //       'application',
+    //       { ...options, linter: 'tslint' },
+    //       appTree
+    //     )
+    //     .toPromise();
 
-      expect(tree.exists(`apps/${options.name}/tslint.json`)).toBeTruthy();
-    });
+    //   expect(tree.exists(`apps/${options.name}/tslint.json`)).toBeTruthy();
+    // });
   });
 
   describe('--template', () => {

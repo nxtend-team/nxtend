@@ -99,22 +99,6 @@ describe('Ionic Angular Application', () => {
   });
 
   it(
-    'should generate application with TSLint',
-    async (done) => {
-      const appName = uniq('ionic-angular');
-      ensureNxProject('@nxtend/ionic-angular', 'dist/packages/ionic-angular');
-      await runNxCommandAsync(
-        `generate @nxtend/ionic-angular:app --name ${appName} --capacitor false --linter tslint`
-      );
-
-      await buildAndTestApp(appName);
-
-      done();
-    },
-    asyncTimeout
-  );
-
-  it(
     'should generate application in subdir',
     async (done) => {
       const appName = uniq('ionic-angular');
