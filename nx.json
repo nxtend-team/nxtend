@@ -19,23 +19,22 @@
     ".eslintrc.json": "*"
   },
   "projects": {
-    "ionic-react": {
-      "tags": [],
-      "implicitDependencies": ["capacitor"]
-    },
-    "ionic-react-e2e": {
-      "tags": [],
-      "implicitDependencies": ["ionic-react"]
-    },
-    "docs": {
-      "tags": []
-    },
     "capacitor": {
       "tags": []
     },
     "capacitor-e2e": {
       "tags": [],
       "implicitDependencies": ["capacitor"]
+    },
+    "docs": {
+      "tags": []
+    },
+    "firebase": {
+      "tags": []
+    },
+    "firebase-e2e": {
+      "tags": [],
+      "implicitDependencies": ["firebase"]
     },
     "ionic-angular": {
       "tags": [],
@@ -45,12 +44,13 @@
       "tags": [],
       "implicitDependencies": ["ionic-angular"]
     },
-    "firebase": {
-      "tags": []
-    },
-    "firebase-e2e": {
+    "ionic-react": {
       "tags": [],
-      "implicitDependencies": ["firebase"]
+      "implicitDependencies": ["capacitor"]
+    },
+    "ionic-react-e2e": {
+      "tags": [],
+      "implicitDependencies": ["ionic-react"]
     }
   },
   "tasksRunnerOptions": {

@@ -7,4 +7,5 @@ module.exports = {
   coverageDirectory: '../../coverage/packages/capacitor',
   globals: { 'ts-jest': { tsconfig: '<rootDir>/tsconfig.spec.json' } },
   displayName: 'capacitor',
+  testEnvironment: 'node',
 };

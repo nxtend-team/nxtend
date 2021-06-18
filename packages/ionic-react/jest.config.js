@@ -7,4 +7,5 @@ module.exports = {
   coverageDirectory: '../../coverage/packages/ionic-react',
   globals: { 'ts-jest': { tsconfig: '<rootDir>/tsconfig.spec.json' } },
   displayName: 'ionic-react',
+  testEnvironment: 'node',
 };
