@@ -9,7 +9,7 @@ import {
 } from '@nrwl/nx-plugin/testing';
 import { CapacitorSchematicSchema } from '@nxtend/capacitor';
 
-const asyncTimeout = 150000;
+const asyncTimeout = 200000;
 
 const defaultCapacitorProjectOptions: CapacitorSchematicSchema = {
   project: 'test-app',
@@ -68,7 +68,7 @@ async function buildAndTestApp(plugin: string) {
 describe('capacitor-project e2e', () => {
   it(
     'should build and test successfully',
-    async (done) => {
+    async () => {
       const plugin = uniq('capacitor');
       const options: CapacitorSchematicSchema = {
         ...defaultCapacitorProjectOptions,
@@ -78,8 +78,6 @@ describe('capacitor-project e2e', () => {
       await generateApp(options);
       testGeneratedFiles(plugin);
       await buildAndTestApp(plugin);
-
-      done();
     },
     asyncTimeout
   );

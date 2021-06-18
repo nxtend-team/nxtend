@@ -8,7 +8,7 @@ import {
 } from '@nrwl/nx-plugin/testing';
 import { FirebaseProjectSchematicSchema } from '@nxtend/firebase';
 
-const asyncTimeout = 150000;
+const asyncTimeout = 200000;
 
 const defaultFirebaseProjectOptions: FirebaseProjectSchematicSchema = {
   project: 'my-app',
@@ -54,10 +54,10 @@ async function buildAndTestApp(plugin: string) {
   );
 }
 
-describe('capacitor-project e2e', () => {
+describe('firebase-project e2e', () => {
   it(
     'should build and test successfully',
-    async (done) => {
+    async () => {
       const plugin = uniq('firebase');
       const options: FirebaseProjectSchematicSchema = {
         ...defaultFirebaseProjectOptions,
@@ -66,8 +66,6 @@ describe('capacitor-project e2e', () => {
 
       await generateApp(options);
       await buildAndTestApp(plugin);
-
-      done();
     },
     asyncTimeout
   );
