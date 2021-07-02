@@ -5,7 +5,7 @@ import {
 } from '@nrwl/nx-plugin/testing';
 
 describe('Ionic Angular Application', () => {
-  const asyncTimeout = 300000;
+  const asyncTimeout = 600_000;
 
   async function buildAndTestApp(
     plugin: string,
@@ -18,8 +18,7 @@ describe('Ionic Angular Application', () => {
     expect(lintResults.stdout).not.toContain('ERROR');
 
     if (unitTestRunner === 'jest') {
-      const testResults = await runNxCommandAsync(`test ${plugin}`);
-      expect(testResults.stderr).not.toContain(/fail/i);
+      await runNxCommandAsync(`test ${plugin}`);
     }
     if (unitTestRunner === 'karma') {
       const testResults = await runNxCommandAsync(
