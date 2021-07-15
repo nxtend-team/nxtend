@@ -76,7 +76,7 @@ describe('Ionic Angular Application', () => {
 
     it(
       'tabs',
-      async (done) => {
+      async () => {
         const appName = uniq('ionic-angular');
         ensureNxProject('@nxtend/ionic-angular', 'dist/packages/ionic-angular');
         await runNxCommandAsync(
@@ -84,8 +84,6 @@ describe('Ionic Angular Application', () => {
         );
 
         await buildAndTestApp(appName);
-
-        done();
       },
       asyncTimeout
     );
