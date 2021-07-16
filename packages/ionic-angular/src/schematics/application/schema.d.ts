@@ -4,7 +4,6 @@ export interface ApplicationSchematicSchema {
   unitTestRunner: 'jest' | 'karma' | 'none';
   e2eTestRunner: 'cypress' | 'none';
   tags?: string;
-  linter: 'eslint' | 'tslint';
   template: string;
   capacitor: boolean;
 }

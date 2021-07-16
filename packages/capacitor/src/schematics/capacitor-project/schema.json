@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/schema",
-  "id": "CapacitorProject",
+  "$id": "CapacitorProject",
   "title": "Create a Capacitor project for an Nx application",
   "type": "object",
   "properties": {

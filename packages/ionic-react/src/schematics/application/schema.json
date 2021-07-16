@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/schema",
-  "id": "Application",
+  "$id": "Application",
   "title": "Create an Ionic React Application for Nx",
   "examples": [
     {

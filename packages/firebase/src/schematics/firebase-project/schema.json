@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/schema",
-  "id": "FirebaseProject",
+  "$id": "FirebaseProject",
   "title": "Create a Firebase project for an Nx application",
   "type": "object",
   "properties": {

@@ -1,6 +1,6 @@
 import { Tree } from '@angular-devkit/schematics';
 import { SchematicTestRunner } from '@angular-devkit/schematics/testing';
-import { NxJson, readJsonInTree } from '@nrwl/workspace';
+import { readJsonInTree, readNxJsonInTree } from '@nrwl/workspace';
 import { createEmptyWorkspace } from '@nrwl/workspace/testing';
 import { join } from 'path';
 import { ApplicationSchematicSchema } from './schema';
@@ -206,7 +206,7 @@ describe('application', () => {
         )
         .toPromise();
 
-      const nxJson = readJsonInTree<NxJson>(tree, '/nx.json');
+      const nxJson = readNxJsonInTree(tree);
       expect(nxJson.projects).toEqual({
         'my-dir-my-app': {
           tags: [],
