@@ -9,7 +9,7 @@ import {
 } from '@nrwl/nx-plugin/testing';
 import { CapacitorSchematicSchema } from '@nxtend/capacitor';
 
-const asyncTimeout = 200000;
+const asyncTimeout = 300_000;
 
 const defaultCapacitorProjectOptions: CapacitorSchematicSchema = {
   project: 'test-app',

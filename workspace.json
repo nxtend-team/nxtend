@@ -73,8 +73,6 @@
           "builder": "@nrwl/nx-plugin:e2e",
           "options": {
             "target": "capacitor:build",
-            "npmPackageName": "@nxtend/capacitor",
-            "pluginOutputPath": "dist/packages/capacitor",
             "jestConfig": "e2e/capacitor-e2e/jest.config.js"
           }
         }
