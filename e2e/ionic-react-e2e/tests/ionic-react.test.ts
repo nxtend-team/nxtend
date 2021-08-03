@@ -7,7 +7,7 @@ import {
 import { ApplicationSchematicSchema } from '@nxtend/ionic-react';
 
 describe('application e2e', () => {
-  const asyncTimeout = 200000;
+  const asyncTimeout = 300_000;
 
   const defaultOptions: ApplicationSchematicSchema = {
     name: 'test',

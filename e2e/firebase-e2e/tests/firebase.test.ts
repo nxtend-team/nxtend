@@ -8,7 +8,7 @@ import {
 } from '@nrwl/nx-plugin/testing';
 import { FirebaseProjectSchematicSchema } from '@nxtend/firebase';
 
-const asyncTimeout = 200000;
+const asyncTimeout = 300_000;
 
 const defaultFirebaseProjectOptions: FirebaseProjectSchematicSchema = {
   project: 'my-app',

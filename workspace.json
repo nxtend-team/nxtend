@@ -155,8 +155,6 @@
           "builder": "@nrwl/nx-plugin:e2e",
           "options": {
             "target": "firebase:build",
-            "npmPackageName": "@nxtend/firebase",
-            "pluginOutputPath": "dist/packages/firebase",
             "jestConfig": "e2e/firebase-e2e/jest.config.js"
           }
         }
@@ -233,8 +231,6 @@
           "builder": "@nrwl/nx-plugin:e2e",
           "options": {
             "target": "ionic-angular:build",
-            "npmPackageName": "@nxtend/ionic-angular",
-            "pluginOutputPath": "dist/packages/ionic-angular",
             "jestConfig": "e2e/ionic-angular-e2e/jest.config.js"
           }
         }
@@ -312,8 +308,6 @@
           "builder": "@nrwl/nx-plugin:e2e",
           "options": {
             "target": "ionic-react:build",
-            "npmPackageName": "@nxtend/ionic-react",
-            "pluginOutputPath": "dist/packages/ionic-react",
             "jestConfig": "e2e/ionic-react-e2e/jest.config.js"
           }
         }
