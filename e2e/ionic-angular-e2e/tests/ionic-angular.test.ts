@@ -5,7 +5,7 @@ import {
 } from '@nrwl/nx-plugin/testing';
 
 describe('Ionic Angular Application', () => {
-  const asyncTimeout = 300000;
+  const asyncTimeout = 600_000;
 
   async function buildAndTestApp(
     plugin: string,
@@ -18,8 +18,7 @@ describe('Ionic Angular Application', () => {
     expect(lintResults.stdout).not.toContain('ERROR');
 
     if (unitTestRunner === 'jest') {
-      const testResults = await runNxCommandAsync(`test ${plugin}`);
-      expect(testResults.stderr).not.toContain(/fail/i);
+      await runNxCommandAsync(`test ${plugin}`);
     }
     if (unitTestRunner === 'karma') {
       const testResults = await runNxCommandAsync(
@@ -35,7 +34,7 @@ describe('Ionic Angular Application', () => {
   describe('--template', () => {
     it(
       'blank',
-      async (done) => {
+      async () => {
         const appName = uniq('ionic-angular');
         ensureNxProject('@nxtend/ionic-angular', 'dist/packages/ionic-angular');
         await runNxCommandAsync(
@@ -43,15 +42,13 @@ describe('Ionic Angular Application', () => {
         );
 
         await buildAndTestApp(appName);
-
-        done();
       },
       asyncTimeout
     );
 
     it(
       'list',
-      async (done) => {
+      async () => {
         const appName = uniq('ionic-angular');
         ensureNxProject('@nxtend/ionic-angular', 'dist/packages/ionic-angular');
         await runNxCommandAsync(
@@ -59,15 +56,13 @@ describe('Ionic Angular Application', () => {
         );
 
         await buildAndTestApp(appName);
-
-        done();
       },
       asyncTimeout
     );
 
     it(
       'sidemenu',
-      async (done) => {
+      async () => {
         const appName = uniq('ionic-angular');
         ensureNxProject('@nxtend/ionic-angular', 'dist/packages/ionic-angular');
         await runNxCommandAsync(
@@ -75,15 +70,13 @@ describe('Ionic Angular Application', () => {
         );
 
         await buildAndTestApp(appName);
-
-        done();
       },
       asyncTimeout
     );
 
     it(
       'tabs',
-      async (done) => {
+      async () => {
         const appName = uniq('ionic-angular');
         ensureNxProject('@nxtend/ionic-angular', 'dist/packages/ionic-angular');
         await runNxCommandAsync(
@@ -91,32 +84,14 @@ describe('Ionic Angular Application', () => {
         );
 
         await buildAndTestApp(appName);
-
-        done();
       },
       asyncTimeout
     );
   });
 
   it(
-    'should generate application with TSLint',
-    async (done) => {
-      const appName = uniq('ionic-angular');
-      ensureNxProject('@nxtend/ionic-angular', 'dist/packages/ionic-angular');
-      await runNxCommandAsync(
-        `generate @nxtend/ionic-angular:app --name ${appName} --capacitor false --linter tslint`
-      );
-
-      await buildAndTestApp(appName);
-
-      done();
-    },
-    asyncTimeout
-  );
-
-  it(
     'should generate application in subdir',
-    async (done) => {
+    async () => {
       const appName = uniq('ionic-angular');
       ensureNxProject('@nxtend/ionic-angular', 'dist/packages/ionic-angular');
       await runNxCommandAsync(
@@ -124,15 +99,13 @@ describe('Ionic Angular Application', () => {
       );
 
       await buildAndTestApp(`my-dir-${appName}`);
-
-      done();
     },
     asyncTimeout
   );
 
   it(
     'should add tags',
-    async (done) => {
+    async () => {
       const appName = uniq('ionic-angular');
       ensureNxProject('@nxtend/ionic-angular', 'dist/packages/ionic-angular');
       await runNxCommandAsync(
@@ -140,15 +113,13 @@ describe('Ionic Angular Application', () => {
       );
 
       await buildAndTestApp(appName);
-
-      done();
     },
     asyncTimeout
   );
 
   it(
     'should create with unitTestRunner=none',
-    async (done) => {
+    async () => {
       const appName = uniq('ionic-angular');
       ensureNxProject('@nxtend/ionic-angular', 'dist/packages/ionic-angular');
       await runNxCommandAsync(
@@ -156,14 +127,13 @@ describe('Ionic Angular Application', () => {
       );
 
       await buildAndTestApp(appName, 'none');
-      done();
     },
     asyncTimeout
   );
 
   it(
     'should create with unitTestRunner=karma',
-    async (done) => {
+    async () => {
       const appName = uniq('ionic-angular');
       ensureNxProject('@nxtend/ionic-angular', 'dist/packages/ionic-angular');
       await runNxCommandAsync(
@@ -171,7 +141,6 @@ describe('Ionic Angular Application', () => {
       );
 
       await buildAndTestApp(appName, 'karma');
-      done();
     },
     asyncTimeout
   );

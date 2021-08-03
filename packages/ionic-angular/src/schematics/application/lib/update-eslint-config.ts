@@ -1,12 +1,7 @@
-import { noop } from '@angular-devkit/schematics';
 import { updateJsonInTree } from '@nrwl/workspace';
 import { NormalizedSchema } from '../schema';
 
 export function updateEslintConfig(options: NormalizedSchema) {
-  if (options.linter !== 'eslint') {
-    return noop();
-  }
-
   return updateJsonInTree(
     `${options.appProjectRoot}/.eslintrc.json`,
     (json) => {

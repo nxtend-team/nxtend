@@ -1,86 +1,6 @@
 {
   "version": 1,
   "projects": {
-    "ionic-react": {
-      "root": "packages/ionic-react",
-      "sourceRoot": "packages/ionic-react/src",
-      "projectType": "library",
-      "schematics": {},
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "packages/ionic-react/**/*.ts",
-              "packages/ionic-react/**/*.spec.ts",
-              "packages/ionic-react/**/*.spec.tsx",
-              "packages/ionic-react/**/*.spec.js",
-              "packages/ionic-react/**/*.spec.jsx",
-              "packages/ionic-react/**/*.d.ts"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "packages/ionic-react/jest.config.js",
-            "passWithNoTests": true,
-            "tsConfig": "packages/ionic-react/tsconfig.spec.json"
-          },
-          "outputs": ["coverage/packages/ionic-react"]
-        },
-        "build": {
-          "builder": "@nrwl/node:package",
-          "options": {
-            "outputPath": "dist/packages/ionic-react",
-            "tsConfig": "packages/ionic-react/tsconfig.lib.json",
-            "packageJson": "packages/ionic-react/package.json",
-            "main": "packages/ionic-react/src/index.ts",
-            "assets": [
-              "packages/ionic-react/*.md",
-              {
-                "input": "./packages/ionic-react/src",
-                "glob": "**/*.!(ts)",
-                "output": "./src"
-              },
-              {
-                "input": "./packages/ionic-react",
-                "glob": "collection.json",
-                "output": "."
-              },
-              {
-                "input": "./packages/ionic-react",
-                "glob": "builders.json",
-                "output": "."
-              },
-              {
-                "input": "./packages/ionic-react",
-                "glob": "migrations.json",
-                "output": "."
-              }
-            ],
-            "srcRootForCompilationRoot": "packages/ionic-react"
-          },
-          "outputs": ["{options.outputPath}"]
-        }
-      }
-    },
-    "ionic-react-e2e": {
-      "projectType": "application",
-      "root": "e2e/ionic-react-e2e",
-      "sourceRoot": "e2e/ionic-react-e2e/src",
-      "architect": {
-        "e2e": {
-          "builder": "@nrwl/nx-plugin:e2e",
-          "options": {
-            "target": "ionic-react:build",
-            "npmPackageName": "@nxtend/ionic-react",
-            "pluginOutputPath": "dist/packages/ionic-react",
-            "jestConfig": "e2e/ionic-react-e2e/jest.config.js"
-          }
-        }
-      }
-    },
     "capacitor": {
       "root": "packages/capacitor",
       "sourceRoot": "packages/capacitor/src",
@@ -104,8 +24,7 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "packages/capacitor/jest.config.js",
-            "passWithNoTests": true,
-            "tsConfig": "packages/capacitor/tsconfig.spec.json"
+            "passWithNoTests": true
           },
           "outputs": ["coverage/packages/capacitor"]
         },
@@ -154,88 +73,7 @@
           "builder": "@nrwl/nx-plugin:e2e",
           "options": {
             "target": "capacitor:build",
-            "npmPackageName": "@nxtend/capacitor",
-            "pluginOutputPath": "dist/packages/capacitor",
             "jestConfig": "e2e/capacitor-e2e/jest.config.js"
-          }
-        }
-      }
-    },
-    "ionic-angular": {
-      "root": "packages/ionic-angular",
-      "sourceRoot": "packages/ionic-angular/src",
-      "projectType": "library",
-      "schematics": {},
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "packages/ionic-angular/**/*.ts",
-              "packages/ionic-angular/**/*.spec.ts",
-              "packages/ionic-angular/**/*.spec.tsx",
-              "packages/ionic-angular/**/*.spec.js",
-              "packages/ionic-angular/**/*.spec.jsx",
-              "packages/ionic-angular/**/*.d.ts"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "packages/ionic-angular/jest.config.js",
-            "passWithNoTests": true,
-            "tsConfig": "packages/ionic-angular/tsconfig.spec.json"
-          },
-          "outputs": ["coverage/packages/ionic-angular"]
-        },
-        "build": {
-          "builder": "@nrwl/node:package",
-          "options": {
-            "outputPath": "dist/packages/ionic-angular",
-            "tsConfig": "packages/ionic-angular/tsconfig.lib.json",
-            "packageJson": "packages/ionic-angular/package.json",
-            "main": "packages/ionic-angular/src/index.ts",
-            "assets": [
-              "packages/ionic-angular/*.md",
-              {
-                "input": "./packages/ionic-angular/src",
-                "glob": "**/*.!(ts)",
-                "output": "./src"
-              },
-              {
-                "input": "./packages/ionic-angular",
-                "glob": "collection.json",
-                "output": "."
-              },
-              {
-                "input": "./packages/ionic-angular",
-                "glob": "builders.json",
-                "output": "."
-              },
-              {
-                "input": "./packages/ionic-angular",
-                "glob": "migrations.json",
-                "output": "."
-              }
-            ]
-          },
-          "outputs": ["{options.outputPath}"]
-        }
-      }
-    },
-    "ionic-angular-e2e": {
-      "projectType": "application",
-      "root": "e2e/ionic-angular-e2e",
-      "sourceRoot": "e2e/ionic-angular-e2e/src",
-      "architect": {
-        "e2e": {
-          "builder": "@nrwl/nx-plugin:e2e",
-          "options": {
-            "target": "ionic-angular:build",
-            "npmPackageName": "@nxtend/ionic-angular",
-            "pluginOutputPath": "dist/packages/ionic-angular",
-            "jestConfig": "e2e/ionic-angular-e2e/jest.config.js"
           }
         }
       }
@@ -317,9 +155,160 @@
           "builder": "@nrwl/nx-plugin:e2e",
           "options": {
             "target": "firebase:build",
-            "npmPackageName": "@nxtend/firebase",
-            "pluginOutputPath": "dist/packages/firebase",
             "jestConfig": "e2e/firebase-e2e/jest.config.js"
+          }
+        }
+      }
+    },
+    "ionic-angular": {
+      "root": "packages/ionic-angular",
+      "sourceRoot": "packages/ionic-angular/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ionic-angular/**/*.ts",
+              "packages/ionic-angular/**/*.spec.ts",
+              "packages/ionic-angular/**/*.spec.tsx",
+              "packages/ionic-angular/**/*.spec.js",
+              "packages/ionic-angular/**/*.spec.jsx",
+              "packages/ionic-angular/**/*.d.ts"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "packages/ionic-angular/jest.config.js",
+            "passWithNoTests": true
+          },
+          "outputs": ["coverage/packages/ionic-angular"]
+        },
+        "build": {
+          "builder": "@nrwl/node:package",
+          "options": {
+            "outputPath": "dist/packages/ionic-angular",
+            "tsConfig": "packages/ionic-angular/tsconfig.lib.json",
+            "packageJson": "packages/ionic-angular/package.json",
+            "main": "packages/ionic-angular/src/index.ts",
+            "assets": [
+              "packages/ionic-angular/*.md",
+              {
+                "input": "./packages/ionic-angular/src",
+                "glob": "**/*.!(ts)",
+                "output": "./src"
+              },
+              {
+                "input": "./packages/ionic-angular",
+                "glob": "collection.json",
+                "output": "."
+              },
+              {
+                "input": "./packages/ionic-angular",
+                "glob": "builders.json",
+                "output": "."
+              },
+              {
+                "input": "./packages/ionic-angular",
+                "glob": "migrations.json",
+                "output": "."
+              }
+            ]
+          },
+          "outputs": ["{options.outputPath}"]
+        }
+      }
+    },
+    "ionic-angular-e2e": {
+      "projectType": "application",
+      "root": "e2e/ionic-angular-e2e",
+      "sourceRoot": "e2e/ionic-angular-e2e/src",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/nx-plugin:e2e",
+          "options": {
+            "target": "ionic-angular:build",
+            "jestConfig": "e2e/ionic-angular-e2e/jest.config.js"
+          }
+        }
+      }
+    },
+    "ionic-react": {
+      "root": "packages/ionic-react",
+      "sourceRoot": "packages/ionic-react/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ionic-react/**/*.ts",
+              "packages/ionic-react/**/*.spec.ts",
+              "packages/ionic-react/**/*.spec.tsx",
+              "packages/ionic-react/**/*.spec.js",
+              "packages/ionic-react/**/*.spec.jsx",
+              "packages/ionic-react/**/*.d.ts"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "packages/ionic-react/jest.config.js",
+            "passWithNoTests": true
+          },
+          "outputs": ["coverage/packages/ionic-react"]
+        },
+        "build": {
+          "builder": "@nrwl/node:package",
+          "options": {
+            "outputPath": "dist/packages/ionic-react",
+            "tsConfig": "packages/ionic-react/tsconfig.lib.json",
+            "packageJson": "packages/ionic-react/package.json",
+            "main": "packages/ionic-react/src/index.ts",
+            "assets": [
+              "packages/ionic-react/*.md",
+              {
+                "input": "./packages/ionic-react/src",
+                "glob": "**/*.!(ts)",
+                "output": "./src"
+              },
+              {
+                "input": "./packages/ionic-react",
+                "glob": "collection.json",
+                "output": "."
+              },
+              {
+                "input": "./packages/ionic-react",
+                "glob": "builders.json",
+                "output": "."
+              },
+              {
+                "input": "./packages/ionic-react",
+                "glob": "migrations.json",
+                "output": "."
+              }
+            ],
+            "srcRootForCompilationRoot": "packages/ionic-react"
+          },
+          "outputs": ["{options.outputPath}"]
+        }
+      }
+    },
+    "ionic-react-e2e": {
+      "projectType": "application",
+      "root": "e2e/ionic-react-e2e",
+      "sourceRoot": "e2e/ionic-react-e2e/src",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/nx-plugin:e2e",
+          "options": {
+            "target": "ionic-react:build",
+            "jestConfig": "e2e/ionic-react-e2e/jest.config.js"
           }
         }
       }

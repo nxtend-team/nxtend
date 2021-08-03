@@ -7,7 +7,7 @@ import {
 import { ApplicationSchematicSchema } from '@nxtend/ionic-react';
 
 describe('application e2e', () => {
-  const asyncTimeout = 180000;
+  const asyncTimeout = 300_000;
 
   const defaultOptions: ApplicationSchematicSchema = {
     name: 'test',
@@ -34,7 +34,7 @@ describe('application e2e', () => {
   describe('--template', () => {
     it(
       'blank',
-      async (done) => {
+      async () => {
         const appName = uniq('ionic-react');
         ensureNxProject('@nxtend/ionic-react', 'dist/packages/ionic-react');
         await runNxCommandAsync(
@@ -42,15 +42,13 @@ describe('application e2e', () => {
         );
 
         await buildAndTestApp(appName);
-
-        done();
       },
       asyncTimeout
     );
 
     it(
       'list',
-      async (done) => {
+      async () => {
         const appName = uniq('ionic-react');
         ensureNxProject('@nxtend/ionic-react', 'dist/packages/ionic-react');
         await runNxCommandAsync(
@@ -58,15 +56,13 @@ describe('application e2e', () => {
         );
 
         await buildAndTestApp(appName);
-
-        done();
       },
       asyncTimeout
     );
 
     it(
       'sidemenu',
-      async (done) => {
+      async () => {
         const appName = uniq('ionic-react');
         ensureNxProject('@nxtend/ionic-react', 'dist/packages/ionic-react');
         await runNxCommandAsync(
@@ -74,15 +70,13 @@ describe('application e2e', () => {
         );
 
         await buildAndTestApp(appName);
-
-        done();
       },
       asyncTimeout
     );
 
     it(
       'tabs',
-      async (done) => {
+      async () => {
         const appName = uniq('ionic-react');
         ensureNxProject('@nxtend/ionic-react', 'dist/packages/ionic-react');
         await runNxCommandAsync(
@@ -90,8 +84,6 @@ describe('application e2e', () => {
         );
 
         await buildAndTestApp(appName);
-
-        done();
       },
       asyncTimeout
     );
@@ -100,7 +92,7 @@ describe('application e2e', () => {
   describe('--directory', () => {
     it(
       'should create src in the specified directory',
-      async (done) => {
+      async () => {
         const options: ApplicationSchematicSchema = {
           ...defaultOptions,
           name: uniq('ionic-react'),
@@ -112,8 +104,6 @@ describe('application e2e', () => {
           `generate @nxtend/ionic-react:app ${options.name} --directory ${options.directory} --capacitor false`
         );
         await buildAndTestApp(`${options.directory}-${options.name}`);
-
-        done();
       },
       asyncTimeout
     );
@@ -122,7 +112,7 @@ describe('application e2e', () => {
   describe('--tags', () => {
     it(
       'should add tags to nx.json',
-      async (done) => {
+      async () => {
         const options: ApplicationSchematicSchema = {
           ...defaultOptions,
           name: uniq('ionic-react'),
@@ -141,8 +131,6 @@ describe('application e2e', () => {
         ]);
 
         await buildAndTestApp(options.name);
-
-        done();
       },
       asyncTimeout
     );

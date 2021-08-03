@@ -1,5 +1,11 @@
 # Changelog
 
+# 12.0.0
+
+## Features
+
+- support Nx 12
+
 # 11.1.1
 
 ## Bug Fixes

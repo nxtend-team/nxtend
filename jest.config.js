@@ -1,12 +1,11 @@
+const { getJestProjects } = require('@nrwl/jest');
+
 module.exports = {
   projects: [
-    '<rootDir>/packages/ionic-react',
+    ...getJestProjects(),
     '<rootDir>/packages/ionic-react-e2e',
-    '<rootDir>/packages/capacitor',
     '<rootDir>/packages/capacitor-e2e',
-    '<rootDir>/packages/ionic-angular',
     '<rootDir>/packages/ionic-angular-e2e',
-    '<rootDir>/packages/firebase',
     '<rootDir>/e2e/firebase-e2e',
   ],
 };
