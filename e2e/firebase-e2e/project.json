@@ -1,0 +1,14 @@
+{
+  "projectType": "application",
+  "root": "e2e/firebase-e2e",
+  "sourceRoot": "e2e/firebase-e2e/src",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/nx-plugin:e2e",
+      "options": {
+        "target": "firebase:build",
+        "jestConfig": "e2e/firebase-e2e/jest.config.js"
+      }
+    }
+  }
+}

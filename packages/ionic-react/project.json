@@ -1,0 +1,63 @@
+{
+  "root": "packages/ionic-react",
+  "sourceRoot": "packages/ionic-react/src",
+  "projectType": "library",
+  "schematics": {},
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "packages/ionic-react/**/*.ts",
+          "packages/ionic-react/**/*.spec.ts",
+          "packages/ionic-react/**/*.spec.tsx",
+          "packages/ionic-react/**/*.spec.js",
+          "packages/ionic-react/**/*.spec.jsx",
+          "packages/ionic-react/**/*.d.ts"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "options": {
+        "jestConfig": "packages/ionic-react/jest.config.js",
+        "passWithNoTests": true
+      },
+      "outputs": ["coverage/packages/ionic-react"]
+    },
+    "build": {
+      "executor": "@nrwl/node:package",
+      "options": {
+        "outputPath": "dist/packages/ionic-react",
+        "tsConfig": "packages/ionic-react/tsconfig.lib.json",
+        "packageJson": "packages/ionic-react/package.json",
+        "main": "packages/ionic-react/src/index.ts",
+        "assets": [
+          "packages/ionic-react/*.md",
+          {
+            "input": "./packages/ionic-react/src",
+            "glob": "**/*.!(ts)",
+            "output": "./src"
+          },
+          {
+            "input": "./packages/ionic-react",
+            "glob": "collection.json",
+            "output": "."
+          },
+          {
+            "input": "./packages/ionic-react",
+            "glob": "builders.json",
+            "output": "."
+          },
+          {
+            "input": "./packages/ionic-react",
+            "glob": "migrations.json",
+            "output": "."
+          }
+        ],
+        "srcRootForCompilationRoot": "packages/ionic-react"
+      },
+      "outputs": ["{options.outputPath}"]
+    }
+  }
+}

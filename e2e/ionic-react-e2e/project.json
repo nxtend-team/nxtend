@@ -1,0 +1,14 @@
+{
+  "projectType": "application",
+  "root": "e2e/ionic-react-e2e",
+  "sourceRoot": "e2e/ionic-react-e2e/src",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/nx-plugin:e2e",
+      "options": {
+        "target": "ionic-react:build",
+        "jestConfig": "e2e/ionic-react-e2e/jest.config.js"
+      }
+    }
+  }
+}
