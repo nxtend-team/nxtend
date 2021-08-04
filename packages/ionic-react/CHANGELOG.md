@@ -6,6 +6,10 @@
 
 - support Nx 12
 
+## BREAKING CHANGES
+
+- Angular CLI is no longer officially supported
+
 # 11.0.3
 
 ## Bug Fixes
