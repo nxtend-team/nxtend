@@ -14,7 +14,7 @@
   "cli": {
     "defaultCollection": "@nrwl/nx-plugin"
   },
-  "schematics": {
+  "generators": {
     "@nrwl/workspace": {
       "library": {
         "linter": "eslint"

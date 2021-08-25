@@ -42,12 +42,11 @@ module.exports = {
         'capacitor/overview',
         'capacitor/getting-started',
         {
-          Schematics: [
-            'capacitor/schematics/init',
-            'capacitor/schematics/capacitor-project',
-            'capacitor/schematics/add-plugin',
+          Generators: [
+            'capacitor/generators/init',
+            'capacitor/generators/capacitor-project',
           ],
-          Builders: ['capacitor/builders/cap'],
+          Executors: ['capacitor/executors/cap'],
         },
       ],
     },

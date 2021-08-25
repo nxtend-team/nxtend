@@ -39,10 +39,10 @@
   "dependencies": {
     "@docusaurus/core": "2.0.0-alpha.70",
     "@docusaurus/preset-classic": "2.0.0-alpha.70",
+    "@ngrx/component-store": "12.2.0",
     "classnames": "^2.2.6",
     "react": "17.0.2",
-    "react-dom": "17.0.2",
-    "@ngrx/component-store": "12.2.0"
+    "react-dom": "17.0.2"
   },
   "devDependencies": {
     "@nrwl/angular": "12.6.2",
@@ -62,6 +62,7 @@
     "@types/node": "14.14.33",
     "@typescript-eslint/eslint-plugin": "4.19.0",
     "@typescript-eslint/parser": "4.19.0",
+    "cross-env": "^7.0.3",
     "cypress": "^4.1.0",
     "dotenv": "8.2.0",
     "eslint": "7.22.0",

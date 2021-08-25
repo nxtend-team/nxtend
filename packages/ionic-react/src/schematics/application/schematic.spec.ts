@@ -23,11 +23,6 @@ describe('application', () => {
     join(__dirname, '../../../collection.json')
   );
 
-  testRunner.registerCollection(
-    '@nxtend/capacitor',
-    join(__dirname, '../../../../capacitor/collection.json')
-  );
-
   function testGeneratedFiles(tree: Tree, options: ApplicationSchematicSchema) {
     // Common files
     expect(tree.exists(`${projectRoot}/.eslintrc.json`)).toBeTruthy();
@@ -230,19 +225,19 @@ describe('application', () => {
       expect(tree.exists('apps/my-dir/my-app/src/main.ts'));
     });
 
-    it('should generate Capacitor project', async () => {
-      const tree = await testRunner
-        .runSchematicAsync(
-          'application',
-          { ...options, directory: 'my-dir', capacitor: true },
-          appTree
-        )
-        .toPromise();
+    // it('should generate Capacitor project', async () => {
+    //   const tree = await testRunner
+    //     .runSchematicAsync(
+    //       'application',
+    //       { ...options, directory: 'my-dir', capacitor: true },
+    //       appTree
+    //     )
+    //     .toPromise();
 
-      expect(
-        readJsonInTree(tree, `apps/my-dir/my-app/capacitor.config.json`)
-      ).toBeDefined();
-    });
+    //   expect(
+    //     readJsonInTree(tree, `apps/my-dir/my-app/capacitor.config.json`)
+    //   ).toBeDefined();
+    // });
   });
 
   describe('--unitTestRunner', () => {
@@ -259,19 +254,19 @@ describe('application', () => {
     });
   });
 
-  describe('--capacitor', () => {
-    describe('true', () => {
-      it('should generate Capacitor project', async () => {
-        const tree = await testRunner
-          .runSchematicAsync(
-            'application',
-            { ...options, capacitor: true },
-            appTree
-          )
-          .toPromise();
+  // describe('--capacitor', () => {
+  //   describe('true', () => {
+  //     it('should generate Capacitor project', async () => {
+  //       const tree = await testRunner
+  //         .runSchematicAsync(
+  //           'application',
+  //           { ...options, capacitor: true },
+  //           appTree
+  //         )
+  //         .toPromise();
 
-        testGeneratedFiles(tree, { ...options, capacitor: true });
-      });
-    });
-  });
+  //       testGeneratedFiles(tree, { ...options, capacitor: true });
+  //     });
+  //   });
+  // });
 });

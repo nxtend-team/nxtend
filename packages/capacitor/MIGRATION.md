@@ -1,5 +1,11 @@
 # Migration
 
+# 11.x.x - 12.0.0
+
+The `@capacitor/cli` dependency can now be moved to the workspace root `package.json` and can be removed from the applications `package.json`. However, this is not necessary.
+
+Capacitor plugins must still be added to both the root and application-level `package.json`, but are no longer required to be installed into the application-level `node_modules/`. If your application-level `package.json` is installing the Capacitor CLI and Capacitor plugins, then this `node_modules/` directory can be removed entirely.
+
 # 1.x.x - 2.0.0
 
 ## Move Capacitor Configs
