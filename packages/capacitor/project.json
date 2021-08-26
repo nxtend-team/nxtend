@@ -41,12 +41,12 @@
           },
           {
             "input": "./packages/capacitor",
-            "glob": "collection.json",
+            "glob": "generators.json",
             "output": "."
           },
           {
             "input": "./packages/capacitor",
-            "glob": "builders.json",
+            "glob": "executors.json",
             "output": "."
           },
           {

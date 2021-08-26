@@ -1,2 +1,1 @@
-export { AddPluginSchematicSchema } from './schematics/add-plugin/schema';
-export { CapacitorSchematicSchema } from './schematics/capacitor-project/schema';
+export { CapacitorGeneratorSchema } from './generators/capacitor-project/schema';

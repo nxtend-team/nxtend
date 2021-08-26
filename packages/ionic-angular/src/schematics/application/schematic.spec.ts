@@ -21,11 +21,6 @@ describe('application schematic', () => {
     join(__dirname, '../../../collection.json')
   );
 
-  testRunner.registerCollection(
-    '@nxtend/capacitor',
-    join(__dirname, '../../../../capacitor/collection.json')
-  );
-
   beforeEach(() => {
     appTree = createEmptyWorkspace(Tree.empty());
     appTree.overwrite(
@@ -267,19 +262,19 @@ describe('application schematic', () => {
       expect(tree.exists('apps/my-dir/my-app/src/main.ts'));
     });
 
-    it('should generate Capacitor project', async () => {
-      const tree = await testRunner
-        .runSchematicAsync(
-          'application',
-          { ...options, directory: 'my-dir', capacitor: true },
-          appTree
-        )
-        .toPromise();
+    // it('should generate Capacitor project', async () => {
+    //   const tree = await testRunner
+    //     .runSchematicAsync(
+    //       'application',
+    //       { ...options, directory: 'my-dir', capacitor: true },
+    //       appTree
+    //     )
+    //     .toPromise();
 
-      expect(
-        readJsonInTree(tree, `apps/my-dir/my-app/capacitor.config.json`)
-      ).toBeDefined();
-    });
+    //   expect(
+    //     readJsonInTree(tree, `apps/my-dir/my-app/capacitor.config.json`)
+    //   ).toBeDefined();
+    // });
   });
 
   describe('--unitTestRunner', () => {
@@ -354,21 +349,21 @@ describe('application schematic', () => {
     });
   });
 
-  describe('--capacitor', () => {
-    describe('true', () => {
-      it('should generate Capacitor project', async () => {
-        const tree = await testRunner
-          .runSchematicAsync(
-            'application',
-            { ...options, capacitor: true },
-            appTree
-          )
-          .toPromise();
+  // describe('--capacitor', () => {
+  // describe('true', () => {
+  // it('should generate Capacitor project', async () => {
+  //   const tree = await testRunner
+  //     .runSchematicAsync(
+  //       'application',
+  //       { ...options, capacitor: true },
+  //       appTree
+  //     )
+  //     .toPromise();
 
-        expect(
-          readJsonInTree(tree, `${projectRoot}/capacitor.config.json`)
-        ).toBeDefined();
-      });
-    });
-  });
+  //   expect(
+  //     readJsonInTree(tree, `${projectRoot}/capacitor.config.json`)
+  //   ).toBeDefined();
+  // });
+  //   });
+  // });
 });
