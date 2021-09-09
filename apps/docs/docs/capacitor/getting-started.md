@@ -62,6 +62,8 @@ Options:
   --help                  Show available options for project target.
 ```
 
+Finally, you will need to `cd` into your applications directory and install the npm dependencies. (e.g. `npm install`)
+
 ## Add Native Platforms
 
 Now that a Capacitor project has been added to your Nx workspace you can begin adding support for native platforms. Currently, Capacitor supports Android and iOS, but other platforms can be added with Capacitor plugins.

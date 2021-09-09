@@ -3,10 +3,12 @@ import {
   readJson,
   readProjectConfiguration,
   Tree,
+  writeJson,
 } from '@nrwl/devkit';
 import { createTreeWithEmptyWorkspace } from '@nrwl/devkit/testing';
 import generator from './generator';
 import { CapacitorGeneratorSchema } from './schema';
+import { join } from 'path';
 
 describe('capacitor-project', () => {
   let appTree: Tree;
@@ -23,7 +25,7 @@ describe('capacitor-project', () => {
   beforeEach(async () => {
     appTree = createTreeWithEmptyWorkspace();
     addProjectConfiguration(appTree, options.project, {
-      root: `apps/${options.project}`,
+      root: projectRoot,
       targets: {},
     });
   });
@@ -36,6 +38,26 @@ describe('capacitor-project', () => {
     await generator(appTree, options);
 
     expect(appTree.exists(`${projectRoot}/capacitor.config.json`)).toBeTruthy();
+    expect(appTree.exists(`${projectRoot}/package.json`)).toBeTruthy();
+    expect(appTree.exists(`${projectRoot}/.gitignore`)).toBeTruthy();
+  });
+
+  it('should should not replace existing package.json', async () => {
+    writeJson(appTree, join(projectRoot, 'package.json'), { name: 'test' });
+    await generator(appTree, options);
+
+    expect(appTree.exists(`${projectRoot}/package.json`)).toBeTruthy();
+    const packageJson = readJson(appTree, `${projectRoot}/package.json`);
+    expect(packageJson.name).toEqual('test');
+    expect(packageJson.devDependencies['@capacitor/cli']).toBeTruthy();
+  });
+
+  it('should update existing .gitignore', async () => {
+    appTree.write(`${projectRoot}/.gitignore`, '/dist\n');
+    await generator(appTree, options);
+
+    const gitignore = appTree.read(`${projectRoot}/.gitignore`).toString();
+    expect(gitignore).toContain('/dist\n/node_modules');
   });
 
   it('should calculate webDir relative path', async () => {
