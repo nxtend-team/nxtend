@@ -16,7 +16,7 @@ export default async function runExecutor(
 
   const runCommandsOptions: RunCommandsBuilderOptions = {
     cwd: projectRootPath,
-    command: `PATH=${context.root}/node_modules/.bin:$PATH npx cap ${cmd}`,
+    command: `npx cap ${cmd}`,
   };
 
   return await runCommands(runCommandsOptions, context);
