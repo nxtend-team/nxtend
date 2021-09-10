@@ -105,6 +105,6 @@ nx run my-app:cap --cmd="open android"
 
 ## Adding Capacitor Plugins
 
-Capacitor plugin dependencies must be added to both the root and project-level `package.json`.
+Capacitor plugin dependencies must be added to the project-level `package.json`.
 
 To learn more about Capacitor, including the native API's available, please read the [official Capacitor documentation](https://capacitorjs.com/docs).
