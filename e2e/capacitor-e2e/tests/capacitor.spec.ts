@@ -14,6 +14,7 @@ const defaultCapacitorProjectOptions: CapacitorGeneratorSchema = {
   project: 'test-app',
   appId: 'test-id',
   npmClient: 'npm',
+  skipFormat: true,
 };
 
 async function generateApp(options: CapacitorGeneratorSchema) {

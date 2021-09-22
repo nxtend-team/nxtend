@@ -57,3 +57,11 @@ Default: dynamically calculated project build output directory.
 Type: `string`
 
 The directory of your projects built web assets.
+
+### --skipFormat
+
+Default: `false`
+
+Type: `boolean`
+
+Skip formatting files.
