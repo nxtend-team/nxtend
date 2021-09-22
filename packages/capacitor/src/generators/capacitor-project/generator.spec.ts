@@ -1,5 +1,6 @@
 import {
   addProjectConfiguration,
+  normalizePath,
   readJson,
   readProjectConfiguration,
   Tree,
@@ -8,7 +9,6 @@ import {
 import { createTreeWithEmptyWorkspace } from '@nrwl/devkit/testing';
 import generator from './generator';
 import { CapacitorGeneratorSchema } from './schema';
-import { join } from 'path';
 
 describe('capacitor-project', () => {
   let appTree: Tree;
@@ -48,7 +48,9 @@ describe('capacitor-project', () => {
   });
 
   it('should should not replace existing package.json', async () => {
-    writeJson(appTree, join(projectRoot, 'package.json'), { name: 'test' });
+    writeJson(appTree, normalizePath(projectRoot + '/package.json'), {
+      name: 'test',
+    });
     await generator(appTree, options);
 
     expect(appTree.exists(`${projectRoot}/package.json`)).toBeTruthy();

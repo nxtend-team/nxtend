@@ -2,7 +2,6 @@ import { ExecutorContext, normalizePath } from '@nrwl/devkit';
 import runCommands, {
   RunCommandsBuilderOptions,
 } from '@nrwl/workspace/src/executors/run-commands/run-commands.impl';
-import { join } from 'path';
 import { CommandExecutorSchema } from './schema';
 
 export default async function runExecutor(
@@ -10,7 +9,7 @@ export default async function runExecutor(
   context: ExecutorContext
 ) {
   const projectRoot = context.workspace.projects[context.projectName].root;
-  const projectRootPath = normalizePath(join(context.root, projectRoot));
+  const projectRootPath = normalizePath(`${context.root}/${projectRoot}`);
 
   const cmd = sanitizeCapacitorCommand(options.cmd);
 
