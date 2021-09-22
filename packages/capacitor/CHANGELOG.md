@@ -11,6 +11,7 @@
 
 - Angular CLI is no longer officially supported
 - `add-plugin` schematic has been removed
+- the `init` generator has been removed and the functionaltiy has been moved to the `application` schematic
 
 # 11.1.1
 
