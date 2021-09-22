@@ -18,6 +18,7 @@ describe('capacitor-project', () => {
     appId: 'com.example.capacitorapp',
     appName: 'Capacitor App',
     npmClient: 'yarn',
+    skipFormat: true,
   };
 
   const projectRoot = `apps/${options.project}`;

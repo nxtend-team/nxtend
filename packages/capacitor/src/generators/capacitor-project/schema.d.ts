@@ -4,6 +4,7 @@ export interface CapacitorGeneratorSchema {
   appName?: string;
   webDir?: string;
   npmClient: string;
+  skipFormat: boolean;
 }
 
 export interface NormalizedSchema extends CapacitorGeneratorSchema {

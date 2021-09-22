@@ -1,4 +1,4 @@
-import { Tree } from '@nrwl/devkit';
+import { formatFiles, Tree } from '@nrwl/devkit';
 import { addCapacitorConfig } from './lib/add-capacitor-config';
 import { addDependencies } from './lib/add-dependencies';
 import { addProject } from './lib/add-project';
@@ -17,6 +17,11 @@ export async function capacitorProjectGenerator(
   updateProjectPackageJson(host, normalizedOptions);
   updateProjectGitignore(host, normalizedOptions);
   addProject(host, normalizedOptions);
+
+  if (!options.skipFormat) {
+    await formatFiles(host);
+  }
+
   return installTask;
 }
 

@@ -37,6 +37,11 @@
     "webDir": {
       "type": "string",
       "description": "The directory of your projects built web assets."
+    },
+    "skipFormat": {
+      "description": "Skip formatting files.",
+      "type": "boolean",
+      "default": false
     }
   },
   "required": ["project", "npmClient"]

@@ -10,5 +10,6 @@ export async function addCapacitor(host: Tree, options: NormalizedSchema) {
     appName: options.appName,
     appId: 'io.ionic.starter',
     npmClient,
+    skipFormat: options.skipFormat,
   });
 }
