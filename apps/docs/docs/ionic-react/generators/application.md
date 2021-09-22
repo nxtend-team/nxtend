@@ -4,9 +4,7 @@ title: Application
 sidebar_label: Application
 ---
 
-Runs a schematic that generates a new Ionic React application.
-
-This schematic also executes the `@nrwl/ionic-react` init schematic.
+Create an Ionic React application.
 
 ## Usage
 

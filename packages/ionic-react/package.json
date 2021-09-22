@@ -13,18 +13,15 @@
   },
   "license": "MIT",
   "main": "src/index.js",
-  "schematics": "./collection.json",
-  "builders": "./builders.json",
+  "generators": "./generators.json",
+  "executors": "./executors.json",
   "nx-migrations": {
     "migrations": "./migrations.json"
   },
   "dependencies": {
-    "@angular-devkit/architect": "~0.1100.1",
-    "@angular-devkit/core": "~11.0.1",
-    "@angular-devkit/schematics": "~11.0.1"
-  },
-  "peerDependencies": {
-    "@nrwl/react": "^11.0.19",
-    "@nxtend/capacitor": "^11.0.0"
+    "@nrwl/devkit": "^12.0.0",
+    "@nrwl/linter": "^12.0.0",
+    "@nrwl/react": "^12.0.0",
+    "@nxtend/capacitor": "^12.0.0-beta.0"
   }
 }

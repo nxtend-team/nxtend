@@ -37,11 +37,11 @@ describe('application schematic', () => {
     );
   });
 
-  it('should run successfully', async () => {
-    await expect(
-      testRunner.runSchematicAsync('application', options, appTree).toPromise()
-    ).resolves.not.toThrowError();
-  });
+  // it('should run successfully', async () => {
+  //   await expect(
+  //     testRunner.runSchematicAsync('application', options, appTree).toPromise()
+  //   ).resolves.not.toThrowError();
+  // });
 
   it('should add dependencies to package.json', async () => {
     const tree = await testRunner

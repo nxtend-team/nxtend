@@ -8,7 +8,10 @@ import { updateProjectGitignore } from './lib/update-project-gitignore';
 import { updateProjectPackageJson } from './lib/update-project-package-json';
 import { CapacitorGeneratorSchema } from './schema';
 
-export default async function (host: Tree, options: CapacitorGeneratorSchema) {
+export async function capacitorProjectGenerator(
+  host: Tree,
+  options: CapacitorGeneratorSchema
+) {
   const tasks: GeneratorCallback[] = [];
   const normalizedOptions = normalizeOptions(host, options);
   const initTask = await init(host);
@@ -19,3 +22,5 @@ export default async function (host: Tree, options: CapacitorGeneratorSchema) {
   addProject(host, normalizedOptions);
   return runTasksInSerial(...tasks);
 }
+
+export default capacitorProjectGenerator;

@@ -1,5 +1,10 @@
-import { generateFiles, names, offsetFromRoot, Tree } from '@nrwl/devkit';
-import * as path from 'path';
+import {
+  generateFiles,
+  names,
+  normalizePath,
+  offsetFromRoot,
+  Tree,
+} from '@nrwl/devkit';
 import { NormalizedSchema } from '../schema';
 
 export function addCapacitorConfig(host: Tree, options: NormalizedSchema) {
@@ -12,7 +17,7 @@ export function addCapacitorConfig(host: Tree, options: NormalizedSchema) {
 
   generateFiles(
     host,
-    path.join(__dirname, '../', 'files/capacitor-config'),
+    normalizePath(__dirname + '/../files/capacitor-config'),
     options.projectRoot,
     templateOptions
   );
