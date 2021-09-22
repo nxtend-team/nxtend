@@ -39,10 +39,7 @@ module.exports = {
         'capacitor/overview',
         'capacitor/getting-started',
         {
-          Generators: [
-            'capacitor/generators/init',
-            'capacitor/generators/capacitor-project',
-          ],
+          Generators: ['capacitor/generators/capacitor-project'],
           Executors: ['capacitor/executors/cap'],
         },
       ],

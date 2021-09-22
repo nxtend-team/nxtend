@@ -30,16 +30,20 @@ describe('capacitor-project', () => {
     });
   });
 
-  it('should run successfully', async () => {
-    await expect(generator(appTree, options)).resolves.not.toThrowError();
-  });
-
   it('should add files', async () => {
     await generator(appTree, options);
 
     expect(appTree.exists(`${projectRoot}/capacitor.config.json`)).toBeTruthy();
     expect(appTree.exists(`${projectRoot}/package.json`)).toBeTruthy();
     expect(appTree.exists(`${projectRoot}/.gitignore`)).toBeTruthy();
+  });
+
+  it('should add Capacitor dependencies', async () => {
+    await generator(appTree, options);
+    const packageJson = readJson(appTree, 'package.json');
+    expect(packageJson.dependencies['@capacitor/core']).toBeDefined();
+    expect(packageJson.devDependencies['@capacitor/android']).toBeDefined();
+    expect(packageJson.devDependencies['@capacitor/ios']).toBeDefined();
   });
 
   it('should should not replace existing package.json', async () => {
