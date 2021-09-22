@@ -1,6 +1,7 @@
 {
   "$schema": "http://json-schema.org/schema",
-  "$id": "Application",
+  "cli": "nx",
+  "id": "Application",
   "title": "Create an Ionic React Application for Nx",
   "examples": [
     {
@@ -72,6 +73,11 @@
       "type": "boolean",
       "description": "Generate a Capacitor project.",
       "default": true
+    },
+    "skipFormat": {
+      "description": "Skip formatting files.",
+      "type": "boolean",
+      "default": false
     }
   },
   "required": ["name"]

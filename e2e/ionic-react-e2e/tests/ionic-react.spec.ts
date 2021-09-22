@@ -4,17 +4,18 @@ import {
   runNxCommandAsync,
   uniq,
 } from '@nrwl/nx-plugin/testing';
-import { ApplicationSchematicSchema } from '@nxtend/ionic-react';
+import { ApplicationGeneratorSchema } from '@nxtend/ionic-react';
 
 describe('application e2e', () => {
   const asyncTimeout = 300_000;
 
-  const defaultOptions: ApplicationSchematicSchema = {
+  const defaultOptions: ApplicationGeneratorSchema = {
     name: 'test',
     unitTestRunner: 'jest',
     e2eTestRunner: 'cypress',
     template: 'blank',
     capacitor: false,
+    skipFormat: false,
   };
 
   async function buildAndTestApp(plugin: string) {
@@ -93,7 +94,7 @@ describe('application e2e', () => {
     it(
       'should create src in the specified directory',
       async () => {
-        const options: ApplicationSchematicSchema = {
+        const options: ApplicationGeneratorSchema = {
           ...defaultOptions,
           name: uniq('ionic-react'),
           directory: 'subdir',
@@ -113,7 +114,7 @@ describe('application e2e', () => {
     it(
       'should add tags to nx.json',
       async () => {
-        const options: ApplicationSchematicSchema = {
+        const options: ApplicationGeneratorSchema = {
           ...defaultOptions,
           name: uniq('ionic-react'),
           tags: 'e2etag,e2ePackage',

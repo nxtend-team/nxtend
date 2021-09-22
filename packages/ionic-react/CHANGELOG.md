@@ -5,10 +5,12 @@
 ## Features
 
 - support Nx 12
+- plugin rewritten with `@nrwl/devkit` for better maintainability and future proofing for future Nx versions
 
 ## BREAKING CHANGES
 
 - Angular CLI is no longer officially supported
+- the `init` generator has been removed and the functionaltiy has been moved to the `application` schematic
 
 # 11.0.3
 

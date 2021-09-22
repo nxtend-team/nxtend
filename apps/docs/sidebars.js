@@ -13,10 +13,7 @@ module.exports = {
         'ionic-react/getting-started',
         'ionic-react/capacitor',
         {
-          Schematics: [
-            'ionic-react/schematics/init',
-            'ionic-react/schematics/application',
-          ],
+          Generators: ['ionic-react/generators/application'],
         },
       ],
     },

@@ -1,1 +1,2 @@
-export { ApplicationSchematicSchema } from './schematics/application/schema';
+export { applicationGenerator } from './generators/application/generator';
+export { ApplicationGeneratorSchema } from './generators/application/schema';

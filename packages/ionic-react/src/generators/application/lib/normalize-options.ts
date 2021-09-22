@@ -1,12 +1,9 @@
-import { Tree } from '@angular-devkit/schematics';
-import { names } from '@nrwl/workspace';
-import { appsDir } from '@nrwl/workspace/src/utils/ast-utils';
-import { normalize } from 'path';
-import { ApplicationSchematicSchema, NormalizedSchema } from '../schema';
+import { getWorkspaceLayout, names, normalizePath, Tree } from '@nrwl/devkit';
+import { ApplicationGeneratorSchema, NormalizedSchema } from '../schema';
 
 export function normalizeOptions(
   host: Tree,
-  options: ApplicationSchematicSchema
+  options: ApplicationGeneratorSchema
 ): NormalizedSchema {
   const appName = options.name;
 
@@ -16,7 +13,8 @@ export function normalizeOptions(
 
   const appProjectName = appDirectory.replace(new RegExp('/', 'g'), '-');
 
-  const appProjectRoot = normalize(`${appsDir(host)}/${appDirectory}`);
+  const { appsDir } = getWorkspaceLayout(host);
+  const appProjectRoot = normalizePath(`${appsDir}/${appDirectory}`);
 
   return {
     ...options,

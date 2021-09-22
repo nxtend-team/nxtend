@@ -1,4 +1,4 @@
-export interface ApplicationSchematicSchema {
+export interface ApplicationGeneratorSchema {
   name: string;
   directory?: string;
   unitTestRunner: 'jest' | 'none';
@@ -6,9 +6,10 @@ export interface ApplicationSchematicSchema {
   tags?: string;
   template: 'blank' | 'list' | 'sidemenu' | 'tabs';
   capacitor: boolean;
+  skipFormat: boolean;
 }
 
-export interface NormalizedSchema extends ApplicationSchematicSchema {
+export interface NormalizedSchema extends ApplicationGeneratorSchema {
   appName: string;
   appProjectName: string;
   appProjectRoot: string;

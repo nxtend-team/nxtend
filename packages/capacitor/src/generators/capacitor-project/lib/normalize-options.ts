@@ -1,4 +1,4 @@
-import { getWorkspaceLayout, normalizePath, Tree } from '@nrwl/devkit';
+import { readProjectConfiguration, Tree } from '@nrwl/devkit';
 import { relative } from 'path';
 import { CapacitorGeneratorSchema, NormalizedSchema } from '../schema';
 
@@ -7,8 +7,7 @@ export function normalizeOptions(
   options: CapacitorGeneratorSchema
 ): NormalizedSchema {
   const appName = options.appName ? options.appName : options.project;
-  const { appsDir } = getWorkspaceLayout(host);
-  const projectRoot = normalizePath(`${appsDir}/${options.project}`);
+  const projectRoot = readProjectConfiguration(host, options.project).root;
   const pathToRoot = relative(
     `${process.cwd()}/${projectRoot}`,
     process.cwd()

@@ -50,6 +50,7 @@
     "@nrwl/devkit": "12.8.0",
     "@nrwl/eslint-plugin-nx": "12.8.0",
     "@nrwl/jest": "12.8.0",
+    "@nrwl/linter": "12.8.0",
     "@nrwl/nx-cloud": "12.3.10",
     "@nrwl/nx-plugin": "12.8.0",
     "@nrwl/react": "12.8.0",

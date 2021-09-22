@@ -59,6 +59,7 @@ Options:
   --npmClient             The npm client to use for Capacitor.
   --webDir                The directory of your projects built web assets.
   --dryRun                Runs through and reports activity without writing to disk.
+  --skip-nx-cache         Skip the use of Nx cache.
   --help                  Show available options for project target.
 ```
 

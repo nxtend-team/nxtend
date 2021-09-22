@@ -4,7 +4,7 @@ title: Capacitor Project
 sidebar_label: Capacitor Project
 ---
 
-Runs a schematic that generates a new Capacitor project based on an existing frontend application.
+Add Capacitor to an application.
 
 ## Usage
 
