@@ -6,7 +6,7 @@ sidebar_label: Getting Started
 
 Adding the `@nxtend/ionic-react` plugin to your Nx workspace is trivial, and works just like any other Nx plugin.
 
-## Initialize Plugin
+## Install Plugin
 
 ```
 # npm
@@ -14,12 +14,6 @@ npm install --save-dev --exact @nxtend/ionic-react
 
 # yarn
 yarn add --save-dev --exact @nxtend/ionic-react
-
-# Nx CLI
-nx generate @nxtend/ionic-react:init
-
-# Angular CLI
-ng generate @nxtend/ionic-react:init
 ```
 
 ## Generating Applications
