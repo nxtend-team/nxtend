@@ -6,14 +6,7 @@ sidebar_label: Getting Started
 
 The `@nxtend/capacitor` plugin will be added to your workspace and a Capacitor project will be automatically generated with a new `@nxtend/ionic-react` application. However, you can add Capacitor to an existing project.
 
-## Initialize Plugin
-
-First, you need to initialize the `@nxtend/capacitor` plugin:
-
-```
-# Angular CLI
-ng add @nxtend/capacitor
-```
+## Install Plugin
 
 ```
 # npm
@@ -21,12 +14,6 @@ npm install --save-dev --exact @nxtend/capacitor
 
 # yarn
 yarn add --save-dev --exact @nxtend/capacitor
-
-# Nx CLI
-nx generate @nxtend/capacitor:init
-
-# Angular CLI
-ng generate @nxtend/capacitor:init
 ```
 
 ## Add Capacitor to Existing Project
