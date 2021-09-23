@@ -1,5 +1,4 @@
-import { Tree, updateJson, writeJson } from '@nrwl/devkit';
-import { join } from 'path';
+import { normalizePath, Tree, updateJson, writeJson } from '@nrwl/devkit';
 import { capacitorVersion } from '../../../utils/versions';
 import { NormalizedSchema } from '../schema';
 
@@ -7,7 +6,9 @@ export function updateProjectPackageJson(
   host: Tree,
   options: NormalizedSchema
 ) {
-  const projectPackageJson = join(options.projectRoot, 'package.json');
+  const projectPackageJson = normalizePath(
+    options.projectRoot + '/package.json'
+  );
   if (host.exists(projectPackageJson)) {
     updateJson(host, projectPackageJson, (json) => {
       return {
