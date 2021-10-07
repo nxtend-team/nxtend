@@ -1,0 +1,13 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "name": "Nxtend Ionic Angular",
+  "version": "0.0.1",
+  "generators": {
+    "application": {
+      "factory": "./src/generators/application/generator",
+      "schema": "./src/generators/application/schema.json",
+      "aliases": ["app"],
+      "description": "Create an Ionic Angular application."
+    }
+  }
+}
