@@ -41,6 +41,15 @@
           "alwaysAddToPackageJson": false
         }
       }
+    },
+    "12.0.0": {
+      "version": "12.0.0-beta.0",
+      "packages": {
+        "@ionic/angular": {
+          "version": "^5.8.3",
+          "alwaysAddToPackageJson": false
+        }
+      }
     }
   }
 }
