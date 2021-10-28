@@ -13,7 +13,6 @@ const asyncTimeout = 600_000;
 const defaultCapacitorProjectOptions: CapacitorGeneratorSchema = {
   project: 'test-app',
   appId: 'test-id',
-  npmClient: 'npm',
   skipFormat: true,
 };
 
@@ -27,13 +26,13 @@ async function generateApp(options: CapacitorGeneratorSchema) {
 
   await runNxCommandAsync(`generate @nrwl/react:app ${options.project}`);
   await runNxCommandAsync(
-    `generate @nxtend/capacitor:capacitor-project --project ${options.project} --npmClient ${options.npmClient}`
+    `generate @nxtend/capacitor:capacitor-project --project ${options.project}`
   );
 }
 
 async function buildAndTestApp(plugin: string) {
   const buildResults = await runNxCommandAsync(`build ${plugin}`);
-  expect(buildResults.stdout).toContain('Built at');
+  expect(buildResults.stdout).toContain('compiled');
 
   const lintResults = await runNxCommandAsync(`lint ${plugin}`);
   expect(lintResults.stdout).toContain('All files pass linting');
