@@ -29,13 +29,6 @@
     "docs": {
       "tags": []
     },
-    "firebase": {
-      "tags": []
-    },
-    "firebase-e2e": {
-      "tags": [],
-      "implicitDependencies": ["firebase"]
-    },
     "ionic-angular": {
       "tags": [],
       "implicitDependencies": ["capacitor"]

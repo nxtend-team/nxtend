@@ -4,8 +4,6 @@
     "capacitor": "packages/capacitor",
     "capacitor-e2e": "e2e/capacitor-e2e",
     "docs": "apps/docs",
-    "firebase": "packages/firebase",
-    "firebase-e2e": "e2e/firebase-e2e",
     "ionic-angular": "packages/ionic-angular",
     "ionic-angular-e2e": "e2e/ionic-angular-e2e",
     "ionic-react": "packages/ionic-react",

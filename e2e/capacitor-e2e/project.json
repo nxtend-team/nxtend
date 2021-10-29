@@ -10,5 +10,7 @@
         "jestConfig": "e2e/capacitor-e2e/jest.config.js"
       }
     }
-  }
+  },
+  "tags": [],
+  "implicitDependencies": ["capacitor"]
 }

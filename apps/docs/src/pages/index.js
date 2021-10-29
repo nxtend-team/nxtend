@@ -8,18 +8,21 @@ import styles from './styles.module.css';
 
 const features = [
   {
+    title: <>Extend your Nx Workspace</>,
+    description: (
+      <>
+        Add additional plugins to enable capacilities for new frameworks and
+        utilities in the Nx CLI.
+      </>
+    ),
+  },
+  {
     title: <>Develop Cross-Platform Applications in a Monorepo</>,
     description: (
       <>
         The Ionic and Capacitor plugins enable developers to build
         cross-platform applications in an Nx workspace.
       </>
-    ),
-  },
-  {
-    title: <>Integrate Firebase</>,
-    description: (
-      <>Utilize Firebase to develop applications in an Nx workspace.</>
     ),
   },
   {

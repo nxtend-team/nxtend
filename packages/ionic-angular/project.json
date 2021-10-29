@@ -2,7 +2,7 @@
   "root": "packages/ionic-angular",
   "sourceRoot": "packages/ionic-angular/src",
   "projectType": "library",
-  "schematics": {},
+  "generators": {},
   "targets": {
     "lint": {
       "executor": "@nrwl/linter:eslint",
@@ -58,5 +58,7 @@
       },
       "outputs": ["{options.outputPath}"]
     }
-  }
+  },
+  "tags": [],
+  "implicitDependencies": ["capacitor"]
 }
