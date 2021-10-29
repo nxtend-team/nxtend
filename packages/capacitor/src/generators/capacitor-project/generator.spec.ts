@@ -94,7 +94,6 @@ describe('capacitor-project', () => {
     );
     expect(projectConfiguration.targets.add.options).toEqual({
       cmd: 'add',
-      packageInstall: true,
     });
     expect(projectConfiguration.targets.add.configurations['ios'].cmd).toEqual(
       'add ios'
@@ -108,7 +107,6 @@ describe('capacitor-project', () => {
     );
     expect(projectConfiguration.targets.copy.options).toEqual({
       cmd: 'copy',
-      packageInstall: false,
     });
     expect(projectConfiguration.targets.copy.configurations['ios'].cmd).toEqual(
       'copy ios'
@@ -122,7 +120,6 @@ describe('capacitor-project', () => {
     );
     expect(projectConfiguration.targets.open.options).toEqual({
       cmd: 'open',
-      packageInstall: false,
     });
     expect(projectConfiguration.targets.open.configurations['ios'].cmd).toEqual(
       'open ios'
@@ -136,7 +133,6 @@ describe('capacitor-project', () => {
     );
     expect(projectConfiguration.targets.sync.options).toEqual({
       cmd: 'sync',
-      packageInstall: true,
     });
     expect(projectConfiguration.targets.sync.configurations['ios'].cmd).toEqual(
       'sync ios'
@@ -150,7 +146,6 @@ describe('capacitor-project', () => {
     );
     expect(projectConfiguration.targets.update.options).toEqual({
       cmd: 'update',
-      packageInstall: true,
     });
     expect(
       projectConfiguration.targets.update.configurations['ios'].cmd
