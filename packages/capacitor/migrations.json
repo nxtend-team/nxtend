@@ -26,6 +26,14 @@
       "factory": "./src/migrations/update-11-0-0/update-11-0-0"
     }
   },
+  "generators": {
+    "capacitor-3-migration-12-0-0": {
+      "version": "12.0.0-beta.0",
+      "description": "Display Capacitor 3 migration guide.",
+      "cli": "nx",
+      "implementation": "./src/migrations/update-12-0-0/capacitor-3-migration-12-0-0"
+    }
+  },
   "packageJsonUpdates": {
     "1.1.0": {
       "version": "1.1.0-beta.1",
