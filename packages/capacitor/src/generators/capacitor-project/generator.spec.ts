@@ -17,7 +17,6 @@ describe('capacitor-project', () => {
     project: 'capacitor-app',
     appId: 'com.example.capacitorapp',
     appName: 'Capacitor App',
-    npmClient: 'yarn',
     skipFormat: true,
   };
 
@@ -34,7 +33,7 @@ describe('capacitor-project', () => {
   it('should add files', async () => {
     await generator(appTree, options);
 
-    expect(appTree.exists(`${projectRoot}/capacitor.config.json`)).toBeTruthy();
+    expect(appTree.exists(`${projectRoot}/capacitor.config.ts`)).toBeTruthy();
     expect(appTree.exists(`${projectRoot}/package.json`)).toBeTruthy();
     expect(appTree.exists(`${projectRoot}/.gitignore`)).toBeTruthy();
   });
@@ -69,14 +68,11 @@ describe('capacitor-project', () => {
 
   it('should calculate webDir relative path', async () => {
     await generator(appTree, options);
-    const capacitorConfigJson = readJson(
-      appTree,
-      `${projectRoot}/capacitor.config.json`
-    );
+    const capacitorConfigJson = appTree
+      .read(`${projectRoot}/capacitor.config.ts`)
+      .toString();
 
-    expect(capacitorConfigJson.webDir).toEqual(
-      `../../dist/apps/${options.project}`
-    );
+    expect(capacitorConfigJson).toContain(`../../dist/apps/${options.project}`);
   });
 
   it('should update workspace.json', async () => {
@@ -162,27 +158,5 @@ describe('capacitor-project', () => {
     expect(
       projectConfiguration.targets.update.configurations['android'].cmd
     ).toEqual('update android');
-  });
-
-  describe('--npmClient', () => {
-    it('npm', async () => {
-      await generator(appTree, { ...options, npmClient: 'npm' });
-      const capacitorConfigJson = readJson(
-        appTree,
-        `apps/${options.project}/capacitor.config.json`
-      );
-
-      expect(capacitorConfigJson.npmClient).toEqual('npm');
-    });
-
-    it('yarn', async () => {
-      await generator(appTree, { ...options, npmClient: 'yarn' });
-      const capacitorConfigJson = readJson(
-        appTree,
-        `${projectRoot}/capacitor.config.json`
-      );
-
-      expect(capacitorConfigJson.npmClient).toEqual('yarn');
-    });
   });
 });

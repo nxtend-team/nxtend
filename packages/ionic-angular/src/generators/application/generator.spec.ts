@@ -187,7 +187,7 @@ describe('application schematic', () => {
       });
 
       expect(
-        readJson(appTree, `apps/my-dir/my-app/capacitor.config.json`)
+        appTree.exists(`apps/my-dir/my-app/capacitor.config.ts`)
       ).toBeDefined();
     });
   });
@@ -249,7 +249,7 @@ describe('application schematic', () => {
         await applicationGenerator(appTree, { ...options, capacitor: true });
 
         expect(
-          readJson(appTree, `${projectRoot}/capacitor.config.json`)
+          appTree.exists(`${projectRoot}/capacitor.config.ts`)
         ).toBeDefined();
       });
     });

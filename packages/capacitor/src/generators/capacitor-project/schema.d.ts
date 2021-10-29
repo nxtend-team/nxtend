@@ -3,7 +3,6 @@ export interface CapacitorGeneratorSchema {
   appId: string;
   appName?: string;
   webDir?: string;
-  npmClient: string;
   skipFormat: boolean;
 }
 

@@ -42,7 +42,7 @@ describe('application', () => {
 
     // Capacitor files
     if (options.capacitor) {
-      expect(tree.exists(`${projectRoot}/capacitor.config.json`)).toBeTruthy();
+      expect(tree.exists(`${projectRoot}/capacitor.config.ts`)).toBeTruthy();
     }
   }
 
@@ -174,7 +174,7 @@ describe('application', () => {
       });
 
       expect(
-        readJson(appTree, `apps/my-dir/my-app/capacitor.config.json`)
+        appTree.exists(`apps/my-dir/my-app/capacitor.config.ts`)
       ).toBeDefined();
     });
   });
