@@ -7,7 +7,7 @@ import { NormalizedSchema } from '../schema';
 
 export function addProject(host: Tree, options: NormalizedSchema) {
   const projectConfiguration = readProjectConfiguration(host, options.project);
-  const commands = ['add', 'copy', 'open', 'sync', 'update'];
+  const commands = ['add', 'copy', 'open', 'run', 'sync', 'update'];
   const platforms = ['ios', 'android'];
 
   projectConfiguration.targets.cap = {
@@ -20,14 +20,10 @@ export function addProject(host: Tree, options: NormalizedSchema) {
   let command: string, platform: string;
 
   for (command of commands) {
-    const packageInstall =
-      command === 'add' || command === 'update' || command === 'sync';
-
     projectConfiguration.targets[command] = {
       executor: `@nxtend/capacitor:cap`,
       options: {
         cmd: `${command}`,
-        packageInstall,
       },
       configurations: {},
     };
