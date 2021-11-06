@@ -10,5 +10,7 @@
         "jestConfig": "e2e/ionic-react-e2e/jest.config.js"
       }
     }
-  }
+  },
+  "tags": [],
+  "implicitDependencies": ["ionic-react"]
 }

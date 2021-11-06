@@ -41,17 +41,5 @@ module.exports = {
         },
       ],
     },
-    {
-      type: 'category',
-      label: 'Firebase',
-      items: [
-        'firebase/overview',
-        'firebase/getting-started',
-        {
-          Schematics: ['firebase/schematics/firebase-project'],
-          Builders: ['firebase/builders/firebase'],
-        },
-      ],
-    },
   ],
 };

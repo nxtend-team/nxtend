@@ -15,5 +15,6 @@
         "outputPath": "dist/apps/docs"
       }
     }
-  }
+  },
+  "tags": []
 }
