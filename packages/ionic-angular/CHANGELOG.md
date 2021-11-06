@@ -9,6 +9,10 @@
 - update Ionic to 5.8.3
 - update list starter template
 
+## Bug Fixes
+
+- fix styles asset path in workspace when generating an app on Windows
+
 ## BREAKING CHANGES
 
 - Angular CLI is no longer officially supported
