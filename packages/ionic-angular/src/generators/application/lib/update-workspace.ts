@@ -1,4 +1,5 @@
 import {
+  normalizePath,
   readProjectConfiguration,
   Tree,
   updateProjectConfiguration,
@@ -22,7 +23,9 @@ export function updateWorkspace(host: Tree, options: NormalizedSchema) {
   project.targets.build.options.styles = [
     ...project.targets.build.options.styles,
     {
-      input: `${options.appProjectRoot}/src/theme/variables.scss`,
+      input: normalizePath(
+        `${options.appProjectRoot}/src/theme/variables.scss`
+      ),
     },
   ];
 
