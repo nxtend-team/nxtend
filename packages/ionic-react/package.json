@@ -19,9 +19,9 @@
     "migrations": "./migrations.json"
   },
   "dependencies": {
-    "@nrwl/devkit": "^12.0.0",
-    "@nrwl/linter": "^12.0.0",
-    "@nrwl/react": "^12.0.0",
-    "@nxtend/capacitor": "^12.0.0-beta.1"
+    "@nrwl/devkit": "^13.0.0",
+    "@nrwl/linter": "^13.0.0",
+    "@nrwl/react": "^13.0.0",
+    "@nxtend/capacitor": "^12.0.0-beta.2"
   }
 }

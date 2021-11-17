@@ -1,5 +1,15 @@
 # Changelog
 
+# 12.0.0-beta.2
+
+## Features
+
+- support Nx 13
+
+## Bug Fixes
+
+- Fixes expected $id instead of id when running generators
+
 # 12.0.0
 
 ## Features

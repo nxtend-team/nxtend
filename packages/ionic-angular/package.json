@@ -1,6 +1,6 @@
 {
   "name": "@nxtend/ionic-angular",
-  "version": "12.0.0-beta.1",
+  "version": "12.0.0-beta.2",
   "description": "An Nx plugin for developing Ionic React applications and libraries",
   "author": {
     "name": "Devin Shoemaker",
@@ -19,7 +19,7 @@
     "migrations": "./migrations.json"
   },
   "dependencies": {
-    "@nrwl/angular": "^12.0.0",
-    "@nxtend/capacitor": "^12.0.0-beta.1"
+    "@nrwl/angular": "^13.0.0",
+    "@nxtend/capacitor": "^12.0.0-beta.2"
   }
 }
