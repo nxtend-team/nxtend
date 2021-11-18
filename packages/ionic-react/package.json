@@ -24,6 +24,6 @@
   "peerDependencies": {
     "@nrwl/linter": "^12.0.0",
     "@nrwl/react": "^12.0.0",
-    "@nxtend/capacitor": "^12.0.0-beta.1"
+    "@nxtend/capacitor": "^12.0.0"
   }
 }
