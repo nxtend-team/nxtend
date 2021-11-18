@@ -9,11 +9,7 @@ Adding the `@nxtend/ionic-react` plugin to your Nx workspace is trivial, and wor
 ## Install Plugin
 
 ```
-# npm
-npm install --save-dev --exact @nxtend/ionic-react
-
-# yarn
-yarn add --save-dev --exact @nxtend/ionic-react
+npm install --save-dev --exact @nxtend/ionic-react @nxtend/capacitor @nrwl/react
 ```
 
 ## Generating Applications
