@@ -100,7 +100,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [12.x]
+        node-version: [16.x]
 
     env:
       NX_CLOUD_AUTH_TOKEN: ${{ secrets.NX_CLOUD_AUTH_TOKEN }}
