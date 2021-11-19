@@ -1,6 +1,7 @@
 import {
   ensureNxProject,
   readJson,
+  runCommandAsync,
   runNxCommandAsync,
   uniq,
 } from '@nrwl/nx-plugin/testing';
@@ -38,6 +39,7 @@ describe('application e2e', () => {
       async () => {
         const appName = uniq('ionic-react');
         ensureNxProject('@nxtend/ionic-react', 'dist/packages/ionic-react');
+        await runCommandAsync('yarn add -D @nxtend/capacitor');
         await runNxCommandAsync(
           `generate @nxtend/ionic-react:app --name ${appName} --capacitor false --template blank`
         );
@@ -52,6 +54,7 @@ describe('application e2e', () => {
       async () => {
         const appName = uniq('ionic-react');
         ensureNxProject('@nxtend/ionic-react', 'dist/packages/ionic-react');
+        await runCommandAsync('yarn add -D @nxtend/capacitor');
         await runNxCommandAsync(
           `generate @nxtend/ionic-react:app --name ${appName} --capacitor false --template list`
         );
@@ -66,6 +69,7 @@ describe('application e2e', () => {
       async () => {
         const appName = uniq('ionic-react');
         ensureNxProject('@nxtend/ionic-react', 'dist/packages/ionic-react');
+        await runCommandAsync('yarn add -D @nxtend/capacitor');
         await runNxCommandAsync(
           `generate @nxtend/ionic-react:app --name ${appName} --capacitor false --template sidemenu`
         );
@@ -80,6 +84,7 @@ describe('application e2e', () => {
       async () => {
         const appName = uniq('ionic-react');
         ensureNxProject('@nxtend/ionic-react', 'dist/packages/ionic-react');
+        await runCommandAsync('yarn add -D @nxtend/capacitor');
         await runNxCommandAsync(
           `generate @nxtend/ionic-react:app --name ${appName} --capacitor false --template tabs`
         );
@@ -101,6 +106,7 @@ describe('application e2e', () => {
         };
 
         ensureNxProject('@nxtend/ionic-react', 'dist/packages/ionic-react');
+        await runCommandAsync('yarn add -D @nxtend/capacitor');
         await runNxCommandAsync(
           `generate @nxtend/ionic-react:app ${options.name} --directory ${options.directory} --capacitor false`
         );
@@ -121,6 +127,7 @@ describe('application e2e', () => {
         };
 
         ensureNxProject('@nxtend/ionic-react', 'dist/packages/ionic-react');
+        await runCommandAsync('yarn add -D @nxtend/capacitor');
         await runNxCommandAsync(
           `generate @nxtend/ionic-react:app ${options.name} --tags ${options.tags} --capacitor false`
         );
