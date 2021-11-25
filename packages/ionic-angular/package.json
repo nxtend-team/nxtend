@@ -19,6 +19,9 @@
     "migrations": "./migrations.json"
   },
   "dependencies": {
+    "@nrwl/devkit": "^12.0.0"
+  },
+  "peerDependencies": {
     "@nrwl/angular": "^12.0.0",
     "@nxtend/capacitor": "^12.0.0-beta.1"
   }
