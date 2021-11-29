@@ -1,6 +1,6 @@
 {
   "name": "@nxtend/ionic-angular",
-  "version": "12.0.0-beta.1",
+  "version": "12.0.0",
   "description": "An Nx plugin for developing Ionic React applications and libraries",
   "author": {
     "name": "Devin Shoemaker",
