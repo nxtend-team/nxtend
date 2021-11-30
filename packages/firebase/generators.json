@@ -1,0 +1,12 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "name": "NxtendFirebase",
+  "version": "0.0.1",
+  "generators": {
+    "firebase-project": {
+      "factory": "./src/generators/firebase-project/generator",
+      "schema": "./src/generators/firebase-project/schema.json",
+      "description": "Firebase project schematic"
+    }
+  }
+}
