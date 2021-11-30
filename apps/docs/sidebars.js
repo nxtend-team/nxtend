@@ -25,7 +25,7 @@ module.exports = {
         'ionic-angular/getting-started',
         'ionic-angular/capacitor',
         {
-          Schematics: ['ionic-angular/generators/application'],
+          Generators: ['ionic-angular/generators/application'],
         },
       ],
     },
