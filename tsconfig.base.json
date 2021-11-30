@@ -17,6 +17,7 @@
     "baseUrl": ".",
     "paths": {
       "@nxtend/capacitor": ["packages/capacitor/src/index.ts"],
+      "@nxtend/firebase": ["packages/firebase/src/index.ts"],
       "@nxtend/ionic-angular": ["packages/ionic-angular/src/index.ts"],
       "@nxtend/ionic-react": ["packages/ionic-react/src/index.ts"]
     }

@@ -18,34 +18,7 @@
     "tsconfig.base.json": "*",
     ".eslintrc.json": "*"
   },
-  "projects": {
-    "capacitor": {
-      "tags": []
-    },
-    "capacitor-e2e": {
-      "tags": [],
-      "implicitDependencies": ["capacitor"]
-    },
-    "docs": {
-      "tags": []
-    },
-    "ionic-angular": {
-      "tags": [],
-      "implicitDependencies": ["capacitor"]
-    },
-    "ionic-angular-e2e": {
-      "tags": [],
-      "implicitDependencies": ["ionic-angular"]
-    },
-    "ionic-react": {
-      "tags": [],
-      "implicitDependencies": ["capacitor"]
-    },
-    "ionic-react-e2e": {
-      "tags": [],
-      "implicitDependencies": ["ionic-react"]
-    }
-  },
+  "projects": {},
   "tasksRunnerOptions": {
     "default": {
       "runner": "@nrwl/nx-cloud",

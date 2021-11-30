@@ -1,0 +1,24 @@
+{
+  "name": "@nxtend/firebase",
+  "version": "11.1.2",
+  "description": "An Nx plugin for developing cross-platform applications using Capacitor",
+  "author": {
+    "name": "Devin Shoemaker",
+    "email": "devinshoe@gmail.com"
+  },
+  "homepage": "https://nxtend.dev/docs/capacitor/getting-started",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nxtend-team/nxtend.git"
+  },
+  "license": "MIT",
+  "main": "src/index.js",
+  "executors": "./executors.json",
+  "generators": "./generators.json",
+  "dependencies": {
+    "@nrwl/devkit": "^12.0.0"
+  },
+  "peerDependencies": {
+    "@nrwl/workspace": "^12.0.0"
+  }
+}

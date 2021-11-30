@@ -41,5 +41,17 @@ module.exports = {
         },
       ],
     },
+    {
+      type: 'category',
+      label: 'Firebase',
+      items: [
+        'firebase/overview',
+        'firebase/getting-started',
+        {
+          Generators: ['firebase/generators/firebase-project'],
+          Executors: ['firebase/executors/firebase'],
+        },
+      ],
+    },
   ],
 };

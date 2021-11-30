@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "cli": "nx",
+  "title": "Firebase builder",
+  "description": "Run a Firebase command.",
+  "type": "object",
+  "properties": {
+    "cmd": {
+      "description": "The Firebase command.",
+      "type": "string"
+    }
+  },
+  "required": []
+}
