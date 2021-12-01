@@ -6,6 +6,13 @@
     "firebase-project": {
       "factory": "./src/generators/firebase-project/generator",
       "schema": "./src/generators/firebase-project/schema.json",
+      "description": "Firebase project generator"
+    }
+  },
+  "schematics": {
+    "firebase-project": {
+      "factory": "./src/generators/firebase-project/generator#firebaseProjectSchematic",
+      "schema": "./src/generators/firebase-project/schema.json",
       "description": "Firebase project schematic"
     }
   }

@@ -1,5 +1,11 @@
 # Changelog
 
+# 12.1.0
+
+## Features
+
+- restore Angular CLI support
+
 # 12.0.0
 
 ## Features

@@ -1,4 +1,4 @@
-import { formatFiles, Tree } from '@nrwl/devkit';
+import { convertNxGenerator, formatFiles, Tree } from '@nrwl/devkit';
 import { addCapacitorConfig } from './lib/add-capacitor-config';
 import { addDependencies } from './lib/add-dependencies';
 import { addProject } from './lib/add-project';
@@ -26,3 +26,6 @@ export async function capacitorProjectGenerator(
 }
 
 export default capacitorProjectGenerator;
+export const capacitorProjectSchematic = convertNxGenerator(
+  capacitorProjectGenerator
+);
