@@ -8,5 +8,12 @@
       "schema": "./src/generators/capacitor-project/schema.json",
       "description": "Add a Capacitor project"
     }
+  },
+  "schematics": {
+    "capacitor-project": {
+      "factory": "./src/generators/capacitor-project/generator#capacitorProjectSchematic",
+      "schema": "./src/generators/capacitor-project/schema.json",
+      "description": "Add a Capacitor project"
+    }
   }
 }

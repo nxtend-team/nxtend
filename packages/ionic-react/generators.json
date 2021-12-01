@@ -9,5 +9,13 @@
       "aliases": ["app"],
       "description": "Create an Ionic React application."
     }
+  },
+  "schematics": {
+    "application": {
+      "factory": "./src/generators/application/generator#applicationSchematic",
+      "schema": "./src/generators/application/schema.json",
+      "aliases": ["app"],
+      "description": "Create an Ionic React application."
+    }
   }
 }

@@ -1,4 +1,9 @@
-import { formatFiles, GeneratorCallback, Tree } from '@nrwl/devkit';
+import {
+  convertNxGenerator,
+  formatFiles,
+  GeneratorCallback,
+  Tree,
+} from '@nrwl/devkit';
 import { addAngular } from './lib/add-angular';
 import { addCapacitor } from './lib/add-capacitor';
 import { addDependencies } from './lib/add-dependencies';
@@ -43,3 +48,4 @@ export async function applicationGenerator(
 }
 
 export default applicationGenerator;
+export const applicationSchematic = convertNxGenerator(applicationGenerator);

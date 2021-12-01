@@ -18,6 +18,12 @@
   "nx-migrations": {
     "migrations": "./migrations.json"
   },
+  "schematics": "./generators.json",
+  "builders": "./executors.json",
+  "ng-update": {
+    "requirements": {},
+    "migrations": "./migrations.json"
+  },
   "dependencies": {
     "@nrwl/devkit": "^12.0.0"
   },

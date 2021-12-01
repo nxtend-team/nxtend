@@ -1,4 +1,4 @@
-import { formatFiles, Tree } from '@nrwl/devkit';
+import { convertNxGenerator, formatFiles, Tree } from '@nrwl/devkit';
 import { addDependencies } from './lib/add-dependencies';
 import { addProject } from './lib/add-project';
 import { FirebaseProjectGeneratorSchema } from './schema';
@@ -18,3 +18,6 @@ export async function firebaseProjectGenerator(
 }
 
 export default firebaseProjectGenerator;
+export const firebaseProjectSchematic = convertNxGenerator(
+  firebaseProjectGenerator
+);

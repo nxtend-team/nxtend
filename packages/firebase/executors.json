@@ -6,5 +6,12 @@
       "schema": "./src/executors/firebase/schema.json",
       "description": "Firebase executor"
     }
+  },
+  "builders": {
+    "firebase": {
+      "implementation": "./src/executors/firebase/compat",
+      "schema": "./src/executors/firebase/schema.json",
+      "description": "Firebase builder"
+    }
   }
 }
