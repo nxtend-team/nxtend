@@ -25,10 +25,10 @@
     "migrations": "./migrations.json"
   },
   "dependencies": {
-    "@nrwl/devkit": "^12.0.0"
+    "@nrwl/devkit": "^13.0.0"
   },
   "peerDependencies": {
-    "@nrwl/angular": "^12.0.0",
-    "@nxtend/capacitor": "^12.0.0"
+    "@nrwl/angular": "^13.0.0",
+    "@nxtend/capacitor": "^13.0.0"
   }
 }
