@@ -9,6 +9,7 @@ export interface ApplicationGeneratorSchema {
   template: string;
   capacitor: boolean;
   skipFormat: boolean;
+  standaloneConfig?: boolean;
 }
 
 export interface NormalizedSchema extends ApplicationGeneratorSchema {

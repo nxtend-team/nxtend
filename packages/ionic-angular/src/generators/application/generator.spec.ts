@@ -254,4 +254,30 @@ describe('application schematic', () => {
       });
     });
   });
+
+  describe('--standaloneConfig', () => {
+    describe('true', () => {
+      it('should generate package.json', async () => {
+        appTree = createTreeWithEmptyWorkspace(2);
+        await applicationGenerator(appTree, {
+          ...options,
+          standaloneConfig: true,
+        });
+
+        expect(appTree.exists(`${projectRoot}/project.json`)).toBeDefined();
+      });
+    });
+
+    describe('false', () => {
+      it('should not generate package.json', async () => {
+        appTree = createTreeWithEmptyWorkspace(2);
+        await applicationGenerator(appTree, {
+          ...options,
+          standaloneConfig: false,
+        });
+
+        expect(appTree.exists(`${projectRoot}/project.json`)).toBeFalsy();
+      });
+    });
+  });
 });
