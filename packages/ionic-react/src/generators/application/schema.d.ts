@@ -7,6 +7,7 @@ export interface ApplicationGeneratorSchema {
   template: 'blank' | 'list' | 'sidemenu' | 'tabs';
   capacitor: boolean;
   skipFormat: boolean;
+  standaloneConfig?: boolean;
 }
 
 export interface NormalizedSchema extends ApplicationGeneratorSchema {

@@ -5,6 +5,7 @@
 ## Features
 
 - restore Angular CLI support
+- add `--standaloneConfig` to application generator to generate a `package.json` instead of updating the `workspace.json`
 
 # 12.0.0
 
