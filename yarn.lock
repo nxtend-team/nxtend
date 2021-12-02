@@ -176,13 +176,6 @@
     ora "5.4.1"
     rxjs "6.6.7"
 
-"@angular/core@^13.0.0":
-  version "13.0.2"
-  resolved "https://registry.yarnpkg.com/@angular/core/-/core-13.0.2.tgz#786bb1242d69e8b7a2cbae224448c27e2f1fc064"
-  integrity sha512-6Jbct50lncMqzwLILzfmwQRK8eOEMv0quCL3pQptEpYPSlPqKz6QRxD76BykSUOs7XYJ/KdZmu3uGcT2Q/DUVg==
-  dependencies:
-    tslib "^2.3.0"
-
 "@babel/code-frame@7.12.11", "@babel/code-frame@^7.12.11":
   version "7.12.11"
   resolved "https://registry.yarnpkg.com/@babel/code-frame/-/code-frame-7.12.11.tgz#f4ad435aa263db935b8f10f2c552d23fb716a63f"
