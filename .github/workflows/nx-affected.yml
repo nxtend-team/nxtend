@@ -27,7 +27,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - uses: bahmutov/npm-install@v1
       - run: git fetch --no-tags --prune --depth=5 origin main
-      - run: yarn format:check --base=origin/main --parallel
+      - run: npx nx format:check --base=origin/main --parallel
 
   build:
     runs-on: ubuntu-latest
@@ -49,7 +49,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - uses: bahmutov/npm-install@v1
       - run: git fetch --no-tags --prune --depth=5 origin main
-      - run: yarn affected:build --base=origin/main --with-deps --parallel
+      - run: npx nx affected:build --base=origin/main --with-deps --parallel
 
   lint:
     runs-on: ubuntu-latest
@@ -71,7 +71,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - uses: bahmutov/npm-install@v1
       - run: git fetch --no-tags --prune --depth=5 origin main
-      - run: yarn affected:lint --base=origin/main --parallel
+      - run: npx nx affected:lint --base=origin/main --parallel
 
   test:
     runs-on: ubuntu-latest
@@ -93,7 +93,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - uses: bahmutov/npm-install@v1
       - run: git fetch --no-tags --prune --depth=5 origin main
-      - run: yarn affected:test --base=origin/main --parallel
+      - run: npx nx affected:test --base=origin/main --parallel
 
   e2e:
     runs-on: ubuntu-latest
@@ -116,5 +116,5 @@ jobs:
       - uses: bahmutov/npm-install@v1
       - run: npm -g i firebase-tools
       - run: git fetch --no-tags --prune --depth=5 origin main
-      - run: yarn affected:build --base=origin/main --with-deps --parallel
-      - run: yarn affected:e2e --base=origin/main
+      - run: npx nx affected:build --base=origin/main --with-deps --parallel
+      - run: npx nx affected:e2e --base=origin/main
