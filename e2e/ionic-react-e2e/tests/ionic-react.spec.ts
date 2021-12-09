@@ -2,7 +2,6 @@ import {
   ensureNxProject,
   patchPackageJsonForPlugin,
   readJson,
-  runCommandAsync,
   runNxCommandAsync,
   runPackageManagerInstall,
   uniq,
@@ -70,8 +69,11 @@ describe('application e2e', () => {
       'list',
       async () => {
         const appName = uniq('ionic-react');
-        ensureNxProject('@nxtend/ionic-react', 'dist/packages/ionic-react');
-        await runCommandAsync('yarn add -D @nxtend/capacitor');
+        ensureNxProjectWithDeps(
+          '@nxtend/ionic-react',
+          'dist/packages/ionic-react',
+          [['@nxtend/capacitor', 'dist/packages/capacitor']]
+        );
         await runNxCommandAsync(
           `generate @nxtend/ionic-react:app --name ${appName} --capacitor false --template list`
         );
@@ -85,8 +87,11 @@ describe('application e2e', () => {
       'sidemenu',
       async () => {
         const appName = uniq('ionic-react');
-        ensureNxProject('@nxtend/ionic-react', 'dist/packages/ionic-react');
-        await runCommandAsync('yarn add -D @nxtend/capacitor');
+        ensureNxProjectWithDeps(
+          '@nxtend/ionic-react',
+          'dist/packages/ionic-react',
+          [['@nxtend/capacitor', 'dist/packages/capacitor']]
+        );
         await runNxCommandAsync(
           `generate @nxtend/ionic-react:app --name ${appName} --capacitor false --template sidemenu`
         );
@@ -100,8 +105,11 @@ describe('application e2e', () => {
       'tabs',
       async () => {
         const appName = uniq('ionic-react');
-        ensureNxProject('@nxtend/ionic-react', 'dist/packages/ionic-react');
-        await runCommandAsync('yarn add -D @nxtend/capacitor');
+        ensureNxProjectWithDeps(
+          '@nxtend/ionic-react',
+          'dist/packages/ionic-react',
+          [['@nxtend/capacitor', 'dist/packages/capacitor']]
+        );
         await runNxCommandAsync(
           `generate @nxtend/ionic-react:app --name ${appName} --capacitor false --template tabs`
         );
@@ -122,8 +130,11 @@ describe('application e2e', () => {
           directory: 'subdir',
         };
 
-        ensureNxProject('@nxtend/ionic-react', 'dist/packages/ionic-react');
-        await runCommandAsync('yarn add -D @nxtend/capacitor');
+        ensureNxProjectWithDeps(
+          '@nxtend/ionic-react',
+          'dist/packages/ionic-react',
+          [['@nxtend/capacitor', 'dist/packages/capacitor']]
+        );
         await runNxCommandAsync(
           `generate @nxtend/ionic-react:app ${options.name} --directory ${options.directory} --capacitor false`
         );
@@ -143,8 +154,11 @@ describe('application e2e', () => {
           tags: 'e2etag,e2ePackage',
         };
 
-        ensureNxProject('@nxtend/ionic-react', 'dist/packages/ionic-react');
-        await runCommandAsync('yarn add -D @nxtend/capacitor');
+        ensureNxProjectWithDeps(
+          '@nxtend/ionic-react',
+          'dist/packages/ionic-react',
+          [['@nxtend/capacitor', 'dist/packages/capacitor']]
+        );
         await runNxCommandAsync(
           `generate @nxtend/ionic-react:app ${options.name} --tags ${options.tags} --capacitor false`
         );
