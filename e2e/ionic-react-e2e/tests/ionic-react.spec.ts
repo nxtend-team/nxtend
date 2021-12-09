@@ -1,11 +1,25 @@
 import {
   ensureNxProject,
+  patchPackageJsonForPlugin,
   readJson,
   runCommandAsync,
   runNxCommandAsync,
+  runPackageManagerInstall,
   uniq,
 } from '@nrwl/nx-plugin/testing';
 import { ApplicationGeneratorSchema } from '@nxtend/ionic-react';
+
+export function ensureNxProjectWithDeps(
+  npmPackageName?: string,
+  pluginDistPath?: string,
+  optionalNpmPackages?: [npmPackageName: string, pluginDistPath: string][]
+): void {
+  ensureNxProject(npmPackageName, pluginDistPath);
+  optionalNpmPackages.forEach(([npmPackageName, pluginDistPath]) =>
+    patchPackageJsonForPlugin(npmPackageName, pluginDistPath)
+  );
+  runPackageManagerInstall();
+}
 
 describe('application e2e', () => {
   const asyncTimeout = 300_000;
@@ -38,8 +52,11 @@ describe('application e2e', () => {
       'blank',
       async () => {
         const appName = uniq('ionic-react');
-        ensureNxProject('@nxtend/ionic-react', 'dist/packages/ionic-react');
-        await runCommandAsync('yarn add -D @nxtend/capacitor');
+        ensureNxProjectWithDeps(
+          '@nxtend/ionic-react',
+          'dist/packages/ionic-react',
+          [['@nxtend/capacitor', 'dist/packages/capacitor']]
+        );
         await runNxCommandAsync(
           `generate @nxtend/ionic-react:app --name ${appName} --capacitor false --template blank`
         );
