@@ -158,21 +158,6 @@ describe('application schematic', () => {
       expect(projectE2e.root).toEqual('apps/my-dir/my-app-e2e');
     });
 
-    it('should update nx.json', async () => {
-      await applicationGenerator(appTree, { ...options, directory: 'myDir' });
-
-      const nxJson = readNxJson(appTree);
-      expect(nxJson.projects).toEqual({
-        'my-dir-my-app': {
-          tags: [],
-        },
-        'my-dir-my-app-e2e': {
-          tags: [],
-          implicitDependencies: ['my-dir-my-app'],
-        },
-      });
-    });
-
     it('should generate files', async () => {
       await applicationGenerator(appTree, { ...options, directory: 'myDir' });
 
@@ -230,16 +215,11 @@ describe('application schematic', () => {
     it('should update nx.json', async () => {
       await applicationGenerator(appTree, { ...options, tags: 'one,two' });
 
-      const nxJson = readNxJson(appTree);
-      expect(nxJson.projects).toEqual({
-        'my-app': {
-          tags: ['one', 'two'],
-        },
-        'my-app-e2e': {
-          tags: [],
-          implicitDependencies: ['my-app'],
-        },
-      });
+      const projectConfiguration = readProjectConfiguration(
+        appTree,
+        options.name
+      );
+      expect(projectConfiguration.tags).toEqual(['one', 'two']);
     });
   });
 
