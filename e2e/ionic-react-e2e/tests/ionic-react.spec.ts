@@ -34,7 +34,7 @@ describe('application e2e', () => {
 
   async function buildAndTestApp(plugin: string) {
     const buildResults = await runNxCommandAsync(`build ${plugin}`);
-    expect(buildResults.stdout).toContain('SUCCESS');
+    expect(buildResults.stdout).toContain('compiled');
 
     const lintResults = await runNxCommandAsync(`lint ${plugin}`);
     expect(lintResults.stdout).toContain('All files pass linting');
