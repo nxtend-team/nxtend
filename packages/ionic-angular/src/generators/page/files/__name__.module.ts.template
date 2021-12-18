@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { MyPagePageRoutingModule } from './my-page-routing.module';
+import { <%= className %>PageRoutingModule } from './<%= fileName %>-routing.module';
 
-import { MyPagePage } from './my-page.page';
+import { <%= className %>Page } from './<%= fileName %>.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    MyPagePageRoutingModule
+    <%= className %>PageRoutingModule
   ],
-  declarations: [MyPagePage]
+  declarations: [<%= className %>Page]
 })
-export class MyPagePageModule {}
+export class <%= className %>PageModule {}
