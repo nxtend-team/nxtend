@@ -7,11 +7,8 @@ import {
   Tree,
 } from '@nrwl/devkit';
 import * as path from 'path';
-import { PageGeneratorSchema } from './schema';
-
-interface NormalizedSchema extends PageGeneratorSchema {
-  projectRoot: string;
-}
+import { updateAppRoutingModule } from './lib/update-routing-file';
+import { NormalizedSchema, PageGeneratorSchema } from './schema';
 
 function normalizeOptions(
   tree: Tree,
@@ -50,5 +47,7 @@ function addFiles(tree: Tree, options: NormalizedSchema) {
 export default async function (tree: Tree, options: PageGeneratorSchema) {
   const normalizedOptions = normalizeOptions(tree, options);
   addFiles(tree, normalizedOptions);
+  updateAppRoutingModule(tree, normalizedOptions);
+
   await formatFiles(tree);
 }

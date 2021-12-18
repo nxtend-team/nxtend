@@ -4734,6 +4734,7 @@
     rxjs "6.5.5"
     typescript "4.3.5"
 
+<<<<<<< main
 "@parcel/watcher@2.0.4":
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/@parcel/watcher/-/watcher-2.0.4.tgz#f300fef4cc38008ff4b8c29d92588eced3ce014b"
@@ -4743,6 +4744,9 @@
     node-gyp-build "^4.3.0"
 
 "@phenomnomnominal/tsquery@4.1.1":
+=======
+"@phenomnomnominal/tsquery@4.1.1", "@phenomnomnominal/tsquery@^4.1.1":
+>>>>>>> wip: added automatic route creation for page
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/@phenomnomnominal/tsquery/-/tsquery-4.1.1.tgz#42971b83590e9d853d024ddb04a18085a36518df"
   integrity sha512-jjMmK1tnZbm1Jq5a7fBliM4gQwjxMU7TFoRNwIyzwlO+eHPRCFv/Nv+H/Gi1jc3WR7QURG8D5d0Tn12YGrUqBQ==
