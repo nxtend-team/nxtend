@@ -1,22 +1,29 @@
 import { createTreeWithEmptyWorkspace } from '@nrwl/devkit/testing';
-import { Tree, readProjectConfiguration } from '@nrwl/devkit';
+import { Tree } from '@nrwl/devkit';
 
 import generator from './generator';
 import { PageGeneratorSchema } from './schema';
+import { ApplicationGeneratorSchema } from '../application/schema';
+import { applicationGenerator } from '../application/generator';
 
 describe('page generator', () => {
   let appTree: Tree;
-  const options: PageGeneratorSchema = { project: 'test', name: 'test' };
+
+  const projectOptions: ApplicationGeneratorSchema = {
+    name: 'my-app',
+    template: 'blank',
+    unitTestRunner: 'jest',
+    e2eTestRunner: 'cypress',
+    capacitor: false,
+    skipFormat: false,
+  };
+
+  const options: PageGeneratorSchema = { project: 'my-app', name: 'test' };
   const projectRoot = `apps/${options.project}`;
 
-  beforeEach(() => {
+  beforeEach(async () => {
     appTree = createTreeWithEmptyWorkspace();
-  });
-
-  it('should run successfully', async () => {
-    await generator(appTree, options);
-    const config = readProjectConfiguration(appTree, 'test');
-    expect(config).toBeDefined();
+    await applicationGenerator(appTree, projectOptions);
   });
 
   it('should create page files', async () => {
@@ -60,7 +67,7 @@ describe('page generator', () => {
   });
 
   describe('--directory', () => {
-    it('should create page files', async () => {
+    it('should create page files inside directory', async () => {
       await generator(appTree, { ...options, directory: 'myDir' });
 
       expect(
