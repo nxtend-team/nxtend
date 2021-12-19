@@ -1,7 +1,7 @@
 import { createTreeWithEmptyWorkspace } from '@nrwl/devkit/testing';
-import { Tree } from '@nrwl/devkit';
+import { names, Tree } from '@nrwl/devkit';
 
-import generator from './generator';
+import { pageGenerator } from './generator';
 import { PageGeneratorSchema } from './schema';
 import { ApplicationGeneratorSchema } from '../application/schema';
 import { applicationGenerator } from '../application/generator';
@@ -27,7 +27,7 @@ describe('page generator', () => {
   });
 
   it('should create page files', async () => {
-    await generator(appTree, options);
+    await pageGenerator(appTree, options);
 
     expect(
       appTree.exists(
@@ -66,9 +66,19 @@ describe('page generator', () => {
     ).toBeTruthy();
   });
 
+  it('should add route to app-routing module', async () => {
+    await pageGenerator(appTree, options);
+
+    const appRoutingFilePath = `${projectRoot}/src/app/app-routing.module.ts`;
+
+    expect(appTree.read(appRoutingFilePath, 'utf-8')).toContain(
+      `${names(options.name).className}PageModule`
+    );
+  });
+
   describe('--directory', () => {
     it('should create page files inside directory', async () => {
-      await generator(appTree, { ...options, directory: 'myDir' });
+      await pageGenerator(appTree, { ...options, directory: 'myDir' });
 
       expect(
         appTree.exists(

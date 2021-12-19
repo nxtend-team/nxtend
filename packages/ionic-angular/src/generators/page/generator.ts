@@ -44,10 +44,12 @@ function addFiles(tree: Tree, options: NormalizedSchema) {
   generateFiles(tree, path.join(__dirname, 'files'), pageDir, templateOptions);
 }
 
-export default async function (tree: Tree, options: PageGeneratorSchema) {
+export async function pageGenerator(tree: Tree, options: PageGeneratorSchema) {
   const normalizedOptions = normalizeOptions(tree, options);
   addFiles(tree, normalizedOptions);
   updateAppRoutingModule(tree, normalizedOptions);
 
   await formatFiles(tree);
 }
+
+export default pageGenerator;

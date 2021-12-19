@@ -10,7 +10,6 @@ import {
 import * as path from 'path';
 
 export function updateAppRoutingModule(tree: Tree, options: NormalizedSchema) {
-  // Update app routing
   const appRoutingModuleFilePath = path.join(
     options.projectRoot,
     `/src/app/app-routing.module.ts`
@@ -44,7 +43,6 @@ export function updateAppRoutingModule(tree: Tree, options: NormalizedSchema) {
           if (arrLiteral.elements.length > 0) {
             const nodeArray = arrLiteral.elements;
 
-            // Insert new route
             const insertPosition = nodeArray[0].getStart();
 
             const previousRoutes = vsNode.getFullText();
