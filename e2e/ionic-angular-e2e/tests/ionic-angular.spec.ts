@@ -190,4 +190,36 @@ describe('Ionic Angular Application', () => {
     },
     asyncTimeout
   );
+
+  describe('Ionic Angular Page', () => {
+    it('should create page in project', async () => {
+      const appName = uniq('ionic-angular');
+      ensureNxProject('@nxtend/ionic-angular', 'dist/packages/ionic-angular');
+      await runCommandAsync('yarn add -D @nxtend/capacitor');
+      await runNxCommandAsync(
+        `generate @nxtend/ionic-angular:app --name ${appName} --capacitor false`
+      );
+      await runNxCommandAsync(
+        `generate @nxtend/ionic-angular:page --name my-page --project ${appName}`
+      );
+
+      await buildAndTestApp(appName);
+    });
+
+    describe('--directory', () => {
+      it('should create page in directory', async () => {
+        const appName = uniq('ionic-angular');
+        ensureNxProject('@nxtend/ionic-angular', 'dist/packages/ionic-angular');
+        await runCommandAsync('yarn add -D @nxtend/capacitor');
+        await runNxCommandAsync(
+          `generate @nxtend/ionic-angular:app --name ${appName} --capacitor false`
+        );
+        await runNxCommandAsync(
+          `generate @nxtend/ionic-angular:page --name my-page --project ${appName} --directory my-dir`
+        );
+
+        await buildAndTestApp(appName);
+      });
+    });
+  });
 });
