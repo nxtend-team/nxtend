@@ -19,7 +19,7 @@
     </ion-toolbar>
   </ion-header>
 
-  <h1>Welcome to <%= appProjectName %>!</h1>
+  <h1>Welcome <%= appProjectName %>!</h1>
   <ion-list>
     <<%= prefix %>-message *ngFor="let message of getMessages()" [message]="message"></<%= prefix %>-message>
   </ion-list>

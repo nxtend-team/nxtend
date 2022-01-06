@@ -15,7 +15,8 @@
           "packages/ionic-react/**/*.spec.jsx",
           "packages/ionic-react/**/*.d.ts"
         ]
-      }
+      },
+      "outputs": ["{options.outputFile}"]
     },
     "test": {
       "executor": "@nrwl/jest:jest",
