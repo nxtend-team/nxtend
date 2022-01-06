@@ -49,7 +49,7 @@ const Home: React.FC = () => {
           </IonToolbar>
         </IonHeader>
 
-        <h1>Welcome to <%= appProjectName %>!</h1>
+        <h1>Welcome <%= appProjectName %>!</h1>
         <IonList>
           {messages.map(m => <MessageListItem key={m.id} message={m} />)}
         </IonList>

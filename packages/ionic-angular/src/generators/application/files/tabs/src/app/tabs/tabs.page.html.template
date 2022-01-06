@@ -1,6 +1,6 @@
 <ion-tabs>
 
-  <h1>Welcome to <%= appProjectName %>!</h1>
+  <h1>Welcome <%= appProjectName %>!</h1>
 
   <ion-tab-bar slot="bottom">
     <ion-tab-button tab="tab1">

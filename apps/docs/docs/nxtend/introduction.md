@@ -8,7 +8,7 @@ sidebar_label: Introduction
 
 [Nxtend](https://github.com/nxtend-team/nxtend) is a collection of third-party plugins to extend the functionality of an Nx workspace.
 
-### Supported Nx Version: 12
+### Supported Nx Version: 13
 
 | Plugin                                                  | Description                                                                                              |
 | ------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |

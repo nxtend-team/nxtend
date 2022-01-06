@@ -1,5 +1,9 @@
 # Changelog
 
+# 13.0.0
+
+- support Nx 13
+
 # 12.1.0
 
 ## Features
