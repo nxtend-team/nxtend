@@ -11,6 +11,6 @@ export function addDependencies(host: Tree) {
     {
       '@ionic/angular': ionicAngularVersion,
     },
-    { '@nrwl/react': nxVersion, '@nxtend/capacitor': nxtendCapacitorVersion }
+    { '@nrwl/angular': nxVersion, '@nxtend/capacitor': nxtendCapacitorVersion }
   );
 }
