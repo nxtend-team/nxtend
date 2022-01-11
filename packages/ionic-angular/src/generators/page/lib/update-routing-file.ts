@@ -5,6 +5,7 @@ import { NormalizedSchema } from '../schema';
 import {
   ArrayLiteralExpression,
   Identifier,
+  TypeReferenceNode,
   VariableStatement,
 } from 'typescript';
 import * as path from 'path';
@@ -22,37 +23,45 @@ export function updateAppRoutingModule(tree: Tree, options: NormalizedSchema) {
       appRoutingModule,
       'VariableStatement',
       (node) => {
+        let modifiedNode = node.getFullText();
+
         const vsNode = node as VariableStatement;
-        const declarations = vsNode.declarationList.declarations[0];
 
-        if ((declarations.name as Identifier).escapedText === 'routes') {
-          const pageNames = names(options.name);
-          const importPath = options.directory
-            ? `./${options.directory}/${pageNames.fileName}/${pageNames.fileName}.module`
-            : `./${pageNames.fileName}/${pageNames.fileName}.module`;
+        vsNode.declarationList.declarations.forEach((declaration) => {
+          const typeNode = declaration.type as TypeReferenceNode;
+          const identifier = typeNode.typeName as Identifier;
+          if (identifier.escapedText === 'Routes') {
+            const pageNames = names(options.name);
+            const importPath = options.directory
+              ? `./${options.directory}/${pageNames.fileName}/${pageNames.fileName}.module`
+              : `./${pageNames.fileName}/${pageNames.fileName}.module`;
 
-          const toInsert = `{
-            path: '${pageNames.fileName}',
-            loadChildren: () =>
-              import('${importPath}').then((m) => m.${pageNames.className}PageModule),
-          },
-          `;
+            const toInsert = `{
+              path: '${pageNames.fileName}',
+              loadChildren: () =>
+                import('${importPath}').then((m) => m.${pageNames.className}PageModule),
+            },
+            `;
 
-          const arrLiteral = declarations.initializer as ArrayLiteralExpression;
+            const arrLiteral =
+              declaration.initializer as ArrayLiteralExpression;
 
-          if (arrLiteral.elements.length > 0) {
-            const nodeArray = arrLiteral.elements;
+            if (arrLiteral.elements.length > 0) {
+              const nodeArray = arrLiteral.elements;
 
-            const insertPosition = nodeArray[0].getStart();
+              const insertPosition = nodeArray[0].getStart();
 
-            const previousRoutes = vsNode.getFullText();
-            const prefix = previousRoutes.substring(0, insertPosition);
-            const suffix = previousRoutes.substring(insertPosition);
-            const newRoutes = `${prefix}${toInsert}${suffix}`;
+              const previousRoutes = vsNode.getFullText();
+              const prefix = previousRoutes.substring(0, insertPosition);
+              const suffix = previousRoutes.substring(insertPosition);
+              const newRoutes = `${prefix}${toInsert}${suffix}`;
 
-            return newRoutes;
+              modifiedNode = newRoutes;
+            }
           }
-        }
+        });
+
+        return modifiedNode;
       }
     );
 

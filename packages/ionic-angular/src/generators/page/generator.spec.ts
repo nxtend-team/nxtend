@@ -1,5 +1,5 @@
 import { createTreeWithEmptyWorkspace } from '@nrwl/devkit/testing';
-import { names, Tree } from '@nrwl/devkit';
+import { Tree } from '@nrwl/devkit';
 
 import { pageGenerator } from './generator';
 import { PageGeneratorSchema } from './schema';
@@ -64,16 +64,6 @@ describe('page generator', () => {
         `${projectRoot}/src/app/${options.name}/${options.name}.page.ts`
       )
     ).toBeTruthy();
-  });
-
-  it('should add route to app-routing module', async () => {
-    await pageGenerator(appTree, options);
-
-    const appRoutingFilePath = `${projectRoot}/src/app/app-routing.module.ts`;
-
-    expect(appTree.read(appRoutingFilePath, 'utf-8')).toContain(
-      `${names(options.name).className}PageModule`
-    );
   });
 
   describe('--directory', () => {
