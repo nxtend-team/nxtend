@@ -34,7 +34,7 @@ describe('application e2e', () => {
 
   async function buildAndTestApp(plugin: string) {
     const buildResults = await runNxCommandAsync(`build ${plugin}`);
-    expect(buildResults.stdout).toContain('Built at');
+    expect(buildResults.stderr).toBeFalsy();
 
     const lintResults = await runNxCommandAsync(`lint ${plugin}`);
     expect(lintResults.stdout).toContain('All files pass linting');
@@ -42,7 +42,7 @@ describe('application e2e', () => {
     const testResults = await runNxCommandAsync(`test ${plugin}`);
     expect(testResults.stderr).toContain('Test Suites: 1 passed, 1 total');
 
-    const e2eResults = await runNxCommandAsync(`e2e ${plugin}-e2e --headless`);
+    const e2eResults = await runNxCommandAsync(`e2e ${plugin}-e2e`);
     expect(e2eResults.stdout).toContain('All specs passed!');
   }
 
@@ -146,7 +146,7 @@ describe('application e2e', () => {
 
   describe('--tags', () => {
     it(
-      'should add tags to nx.json',
+      'should add tags to project configuration',
       async () => {
         const options: ApplicationGeneratorSchema = {
           ...defaultOptions,
@@ -163,11 +163,10 @@ describe('application e2e', () => {
           `generate @nxtend/ionic-react:app ${options.name} --tags ${options.tags} --capacitor false`
         );
 
-        const nxJson = readJson('nx.json');
-        expect(nxJson.projects[options.name].tags).toEqual([
-          'e2etag',
-          'e2ePackage',
-        ]);
+        const projectConfiguration = readJson(
+          `apps/${options.name}/project.json`
+        );
+        expect(projectConfiguration.tags).toEqual(['e2etag', 'e2ePackage']);
 
         await buildAndTestApp(options.name);
       },

@@ -15,7 +15,8 @@
           "packages/capacitor/**/*.spec.jsx",
           "packages/capacitor/**/*.d.ts"
         ]
-      }
+      },
+      "outputs": ["{options.outputFile}"]
     },
     "test": {
       "executor": "@nrwl/jest:jest",

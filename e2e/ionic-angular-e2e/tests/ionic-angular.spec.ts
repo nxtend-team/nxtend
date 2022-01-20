@@ -41,7 +41,7 @@ describe('Ionic Angular Application', () => {
       expect(testResults.stdout).toContain('SUCCESS');
     }
 
-    const e2eResults = await runNxCommandAsync(`e2e ${plugin}-e2e --headless`);
+    const e2eResults = await runNxCommandAsync(`e2e ${plugin}-e2e`);
     expect(e2eResults.stdout).toContain('All specs passed!');
   }
 

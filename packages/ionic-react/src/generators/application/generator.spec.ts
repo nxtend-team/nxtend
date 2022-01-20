@@ -1,5 +1,4 @@
 import { readJson, readProjectConfiguration, Tree } from '@nrwl/devkit';
-import { readNxJson } from '@nrwl/devkit/src/generators/project-configuration';
 import { createTreeWithEmptyWorkspace } from '@nrwl/devkit/testing';
 import { applicationGenerator } from './generator';
 import { ApplicationGeneratorSchema } from './schema';
@@ -143,21 +142,6 @@ describe('application', () => {
 
       expect(project.root).toEqual('apps/my-dir/my-app');
       expect(projectE2e.root).toEqual('apps/my-dir/my-app-e2e');
-    });
-
-    it('should update nx.json', async () => {
-      await applicationGenerator(appTree, { ...options, directory: 'myDir' });
-
-      const nxJson = readNxJson(appTree);
-      expect(nxJson.projects).toEqual({
-        'my-dir-my-app': {
-          tags: [],
-        },
-        'my-dir-my-app-e2e': {
-          tags: [],
-          implicitDependencies: ['my-dir-my-app'],
-        },
-      });
     });
 
     it('should generate files', async () => {
