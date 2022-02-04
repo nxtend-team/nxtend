@@ -2,6 +2,8 @@
 
 # 13.0.0
 
+## Features
+
 - support Nx 13
 
 # 12.1.0
