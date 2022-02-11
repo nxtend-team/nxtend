@@ -1,5 +1,9 @@
 # Changelog
 
+# 13.1.0
+
+- add page generator (courtesy of @joshuamorony)
+
 # 13.0.0
 
 ## Features
