@@ -14,11 +14,13 @@ function normalizeOptions(
   tree: Tree,
   options: PageGeneratorSchema
 ): NormalizedSchema {
-  const projectRoot = `${getWorkspaceLayout(tree).appsDir}/${options.project}`;
+  const { appsDir, npmScope } = getWorkspaceLayout(tree);
+  const projectRoot = `${appsDir}/${options.project}`;
 
   return {
     ...options,
     projectRoot,
+    prefix: npmScope,
   };
 }
 

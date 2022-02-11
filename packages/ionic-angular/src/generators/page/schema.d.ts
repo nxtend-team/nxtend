@@ -6,4 +6,5 @@ export interface PageGeneratorSchema {
 
 export interface NormalizedSchema extends PageGeneratorSchema {
   projectRoot: string;
+  prefix: string;
 }
