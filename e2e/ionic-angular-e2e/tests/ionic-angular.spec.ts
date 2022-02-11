@@ -192,34 +192,48 @@ describe('Ionic Angular Application', () => {
   );
 
   describe('Ionic Angular Page', () => {
-    it('should create page in project', async () => {
-      const appName = uniq('ionic-angular');
-      ensureNxProject('@nxtend/ionic-angular', 'dist/packages/ionic-angular');
-      await runCommandAsync('yarn add -D @nxtend/capacitor');
-      await runNxCommandAsync(
-        `generate @nxtend/ionic-angular:app --name ${appName} --capacitor false`
-      );
-      await runNxCommandAsync(
-        `generate @nxtend/ionic-angular:page --name my-page --project ${appName}`
-      );
-
-      await buildAndTestApp(appName);
-    });
-
-    describe('--directory', () => {
-      it('should create page in directory', async () => {
+    it(
+      'should create page in project',
+      async () => {
         const appName = uniq('ionic-angular');
-        ensureNxProject('@nxtend/ionic-angular', 'dist/packages/ionic-angular');
-        await runCommandAsync('yarn add -D @nxtend/capacitor');
+        ensureNxProjectWithDeps(
+          '@nxtend/ionic-angular',
+          'dist/packages/ionic-angular',
+          [['@nxtend/capacitor', 'dist/packages/capacitor']]
+        );
         await runNxCommandAsync(
           `generate @nxtend/ionic-angular:app --name ${appName} --capacitor false`
         );
         await runNxCommandAsync(
-          `generate @nxtend/ionic-angular:page --name my-page --project ${appName} --directory my-dir`
+          `generate @nxtend/ionic-angular:page --name my-page --project ${appName}`
         );
 
         await buildAndTestApp(appName);
-      });
+      },
+      asyncTimeout
+    );
+
+    describe('--directory', () => {
+      it(
+        'should create page in directory',
+        async () => {
+          const appName = uniq('ionic-angular');
+          ensureNxProjectWithDeps(
+            '@nxtend/ionic-angular',
+            'dist/packages/ionic-angular',
+            [['@nxtend/capacitor', 'dist/packages/capacitor']]
+          );
+          await runNxCommandAsync(
+            `generate @nxtend/ionic-angular:app --name ${appName} --capacitor false`
+          );
+          await runNxCommandAsync(
+            `generate @nxtend/ionic-angular:page --name my-page --project ${appName} --directory my-dir`
+          );
+
+          await buildAndTestApp(appName);
+        },
+        asyncTimeout
+      );
     });
   });
 });
