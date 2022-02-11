@@ -13,7 +13,6 @@ export function addDependencies(host: Tree) {
     {
       '@ionic/react': ionicReactVersion,
       '@ionic/react-router': ionicReactRouterVersion,
-      ionicons: ioniconsVersion,
     },
     { '@nrwl/react': nxVersion, '@nxtend/capacitor': nxtendCapacitorVersion }
   );
