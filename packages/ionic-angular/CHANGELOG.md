@@ -4,6 +4,7 @@
 
 ## Features
 
+- add page generator (courtesy of @joshuamorony)
 - generate applications with Ionic v6
 
 # 13.0.0
