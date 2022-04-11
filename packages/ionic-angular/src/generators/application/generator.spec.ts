@@ -24,7 +24,7 @@ describe('application schematic', () => {
 
     const packageJson = readJson(appTree, 'package.json');
     expect(packageJson.dependencies['@ionic/angular']).toBeDefined();
-    expect(packageJson.devDependencies['@nrwl/angular']).toBeDefined();
+    expect(packageJson.dependencies['@nrwl/angular']).toBeDefined();
     expect(packageJson.devDependencies['@nxtend/capacitor']).toBeDefined();
   });
 
