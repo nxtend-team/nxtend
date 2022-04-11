@@ -44,7 +44,7 @@ yarn test {plugin}
 To run e2e tests for a plugin, run:
 
 ```
-yarn e2e {plugin}
+yarn e2e {plugin}-e2e
 ```
 
 ## Testing Locally
