@@ -1,6 +1,6 @@
 import { ExecutorContext, normalizePath } from '@nrwl/devkit';
 import runCommands, {
-  RunCommandsBuilderOptions,
+  RunCommandsOptions,
 } from '@nrwl/workspace/src/executors/run-commands/run-commands.impl';
 import { CommandExecutorSchema } from './schema';
 
@@ -13,9 +13,10 @@ export default async function runExecutor(
 
   const cmd = sanitizeCapacitorCommand(options.cmd);
 
-  const runCommandsOptions: RunCommandsBuilderOptions = {
+  const runCommandsOptions: RunCommandsOptions = {
     cwd: projectRootPath,
     command: `firebase ${cmd}`,
+    __unparsed__: [],
   };
 
   return await runCommands(runCommandsOptions, context);

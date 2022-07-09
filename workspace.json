@@ -10,5 +10,6 @@
     "ionic-angular-e2e": "e2e/ionic-angular-e2e",
     "ionic-react": "packages/ionic-react",
     "ionic-react-e2e": "e2e/ionic-react-e2e"
-  }
+  },
+  "$schema": "./node_modules/nx/schemas/workspace-schema.json"
 }
