@@ -2,6 +2,8 @@
 
 [![standard-readme compliant](https://img.shields.io/badge/standard--readme-OK-green.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
 
+**NOTICE:** This repo is no longer in active development. These plugins have been moved to the [nx-extensions](https://github.com/nxext/nx-extensions) repo and further development will be continued there.
+
 A collection of third-party Nx plugins.
 
 ## Table of Contents
