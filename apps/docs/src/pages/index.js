@@ -8,26 +8,15 @@ import styles from './styles.module.css';
 
 const features = [
   {
-    title: <>Develop Cross-Platform Applications in a Monorepo</>,
+    title: <>This Project Has Been Archived</>,
     description: (
       <>
-        The Ionic and Capacitor plugins enable developers to build
-        cross-platform applications in an Nx workspace.
-      </>
-    ),
-  },
-  {
-    title: <>Integrate Firebase</>,
-    description: (
-      <>Utilize Firebase to develop applications in an Nx workspace.</>
-    ),
-  },
-  {
-    title: <>Easily Update Dependencies</>,
-    description: (
-      <>
-        Nxtend plugin migrations will automatically update dependencies
-        installed by the plugins used.
+        This project is no longer in active development. These plugins have
+        moved to{' '}
+        <a href="https://nxext.dev/" target="_blank">
+          Nxext
+        </a>
+        .
       </>
     ),
   },
@@ -77,7 +66,7 @@ function Home() {
         {features && features.length && (
           <section className={styles.features}>
             <div className="container">
-              <div className="row">
+              <div className={styles.center + ' row'}>
                 {features.map((props, idx) => (
                   <Feature key={idx} {...props} />
                 ))}
