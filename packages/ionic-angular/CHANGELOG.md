@@ -1,8 +1,14 @@
 # Changelog
 
+# 13.1.1
+
+## Bug Fixes
+
+- move `@nrwl/angular` to dependencies section of `package.json`
+
 # 13.1.0
 
-# Features
+## Features
 
 - add page generator (courtesy of @joshuamorony)
 
