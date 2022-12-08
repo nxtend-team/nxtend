@@ -1,6 +1,6 @@
 {
   "name": "@nxtend/firebase",
-  "version": "12.1.0",
+  "version": "14.0.0",
   "description": "An Nx plugin for developing cross-platform applications using Capacitor",
   "author": {
     "name": "Devin Shoemaker",
@@ -18,9 +18,9 @@
   "schematics": "./generators.json",
   "builders": "./executors.json",
   "dependencies": {
-    "@nrwl/devkit": "^13.0.0"
+    "@nrwl/devkit": "^14.0.0"
   },
   "peerDependencies": {
-    "@nrwl/workspace": "^13.0.0"
+    "@nrwl/workspace": "^14.0.0"
   }
 }

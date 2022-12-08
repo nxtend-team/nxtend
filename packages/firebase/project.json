@@ -1,5 +1,5 @@
 {
-  "root": "packages/firebase",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/firebase/src",
   "projectType": "library",
   "targets": {
@@ -14,12 +14,12 @@
       "executor": "@nrwl/jest:jest",
       "outputs": ["coverage/packages/firebase"],
       "options": {
-        "jestConfig": "packages/firebase/jest.config.js",
+        "jestConfig": "packages/firebase/jest.config.ts",
         "passWithNoTests": true
       }
     },
     "build": {
-      "executor": "@nrwl/node:package",
+      "executor": "@nrwl/js:tsc",
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/packages/firebase",
@@ -27,7 +27,11 @@
         "packageJson": "packages/firebase/package.json",
         "main": "packages/firebase/src/index.ts",
         "assets": [
-          "packages/firebase/*.md",
+          {
+            "input": "./packages/firebase",
+            "glob": "*.md",
+            "output": "."
+          },
           {
             "input": "./packages/firebase/src",
             "glob": "**/*.!(ts)",

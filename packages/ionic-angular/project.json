@@ -1,5 +1,5 @@
 {
-  "root": "packages/ionic-angular",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/ionic-angular/src",
   "projectType": "library",
   "generators": {},
@@ -21,20 +21,24 @@
     "test": {
       "executor": "@nrwl/jest:jest",
       "options": {
-        "jestConfig": "packages/ionic-angular/jest.config.js",
+        "jestConfig": "packages/ionic-angular/jest.config.ts",
         "passWithNoTests": true
       },
       "outputs": ["coverage/packages/ionic-angular"]
     },
     "build": {
-      "executor": "@nrwl/node:package",
+      "executor": "@nrwl/js:tsc",
       "options": {
         "outputPath": "dist/packages/ionic-angular",
         "tsConfig": "packages/ionic-angular/tsconfig.lib.json",
         "packageJson": "packages/ionic-angular/package.json",
         "main": "packages/ionic-angular/src/index.ts",
         "assets": [
-          "packages/ionic-angular/*.md",
+          {
+            "input": "./packages/ionic-angular",
+            "glob": "*.md",
+            "output": "."
+          },
           {
             "input": "./packages/ionic-angular/src",
             "glob": "**/*.!(ts)",
