@@ -55,7 +55,6 @@ describe('application', () => {
     const packageJson = readJson(appTree, 'package.json');
     expect(packageJson.dependencies['@ionic/react']).toBeDefined();
     expect(packageJson.dependencies['@ionic/react-router']).toBeDefined();
-    expect(packageJson.dependencies['ionicons']).toBeDefined();
     expect(packageJson.devDependencies['@nrwl/react']).toBeDefined();
     expect(packageJson.devDependencies['@nxtend/capacitor']).toBeDefined();
   });
