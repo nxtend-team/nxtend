@@ -7,6 +7,14 @@ module.exports = {
   organizationName: 'Devin Shoemaker',
   projectName: 'Nxtend',
   themeConfig: {
+    announcementBar: {
+      id: 'deprecated',
+      content:
+        'This library is <strong>deprecated</strong> in favor of <strong><a target="_blank" rel="noopener noreferrer" href="https://nxext.dev/">Nxext</a></strong>.',
+      backgroundColor: '#fddfdf',
+      textColor: '#f6433e',
+      isCloseable: false,
+    },
     navbar: {
       title: 'Home',
       items: [
