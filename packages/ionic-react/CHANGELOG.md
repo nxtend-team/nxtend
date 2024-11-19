@@ -5,6 +5,7 @@
 ## Features
 
 - support Nx 13
+- generate applications with Ionic 6
 
 # 12.1.0
 
