@@ -7,7 +7,8 @@ export function normalizeOptions(
   options: CapacitorGeneratorSchema
 ): NormalizedSchema {
   const appName = options.appName ? options.appName : options.project;
-  const projectRoot = readProjectConfiguration(host, options.project).root;
+  const projectConfig = readProjectConfiguration(host, options.project);
+  const projectRoot = projectConfig.root || projectConfig.sourceRoot;
   const pathToRoot = relative(
     `${process.cwd()}/${projectRoot}`,
     process.cwd()
