@@ -1,5 +1,11 @@
 # Changelog
 
+# 13.1.0
+
+## Features
+
+- generate applications with Ionic v6
+
 # 13.0.0
 
 ## Features
